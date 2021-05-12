@@ -29,6 +29,12 @@ public class PhysicsEngineImpl implements PhysicsEngine {
         return false;
     }
 
+    @Override
+    public boolean isPlayerHitted() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
    
 
 }
