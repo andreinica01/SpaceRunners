@@ -3,7 +3,9 @@ package GameField;
 import javafx.scene.canvas.Canvas;
 import java.util.Set;
 
+import GameObjects.BonusObject;
 import GameObjects.Entity;
+import GameObjects.SpaceShip;
 
 
 
@@ -42,6 +44,30 @@ public interface GameField {
      * @return Height 
      */
     Number getHeight();
+
+    /**
+     * 
+     * @param add the player Entity to the game
+     */
+    void setPlayer(SpaceShip player);
+
+    /**
+     * 
+     * @return the player Entity
+     */
+    SpaceShip getPlayer();
+
+    /**
+     * 
+     * @return a set with all the current enemy ships on the field
+     */
+    Set<SpaceShip> getActiveEnemyShips();
+
+    /**
+     * 
+     * @return a set with all the Bonus Objects in the game
+     */
+    Set<BonusObject> getBonusObjects();
 
 
 

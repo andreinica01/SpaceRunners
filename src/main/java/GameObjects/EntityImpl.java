@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
 
 
 
-public class EntityImpl implements Entity {
+public abstract class EntityImpl implements Entity {
 
     private Vector2D<Number> position;
     private Vector2D<Number> dimension;

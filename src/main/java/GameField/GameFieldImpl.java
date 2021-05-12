@@ -4,7 +4,9 @@ import javafx.scene.canvas.Canvas;
 import java.util.HashSet;
 import java.util.Set;
 
+import GameObjects.BonusObject;
 import GameObjects.Entity;
+import GameObjects.SpaceShip;
 
 
 
@@ -51,6 +53,30 @@ public class GameFieldImpl implements GameField {
     @Override
     public Number getHeight() {
         return this.gameCanvas.getHeight();
+    }
+
+    @Override
+    public void setPlayer(SpaceShip player) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public SpaceShip getPlayer() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Set<SpaceShip> getActiveEnemyShips() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Set<BonusObject> getBonusObjects() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
  

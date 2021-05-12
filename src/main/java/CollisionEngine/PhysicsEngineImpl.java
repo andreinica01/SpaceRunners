@@ -15,6 +15,12 @@ public class PhysicsEngineImpl implements PhysicsEngine {
     public PhysicsEngineImpl(GameField gamefield) {
         this.gamefield = gamefield;
 
+        //funzioni che puoi usare
+       /* this.gamefield.getPlayer();
+        this.gamefield.getActiveEnemyShips();
+        this.gamefield.getBonusObjects(); */
+   
+        
     }
 
     @Override

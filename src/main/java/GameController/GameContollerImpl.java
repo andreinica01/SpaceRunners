@@ -1,24 +1,25 @@
 package GameController;
 
 import GameField.GameField;
-import GameObjects.*;
 import Utilities.Direction;
 import Utilities.Vector2DImpl;
+import GameObjects.SpaceShip;
 import FrameManager.FrameManager;
+
 
 public class GameContollerImpl implements GameController {
 
     private GameField gamefield;
     // private Set<Entity> enemies;
 
-    private Entity player;
+    private SpaceShip player;
     private FrameManager frame;
 
     public GameContollerImpl(GameField gamefield) {
 
         this.gamefield = gamefield;
         this.frame = new FrameManager(this.gamefield);
-        this.player = new EntityImpl();
+        this.player = new SpaceShip();
 
         /* setup player info */
             this.player.setDimension(new Vector2DImpl<Number>(100, 100));
