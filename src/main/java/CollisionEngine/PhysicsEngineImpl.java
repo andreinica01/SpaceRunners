@@ -20,9 +20,13 @@ public class PhysicsEngineImpl implements PhysicsEngine {
          * this.gamefield.getBonusObjects();
          * 
          * this.gamefield.getWidth();
-         * this.gamefield.getHeight()
+         * this.gamefield.getHeight();
+         * this.gamefield.getActiveBulletsShotbyEnemies();
+         * this.gamefield.getActiveBulletsShotbyPlayer();
          * 
          */
+
+      
 
     }
 

@@ -4,6 +4,7 @@ import javafx.scene.canvas.Canvas;
 import java.util.Set;
 
 import GameObjects.BonusObject;
+import GameObjects.Bullet;
 import GameObjects.Entity;
 import GameObjects.SpaceShip;
 
@@ -68,6 +69,20 @@ public interface GameField {
      * @return a set with all the Bonus Objects in the game
      */
     Set<BonusObject> getBonusObjects();
+
+  
+    
+    /**
+     * 
+     * @return all active bullets shot by the player
+     */
+    Set<Bullet> getActiveBulletsShotbyPlayer();
+
+    /**
+     * 
+     * @return all active bullets shot towards the player
+     */
+    Set<Bullet> getActiveBulletsShotbyEnemies();
 
 
 

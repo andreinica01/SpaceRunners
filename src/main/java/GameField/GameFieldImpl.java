@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import GameObjects.BonusObject;
+import GameObjects.Bullet;
 import GameObjects.Entity;
 import GameObjects.SpaceShip;
 
@@ -75,6 +76,18 @@ public class GameFieldImpl implements GameField {
 
     @Override
     public Set<BonusObject> getBonusObjects() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Set<Bullet> getActiveBulletsShotbyPlayer() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Set<Bullet> getActiveBulletsShotbyEnemies() {
         // TODO Auto-generated method stub
         return null;
     }
