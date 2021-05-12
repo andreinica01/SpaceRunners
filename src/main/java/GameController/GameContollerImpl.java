@@ -22,7 +22,7 @@ public class GameContollerImpl implements GameController {
 
         /* setup player info */
             this.player.setDimension(new Vector2DImpl<Number>(100, 100));
-            this.player.setImage("src/Images/spaceship2.png");
+            this.player.setImage("src/main/resources/Images/spaceship2.png");
             this.player.setSpeed(1);
             this.player.setDirection(Direction.RIGHT);
             this.player.setPosition(0, 10);

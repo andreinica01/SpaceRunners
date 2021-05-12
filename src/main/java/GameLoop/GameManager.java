@@ -35,7 +35,7 @@ public class GameManager extends AnimationTimer {
         this.gameRenderer = new RendererImpl(this.gamefield);
 
         stage.show();
-       // this.mainwindow.setVisible(true);
+        //this.mainwindow.setVisible(true);
      
 
     }

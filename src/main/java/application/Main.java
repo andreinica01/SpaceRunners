@@ -11,6 +11,7 @@ public class Main extends Application {
 	public void start(Stage mainwindow) {
 		try {
 			GameManager x = new GameManager(mainwindow);
+			
 			System.out.println(x);
 			x.start();
 
