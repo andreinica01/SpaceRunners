@@ -1,12 +1,16 @@
 package GameField;
 
-import javafx.scene.canvas.Canvas;
+import javafx.scene.layout.AnchorPane;
+
+
 import java.util.Set;
+
 
 import GameObjects.BonusObject;
 import GameObjects.Bullet;
 import GameObjects.Entity;
 import GameObjects.SpaceShip;
+import InputController.InputControllerImpl;
 
 
 
@@ -18,15 +22,10 @@ public interface GameField {
      * @return the draw panel where the content is draw
      */
 
-    Canvas getCanvas();
+   // Group getGroup();
+        AnchorPane getGameContainer();
 
-    /**
-     * Add an Entity to the gameField
-     * 
-     * @param entity
-     */
 
-    void addEntity(Entity entity);
 
     /**
      * 
@@ -85,5 +84,6 @@ public interface GameField {
     Set<Bullet> getActiveBulletsShotbyEnemies();
 
 
-
+    void setInputController(InputControllerImpl controller);
+  
 }

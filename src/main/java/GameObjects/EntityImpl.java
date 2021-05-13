@@ -5,9 +5,9 @@ import java.io.File;
 import Utilities.Direction;
 import Utilities.Vector2D;
 import Utilities.Vector2DImpl;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
-
-
+import javafx.scene.image.ImageView;
 
 public abstract class EntityImpl implements Entity {
 
@@ -16,38 +16,29 @@ public abstract class EntityImpl implements Entity {
 
     private Number speed;
 
-    private Image image;
+    private Node entityNode;
     private Direction direction;
 
-    public EntityImpl()
-    {
+    public EntityImpl() {
         this.position = new Vector2DImpl<Number>(0, 0);
         this.dimension = new Vector2DImpl<Number>(0, 0);
 
+    }
 
+    public Node getNode() {
+        return this.entityNode;
     }
 
     public void setImage(String pathToImage) {
-       
-            this.image =  new Image(new File(pathToImage).toURI().toString());
-          //  this.image = this.image.getScaledInstance(this.dimension.getX().intValue(), this.dimension.getY().intValue(),);
-                        
 
-      
-
-    }
-
-    public Image getImage() {
-        return this.image;
+        this.entityNode = new ImageView(new Image(new File(pathToImage).toURI().toString()));
+        // this.image = this.image.getScaledInstance(this.dimension.getX().intValue(),
+        // this.dimension.getY().intValue(),);
 
     }
 
     public void SetDirection(Direction direction) {
         this.direction = direction;
-
-    }
-
-    public void move() {
 
     }
 
@@ -60,9 +51,12 @@ public abstract class EntityImpl implements Entity {
 
     @Override
     public void setPosition(Number x, Number y) {
-        
+
         this.position.setX(x);
         this.position.setY(y);
+
+        this.entityNode.setLayoutX(x.intValue());
+        this.entityNode.setLayoutY(y.intValue());
 
     }
 
@@ -102,4 +96,3 @@ public abstract class EntityImpl implements Entity {
     }
 
 }
-

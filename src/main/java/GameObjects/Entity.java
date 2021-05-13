@@ -1,12 +1,12 @@
 package GameObjects;
 
 import Utilities.Vector2D;
-import javafx.scene.image.Image;
+import javafx.scene.Node;
 import Utilities.Direction;
 
 public interface Entity {
 
-    Image getImage();
+    Node getNode();
 
     void setImage(String path);
 

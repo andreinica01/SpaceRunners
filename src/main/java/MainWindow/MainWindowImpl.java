@@ -14,7 +14,6 @@ public class MainWindowImpl implements MainWindow {
         this.stage = original;
     }
 
-    
     @Override
     public void setVisible(boolean visible) {
 
@@ -28,9 +27,10 @@ public class MainWindowImpl implements MainWindow {
     @Override
     public void addGameField(GameFieldImpl gamefield) {
 
-        VBox vbox = new VBox(gamefield.getCanvas());
+        VBox vbox = new VBox(gamefield.getGameContainer());
         Scene scene = new Scene(vbox);
         this.mainScene = scene;
+
         this.stage.setScene(scene);
 
     }
@@ -47,10 +47,9 @@ public class MainWindowImpl implements MainWindow {
 
     }
 
-
     @Override
     public Scene getScene() {
-     
+
         return this.mainScene;
     }
 

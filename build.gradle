@@ -28,3 +28,5 @@ test {
 }
 
 mainClassName = "application.Main"
+
+apply plugin: "eclipse"

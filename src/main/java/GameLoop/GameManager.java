@@ -6,7 +6,6 @@ import GameField.*;
 import MainWindow.*;
 import javafx.animation.*;
 import javafx.stage.Stage;
-import Renderer.*;
 
 public class GameManager extends AnimationTimer {
 
@@ -14,7 +13,6 @@ public class GameManager extends AnimationTimer {
 
     private GameFieldImpl gamefield;
 
-    private Renderer gameRenderer;
     private GameController gameController;
 
 
@@ -31,8 +29,8 @@ public class GameManager extends AnimationTimer {
         this.mainwindow.setHeight(720);
     
         this.mainwindow.addGameField(this.gamefield);
-
-        this.gameRenderer = new RendererImpl(this.gamefield);
+ 
+         
 
         stage.show();
         //this.mainwindow.setVisible(true);
@@ -49,7 +47,7 @@ public class GameManager extends AnimationTimer {
         
         this.gameController.update();
 
-        this.gameRenderer.render();
+       
 
         
         

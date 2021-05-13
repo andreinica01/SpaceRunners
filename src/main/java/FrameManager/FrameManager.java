@@ -19,7 +19,6 @@ public class FrameManager {
 
     public void update() {
 
-  
         entities.forEach(entity->{
             updateEntityPosition(entity);
         });
