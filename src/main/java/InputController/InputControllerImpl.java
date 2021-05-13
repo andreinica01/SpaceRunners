@@ -10,7 +10,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 
-public class InputControllerImpl implements EventHandler<KeyEvent>, InputController {
+public class InputControllerImpl implements EventHandler<KeyEvent> {
 
     private Map<KeyCode, Boolean> pressedkeys;
 
@@ -41,7 +41,7 @@ public class InputControllerImpl implements EventHandler<KeyEvent>, InputControl
 
     }
 
-    @Override
+    
     public boolean isLeft() {
 
         if (this.pressedkeys.get(KeyCode.A)==true || this.pressedkeys.get(KeyCode.LEFT)
@@ -55,19 +55,19 @@ public class InputControllerImpl implements EventHandler<KeyEvent>, InputControl
         return false;
     }
 
-    @Override
+ 
     public boolean isRight() {
 
         return false;
     }
 
-    @Override
+
     public boolean isTopLeft() {
 
         return false;
     }
 
-    @Override
+   
     public boolean isTopRight() {
 
         return false;

@@ -69,8 +69,6 @@ public interface GameField {
      */
     Set<BonusObject> getBonusObjects();
 
-  
-    
     /**
      * 
      * @return all active bullets shot by the player
