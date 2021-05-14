@@ -1,5 +1,7 @@
 package GameField;
 
+
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 
 
@@ -11,7 +13,7 @@ import GameObjects.Bullet;
 import GameObjects.Entity;
 import GameObjects.SpaceShip;
 import InputController.InputControllerImpl;
-
+import javafx.scene.Node;
 
 
 
@@ -83,5 +85,17 @@ public interface GameField {
 
 
     void setInputController(InputControllerImpl controller);
+
+
+    void setScene(Scene scene);
+
+    Scene getScene();
+
+    
+    void setBackgroundImage(String path);
+
+    Node getBackground();
+
+    void addBullet(Bullet bullet);
   
 }

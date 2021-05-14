@@ -1,12 +1,10 @@
 package InputController;
 
+import Utilities.InputCommand;
+
 public interface InputController {
     
-    boolean isLeft();
-    boolean isRight();
-    boolean isTopLeft();
-    boolean isTopRight();
-
+    InputCommand getCommand();
 
 
 }

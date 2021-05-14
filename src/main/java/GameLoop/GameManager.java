@@ -23,13 +23,13 @@ public class GameManager extends AnimationTimer {
         this.gamefield = new GameFieldImpl(1280,720);
         
         
-        this.gameController = new GameContollerImpl(this.gamefield);
+        
 
         this.mainwindow.setWidth(1280);
         this.mainwindow.setHeight(720);
     
         this.mainwindow.addGameField(this.gamefield);
- 
+        this.gameController = new GameContollerImpl(this.gamefield);
          
 
         stage.show();

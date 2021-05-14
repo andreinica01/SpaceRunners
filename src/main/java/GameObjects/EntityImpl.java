@@ -32,9 +32,15 @@ public abstract class EntityImpl implements Entity {
     public void setImage(String pathToImage) {
 
         this.entityNode = new ImageView(new Image(new File(pathToImage).toURI().toString()));
+        this.entityNode.setRotate(180);
         // this.image = this.image.getScaledInstance(this.dimension.getX().intValue(),
         // this.dimension.getY().intValue(),);
 
+    }
+
+    public void setImage(Image image)
+    {
+        this.entityNode = new ImageView(image);
     }
 
     public void SetDirection(Direction direction) {
@@ -55,8 +61,8 @@ public abstract class EntityImpl implements Entity {
         this.position.setX(x);
         this.position.setY(y);
 
-        this.entityNode.setLayoutX(x.intValue());
-        this.entityNode.setLayoutY(y.intValue());
+        this.entityNode.setTranslateX(x.intValue());
+        this.entityNode.setTranslateY(y.intValue());
 
     }
 

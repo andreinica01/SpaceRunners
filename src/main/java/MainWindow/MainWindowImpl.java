@@ -31,6 +31,7 @@ public class MainWindowImpl implements MainWindow {
         Scene scene = new Scene(vbox);
         this.mainScene = scene;
 
+        gamefield.setScene(scene);
         this.stage.setScene(scene);
 
     }

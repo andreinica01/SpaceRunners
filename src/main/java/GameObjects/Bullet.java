@@ -1,19 +1,33 @@
 package GameObjects;
 
+import Utilities.*;
+
 public class Bullet extends EntityImpl {
-    
-    private final int damage;
-    Bullet(int bulletDamage)
-    {
-        this.damage = bulletDamage; 
+
+    private int damage;
+
+    public Bullet() {
+        
+        //set default
+        this.setImage(Parameters.bulletImage);
+        this.setDirection(Direction.UP);
+        this.getNode().setViewOrder(-50);
+
+        this.getNode().setScaleX(0.10);
+        this.getNode().setScaleY(0.10);
+
 
     }
 
-
-    int getBulletDamage()
+    public Bullet bulletDamage(int damage)
     {
-        return this.damage;
+        this.damage = damage;
 
+        return this;
+    }
+
+    int getBulletDamage() {
+        return this.damage;
 
     }
 }
