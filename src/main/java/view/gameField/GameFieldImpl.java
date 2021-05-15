@@ -1,20 +1,21 @@
-package GameField;
+package view.gameField;
 
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import model.Entity;
+import model.bonus.BonusObject;
+import model.bullet.Bullet;
+import model.ship.SpaceShip;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import GameObjects.BonusObject;
-import GameObjects.Bullet;
-import GameObjects.Entity;
-import GameObjects.SpaceShip;
-import InputController.InputControllerImpl;
 
 import Utilities.Parameters;
+
+import controller.inputController.InputControllerImpl;
 import javafx.scene.Node;
 
 public class GameFieldImpl implements GameField {
@@ -37,8 +38,11 @@ public class GameFieldImpl implements GameField {
     public GameFieldImpl(final int width, final int height) {
 
         this.gameContainer = new AnchorPane();
+
         this.gameContainer.prefWidth(width);
         this.gameContainer.prefHeight(height);
+
+    
 
         this.entities = new HashSet<Entity>();
         this.bullets = new HashSet<Bullet>();
@@ -162,5 +166,8 @@ public class GameFieldImpl implements GameField {
         this.gameContainer.getChildren().add(bullet.getNode());
 
     }
+
+
+
 
 }

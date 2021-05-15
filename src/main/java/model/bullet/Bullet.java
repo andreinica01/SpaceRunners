@@ -1,6 +1,7 @@
-package GameObjects;
+package model.bullet;
 
 import Utilities.*;
+import model.EntityImpl;
 
 public class Bullet extends EntityImpl {
 

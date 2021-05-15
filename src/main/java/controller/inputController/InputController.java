@@ -1,4 +1,4 @@
-package InputController;
+package controller.inputController;
 
 import Utilities.InputCommand;
 

@@ -1,4 +1,4 @@
-package InputController;
+package controller.inputController;
 
 import java.util.HashMap;
 import java.util.Map;

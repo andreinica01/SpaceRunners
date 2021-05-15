@@ -1,9 +1,10 @@
-package MainWindow;
+package view.mainWindow;
 
-import GameField.GameFieldImpl;
+
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import view.gameField.GameFieldImpl;
 
 public class MainWindowImpl implements MainWindow {
 
@@ -21,6 +22,7 @@ public class MainWindowImpl implements MainWindow {
             this.stage.show();
 
         this.stage.hide();
+        this.stage.setResizable(false);
 
     }
 
@@ -38,13 +40,22 @@ public class MainWindowImpl implements MainWindow {
 
     @Override
     public void setWidth(Number width) {
+
         this.stage.setWidth(width.intValue());
+
+
+
+        
+        
+    
 
     }
 
     @Override
     public void setHeight(Number heigth) {
         this.stage.setHeight(heigth.intValue());
+
+     
 
     }
 
@@ -53,5 +64,7 @@ public class MainWindowImpl implements MainWindow {
 
         return this.mainScene;
     }
+
+
 
 }

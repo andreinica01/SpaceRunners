@@ -2,7 +2,7 @@ package application;
 	
 import javafx.application.Application;
 import javafx.stage.Stage;
-import GameLoop.*;
+import controller.gameLoop.*;
 
 
 public class Main extends Application {

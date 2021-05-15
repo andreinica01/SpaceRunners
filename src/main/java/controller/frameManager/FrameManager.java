@@ -1,15 +1,19 @@
+<<<<<<< HEAD:src/main/java/FrameManager/FrameManager.java
 package FrameManager;
 
+=======
+package controller.frameManager;
+>>>>>>> c66d6b38ed95967957cb1335f3449f57b0812694:src/main/java/controller/frameManager/FrameManager.java
 import java.util.Set;
 
-import GameField.GameField;
-import GameObjects.Entity;
+import view.gameField.*;
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 import javafx.util.Duration;
+import model.Entity;
 
 public class FrameManager {
 

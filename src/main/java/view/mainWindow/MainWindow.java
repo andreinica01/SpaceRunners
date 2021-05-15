@@ -1,7 +1,7 @@
-package MainWindow;
+package view.mainWindow;
 
-import GameField.GameFieldImpl;
 import javafx.scene.Scene;
+import view.gameField.GameFieldImpl;
 
 public interface MainWindow {
 

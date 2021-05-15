@@ -1,8 +1,9 @@
-package CollisionEngine;
+package controller.collisionEngine;
 
-import GameField.GameField;
-import GameObjects.Entity;
+
 import javafx.util.Pair;
+import model.Entity;
+import view.gameField.GameField;
 
 import java.util.Set;
 

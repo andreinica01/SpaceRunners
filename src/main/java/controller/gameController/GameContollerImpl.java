@@ -1,13 +1,14 @@
-package GameController;
+package controller.gameController;
 
-import FrameManager.FrameManager;
-import GameField.GameField;
+
 import Utilities.Direction;
 import Utilities.InputCommand;
 import Utilities.Vector2DImpl;
-import GameObjects.Bullet;
-import GameObjects.SpaceShip;
-import InputController.InputControllerImpl;
+import controller.frameManager.FrameManager;
+import controller.inputController.InputControllerImpl;
+import model.bullet.Bullet;
+import model.ship.SpaceShip;
+import view.gameField.GameField;
 import Utilities.*;
 
 public class GameContollerImpl implements GameController {
