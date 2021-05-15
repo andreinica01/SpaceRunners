@@ -132,7 +132,7 @@ public class GameFieldImpl implements GameField {
 
         for (int  i = 0; i<this.backGroundImage.length;i++) {
             this.backGroundImage[i] =  new ImageView(Parameters.BackgroundImage);
-            this.backGroundImage[i].setTranslateX(0);
+            this.backGroundImage[i].setLayoutX(0);
             this.backGroundImage[i].setFitWidth(this.width);
             this.backGroundImage[i].setFitHeight(this.height);
             this.backGroundImage[i].setViewOrder(+10);
@@ -141,7 +141,7 @@ public class GameFieldImpl implements GameField {
         }
 
         this.backGroundImage[0].setTranslateX(0);
-        this.backGroundImage[1].setTranslateY(-this.height);
+        this.backGroundImage[1].setLayoutY(-this.height);
 
     }
 
