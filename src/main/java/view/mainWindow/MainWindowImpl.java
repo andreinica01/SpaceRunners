@@ -33,6 +33,7 @@ public class MainWindowImpl implements MainWindow {
 
         gamefield.setScene(scene);
         this.stage.setScene(scene);
+        this.stage.setResizable(false);
 
     }
 

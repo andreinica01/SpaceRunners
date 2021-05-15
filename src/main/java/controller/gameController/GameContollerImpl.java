@@ -45,8 +45,13 @@ public class GameContollerImpl implements GameController {
     private void playerAttack() {
 
         Bullet x = new Bullet().bulletDamage(10);
+<<<<<<< HEAD
 
         x.setPosition(this.player.getNode().getTranslateX() - 180, this.player.getNode().getTranslateY() - 200);
+=======
+       
+        x.setPosition(this.player.getNode().getTranslateX()-190, this.player.getNode().getTranslateY()-200);
+>>>>>>> e807f172b958e4756f0bcec57e9f63f1236ed014
 
         x.setSpeed(10);
 
