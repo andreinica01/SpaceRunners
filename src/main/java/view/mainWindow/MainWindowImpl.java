@@ -34,6 +34,7 @@ public class MainWindowImpl implements MainWindow {
 
         gamefield.setScene(scene);
         this.stage.setScene(scene);
+        this.stage.setResizable(false);
 
     }
 
@@ -51,7 +52,6 @@ public class MainWindowImpl implements MainWindow {
 
     @Override
     public Scene getScene() {
-
         return this.mainScene;
     }
 
