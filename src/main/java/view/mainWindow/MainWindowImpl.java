@@ -22,6 +22,7 @@ public class MainWindowImpl implements MainWindow {
             this.stage.show();
 
         this.stage.hide();
+        this.stage.setResizable(false);
 
     }
 
@@ -40,13 +41,22 @@ public class MainWindowImpl implements MainWindow {
 
     @Override
     public void setWidth(Number width) {
+
         this.stage.setWidth(width.intValue());
+
+
+
+        
+        
+    
 
     }
 
     @Override
     public void setHeight(Number heigth) {
         this.stage.setHeight(heigth.intValue());
+
+     
 
     }
 

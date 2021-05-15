@@ -2,14 +2,8 @@ package controller.frameManager;
 import java.util.Set;
 
 import view.gameField.*;
-import javafx.animation.Interpolator;
-import javafx.animation.TranslateTransition;
-import javafx.scene.image.PixelReader;
-import javafx.scene.image.WritableImage;
-import javafx.util.Duration;
+import javafx.scene.Node;
 import model.Entity;
-
-
 
 public class FrameManager {
 
@@ -22,18 +16,13 @@ public class FrameManager {
 
     }
 
-    
-
     public void update() {
 
         updateBackground();
 
-        entities.forEach(entity->{
+        entities.forEach(entity -> {
             updateEntityPosition(entity);
         });
-
-
-
 
     }
 
@@ -48,28 +37,29 @@ public class FrameManager {
                         entity.getPosition().getY().intValue() + entity.getSpeed().intValue());
                 break;
             case LEFT:
-                entity.setPosition(
-                        entity.getPosition().getX().intValue() - entity.getSpeed().intValue(),
-                                entity.getPosition().getY());
+                entity.setPosition(entity.getPosition().getX().intValue() - entity.getSpeed().intValue(),
+                        entity.getPosition().getY());
                 break;
             case RIGHT:
-                entity.setPosition(
-                        entity.getPosition().getX().intValue() + entity.getSpeed().intValue(),
-                                entity.getPosition().getY());
+                entity.setPosition(entity.getPosition().getX().intValue() + entity.getSpeed().intValue(),
+                        entity.getPosition().getY());
                 break;
             case NONE:
-               //do nothing
+                // do nothing
                 break;
 
         }
     }
 
-    private void updateBackground()
-    {
-    //  this.gamefield.getBackground().setLayoutY(this.gamefield.getBackground().getLayoutY()+1f);
-        //this.gamefield.getBackground().rep
-  
-      //  trans1.play();
+    private void updateBackground() {
+
+        for (Node image : this.gamefield.getBackground()) {
+            image.setLayoutY(image.getLayoutY() + 5);
+
+            if (image.getLayoutY() >= this.gamefield.getHeight().intValue()) {
+                image.setLayoutY(-this.gamefield.getHeight().intValue());
+            }
+        }
+
     }
 }
-

@@ -13,8 +13,6 @@ public class InputControllerImpl implements EventHandler<KeyEvent>, InputControl
     private Map<KeyCode, Boolean> pressedkeys;
     private boolean attack = true;
 
-    int debugcounter = 0;
-
     public InputControllerImpl() {
         this.pressedkeys = new HashMap<KeyCode, Boolean>();
         initializeKeys();
@@ -48,9 +46,6 @@ public class InputControllerImpl implements EventHandler<KeyEvent>, InputControl
 
             if (event.getCode() == KeyCode.P) {
                 this.attack = true;
-                System.out.println("P released" + this.debugcounter);
-                debugcounter++;
-
             }
 
             this.pressedkeys.put(event.getCode(), false);
@@ -112,6 +107,7 @@ public class InputControllerImpl implements EventHandler<KeyEvent>, InputControl
         if (isAttack())
         return InputCommand.ATTACK;
 
+        
         if (isDown())
             return InputCommand.GO_DOWN;
 

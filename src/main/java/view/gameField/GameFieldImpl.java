@@ -1,8 +1,6 @@
 package view.gameField;
 
-
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -16,37 +14,40 @@ import java.util.Set;
 
 
 import Utilities.Parameters;
-import controller.inputController.InputControllerImpl;
 
-import java.io.File;
+import controller.inputController.InputControllerImpl;
 import javafx.scene.Node;
+
 public class GameFieldImpl implements GameField {
 
-    // private Canvas gameCanvas;
     private Set<Entity> entities;
     private Set<Bullet> bullets;
 
-
     private SpaceShip player;
-    private ImageView backGroundImage;
+
+    private ImageView[] backGroundImage;
 
     private Scene scene;
 
     private final int width;
     private final int height;
 
-    // private Group gameContainer;
+
     private AnchorPane gameContainer;
 
     public GameFieldImpl(final int width, final int height) {
 
-        // this.gameContainer = new Group();
         this.gameContainer = new AnchorPane();
+
         this.gameContainer.prefWidth(width);
         this.gameContainer.prefHeight(height);
 
+    
+
         this.entities = new HashSet<Entity>();
         this.bullets = new HashSet<Bullet>();
+
+        this.backGroundImage = new ImageView[2];
 
         this.width = width;
         this.height = height;
@@ -84,7 +85,8 @@ public class GameFieldImpl implements GameField {
     @Override
     public SpaceShip getPlayer() {
 
-        return null;
+        return this.player;
+    
     }
 
     @Override
@@ -127,28 +129,33 @@ public class GameFieldImpl implements GameField {
     @Override
     public void setBackgroundImage(String path) {
 
-        this.backGroundImage = new ImageView(new Image(new File(Parameters.ImageFolder + path).toURI().toString()));
 
-        this.backGroundImage.setLayoutX(0);
-        this.backGroundImage.setLayoutY(0);
+        for (int  i = 0; i<this.backGroundImage.length;i++) {
+            this.backGroundImage[i] =  new ImageView(Parameters.BackgroundImage);
+            this.backGroundImage[i].setLayoutX(0);
+            this.backGroundImage[i].setFitWidth(this.width);
+            this.backGroundImage[i].setFitHeight(this.height);
+            this.backGroundImage[i].setViewOrder(+10);
+            this.gameContainer.getChildren().add(  this.backGroundImage[i]);
 
-        this.backGroundImage.setFitWidth(this.width);
-        this.backGroundImage.setFitHeight(this.height);
+        }
 
-        this.backGroundImage.setViewOrder(+10);
+        this.backGroundImage[0].setTranslateX(0);
+        this.backGroundImage[1].setLayoutY(-this.height);
 
-       this.gameContainer.getChildren().add(this.backGroundImage);
     }
 
     @Override
-    public Node getBackground() {
+    public Node[] getBackground() {
 
         return this.backGroundImage;
     }
 
     @Override
     public Scene getScene() {
-       return this.scene;
+        return this.scene;
+
+
     }
 
     @Override
@@ -158,7 +165,6 @@ public class GameFieldImpl implements GameField {
         this.bullets.add(bullet);
         this.gameContainer.getChildren().add(bullet.getNode());
 
-        
     }
 
 
