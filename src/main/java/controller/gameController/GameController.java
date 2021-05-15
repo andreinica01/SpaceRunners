@@ -1,4 +1,4 @@
-package GameController;
+package controller.gameController;
 
 public interface GameController {
     

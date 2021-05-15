@@ -1,9 +1,10 @@
-package MainWindow;
+package view.mainWindow;
 
-import GameField.GameFieldImpl;
+
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import view.gameField.GameFieldImpl;
 
 public class MainWindowImpl implements MainWindow {
 
@@ -53,5 +54,7 @@ public class MainWindowImpl implements MainWindow {
 
         return this.mainScene;
     }
+
+
 
 }

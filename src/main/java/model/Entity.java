@@ -1,4 +1,4 @@
-package GameObjects;
+package model;
 
 import Utilities.Vector2D;
 import javafx.scene.Node;

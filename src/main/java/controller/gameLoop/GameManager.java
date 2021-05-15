@@ -1,11 +1,14 @@
-package GameLoop;
+package controller.gameLoop;
 
 
-import GameController.*;
-import GameField.*;
-import MainWindow.*;
+
+import controller.gameController.GameContollerImpl;
+import controller.gameController.GameController;
 import javafx.animation.*;
 import javafx.stage.Stage;
+import view.gameField.GameFieldImpl;
+import view.mainWindow.MainWindow;
+import view.mainWindow.MainWindowImpl;
 
 public class GameManager extends AnimationTimer {
 

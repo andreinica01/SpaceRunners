@@ -1,4 +1,4 @@
-package GameObjects;
+package model;
 
 import java.io.File;
 

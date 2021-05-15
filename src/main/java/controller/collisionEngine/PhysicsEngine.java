@@ -1,8 +1,8 @@
-package CollisionEngine;
+package controller.collisionEngine;
 import java.util.Set;
 
-import GameObjects.Entity;
 import javafx.util.Pair;
+import model.Entity;
 
 public interface PhysicsEngine {
 

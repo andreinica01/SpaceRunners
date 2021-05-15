@@ -1,18 +1,16 @@
-package GameField;
+package view.gameField;
 
 
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-
+import model.Entity;
+import model.bonus.BonusObject;
+import model.bullet.Bullet;
+import model.ship.SpaceShip;
 
 import java.util.Set;
 
-
-import GameObjects.BonusObject;
-import GameObjects.Bullet;
-import GameObjects.Entity;
-import GameObjects.SpaceShip;
-import InputController.InputControllerImpl;
+import controller.inputController.InputControllerImpl;
 import javafx.scene.Node;
 
 

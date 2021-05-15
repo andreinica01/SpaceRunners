@@ -1,13 +1,13 @@
-package FrameManager;
+package controller.frameManager;
 import java.util.Set;
 
-import GameField.GameField;
-import GameObjects.Entity;
+import view.gameField.*;
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
 import javafx.util.Duration;
+import model.Entity;
 
 
 

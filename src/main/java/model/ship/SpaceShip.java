@@ -1,4 +1,6 @@
-package GameObjects;
+package model.ship;
+
+import model.EntityImpl;
 
 public class SpaceShip extends EntityImpl  {
 
