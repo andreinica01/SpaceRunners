@@ -10,6 +10,8 @@ import view.gameField.GameFieldImpl;
 import view.mainWindow.MainWindow;
 import view.mainWindow.MainWindowImpl;
 
+import Utilities.Parameters;
+
 public class GameManager extends AnimationTimer {
 
     private MainWindow mainwindow;
@@ -23,20 +25,16 @@ public class GameManager extends AnimationTimer {
     {
 
         this.mainwindow = new MainWindowImpl(stage);
-        this.gamefield = new GameFieldImpl(1280,720);
+        this.gamefield = new GameFieldImpl(Parameters.WIDTH,Parameters.HEIGHT);
         
-        
-        
-
-        this.mainwindow.setWidth(1280);
-        this.mainwindow.setHeight(720);
+        this.mainwindow.setWidth(Parameters.WIDTH);
+        this.mainwindow.setHeight(Parameters.HEIGHT);
     
         this.mainwindow.addGameField(this.gamefield);
         this.gameController = new GameContollerImpl(this.gamefield);
          
-
-        stage.show();
-        //this.mainwindow.setVisible(true);
+        
+        this.mainwindow.setVisible(true);
      
 
     }
