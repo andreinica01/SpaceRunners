@@ -95,5 +95,6 @@ public interface GameField {
     Node []getBackground();
 
     void addBullet(Bullet bullet);
+
   
 }

@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 
 public interface Parameters {
 
-    final int WIDTH = 1280;
+    final int WIDTH = 500;
     final int HEIGHT = 720;
 
     static String ImageFolder = "src/main/resources/Images/";

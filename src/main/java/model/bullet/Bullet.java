@@ -14,8 +14,8 @@ public class Bullet extends EntityImpl {
         this.setDirection(Direction.UP);
         this.getNode().setViewOrder(-50);
 
-        this.getNode().setScaleX(1);
-        this.getNode().setScaleY(1);
+        this.getNode().setScaleX(0.08);
+        this.getNode().setScaleY(0.08);
 
 
     }
