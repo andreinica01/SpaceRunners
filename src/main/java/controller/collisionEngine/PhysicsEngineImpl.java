@@ -1,6 +1,5 @@
 package controller.collisionEngine;
 
-
 import javafx.util.Pair;
 import model.Entity;
 import view.gameField.GameField;
@@ -16,18 +15,14 @@ public class PhysicsEngineImpl implements PhysicsEngine {
 
         // funzioni che puoi usare
         /*
-         * this.gamefield.getPlayer();
-         * this.gamefield.getActiveEnemyShips();
+         * this.gamefield.getPlayer(); this.gamefield.getActiveEnemyShips();
          * this.gamefield.getBonusObjects();
          * 
-         * this.gamefield.getWidth();
-         * this.gamefield.getHeight();
+         * this.gamefield.getWidth(); this.gamefield.getHeight();
          * this.gamefield.getActiveBulletsShotbyEnemies();
          * this.gamefield.getActiveBulletsShotbyPlayer();
          * 
          */
-
-      
 
     }
 
@@ -39,13 +34,11 @@ public class PhysicsEngineImpl implements PhysicsEngine {
 
     @Override
     public boolean isPlayeratMargin() {
-
         return false;
     }
 
     @Override
     public boolean isPlayerHitted() {
-      
         return false;
     }
 

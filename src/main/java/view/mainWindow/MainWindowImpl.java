@@ -1,6 +1,5 @@
 package view.mainWindow;
 
-
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -9,29 +8,28 @@ import view.gameField.GameFieldImpl;
 public class MainWindowImpl implements MainWindow {
 
     private Stage stage;
-    private Scene mainScene;
 
     public MainWindowImpl(Stage original) {
         this.stage = original;
+        this.stage.setResizable(false);
     }
 
     @Override
     public void setVisible(boolean visible) {
 
-        if (visible)
+        if (visible) {
             this.stage.show();
+            return;
+        }
 
         this.stage.hide();
-        this.stage.setResizable(false);
 
     }
 
     @Override
     public void addGameField(GameFieldImpl gamefield) {
 
-        VBox vbox = new VBox(gamefield.getGameContainer());
-        Scene scene = new Scene(vbox);
-        this.mainScene = scene;
+        Scene scene = new Scene(new VBox(gamefield.getGameContainer()));
 
         gamefield.setScene(scene);
         this.stage.setScene(scene);
@@ -43,28 +41,12 @@ public class MainWindowImpl implements MainWindow {
 
         this.stage.setWidth(width.intValue());
 
-
-
-        
-        
-    
-
     }
 
     @Override
     public void setHeight(Number heigth) {
         this.stage.setHeight(heigth.intValue());
 
-     
-
     }
-
-    @Override
-    public Scene getScene() {
-
-        return this.mainScene;
-    }
-
-
 
 }

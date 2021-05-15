@@ -131,7 +131,7 @@ public class GameFieldImpl implements GameField {
 
 
         for (int  i = 0; i<this.backGroundImage.length;i++) {
-            this.backGroundImage[i] =  new ImageView(Parameters.BackgroundImage);
+            this.backGroundImage[i] =  new ImageView(path);
             this.backGroundImage[i].setLayoutX(0);
             this.backGroundImage[i].setFitWidth(this.width);
             this.backGroundImage[i].setFitHeight(this.height);
@@ -151,12 +151,6 @@ public class GameFieldImpl implements GameField {
         return this.backGroundImage;
     }
 
-    @Override
-    public Scene getScene() {
-        return this.scene;
-
-
-    }
 
     @Override
     public void addBullet(Bullet bullet) {

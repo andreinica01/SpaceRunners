@@ -87,8 +87,7 @@ public interface GameField {
 
     void setScene(Scene scene);
 
-    Scene getScene();
-
+   
     
     void setBackgroundImage(String path);
  
