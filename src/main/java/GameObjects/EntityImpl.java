@@ -41,6 +41,7 @@ public abstract class EntityImpl implements Entity {
     public void setImage(Image image)
     {
         this.entityNode = new ImageView(image);
+        
     }
 
     public void SetDirection(Direction direction) {

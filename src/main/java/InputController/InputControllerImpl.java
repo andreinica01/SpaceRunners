@@ -112,6 +112,7 @@ public class InputControllerImpl implements EventHandler<KeyEvent>, InputControl
         if (isAttack())
         return InputCommand.ATTACK;
 
+        
         if (isDown())
             return InputCommand.GO_DOWN;
 

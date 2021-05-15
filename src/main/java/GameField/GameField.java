@@ -93,8 +93,9 @@ public interface GameField {
 
     
     void setBackgroundImage(String path);
-
-    Node getBackground();
+ 
+    
+    Node []getBackground();
 
     void addBullet(Bullet bullet);
   

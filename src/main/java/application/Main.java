@@ -14,7 +14,7 @@ public class Main extends Application {
 			
 			System.out.println(x);
 			x.start();
-
+                
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
