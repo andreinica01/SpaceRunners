@@ -14,14 +14,16 @@ import java.util.Set;
 
 
 import Utilities.Parameters;
-
 import controller.inputController.InputControllerImpl;
 import javafx.scene.Node;
 
 public class GameFieldImpl implements GameField {
 
     private Set<Entity> entities;
+
     private Set<Bullet> bullets;
+    private Set<SpaceShip> enemyships;
+
 
     private SpaceShip player;
 
@@ -32,7 +34,7 @@ public class GameFieldImpl implements GameField {
     private final int width;
     private final int height;
 
-
+   
     private AnchorPane gameContainer;
 
     public GameFieldImpl(final int width, final int height) {
@@ -46,6 +48,7 @@ public class GameFieldImpl implements GameField {
 
         this.entities = new HashSet<Entity>();
         this.bullets = new HashSet<Bullet>();
+        this.enemyships = new HashSet<SpaceShip>();
 
         this.backGroundImage = new ImageView[2];
 
@@ -160,6 +163,17 @@ public class GameFieldImpl implements GameField {
         this.gameContainer.getChildren().add(bullet.getNode());
 
     }
+
+    @Override
+    public void addEnemyShip(SpaceShip enemy) {
+       
+        this.enemyships.add(enemy);
+        this.entities.add(enemy);
+
+        this.gameContainer.getChildren().add(enemy.getNode());
+    }
+
+
 
 
 
