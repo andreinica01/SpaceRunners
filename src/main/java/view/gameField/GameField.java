@@ -96,5 +96,8 @@ public interface GameField {
 
     void addBullet(Bullet bullet);
 
+
+    void addEnemyShip(SpaceShip enemy);
+
   
 }
