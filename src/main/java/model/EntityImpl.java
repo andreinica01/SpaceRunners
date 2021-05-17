@@ -1,6 +1,5 @@
 package model;
 
-import java.io.File;
 
 import Utilities.Direction;
 import Utilities.Vector2D;
@@ -29,18 +28,17 @@ public abstract class EntityImpl implements Entity {
         return this.entityNode;
     }
 
-    public void setImage(String pathToImage) {
+ /*    public void setImage(Image i) {
 
         this.entityNode = new ImageView(new Image(new File(pathToImage).toURI().toString()));
         this.entityNode.setRotate(180);
-        // this.image = this.image.getScaledInstance(this.dimension.getX().intValue(),
-        // this.dimension.getY().intValue(),);
 
-    }
+    } */
 
     public void setImage(Image image)
     {
         this.entityNode = new ImageView(image);
+        this.entityNode.setRotate(180);
         
     }
 
