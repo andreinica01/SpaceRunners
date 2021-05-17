@@ -2,13 +2,14 @@ package model;
 
 import Utilities.Vector2D;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
 import Utilities.Direction;
 
 public interface Entity {
 
     Node getNode();
 
-    void setImage(String path);
+    void setImage(Image image);
 
     Vector2D<Number> getPosition();
 
