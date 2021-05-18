@@ -33,6 +33,7 @@ public class Parameters {
     public static Image BackgroundImage = new Image(new File(ImageFolder+"stars2.png").toURI().toString());
     public static Image playerImage = new Image(new File(ImageFolder+"spaceship2.png").toURI().toString());
     public static Image enemyImage = new Image(new File(ImageFolder+"enemyship.png").toURI().toString());
+    public static Image bonusSpeedImage = new Image(new File(ImageFolder+"BonusSpeed.png").toURI().toString(),40,40,false,false);
 
     /*Sounds */
     public static AudioInputStream bulletSound ;

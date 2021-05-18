@@ -1,17 +1,16 @@
 package view.gameField;
 
 
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import model.Entity;
-import model.bonus.BonusObject;
-import model.bullet.Bullet;
-import model.ship.SpaceShip;
-
 import java.util.Set;
 
 import controller.inputController.InputControllerImpl;
 import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import model.Entity;
+import model.bonus.Bonus;
+import model.bullet.Bullet;
+import model.ship.SpaceShip;
 
 
 
@@ -67,7 +66,7 @@ public interface GameField {
      * 
      * @return a set with all the Bonus Objects in the game
      */
-    Set<BonusObject> getBonusObjects();
+    Set<Bonus> getBonusObjects();
 
     /**
      * 
@@ -98,6 +97,7 @@ public interface GameField {
 
 
     void addEnemyShip(SpaceShip enemy);
-
+    
+    void addBonus (Bonus bonus);
   
 }

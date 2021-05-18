@@ -2,17 +2,16 @@ package controller.gameController;
 
 import Utilities.Direction;
 import Utilities.InputCommand;
+import Utilities.Parameters;
 import Utilities.Vector2DImpl;
 import controller.enemyAI.enemyAI;
 import controller.frameManager.FrameManager;
 import controller.inputController.InputControllerImpl;
+import model.bonus.BonusSpeed;
 import model.bullet.Bullet;
 import model.ship.SpaceShip;
 import view.SoundManager.SoundManager;
 import view.gameField.GameField;
-
-
-import Utilities.*;
 
 public class GameContollerImpl implements GameController {
 
@@ -38,7 +37,8 @@ public class GameContollerImpl implements GameController {
         this.player.setImage(Parameters.playerImage);
         this.player.setSpeed(4);
         this.player.setDirection(Direction.NONE);
-        this.player.setPosition(this.gamefield.getWidth().intValue() / 2, this.gamefield.getHeight().intValue() - 200);
+        this.player.setPosition(this.gamefield.getWidth().intValue() / 2,
+        						this.gamefield.getHeight().intValue() - 200);
         /* setup player info */
 
         this.gamefield.setPlayer(this.player);
@@ -49,7 +49,7 @@ public class GameContollerImpl implements GameController {
         this.gamefield.setBackgroundImage(Parameters.ImageFolder + "back.png");
 
         this.AIController = new enemyAI(this.gamefield);
-
+     
     }
 
     private void playerAttack() {
@@ -76,9 +76,11 @@ public class GameContollerImpl implements GameController {
         } else if (userCommand == InputCommand.GO_RIGHT) {
             this.player.setDirection(Direction.RIGHT);
 
-        } else if (userCommand == InputCommand.ATTACK) {
-            playerAttack();
-        }
+        } else
+        	this.player.setDirection(Direction.NONE);
+        
+        if (userCommand == InputCommand.ATTACK) 
+        	playerAttack();
 
         this.AIController.update();
         frame.update();
