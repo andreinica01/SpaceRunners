@@ -22,6 +22,7 @@ public class InputControllerImpl implements EventHandler<KeyEvent>, InputControl
     private void initializeKeys() {
         this.pressedkeys.put(KeyCode.A, false);
         this.pressedkeys.put(KeyCode.LEFT, false);
+        
         this.pressedkeys.put(KeyCode.D, false);
         this.pressedkeys.put(KeyCode.RIGHT, false);
 
@@ -47,11 +48,8 @@ public class InputControllerImpl implements EventHandler<KeyEvent>, InputControl
             if (event.getCode() == KeyCode.P) {
                 this.attack = true;
             }
-
             this.pressedkeys.put(event.getCode(), false);
         }
-        // event.consume();
-
     }
 
     private boolean isDown() {

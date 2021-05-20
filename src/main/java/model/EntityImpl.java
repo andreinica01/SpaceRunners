@@ -18,22 +18,18 @@ public abstract class EntityImpl implements Entity {
     private Node entityNode;
     private Direction direction;
 
+    private boolean canFire;
+    
     public EntityImpl() {
         this.position = new Vector2DImpl<Number>(0, 0);
         this.dimension = new Vector2DImpl<Number>(0, 0);
+        this.canFire = true;
 
     }
 
     public Node getNode() {
         return this.entityNode;
     }
-
- /*    public void setImage(Image i) {
-
-        this.entityNode = new ImageView(new Image(new File(pathToImage).toURI().toString()));
-        this.entityNode.setRotate(180);
-
-    } */
 
     public void setImage(Image image)
     {
@@ -98,5 +94,13 @@ public abstract class EntityImpl implements Entity {
         this.speed = speed;
 
     }
+
+	public boolean getCanFire() {
+		return canFire;
+	}
+
+	public void setCanFire(boolean canFire) {
+		this.canFire = canFire;
+	}
 
 }

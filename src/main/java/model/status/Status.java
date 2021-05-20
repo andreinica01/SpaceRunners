@@ -1,11 +1,11 @@
-package model.bonus;
+package model.status;
 
 import Utilities.Direction;
 import model.EntityImpl;
 
-public class Bonus extends EntityImpl {
+public abstract class Status extends EntityImpl {
 	
-	public Bonus() {
+	public Status() {
 		setDirection(Direction.DOWN);
 		setSpeed(3);
 	}

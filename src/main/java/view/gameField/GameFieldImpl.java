@@ -1,20 +1,19 @@
 package view.gameField;
 
-import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
-import model.Entity;
-import model.bonus.Bonus;
-import model.bullet.Bullet;
-import model.ship.SpaceShip;
-
 import java.util.HashSet;
 import java.util.Set;
 
 import Utilities.Parameters;
 import controller.inputController.InputControllerImpl;
 import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import model.Entity;
+import model.bullet.Bullet;
+import model.ship.SpaceShip;
+import model.status.Status;
 
 public class GameFieldImpl implements GameField {
 
@@ -22,7 +21,6 @@ public class GameFieldImpl implements GameField {
 
 	private Set<Bullet> bullets;
 	private Set<SpaceShip> enemyships;
-	private Set<Bonus> bonus;
 
 	private SpaceShip player;
 
@@ -42,7 +40,6 @@ public class GameFieldImpl implements GameField {
 		this.gameContainer.prefWidth(width);
 		this.gameContainer.prefHeight(height);
 
-		this.bonus = new HashSet<>();
 		this.entities = new HashSet<Entity>();
 		this.bullets = new HashSet<Bullet>();
 		this.enemyships = new HashSet<SpaceShip>();
@@ -96,9 +93,9 @@ public class GameFieldImpl implements GameField {
 	}
 
 	@Override
-	public Set<Bonus> getBonusObjects() {
+	public Set<Status> getBonusObjects() {
 
-		return this.bonus;
+		return null;
 	}
 
 	@Override
@@ -163,11 +160,11 @@ public class GameFieldImpl implements GameField {
 		this.gameContainer.getChildren().add(enemy.getNode());
 	}
 
-	public void addBonus(Bonus bonus) {
+	public void addBonus(Status bonus) {
 		this.entities.add(bonus);
-		this.bonus.add(bonus);
 		this.entities.add(bonus);
 		this.gameContainer.getChildren().add(bonus.getNode());
 	}
+
 
 }

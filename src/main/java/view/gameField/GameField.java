@@ -8,9 +8,9 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import model.Entity;
-import model.bonus.Bonus;
 import model.bullet.Bullet;
 import model.ship.SpaceShip;
+import model.status.Status;
 
 
 
@@ -66,7 +66,7 @@ public interface GameField {
      * 
      * @return a set with all the Bonus Objects in the game
      */
-    Set<Bonus> getBonusObjects();
+    Set<Status> getBonusObjects();
 
     /**
      * 
@@ -98,6 +98,6 @@ public interface GameField {
 
     void addEnemyShip(SpaceShip enemy);
     
-    void addBonus (Bonus bonus);
+    void addBonus (Status bonus);
   
 }

@@ -2,10 +2,9 @@ package controller.frameManager;
 
 import java.util.Set;
 
-import view.gameField.*;
 import javafx.scene.Node;
 import model.Entity;
-import model.bonus.Bonus;
+import view.gameField.GameField;
 
 public class FrameManager {
 

@@ -7,9 +7,10 @@ import Utilities.Vector2DImpl;
 import controller.enemyAI.enemyAI;
 import controller.frameManager.FrameManager;
 import controller.inputController.InputControllerImpl;
-import model.bonus.BonusSpeed;
 import model.bullet.Bullet;
 import model.ship.SpaceShip;
+import model.status.bonus.BonusSpeed;
+import model.status.malus.MalusFire;
 import view.SoundManager.SoundManager;
 import view.gameField.GameField;
 
@@ -79,7 +80,7 @@ public class GameContollerImpl implements GameController {
         } else
         	this.player.setDirection(Direction.NONE);
         
-        if (userCommand == InputCommand.ATTACK) 
+        if (userCommand == InputCommand.ATTACK && this.player.getCanFire()) 
         	playerAttack();
 
         this.AIController.update();
