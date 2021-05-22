@@ -113,7 +113,7 @@ public class GameFieldImpl implements GameField {
 	@Override
 	public void setInputController(InputControllerImpl controller) {
 
-		this.scene.addEventHandler(KeyEvent.ANY, controller);
+		//this.scene.addEventHandler(KeyEvent.ANY, controller);
 
 	}
 

@@ -5,123 +5,113 @@ import java.util.Map;
 
 import Utilities.InputCommand;
 import javafx.event.EventHandler;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
-public class InputControllerImpl implements EventHandler<KeyEvent>, InputController {
+public class InputControllerImpl implements InputController {
 
-    private Map<KeyCode, Boolean> pressedkeys;
-    private boolean attack = true;
+	private Map<KeyCode, Boolean> pressedkeys;
+	private Map<InputCommand, Boolean> controlStates;
 
-    public InputControllerImpl() {
-        this.pressedkeys = new HashMap<KeyCode, Boolean>();
-        initializeKeys();
+	private Scene scene;
+	
+	private boolean fireFlag;
 
-    }
+	public InputControllerImpl(Scene scene) {
+		this.pressedkeys = new HashMap<>();
+		this.controlStates = new HashMap<>();
+		this.scene = scene;
+		this.fireFlag = true;
+		initializeKeys();
+		initializeControlStates();
+		Listeners();
+	}
 
-    private void initializeKeys() {
-        this.pressedkeys.put(KeyCode.A, false);
-        this.pressedkeys.put(KeyCode.LEFT, false);
-        
-        this.pressedkeys.put(KeyCode.D, false);
-        this.pressedkeys.put(KeyCode.RIGHT, false);
+	private void initializeControlStates() {
 
-        this.pressedkeys.put(KeyCode.W, false);
-        this.pressedkeys.put(KeyCode.UP, false);
+		this.controlStates.put(InputCommand.GO_LEFT, false);
+		this.controlStates.put(InputCommand.GO_RIGHT, false);
+		this.controlStates.put(InputCommand.NONE, false);
+		this.controlStates.put(InputCommand.ATTACK, false);
+	}
 
-        this.pressedkeys.put(KeyCode.DOWN, false);
-        this.pressedkeys.put(KeyCode.S, false);
+	private void initializeKeys() {
 
-        this.pressedkeys.put(KeyCode.P, false);
-    }
+		this.pressedkeys.put(KeyCode.A, false);
+		this.pressedkeys.put(KeyCode.LEFT, false);
 
-    @Override
-    public void handle(KeyEvent event) {
+		this.pressedkeys.put(KeyCode.D, false);
+		this.pressedkeys.put(KeyCode.RIGHT, false);
 
-        if (event.getEventType() == KeyEvent.KEY_PRESSED) {
-            this.pressedkeys.put(event.getCode(), true);
+		this.pressedkeys.put(KeyCode.W, false);
+		this.pressedkeys.put(KeyCode.UP, false);
 
-        }
+		this.pressedkeys.put(KeyCode.DOWN, false);
+		this.pressedkeys.put(KeyCode.S, false);
 
-        else if (event.getEventType() == KeyEvent.KEY_RELEASED) {
+		this.pressedkeys.put(KeyCode.P, false);
+	}
 
-            if (event.getCode() == KeyCode.P) {
-                this.attack = true;
-            }
-            this.pressedkeys.put(event.getCode(), false);
-        }
-    }
+	public void Listeners() {
+		
+		this.scene.setOnKeyPressed(e -> {
+			pressedkeys.put(e.getCode(), true);
+		});
+		
+		
+		this.scene.setOnKeyReleased(e -> {
+			pressedkeys.put(e.getCode(), false);
+		});
+		
+	}
 
-    private boolean isDown() {
+	private void movePlayerShip() {
 
-        if (this.pressedkeys.get(KeyCode.S) || this.pressedkeys.get(KeyCode.DOWN))
-            return true;
+		if ((this.pressedkeys.get(KeyCode.A)) && (!this.pressedkeys.get(KeyCode.D))) {
 
-        return false;
+			this.controlStates.put(InputCommand.GO_LEFT, true);
+			this.controlStates.put(InputCommand.GO_RIGHT, false);
+			this.controlStates.put(InputCommand.NONE, false);
+		}
 
-    }
+		if ((this.pressedkeys.get(KeyCode.D)) && (!this.pressedkeys.get(KeyCode.A))) {
 
-    private boolean isUP() {
+			this.controlStates.put(InputCommand.GO_RIGHT, true);
+			this.controlStates.put(InputCommand.GO_LEFT, false);
+			this.controlStates.put(InputCommand.NONE, false);
+		}
 
-        if (this.pressedkeys.get(KeyCode.W) || this.pressedkeys.get(KeyCode.UP))
-            return true;
+		if ((!this.pressedkeys.get(KeyCode.D)) && (!this.pressedkeys.get(KeyCode.A))
+				|| (this.pressedkeys.get(KeyCode.D)) && (this.pressedkeys.get(KeyCode.A))) {
 
-        return false;
+			this.controlStates.put(InputCommand.NONE, true);
+			this.controlStates.put(InputCommand.GO_RIGHT, false);
+			this.controlStates.put(InputCommand.GO_LEFT, false);
+		}
+		
+		if (this.pressedkeys.get(KeyCode.P)) {
+			this.controlStates.put(InputCommand.ATTACK, true);
+		}
+		if (!this.pressedkeys.get(KeyCode.P)) {
+			fireFlag = true;
+			this.controlStates.put(InputCommand.ATTACK, false);
+			}
 
-    }
+		
+	}
 
-    private boolean isRight() {
-        if ((this.pressedkeys.get(KeyCode.D) || this.pressedkeys.get(KeyCode.RIGHT) && !this.pressedkeys.get(KeyCode.A)
-                && !this.pressedkeys.get(KeyCode.LEFT)))
-            return true;
-
-        return false;
-
-    }
-
-    private boolean isLeft() {
-        if ((this.pressedkeys.get(KeyCode.A) || this.pressedkeys.get(KeyCode.LEFT) && !this.pressedkeys.get(KeyCode.D)
-                && !this.pressedkeys.get(KeyCode.RIGHT)))
-            return true;
-
-        return false;
-
-    }
-
-    private boolean isAttack() {
-
-        if (this.pressedkeys.get(KeyCode.P) && this.attack != false) {
-            this.attack = false;
-            return true;
-        }
-
-        return false;
-
-    }
-
-    @Override
-    public InputCommand getCommand() {
-
-        if (isAttack())
-        return InputCommand.ATTACK;
-
-        
-        if (isDown())
-            return InputCommand.GO_DOWN;
-
-        if (isUP())
-            return InputCommand.GO_UP;
-
-        if (isLeft())
-            return InputCommand.GO_LEFT;
-
-        if (isRight())
-            return InputCommand.GO_RIGHT;
-
-     
-
-        return InputCommand.NONE;
-
-    }
+	public Map<InputCommand, Boolean> getControlStates() {
+		movePlayerShip();
+		return this.controlStates;
+	}
+	
+	public boolean getFireFlag() {
+		return this.fireFlag;
+	}
+	
+	public void setFireFlag(boolean bool) {
+		this.fireFlag = bool;
+	}
 
 }

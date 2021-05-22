@@ -15,7 +15,7 @@ public class MalusSpeed extends Status implements StatusEffect<Entity> {
 	
 	
 	@Override
-	public void addBonus(Entity entity) {
+	public void addBonus(Entity entity, long duration) {
 		entity.setSpeed(entity.getSpeed().intValue() * 1/3);
 	}
 

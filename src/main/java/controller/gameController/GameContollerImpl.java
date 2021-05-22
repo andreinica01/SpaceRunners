@@ -1,5 +1,7 @@
 package controller.gameController;
 
+import java.util.Map;
+
 import Utilities.Direction;
 import Utilities.InputCommand;
 import Utilities.Parameters;
@@ -10,6 +12,7 @@ import controller.inputController.InputControllerImpl;
 import model.bullet.Bullet;
 import model.ship.SpaceShip;
 import model.status.bonus.BonusSpeed;
+import model.status.malus.MalusCommand;
 import model.status.malus.MalusFire;
 import view.SoundManager.SoundManager;
 import view.gameField.GameField;
@@ -18,7 +21,6 @@ public class GameContollerImpl implements GameController {
 
     private GameField gamefield;
     private FrameManager frame;
-    InputCommand userCommand;
     Parameters param;
     // private Set<Entity> enemies;
 
@@ -29,9 +31,9 @@ public class GameContollerImpl implements GameController {
     public GameContollerImpl(GameField gamefield) {
 
         this.gamefield = gamefield;
-        this.inputController = new InputControllerImpl();
-
         this.player = new SpaceShip();
+
+
 
         param = new Parameters();
         this.player.setDimension(new Vector2DImpl<Number>(100, 100));
@@ -48,9 +50,9 @@ public class GameContollerImpl implements GameController {
         this.gamefield.setInputController(this.inputController);
 
         this.gamefield.setBackgroundImage(Parameters.ImageFolder + "back.png");
-
+        this.inputController = new InputControllerImpl(this.player.getNode().getScene());
         this.AIController = new enemyAI(this.gamefield);
-     
+        
     }
 
     private void playerAttack() {
@@ -69,23 +71,30 @@ public class GameContollerImpl implements GameController {
 
     public void update() {
 
-        userCommand = this.inputController.getCommand();
+    	Map<InputCommand, Boolean> controlStates = this.inputController.getControlStates();
+    	
 
-        if (userCommand == InputCommand.GO_LEFT) {
-            this.player.setDirection(Direction.LEFT);
-
-        } else if (userCommand == InputCommand.GO_RIGHT) {
-            this.player.setDirection(Direction.RIGHT);
-
-        } else
+    	
+        if (controlStates.get(InputCommand.GO_LEFT))
+        	if (!this.player.isInvertedCommand())
+        			this.player.setDirection(Direction.LEFT);
+        	else this.player.setDirection(Direction.RIGHT);
+        
+        if (controlStates.get(InputCommand.GO_RIGHT))
+        	if (!this.player.isInvertedCommand())
+        			this.player.setDirection(Direction.RIGHT);
+        	else this.player.setDirection(Direction.LEFT);
+        
+        if (controlStates.get(InputCommand.NONE))
         	this.player.setDirection(Direction.NONE);
         
-        if (userCommand == InputCommand.ATTACK && this.player.getCanFire()) 
+        if (controlStates.get(InputCommand.ATTACK) && this.inputController.getFireFlag()) {
         	playerAttack();
-
+        	this.inputController.setFireFlag(false);
+        }
+        
         this.AIController.update();
         frame.update();
-
     }
 
 }

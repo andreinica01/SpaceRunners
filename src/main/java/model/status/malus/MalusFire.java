@@ -15,7 +15,7 @@ public class MalusFire extends Status implements StatusEffect<SpaceShip> {
 	
 	
 	@Override
-	public void addBonus(SpaceShip entity) {
+	public void addBonus(SpaceShip entity, long duration) {
 		entity.setCanFire(false);
 	}
 	

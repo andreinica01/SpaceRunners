@@ -15,7 +15,7 @@ public class BonusLife extends Status implements StatusEffect<SpaceShip>{
 	}
 	
 	@Override
-	public void addBonus(SpaceShip entity) {
+	public void addBonus(SpaceShip entity, long duration) {
 		if (entity.getLifePoints() < 4)
 			entity.setLifePoints(entity.getLifePoints() + 1);
 	}

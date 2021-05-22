@@ -4,7 +4,7 @@ import Utilities.InputCommand;
 
 public interface InputController {
     
-    InputCommand getCommand();
+   // InputCommand getCommand();
 
 
 }
