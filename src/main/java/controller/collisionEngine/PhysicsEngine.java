@@ -1,19 +1,14 @@
 package controller.collisionEngine;
-import java.util.Set;
 
-import javafx.util.Pair;
+import java.util.Set;
 import model.Entity;
 
 public interface PhysicsEngine {
 
     /**
-     * return a set with all the enemyShips hitted by a bullet, with the corresponding damage,
-     * if it was hitted by more bullets, must be reported the total damage
-     * example
-     * Ship1 Damage=5
-     * Ship2 Damage=1
+     * return a set with all the enemyShips hitted by a bullet
      */
-    Set<Pair<Entity,Number>> damagedEnemies();
+    Set<Entity> damagedEnemies();
 
     /**
      * 

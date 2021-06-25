@@ -1,6 +1,5 @@
 package controller.collisionEngine;
 
-import javafx.util.Pair;
 import model.Entity;
 import view.gameField.GameField;
 
@@ -27,7 +26,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
     }
 
     @Override
-    public Set<Pair<Entity, Number>> damagedEnemies() {
+    public Set<Entity> damagedEnemies() {
 
         return null;
     }
