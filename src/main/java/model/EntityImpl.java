@@ -1,6 +1,5 @@
 package model;
 
-
 import Utilities.Direction;
 import Utilities.Vector2D;
 import Utilities.Vector2DImpl;
@@ -67,7 +66,6 @@ public abstract class EntityImpl implements Entity {
 
     @Override
     public void setDimension(Vector2D<Number> dimension) {
-
         this.dimension.setFromVector(dimension);
 
     }
@@ -95,12 +93,11 @@ public abstract class EntityImpl implements Entity {
 
     }
 
-	public boolean getCanFire() {
-		return canFire;
-	}
+    public boolean getCanFire() {
+	return canFire;
+    }
 
-	public void setCanFire(boolean canFire) {
-		this.canFire = canFire;
-	}
-
+    public void setCanFire(boolean canFire) {
+	this.canFire = canFire;
+    }    
 }

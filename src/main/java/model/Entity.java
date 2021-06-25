@@ -3,6 +3,7 @@ package model;
 import Utilities.Vector2D;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+
 import Utilities.Direction;
 
 public interface Entity {
@@ -26,5 +27,5 @@ public interface Entity {
     Number getSpeed();
 
     void setSpeed(Number speed);
-
+    
 }
