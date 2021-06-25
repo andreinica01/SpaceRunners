@@ -12,16 +12,16 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Entity;
 import model.bullet.Bullet;
+import model.hud.HUDViewImpl;
 import model.ship.SpaceShip;
 import model.status.Status;
 
 public class GameFieldImpl implements GameField {
 
 	private Set<Entity> entities;
-
 	private Set<Bullet> bullets;
 	private Set<SpaceShip> enemyships;
-
+	
 	private SpaceShip player;
 
 	private ImageView[] backGroundImage;
@@ -62,7 +62,6 @@ public class GameFieldImpl implements GameField {
 
 	@Override
 	public Number getWidth() {
-
 		return this.width;
 	}
 
@@ -81,38 +80,32 @@ public class GameFieldImpl implements GameField {
 
 	@Override
 	public SpaceShip getPlayer() {
-
 		return this.player;
 
 	}
 
 	@Override
 	public Set<SpaceShip> getActiveEnemyShips() {
-
 		return null;
 	}
 
 	@Override
 	public Set<Status> getBonusObjects() {
-
 		return null;
 	}
 
 	@Override
 	public Set<Bullet> getActiveBulletsShotbyPlayer() {
-
 		return this.bullets;
 	}
 
 	@Override
 	public Set<Bullet> getActiveBulletsShotbyEnemies() {
-
 		return null;
 	}
 
 	@Override
 	public void setInputController(InputControllerImpl controller) {
-
 		//this.scene.addEventHandler(KeyEvent.ANY, controller);
 
 	}

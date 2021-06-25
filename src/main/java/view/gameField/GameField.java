@@ -20,11 +20,7 @@ public interface GameField {
      * 
      * @return the draw panel where the content is draw
      */
-
-   // Group getGroup();
-        AnchorPane getGameContainer();
-
-
+    AnchorPane getGameContainer();
 
     /**
      * 
@@ -32,11 +28,10 @@ public interface GameField {
      */
     Set<Entity> getActiveEntities();
 
-/**
- * 
- * @return Width 
- */
-
+    /**
+     * 
+     * @return Width 
+     */
     Number getWidth();
 
     /*
@@ -80,21 +75,15 @@ public interface GameField {
      */
     Set<Bullet> getActiveBulletsShotbyEnemies();
 
-
     void setInputController(InputControllerImpl controller);
 
-
     void setScene(Scene scene);
-
-   
     
     void setBackgroundImage(String path);
  
-    
     Node []getBackground();
 
     void addBullet(Bullet bullet);
-
 
     void addEnemyShip(SpaceShip enemy);
     
