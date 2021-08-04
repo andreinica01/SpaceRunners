@@ -10,7 +10,7 @@ public class StatusFactory {
 	
     public StatusFactory(){}
     
-    public  Status getAnimal (StatusEnum type){
+    public Status createStatus (StatusEnum type){
         switch (type){
             case BonusLife:
                 return new BonusLife();
