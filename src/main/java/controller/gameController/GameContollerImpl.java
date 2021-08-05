@@ -8,7 +8,7 @@ import Utilities.Parameters;
 import Utilities.Vector2DImpl;
 import controller.enemyAI.enemyAI;
 import controller.frameManager.FrameManager;
-import controller.hudcontroller.HUDControllerImpl;
+//import controller.hudcontroller.HUDControllerImpl;
 import controller.inputController.InputControllerImpl;
 import model.bullet.Bullet;
 import model.ship.SpaceShip;
@@ -28,7 +28,7 @@ public class GameContollerImpl implements GameController {
     private SpaceShip player;
     private InputControllerImpl inputController;
     private enemyAI AIController;
-    private HUDControllerImpl hud;
+    //private HUDControllerImpl hud;
 
     public GameContollerImpl(GameField gamefield) {
 
@@ -47,7 +47,7 @@ public class GameContollerImpl implements GameController {
         /* setup player info */
 
         this.gamefield.setPlayer(this.player);
-        this.hud = new HUDControllerImpl(this.gamefield);
+        //this.hud = new HUDControllerImpl(this.gamefield);
 
         this.frame = new FrameManager(this.gamefield);
         this.gamefield.setInputController(this.inputController);
