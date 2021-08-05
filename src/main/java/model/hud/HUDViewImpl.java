@@ -6,6 +6,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 
 /**
  * This class defines our HUD for the game, structuring it's point system and reporting the
@@ -13,7 +14,7 @@ import javafx.scene.layout.BackgroundRepeat;
  */
 public class HUDViewImpl extends AbstractHUD implements HUDView {
     
-    private final static String PATH_STRING = "src/main/resources/IMages/info_label.png";
+    private final static String PATH_STRING = "src/main/resources/Images/info_label.png";
     /*
     * Player gain 1 point for each kill.
     */
@@ -30,8 +31,14 @@ public class HUDViewImpl extends AbstractHUD implements HUDView {
    private final static int FIVE_VALUE = 5;
    private final static int ZERO_VALUE = 0;
    private final static int MAX_LIFE_POINTS = 4;
-   private final static int INITIAL_LIFE_POINTS = 3;
+   public final static int INITIAL_LIFE_POINTS = 3;
    private final static int LESS_LIVES_POSSIBLE = 1;
+   private final static double REQUESTED_WIDTH = 130;
+   private final static double REQUESTED_HEIGHT = 50;
+   private final static double INSETS_MEASURES = 10;
+   private final static boolean RATIO = false;
+   private final static boolean SMOOTH = false;
+   private final static BackgroundSize DEFAULT_SIZE = null;
    
    /*
     * HPs.
@@ -53,11 +60,15 @@ public class HUDViewImpl extends AbstractHUD implements HUDView {
         /*
          * BackGround.
          */
-        BackgroundImage backImage = new BackgroundImage(new Image(PATH_STRING, 130, 50, false, false), 
+        BackgroundImage backImage = new BackgroundImage(new Image(PATH_STRING, 
+                                                                    REQUESTED_WIDTH, 
+                                                                    REQUESTED_HEIGHT, 
+                                                                    RATIO, 
+                                                                    SMOOTH), 
                                                         BackgroundRepeat.REPEAT, 
                                                         BackgroundRepeat.REPEAT, 
                                                         BackgroundPosition.DEFAULT, 
-                                                        null);
+                                                        DEFAULT_SIZE);
         setBackground(new Background(backImage));
         
         /*
@@ -69,7 +80,10 @@ public class HUDViewImpl extends AbstractHUD implements HUDView {
          * Represent the amount of padding in pixels to add to the side 
          * of a BoundingBox when setting the camera of a map.
          */
-        setPadding(new Insets(10, 10, 10, 10));
+        setPadding(new Insets(INSETS_MEASURES, 
+                            INSETS_MEASURES, 
+                            INSETS_MEASURES, 
+                            INSETS_MEASURES));
         
         /*
          * Font.
@@ -79,12 +93,13 @@ public class HUDViewImpl extends AbstractHUD implements HUDView {
         /*
          * Matter.
          */
-        setText(matter);
+        setText(matter + super.getPoints());
         
         /*
          * Game starting condition is always true, starting life points are always 3.
          */
         super.setGameCondition(true);
+        super.increaseLevel();
         this.lifePoints = INITIAL_LIFE_POINTS;
     }
     
@@ -100,6 +115,16 @@ public class HUDViewImpl extends AbstractHUD implements HUDView {
         } else {
             super.pointSetter(DOWN);
         }
+    }
+    
+    @Override
+    public void levelUp() {
+        super.increaseLevel();
+    }
+    
+    @Override
+    public int getLevel() {
+        return super.getActualLevel();
     }
 
     @Override

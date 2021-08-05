@@ -17,7 +17,16 @@ public abstract class AbstractHUD extends Label implements HUDDesign {
     public final static String FONT_PATH = "src/main/resources/Images/kenvector_future.ttf";
     public final static Pos PREF_ALIGNEMENT = Pos.CENTER_LEFT;
     private final static int FONT_SIZE = 15;
+    private final static int ZERO = 0;
 
+    /*
+     * It goes directly to 1 when the game starts.
+     */
+    private int level = ZERO;
+    
+    /*
+     * other values.
+     */
     private int points;
     private boolean gameConditionValue;
 
@@ -26,6 +35,9 @@ public abstract class AbstractHUD extends Label implements HUDDesign {
 
     @Override
     public abstract void pointsDown();
+    
+    @Override
+    public abstract void levelUp();
     
     @Override
     public void setLabelFont() {
@@ -50,5 +62,15 @@ public abstract class AbstractHUD extends Label implements HUDDesign {
     @Override
     public void setGameCondition(final boolean value) {
         this.gameConditionValue = value;
+    }
+    
+    @Override
+    public int getActualLevel() {
+        return this.level;
+    }
+    
+    @Override
+    public void increaseLevel() {
+        this.level++;
     }
 }

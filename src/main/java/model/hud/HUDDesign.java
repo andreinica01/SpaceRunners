@@ -16,6 +16,11 @@ public interface HUDDesign {
     public abstract void pointsDown();
     
     /**
+     * It increases the level
+     */
+    public abstract void levelUp();
+    
+    /**
      * Set the font of the chosen label.
      */
     public void setLabelFont();
@@ -41,4 +46,14 @@ public interface HUDDesign {
      * @param value
      */
     public void setGameCondition(final boolean value);
+    
+    /**
+     * @return actual level.
+     */
+    public int getActualLevel();
+    
+    /**
+     * It increases level.
+     */
+    public void increaseLevel();
 }

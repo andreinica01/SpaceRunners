@@ -1,5 +1,7 @@
 package controller.hudcontroller;
 
+import javafx.scene.layout.AnchorPane;
+
 /**
  * This interface shows the methods that are used in order to handle the hud situations
  * and coordinating the event with the game conditions.
@@ -7,9 +9,16 @@ package controller.hudcontroller;
 public interface HUDControllerDesign {
 
     /**
-     * Sets all HUD parts for the game.
+     * end the game loop and sets a new GUI showing the points earned and giving you
+     * the choice beetween saving and quitting or exit from the game without saving.
      */
-    public void createHUD();
+    public void endGame();
+    
+    /**
+     * Sets all HUD parts for the game.
+     * @param the game panel
+     */
+    public void createHUD(final AnchorPane gamePane);
     
     /**
      * @return the game status value: if false, end the game.
@@ -19,17 +28,15 @@ public interface HUDControllerDesign {
     /**
      * @return the value of the points, it is needed to set the end game interface.
      */
-    public boolean checkPoints();
+    public int checkPoints();
     
     /**
      * @return the remaining life points.
      */
     public int checkLives();
-     
+    
     /**
-     * end the game loop and sets a new GUI showing the points earned and giving you
-     * the choice beetween saving and quitting or exit from the game without saving.
+     * @return actual level.
      */
-    public void endGame();
-
+    public int checkLevel();
 }

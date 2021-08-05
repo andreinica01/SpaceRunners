@@ -19,4 +19,9 @@ public interface HUDView {
      * @return life points.
      */
     public int getLifePoints();
+
+    /**
+     * @return actual level.
+     */
+    public int getLevel();
 }
