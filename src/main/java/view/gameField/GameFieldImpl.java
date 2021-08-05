@@ -48,7 +48,6 @@ public class GameFieldImpl implements GameField {
 
 		this.width = width;
 		this.height = height;
-
 	}
 
 	public AnchorPane getGameContainer() {
@@ -75,7 +74,6 @@ public class GameFieldImpl implements GameField {
 		this.player = player;
 		this.gameContainer.getChildren().add(this.player.getNode());
 		this.entities.add(player);
-
 	}
 
 	@Override
