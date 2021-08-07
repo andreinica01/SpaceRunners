@@ -11,10 +11,14 @@ public class SpaceShip extends EntityImpl {
     public SpaceShip() {
         this.lifePoints = Parameters.INITIAL_PLAYER_POINTS;
     }
+    
+    	
 
-    public int getLifePoints() {
+
+	public int getLifePoints() {
         return this.lifePoints;
     }
+	
     
     public void setLifePoints (int lifepoint) {
     	this.lifePoints = lifepoint;

@@ -10,11 +10,11 @@ import controller.enemyAI.enemyAI;
 import controller.frameManager.FrameManager;
 //import controller.hudcontroller.HUDControllerImpl;
 import controller.inputController.InputControllerImpl;
+import controller.status.StatusController;
 import model.bullet.Bullet;
 import model.ship.SpaceShip;
-import model.status.bonus.BonusSpeed;
-import model.status.malus.MalusCommand;
-import model.status.malus.MalusFire;
+import model.status.StatusEnum;
+import model.status.StatusFactory;
 import view.SoundManager.SoundManager;
 import view.gameField.GameField;
 
@@ -56,6 +56,19 @@ public class GameContollerImpl implements GameController {
         this.inputController = new InputControllerImpl(this.player.getNode().getScene());
         this.AIController = new enemyAI(this.gamefield);
         
+        StatusController statusController = new StatusController(player);
+        StatusFactory factory = new StatusFactory();
+        var gatto1 = factory.createStatus(StatusEnum.MalusCommand);
+        gatto1.setPlayer(player);
+        statusController.applyEffect(gatto1);
+        
+        var gatto2 = factory.createStatus(StatusEnum.MalusCommand);
+        gatto2.setPlayer(player);
+        gatto2.setDuration(11);
+        statusController.applyEffect(gatto2);
+        
+
+        
     }
 
     private void playerAttack() {
@@ -91,7 +104,8 @@ public class GameContollerImpl implements GameController {
         if (controlStates.get(InputCommand.NONE))
         	this.player.setDirection(Direction.NONE);
         
-        if (controlStates.get(InputCommand.ATTACK) && this.inputController.getFireFlag()) {
+        if (controlStates.get(InputCommand.ATTACK) && this.inputController.getFireFlag() 
+        	&& this.player.getCanFire()) {
         	playerAttack();
         	this.inputController.setFireFlag(false);
         }

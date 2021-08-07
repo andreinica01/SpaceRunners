@@ -4,12 +4,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import Utilities.InputCommand;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 
-public class InputControllerImpl implements InputController {
+public class InputControllerImpl  {
 
 	private Map<KeyCode, Boolean> pressedkeys;
 	private Map<InputCommand, Boolean> controlStates;

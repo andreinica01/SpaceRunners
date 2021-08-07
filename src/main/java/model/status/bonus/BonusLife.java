@@ -1,25 +1,22 @@
 package model.status.bonus;
 
 import Utilities.Parameters;
-import model.ship.SpaceShip;
 import model.status.Status;
-import model.status.StatusEffect;
+import model.status.StatusEnum;
 
-public class BonusLife extends Status implements StatusEffect<SpaceShip>{
+public class BonusLife extends Status{
 	
 	
 	public BonusLife () {
 		super();
 		setImage(Parameters.bonusSpeedImage);
 		getNode().setRotate(0);
+		setStatusName(StatusEnum.BonusLife);
+		
+		setEffect(() -> {
+			if (getPlayer().getLifePoints() < 4 && getPlayer().getLifePoints() > 0)
+				getPlayer().setLifePoints(getPlayer().getLifePoints() + 1);});
+		setRemoveEffect(() -> {});
+		setDuration(0); 
 	}
-	
-	@Override
-	public void addBonus(SpaceShip entity, long duration) {
-		if (entity.getLifePoints() < 4)
-			entity.setLifePoints(entity.getLifePoints() + 1);
-	}
-
-
-
 }

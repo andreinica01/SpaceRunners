@@ -1,28 +1,19 @@
 package model.status.malus;
 
-import java.util.Timer;
-
 import Utilities.Parameters;
-import model.ship.SpaceShip;
 import model.status.Status;
-import model.status.StatusEffect;
-import model.status.StatusTimer;
+import model.status.StatusEnum;
 
-public class MalusCommand extends Status implements StatusEffect<SpaceShip> {
-	
-	public MalusCommand () {
+public class MalusCommand extends Status {
+
+	public MalusCommand() {
 		super();
 		setImage(Parameters.bonusSpeedImage);
 		getNode().setRotate(0);
-	}
+		setStatusName(StatusEnum.MalusCommand);
 
-	@Override
-	public void addBonus(SpaceShip entity, long duration) {
-		entity.setInvertedCommand(true);
-		Runnable x = () -> entity.setInvertedCommand(false);
-		this.timer = new Timer();
-		StatusTimer task = new StatusTimer(x, this.timer);
-		this.timer.schedule(task, duration);
-	}	
-	
+		setEffect(() -> getPlayer().setInvertedCommand(true));
+		setRemoveEffect(() -> getPlayer().setInvertedCommand(false));
+		setDuration(4); // 8 s
+	}
 }

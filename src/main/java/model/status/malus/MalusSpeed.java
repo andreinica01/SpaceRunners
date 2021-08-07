@@ -1,22 +1,19 @@
 package model.status.malus;
 
 import Utilities.Parameters;
-import model.Entity;
 import model.status.Status;
-import model.status.StatusEffect;
+import model.status.StatusEnum;
 
-public class MalusSpeed extends Status implements StatusEffect<Entity> {
+public class MalusSpeed extends Status {
 
-	public MalusSpeed () {
+	public MalusSpeed() {
 		super();
 		setImage(Parameters.bonusSpeedImage);
 		getNode().setRotate(0);
-	}
-	
-	
-	@Override
-	public void addBonus(Entity entity, long duration) {
-		entity.setSpeed(entity.getSpeed().intValue() * 1/3);
-	}
+		setStatusName(StatusEnum.MalusSpeed);
 
+		setEffect(() -> getPlayer().setSpeed(getPlayer().getSpeed().floatValue() * 1 / 3));
+		setRemoveEffect(() -> getPlayer().setSpeed(getPlayer().getSpeed().floatValue() * 3));
+		setDuration(4); // 8 s
+	}
 }
