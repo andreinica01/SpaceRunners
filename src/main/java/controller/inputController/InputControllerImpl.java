@@ -6,20 +6,23 @@ import java.util.Map;
 import Utilities.InputCommand;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
+import model.ship.SpaceShip;
 
-public class InputControllerImpl  {
+public class InputControllerImpl {
 
 	private Map<KeyCode, Boolean> pressedkeys;
 	private Map<InputCommand, Boolean> controlStates;
 
 	private Scene scene;
-	
-	private boolean fireFlag;
+	private SpaceShip player;
 
-	public InputControllerImpl(Scene scene) {
+	private boolean fireFlag; // Used for firing 1 bullet at time
+
+	public InputControllerImpl(Scene scene, SpaceShip player) {
 		this.pressedkeys = new HashMap<>();
 		this.controlStates = new HashMap<>();
 		this.scene = scene;
+		this.player = player;
 		this.fireFlag = true;
 		initializeKeys();
 		initializeControlStates();
@@ -52,16 +55,14 @@ public class InputControllerImpl  {
 	}
 
 	public void Listeners() {
-		
+
 		this.scene.setOnKeyPressed(e -> {
 			pressedkeys.put(e.getCode(), true);
 		});
-		
-		
+
 		this.scene.setOnKeyReleased(e -> {
 			pressedkeys.put(e.getCode(), false);
 		});
-		
 	}
 
 	private void movePlayerShip() {
@@ -87,27 +88,30 @@ public class InputControllerImpl  {
 			this.controlStates.put(InputCommand.GO_RIGHT, false);
 			this.controlStates.put(InputCommand.GO_LEFT, false);
 		}
-		
-		if (this.pressedkeys.get(KeyCode.P)) {
-			this.controlStates.put(InputCommand.ATTACK, true);
-		}
-		if (!this.pressedkeys.get(KeyCode.P)) {
-			fireFlag = true;
-			this.controlStates.put(InputCommand.ATTACK, false);
-			}
 
-		
+		if (this.pressedkeys.get(KeyCode.P) && this.player.getCanFire()) {
+			if (getFireFlag()) {
+				this.controlStates.put(InputCommand.ATTACK, true);
+				setFireFlag(false);
+			} else
+				this.controlStates.put(InputCommand.ATTACK, false);
+		} else {
+			this.controlStates.put(InputCommand.ATTACK, false);
+			setFireFlag(true);
+		}
+		System.out.println(fireFlag);
+
 	}
 
 	public Map<InputCommand, Boolean> getControlStates() {
 		movePlayerShip();
 		return this.controlStates;
 	}
-	
+
 	public boolean getFireFlag() {
 		return this.fireFlag;
 	}
-	
+
 	public void setFireFlag(boolean bool) {
 		this.fireFlag = bool;
 	}

@@ -10,14 +10,20 @@ import java.util.concurrent.TimeUnit;
 import model.ship.SpaceShip;
 import model.status.Status;
 import model.status.StatusEnum;
-
+/**
+ * Controller Status class.
+ * When certain condition are triggered, this class apply the StatusEffect to the player.
+ */
 public class StatusController {
 
 	private ScheduledExecutorService ses;
 	private SpaceShip player;
 	private HashMap<StatusEnum, Optional<ScheduledFuture<?>>> playerStatus;
 
-	
+	/**
+	 * Create and Setting this StatusController to a SpaceShip instance.
+	 * @param player
+	 */
 	public StatusController(SpaceShip player) {
 		this.ses = Executors.newScheduledThreadPool(1);
 		this.player = player;
@@ -25,8 +31,8 @@ public class StatusController {
 		setPlayerStatus();
 	}
 
-	/*
-	 * Applying StatusEffect to a SpaceShip.
+	/**
+	 * Applying StatusEffect to the Player.
 	 * Every Status has his own expiring time.
 	 * 
 	 * @param Status status

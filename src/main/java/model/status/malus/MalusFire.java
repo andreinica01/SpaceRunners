@@ -3,7 +3,9 @@ package model.status.malus;
 import Utilities.Parameters;
 import model.status.Status;
 import model.status.StatusEnum;
-
+/**
+ * A Status that block player's firing.
+ */
 public class MalusFire extends Status {
 
 	public MalusFire() {

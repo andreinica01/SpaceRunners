@@ -53,7 +53,7 @@ public class GameContollerImpl implements GameController {
         this.gamefield.setInputController(this.inputController);
 
         this.gamefield.setBackgroundImage(Parameters.ImageFolder + "back.png");
-        this.inputController = new InputControllerImpl(this.player.getNode().getScene());
+        this.inputController = new InputControllerImpl(this.player.getNode().getScene(), this.player);
         this.AIController = new enemyAI(this.gamefield);
         
         StatusController statusController = new StatusController(player);
@@ -83,6 +83,7 @@ public class GameContollerImpl implements GameController {
 
         SoundManager.playBulletSound();
 
+
     }
 
     public void update() {
@@ -104,10 +105,9 @@ public class GameContollerImpl implements GameController {
         if (controlStates.get(InputCommand.NONE))
         	this.player.setDirection(Direction.NONE);
         
-        if (controlStates.get(InputCommand.ATTACK) && this.inputController.getFireFlag() 
-        	&& this.player.getCanFire()) {
+        if (controlStates.get(InputCommand.ATTACK)) {
         	playerAttack();
-        	this.inputController.setFireFlag(false);
+        	
         }
         
         this.AIController.update();

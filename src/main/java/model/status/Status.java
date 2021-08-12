@@ -1,16 +1,16 @@
 package model.status;
 
-import java.util.Timer;
-
 import Utilities.Direction;
 import model.EntityImpl;
 import model.ship.SpaceShip;
 
+/**
+ * An entity that can apply, under certain condition, an effect (bonus or malus) to the player.
+ * Any type of States are temporary, each have a different cooldown.
+ */
 public abstract class Status extends EntityImpl {
 	
-	private long time;
-	protected long duration;
-	public Timer timer;
+	private long duration; //in seconds
 	
 	private SpaceShip player;
 	private Runnable effect;
@@ -20,14 +20,6 @@ public abstract class Status extends EntityImpl {
 	public Status() {
 		setDirection(Direction.DOWN);
 		setSpeed(3);
-	}
-
-	public long getTime() {
-		return time;
-	}
-
-	public void setTime(long time) {
-		this.time = time;
 	}
 
 	public long getDuration() {

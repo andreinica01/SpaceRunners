@@ -3,9 +3,12 @@ package model.status.bonus;
 import Utilities.Parameters;
 import model.status.Status;
 import model.status.StatusEnum;
-
+/**
+ * A Status that, below a certain maximum, add 1 bonus life to the player.
+ */
 public class BonusLife extends Status{
 	
+	private int maximumNumberLife = 4;
 	
 	public BonusLife () {
 		super();
@@ -14,7 +17,7 @@ public class BonusLife extends Status{
 		setStatusName(StatusEnum.BonusLife);
 		
 		setEffect(() -> {
-			if (getPlayer().getLifePoints() < 4 && getPlayer().getLifePoints() > 0)
+			if (getPlayer().getLifePoints() < maximumNumberLife && getPlayer().getLifePoints() > 0)
 				getPlayer().setLifePoints(getPlayer().getLifePoints() + 1);});
 		setRemoveEffect(() -> {});
 		setDuration(0); 
