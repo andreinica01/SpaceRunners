@@ -23,7 +23,7 @@ public class GameContollerImpl implements GameController {
     private GameField gamefield;
     private FrameManager frame;
     Parameters param;
-    // private Set<Entity> enemies;
+    //private Set<Entity> enemies;
 
     private SpaceShip player;
     private InputControllerImpl inputController;

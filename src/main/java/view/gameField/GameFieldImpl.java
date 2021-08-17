@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import Utilities.Parameters;
+import controller.hudcontroller.HUDControllerImpl;
 import controller.inputController.InputControllerImpl;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -21,6 +22,7 @@ public class GameFieldImpl implements GameField {
 	private Set<Entity> entities;
 	private Set<Bullet> bullets;
 	private Set<SpaceShip> enemyships;
+	private HUDControllerImpl hudControllerImpl;
 	
 	private SpaceShip player;
 
@@ -48,6 +50,9 @@ public class GameFieldImpl implements GameField {
 
 		this.width = width;
 		this.height = height;
+		
+		this.hudControllerImpl = new HUDControllerImpl(gameContainer);
+		
 	}
 
 	public AnchorPane getGameContainer() {
@@ -79,7 +84,6 @@ public class GameFieldImpl implements GameField {
 	@Override
 	public SpaceShip getPlayer() {
 		return this.player;
-
 	}
 
 	@Override
