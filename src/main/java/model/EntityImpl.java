@@ -24,7 +24,14 @@ public abstract class EntityImpl implements Entity {
 		this.dimension = new Vector2DImpl<Number>(0, 0);
 		this.canFire = true;
 
+<<<<<<< HEAD
 	}
+=======
+    public Node getNode() {
+        //this.entityNode.getBoundsInLocal().i
+        return this.entityNode;
+    }
+>>>>>>> 6e5ccb49e1a380f84dcec45fe1910f2ef0b81ece
 
 	public Node getNode() {
 		return this.entityNode;

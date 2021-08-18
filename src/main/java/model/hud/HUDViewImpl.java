@@ -15,7 +15,11 @@ import javafx.scene.layout.BackgroundSize;
  */
 public class HUDViewImpl extends AbstractHUD implements HUDView {
     
+<<<<<<< HEAD
     private final static String PATH_STRING = Parameters.ImageFolder+"info_label.png";
+=======
+    public final static String PATH_STRING = "src/main/resources/Images/info_label.png";
+>>>>>>> 6e5ccb49e1a380f84dcec45fe1910f2ef0b81ece
     /*
     * Player gain 1 point for each kill.
     */
@@ -38,7 +42,7 @@ public class HUDViewImpl extends AbstractHUD implements HUDView {
    private final static double REQUESTED_HEIGHT = 50;
    private final static double INSETS_MEASURES = 10;
    private final static boolean RATIO = false;
-   private final static boolean SMOOTH = false;
+   private final static boolean SMOOTH = true;
    private final static BackgroundSize DEFAULT_SIZE = null;
    
    /*
