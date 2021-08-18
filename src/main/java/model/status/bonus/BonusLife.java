@@ -12,13 +12,12 @@ public class BonusLife extends Status{
 	
 	public BonusLife () {
 		super();
-		setImage(Parameters.bonusSpeedImage);
-		getNode().setRotate(0);
+		setImage(Parameters.bonusSpeedImage); //Si rompe tutto qui.
 		setStatusName(StatusEnum.BonusLife);
 		
 		setEffect(() -> {
 			if (getPlayer().getLifePoints() < maximumNumberLife && getPlayer().getLifePoints() > 0)
-				getPlayer().setLifePoints(getPlayer().getLifePoints() + 1);});
+				getPlayer().increaseLifePoints((int)1);});
 		setRemoveEffect(() -> {});
 		setDuration(0); 
 	}

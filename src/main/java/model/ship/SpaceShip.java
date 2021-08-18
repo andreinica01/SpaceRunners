@@ -24,11 +24,11 @@ public class SpaceShip extends EntityImpl {
     	this.lifePoints = lifepoint;
     }
 
-    void increaseLifePoints(Number points) {
+    public void increaseLifePoints(Number points) {
         this.lifePoints +=points.intValue();
     }
 
-    void decreaselifePoints(Number points) {
+    public void decreaselifePoints(Number points) {
         this.lifePoints -= points.intValue();
     }
 

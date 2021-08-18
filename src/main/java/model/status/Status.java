@@ -5,18 +5,20 @@ import model.EntityImpl;
 import model.ship.SpaceShip;
 
 /**
- * An entity that can apply, under certain condition, an effect (bonus or malus) to the player.
- * Any type of States are temporary, each have a different cooldown.
+ * An entity that can apply, under certain condition, an effect (bonus or malus)
+ * to the player. Any type of States are temporary, each have a different
+ * cooldown.
  */
 public abstract class Status extends EntityImpl {
-	
-	private long duration; //in seconds
-	
+
+	private long duration; // in seconds
+	private double boostFactor;
+
 	private SpaceShip player;
 	private Runnable effect;
 	private Runnable removeEffect;
 	private StatusEnum statusName;
-	
+
 	public Status() {
 		setDirection(Direction.DOWN);
 		setSpeed(3);
@@ -60,5 +62,13 @@ public abstract class Status extends EntityImpl {
 
 	public void setStatusName(StatusEnum statusName) {
 		this.statusName = statusName;
+	}
+
+	public void setBoostFactor (double value) {
+		this.boostFactor = value;
+	}
+
+	public double getBoostFactor() {
+		return this.boostFactor;
 	}
 }

@@ -51,7 +51,7 @@ public class GameFieldImpl implements GameField {
 		this.width = width;
 		this.height = height;
 		
-		this.hudControllerImpl = new HUDControllerImpl(gameContainer);
+		//this.hudControllerImpl = new HUDControllerImpl(gameContainer);
 		
 	}
 
