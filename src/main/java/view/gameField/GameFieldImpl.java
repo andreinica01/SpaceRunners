@@ -1,11 +1,11 @@
 package view.gameField;
 
-import java.util.HashSet;
+import java.util.HashSet; 
 import java.util.Set;
 
 import Utilities.Parameters;
-import controller.hudcontroller.HUDControllerImpl;
 import controller.inputController.InputControllerImpl;
+import controller.gameEventController.GameEventController;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
@@ -20,11 +20,11 @@ public class GameFieldImpl implements GameField {
 	private Set<Entity> entities;
 	private Set<Bullet> bullets;
 	private Set<SpaceShip> enemyships;
-	private HUDControllerImpl hudControllerImpl;
 	
 	private SpaceShip player;
 
 	private ImageView[] backGroundImage;
+	private GameEventController gameEventController;
 
 	private Scene scene;
 
@@ -45,11 +45,11 @@ public class GameFieldImpl implements GameField {
 		this.enemyships = new HashSet<SpaceShip>();
 
 		this.backGroundImage = new ImageView[2];
+		
+		this.gameEventController = new GameEventController(this.gameContainer);
 
 		this.width = width;
 		this.height = height;
-		
-		this.hudControllerImpl = new HUDControllerImpl(this.gameContainer);
 	}
 
 	public AnchorPane getGameContainer() {
