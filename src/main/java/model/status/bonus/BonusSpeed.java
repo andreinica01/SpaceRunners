@@ -8,16 +8,17 @@ import model.status.StatusEnum;
  */
 public class BonusSpeed extends Status {
 	
-	private int boostFactor = 3/2;
 	
 	public BonusSpeed () {
 		super();
 		setImage(Parameters.bonusSpeedImage);
 		getNode().setRotate(0);
 		setStatusName(StatusEnum.BonusSpeed);
+		setBoostFactor(3/2);
 		
-		setEffect(() -> getPlayer().setSpeed((Integer)getPlayer().getSpeed() * boostFactor));
-		setRemoveEffect(() -> getPlayer().setSpeed((Integer)getPlayer().getSpeed() * 1/boostFactor));
+		setEffect(() -> getPlayer().setSpeed((Integer)getPlayer().getSpeed() * getBoostFactor()));
+		setRemoveEffect(() -> getPlayer().setSpeed((Integer)getPlayer().getSpeed() * 1/getBoostFactor()));
 		setDuration(10); 
 	}
+	
 }
