@@ -50,16 +50,6 @@ public class GameFieldImpl implements GameField {
 
 		this.width = width;
 		this.height = height;
-<<<<<<< HEAD
-=======
-		
-<<<<<<< HEAD
-		//this.hudControllerImpl = new HUDControllerImpl(gameContainer);
-		
-=======
-		this.hudControllerImpl = new HUDControllerImpl(this.gameContainer);
->>>>>>> 6e5ccb49e1a380f84dcec45fe1910f2ef0b81ece
->>>>>>> a6d02c559ff094375b87c6fc3fcaeb8cbfa3d82b
 	}
 
 	public AnchorPane getGameContainer() {
