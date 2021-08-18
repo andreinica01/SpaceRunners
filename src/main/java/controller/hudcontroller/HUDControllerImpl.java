@@ -3,11 +3,10 @@ package controller.hudcontroller;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import model.hud.HUDViewImpl;
-import view.gameField.GameField;
 
 public class HUDControllerImpl implements HUDControllerDesign {
 
-    private static final String LIFEPOINTS = "src/main/resources/Images/spaceshipLife.png";
+    private static final String LIFEPOINTS = "C:/Users/andre/Desktop/OOP_Project/SpaceRunners/src/main/resources/Images/info_label.png";
     private HUDViewImpl hudViewImpl;
     private ImageView[] playerLifes;
             

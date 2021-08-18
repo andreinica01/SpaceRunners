@@ -9,11 +9,9 @@ import controller.inputController.InputControllerImpl;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Entity;
 import model.bullet.Bullet;
-import model.hud.HUDViewImpl;
 import model.ship.SpaceShip;
 import model.status.Status;
 
@@ -51,8 +49,7 @@ public class GameFieldImpl implements GameField {
 		this.width = width;
 		this.height = height;
 		
-		this.hudControllerImpl = new HUDControllerImpl(gameContainer);
-		
+		this.hudControllerImpl = new HUDControllerImpl(this.gameContainer);
 	}
 
 	public AnchorPane getGameContainer() {

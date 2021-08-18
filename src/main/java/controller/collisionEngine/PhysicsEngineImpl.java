@@ -13,15 +13,16 @@
 //        this.gamefield = gamefield;
 //
 //        // funzioni che puoi usare
-//        /*
-//         * this.gamefield.getPlayer(); this.gamefield.getActiveEnemyShips();
-//         * this.gamefield.getBonusObjects();
-//         * 
-//         * this.gamefield.getWidth(); this.gamefield.getHeight();
-//         * this.gamefield.getActiveBulletsShotbyEnemies();
-//         * this.gamefield.getActiveBulletsShotbyPlayer();
-//         * 
-//         */
+//        
+//          this.gamefield.getPlayer(); this.gamefield.getActiveEnemyShips();
+//          this.gamefield.getBonusObjects();
+//          
+//          this.gamefield.getActiveEnemyShips().
+//          this.gamefield.getWidth(); this.gamefield.getHeight();
+//          this.gamefield.getActiveBulletsShotbyEnemies();
+//          this.gamefield.getActiveBulletsShotbyPlayer();
+//          
+//         
 //
 //    }
 //

@@ -27,6 +27,7 @@ public abstract class EntityImpl implements Entity {
     }
 
     public Node getNode() {
+        //this.entityNode.getBoundsInLocal().i
         return this.entityNode;
     }
 
