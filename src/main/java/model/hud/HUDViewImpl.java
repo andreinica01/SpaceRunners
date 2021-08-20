@@ -1,5 +1,7 @@
 package model.hud;
 
+import java.io.File;
+import Utilities.Parameters;
 import javafx.geometry.Insets;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
@@ -14,7 +16,7 @@ import javafx.scene.layout.BackgroundSize;
  */
 public class HUDViewImpl extends AbstractHUD implements HUDView {
     
-    private final static String PATH_STRING = "src/main/resources/Images/info_label.png";
+    private final static String PATH_STRING = Parameters.ImageFolder + "info_label.png";
     /*
     * Player gain 1 point for each kill.
     */
@@ -58,13 +60,16 @@ public class HUDViewImpl extends AbstractHUD implements HUDView {
         setPrefHeight(AbstractHUD.PREF_HEIGHT);
         
         /*
-         * BackGround.
+         * BackGround.Paths.get("");
          */
-        BackgroundImage backImage = new BackgroundImage(new Image(PATH_STRING, 
-                                                                    REQUESTED_WIDTH, 
-                                                                    REQUESTED_HEIGHT, 
-                                                                    RATIO, 
-                                                                    SMOOTH), 
+       
+        
+
+        Image prova = new Image(new File(PATH_STRING).toURI().toString(),
+        REQUESTED_WIDTH,REQUESTED_HEIGHT, 
+        RATIO, SMOOTH);
+
+        BackgroundImage backImage = new BackgroundImage(prova, 
                                                         BackgroundRepeat.REPEAT, 
                                                         BackgroundRepeat.REPEAT, 
                                                         BackgroundPosition.DEFAULT, 

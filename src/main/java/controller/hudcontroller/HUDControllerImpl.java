@@ -1,13 +1,14 @@
 package controller.hudcontroller;
 
+import Utilities.Parameters;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import model.hud.HUDViewImpl;
 import view.gameField.GameField;
+import java.io.File;
 
 public class HUDControllerImpl implements HUDControllerDesign {
 
-    private static final String LIFEPOINTS = "src/main/resources/Images/spaceshipLife.png";
     private HUDViewImpl hudViewImpl;
     private ImageView[] playerLifes;
             
@@ -33,7 +34,7 @@ public class HUDControllerImpl implements HUDControllerDesign {
         playerLifes = new ImageView[HUDViewImpl.INITIAL_LIFE_POINTS];
         
         for(int i = 0; i < playerLifes.length; i++) {
-            this.playerLifes[i] = new ImageView(LIFEPOINTS);
+            this.playerLifes[i] = new ImageView(Parameters.lifePointsImage);
             this.playerLifes[i].setLayoutX(455 + (i * 50));
             this.playerLifes[i].setLayoutY(80);
             gameContainer.getChildren().add(playerLifes[i]);

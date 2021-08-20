@@ -34,7 +34,7 @@ public class Parameters {
     public static Image playerImage = new Image(new File(ImageFolder+"spaceship2.png").toURI().toString());
     public static Image enemyImage = new Image(new File(ImageFolder+"enemyship.png").toURI().toString());
     public static Image bonusSpeedImage = new Image(new File(ImageFolder+"BonusSpeed.png").toURI().toString(),40,40,false,false);
-
+    public static Image lifePointsImage = new Image(new File(ImageFolder+"spaceshipLife.png").toURI().toString());
     /*Sounds */
     public static AudioInputStream bulletSound ;
   

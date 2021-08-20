@@ -3,7 +3,10 @@ package model.hud;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
+import java.io.InputStream;
+import java.nio.file.Paths;
 
+import application.Main;
 /**
  * This abstract class provides an alpha version of a possible hud defining it's dimensions,
  * points system, alignement, font.
@@ -16,7 +19,7 @@ public abstract class AbstractHUD extends Label implements HUDDesign {
     public final static int PREF_HEIGHT = 50;
     public final static String FONT_PATH = "src/main/resources/Images/kenvector_future.ttf";
     public final static Pos PREF_ALIGNEMENT = Pos.CENTER_LEFT;
-    private final static int FONT_SIZE = 15;
+    private final static int FONT_SIZE = 10;
     private final static int ZERO = 0;
 
     /*
@@ -41,7 +44,8 @@ public abstract class AbstractHUD extends Label implements HUDDesign {
     
     @Override
     public void setLabelFont() {
-        setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), FONT_SIZE));
+       //errore
+      //  setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), FONT_SIZE));
     }
 
     @Override
