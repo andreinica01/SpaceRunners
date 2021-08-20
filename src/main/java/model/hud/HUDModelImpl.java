@@ -1,7 +1,6 @@
 package model.hud;
 
 import java.io.File;
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -61,7 +60,7 @@ public class HUDModelImpl extends Label implements IHUDModel {
      * Control fields
      */
     private int lifePoints;
-    private int level = ZERO;
+    private int level;
     private int points;
     
     /**
@@ -88,12 +87,12 @@ public class HUDModelImpl extends Label implements IHUDModel {
                 INSETS_MEASURES, 
                 INSETS_MEASURES));
         
-        setLabelFont();
+        this.lifePoints = INITIAL_LIFE_POINTS;
+        this.level = POINTS_UP;
+        this.points = ZERO;
+        
         setAlignment(PREF_ALIGNEMENT);
         setText(MATTER + getPoints());
-        pointsUp();
-        this.lifePoints = INITIAL_LIFE_POINTS;
-
     }
     
     /*
