@@ -18,13 +18,13 @@ javafx {
 }
 
 dependencies {
-    testCompile('org.junit.jupiter:junit-jupiter-api:5.4.2')
-    testCompile('org.junit.jupiter:junit-jupiter-engine:5.4.2')
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.4.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
+    testRuntimeOnly "org.junit.platform:junit-platform-commons:1.7.0"
 }
 
 test {
     useJUnitPlatform()
-    testLogging.showStandardStreams = true
 }
 
 mainClassName = "application.Main"

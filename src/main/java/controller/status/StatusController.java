@@ -39,6 +39,7 @@ public class StatusController {
 	 */
 	public void applyEffect(Status status) {
 
+		status.setPlayer(player);
 		Optional<ScheduledFuture<?>> task = playerStatus.get(status.getStatusName());
 		//Adding effect if never added before or already terminated
 		if (task.isEmpty() || task.get().isDone()) {

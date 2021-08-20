@@ -1,13 +1,13 @@
-package controller.hudcontroller;
+package controller.gameEventController;
 
 import javafx.scene.layout.AnchorPane;
 
 /**
  * This interface shows the methods that are used in order to handle the hud situations
  * and coordinating the event with the game conditions.
+ * Detecting collisions causes changes in HUD and in game stats of the player.
  */
-public interface HUDControllerDesign {
-
+public interface IGameEventController {
     /**
      * end the game loop and sets a new GUI showing the points earned and giving you
      * the choice beetween saving and quitting or exit from the game without saving.
@@ -18,7 +18,7 @@ public interface HUDControllerDesign {
      * Sets all HUD parts for the game.
      * @param the game panel
      */
-    public void createHUD(final AnchorPane gamePane);
+    public void createHUD(AnchorPane gamePane);
     
     /**
      * @return the game status value: if false, end the game.

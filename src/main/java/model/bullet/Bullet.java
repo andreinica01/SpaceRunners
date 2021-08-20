@@ -30,8 +30,7 @@ public class Bullet extends EntityImpl {
     }
     
     public Rectangle getBounds() {
-        return new Rectangle();
-        
+        return new Rectangle();       
     }
 
 }
