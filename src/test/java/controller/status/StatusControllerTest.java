@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
-import Utilities.Parameters;
+
 import model.ship.SpaceShip;
 import model.status.Status;
 import model.status.StatusEnum;
