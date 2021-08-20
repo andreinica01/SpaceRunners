@@ -24,6 +24,11 @@ public class GameEventController implements IGameEventController {
     private HUDModelImpl hud;
     private ImageView[] playerLifes;
     //bonus
+
+    /*
+     * Other fields
+     */
+    private boolean gameStatus;
     
     /**
      * Constructor.
@@ -43,30 +48,30 @@ public class GameEventController implements IGameEventController {
         // TODO Auto-generated method stub
         
     }
+    
     @Override
     public void createHUD(AnchorPane gamePane) {
         // TODO Auto-generated method stub
         
     }
+    
     @Override
     public boolean checkGameStatus() {
-        // TODO Auto-generated method stub
-        return false;
-    }
-    @Override
-    public int checkPoints() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-    @Override
-    public int checkLives() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-    @Override
-    public int checkLevel() {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.gameStatus;
     }
     
+    @Override
+    public int checkPoints() {
+        return this.hud.getPoints();
+    }
+    
+    @Override
+    public int checkLives() {
+        return this.hud.getLifePoints();
+    }
+    
+    @Override
+    public int checkLevel() {
+        return this.hud.getActualLevel();
+    } 
 }
