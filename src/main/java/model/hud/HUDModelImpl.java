@@ -82,11 +82,12 @@ public class HUDModelImpl extends Label implements IHUDModel {
                                                 BackgroundPosition.DEFAULT, 
                                                 DEFAULT_SIZE);
         setBackground(new Background(backImage));
-        
         setPadding(new Insets(INSETS_MEASURES, 
                 INSETS_MEASURES, 
                 INSETS_MEASURES, 
                 INSETS_MEASURES));
+
+        
         
         setLabelFont();
         setAlignment(PREF_ALIGNEMENT);

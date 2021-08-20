@@ -28,6 +28,11 @@ public class Parameters {
     public static String ImageFolder = ResourcesFolder+"Images/";
     public static String SoundFolder = ResourcesFolder+"Sounds/";
 
+    public static Image getlifePointsImage ()
+    {
+        return new Image(new File(ImageFolder+"spaceshipLife.png").toURI().toString());
+    }
+
     /*Images*/
     public static Image bulletImage = new Image(new File(ImageFolder+"bullet.png").toURI().toString());
     public static Image BackgroundImage = new Image(new File(ImageFolder+"stars2.png").toURI().toString());
