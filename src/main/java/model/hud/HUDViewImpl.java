@@ -14,7 +14,7 @@ import javafx.scene.layout.BackgroundSize;
  * This class defines our HUD for the game, structuring it's point system and reporting the
  * game conditions.
  */
-public class HUDViewImpl extends AbstractHUD implements HUDView {
+public class HUDViewImpl extends AbstractHUD implements IHUDModel {
     
     private final static String PATH_STRING = Parameters.ImageFolder + "info_label.png";
     /*
@@ -127,7 +127,7 @@ public class HUDViewImpl extends AbstractHUD implements HUDView {
         super.increaseLevel();
     }
     
-    @Override
+
     public int getLevel() {
         return super.getActualLevel();
     }
@@ -152,5 +152,11 @@ public class HUDViewImpl extends AbstractHUD implements HUDView {
     @Override
     public int getLifePoints() {
         return this.lifePoints;
+    }
+
+    @Override
+    public void pointsSetter(int value) {
+        // TODO Auto-generated method stub
+        
     }
 }

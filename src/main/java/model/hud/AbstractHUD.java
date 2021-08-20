@@ -13,7 +13,7 @@ import application.Main;
  * it can be used for differents kind of hud, that's because it implements it's core design
  * leaving more choice to the user
  */
-public abstract class AbstractHUD extends Label implements HUDDesign {
+public abstract class AbstractHUD extends Label implements IHUDModel {
 
     public final static int PREF_WIDTH = 130;
     public final static int PREF_HEIGHT = 50;
@@ -44,7 +44,7 @@ public abstract class AbstractHUD extends Label implements HUDDesign {
     
     @Override
     public void setLabelFont() {
-       //errore
+       
       //  setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), FONT_SIZE));
     }
 
@@ -53,27 +53,26 @@ public abstract class AbstractHUD extends Label implements HUDDesign {
         return this.points;
     }
 
-    @Override
     public void pointSetter(final int value) {
         this.points += value;
     }
     
-    @Override
+    
     public boolean getGameCondition() {
         return this.gameConditionValue;
     }
     
-    @Override
+   
     public void setGameCondition(final boolean value) {
         this.gameConditionValue = value;
     }
     
-    @Override
+    
     public int getActualLevel() {
         return this.level;
     }
     
-    @Override
+   
     public void increaseLevel() {
         this.level++;
     }
