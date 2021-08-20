@@ -12,7 +12,7 @@ public class BonusLife extends Status{
 	
 	public BonusLife () {
 		super();
-		setImage(Parameters.bonusSpeedImage); //Si rompe tutto qui.
+		//setImage(Parameters.bonusSpeedImage); //Si rompe tutto qui.
 		setStatusName(StatusEnum.BonusLife);
 		
 		setEffect(() -> {

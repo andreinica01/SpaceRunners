@@ -10,12 +10,12 @@ public class MalusFire extends Status {
 
 	public MalusFire() {
 		super();
-		setImage(Parameters.bonusSpeedImage);
-		getNode().setRotate(0);
+		//setImage(Parameters.bonusSpeedImage);
+		//getNode().setRotate(0);
 		setStatusName(StatusEnum.MalusFire);
 
-		setEffect(() -> getPlayer().setCanFire(true));
-		setRemoveEffect(() -> getPlayer().setCanFire(false));
+		setEffect(() -> getPlayer().setCanFire(false));
+		setRemoveEffect(() -> getPlayer().setCanFire(true));
 		setDuration(8); // 8 s
 	}
 }

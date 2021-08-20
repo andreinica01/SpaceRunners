@@ -11,8 +11,8 @@ public class BonusSpeed extends Status {
 	
 	public BonusSpeed () {
 		super();
-		setImage(Parameters.bonusSpeedImage);
-		getNode().setRotate(0);
+		//setImage(Parameters.bonusSpeedImage);
+		//getNode().setRotate(0);
 		setStatusName(StatusEnum.BonusSpeed);
 		setBoostFactor(3/2);
 		

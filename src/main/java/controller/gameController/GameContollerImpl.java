@@ -56,17 +56,7 @@ public class GameContollerImpl implements GameController {
         this.inputController = new InputControllerImpl(this.player.getNode().getScene(), this.player);
         this.AIController = new enemyAI(this.gamefield);
         
-        StatusController statusController = new StatusController(player);
-        StatusFactory factory = new StatusFactory();
-        var gatto1 = factory.createStatus(StatusEnum.MalusCommand);
-        gatto1.setPlayer(player);
-        statusController.applyEffect(gatto1);
-        
-        var gatto2 = factory.createStatus(StatusEnum.MalusCommand);
-        gatto2.setPlayer(player);
-        gatto2.setDuration(11);
-        statusController.applyEffect(gatto2);
-        
+
 
         
     }
