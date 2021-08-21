@@ -10,8 +10,8 @@ public class MalusFire extends Status {
 
 	public MalusFire() {
 		super();
-		//setImage(Parameters.bonusSpeedImage);
-		//getNode().setRotate(0);
+		setImage(Parameters.bonusSpeedImage);
+		getNode().setRotate(0);
 		setStatusName(StatusEnum.MalusFire);
 
 		setEffect(() -> getPlayer().setCanFire(false));

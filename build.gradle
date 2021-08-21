@@ -14,13 +14,14 @@ targetCompatibility = 11
 
 javafx {
     version = "11"
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.swing' ]
 }
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.4.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
     testRuntimeOnly "org.junit.platform:junit-platform-commons:1.7.0"
+    testCompile "org.testfx:testfx-junit5:4.0.16-alpha"
 }
 
 test {

@@ -10,8 +10,8 @@ public class MalusCommand extends Status {
 
 	public MalusCommand() {
 		super();
-		//setImage(Parameters.bonusSpeedImage);
-		//getNode().setRotate(0);
+		setImage(Parameters.bonusSpeedImage);
+		getNode().setRotate(0);
 		setStatusName(StatusEnum.MalusCommand);
 
 		setEffect(() -> getPlayer().setInvertedCommand(true));

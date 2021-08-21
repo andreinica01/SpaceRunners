@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.embed.swing.JFXPanel;
 import model.ship.SpaceShip;
 import model.status.Status;
 import model.status.StatusEnum;
@@ -16,91 +17,95 @@ import model.status.bonus.BonusSpeed;
 
 class StatusControllerTest {
 
-	private SpaceShip player = new SpaceShip();
-	private StatusController controller = new StatusController(player);
-	private StatusFactory factory = new StatusFactory();
+	private SpaceShip player;
+	private StatusController controller;
+	private StatusFactory factory;
+	private JFXPanel panel; // Needed for test purpose
 
+
+	public StatusControllerTest() {
+		renewField();
+		this.factory = new StatusFactory();
+		this.panel = new JFXPanel();
+	}
+	
 	@Test
 	void bonuLifeTest() {
-		refreshField();
+		renewField();
 		controller.applyEffect(factory.createStatus(StatusEnum.BonusLife));
-		waitUntilApplied();
+		SpaceShip p2 = player.clone();
+		waitUntilApplied(p2);
+		System.out.println(player.getLifePoints());		
 		assertEquals(4, player.getLifePoints());
 	}
 
 	@Test
 	void bonusSpeedTest() {
-		refreshField();
+		renewField();
 		Status bonusSpeed = factory.createStatus(StatusEnum.BonusSpeed);
 		double speed = player.getSpeed().doubleValue() * bonusSpeed.getBoostFactor();
+		SpaceShip p2 = player.clone();
 		controller.applyEffect(bonusSpeed);
-		waitUntilApplied();
+		waitUntilApplied(p2);
 		assertEquals(player.getSpeed().doubleValue(), speed);
 	}
 
 	@Test
 	void malusCommandTest() {
-		refreshField();
+		renewField();
+		SpaceShip p2 = player.clone();
+		System.out.println(p2.isInvertedCommand());
 		controller.applyEffect(factory.createStatus(StatusEnum.MalusCommand));
-		waitUntilApplied();
+		System.out.println(player.isInvertedCommand());
+		waitUntilApplied(p2);
+		System.out.println(player.isInvertedCommand());
 		assertTrue(player.isInvertedCommand()); // Testing MalusFire
 	}
 
 	@Test
 	void malusFire() {
-		refreshField();
+		renewField();
+		SpaceShip p2 = player.clone();
 		controller.applyEffect(factory.createStatus(StatusEnum.MalusFire));
-		waitUntilApplied();
+		waitUntilApplied(p2);
 		assertFalse(player.getCanFire());
 	}
+
 	@Test
 	void malusSpeedTest() {
-		refreshField();
+		renewField();
 		Status malusSpeed = factory.createStatus(StatusEnum.MalusSpeed);
 		double speed = player.getSpeed().doubleValue() * malusSpeed.getBoostFactor();
+		SpaceShip p2 = player.clone();
 		controller.applyEffect(malusSpeed);
-		waitUntilApplied();
+		waitUntilApplied(p2);
+		System.out.println(player.getSpeed());
 		assertEquals(player.getSpeed().doubleValue(), speed);
 	}
+
 	@Test
-	void refreshingTimeTest () {
+	void refreshTimeTest() {
+		renewField();
+		//Testing only one Status (with cooldown feature), because this mechanism is shared
 		bonusSpeedTest();
 		long timeSpan = (long) (new BonusSpeed().getDuration() - 2.0) * 1000;
-		while(controller.getPlayerStatus().get(StatusEnum.BonusSpeed).get().getDelay(TimeUnit.MILLISECONDS) > timeSpan);
+		//Waiting until delay goes down of a bit (timeSpan)
+		while (controller.getPlayerStatus().get(StatusEnum.BonusSpeed).get()
+				.getDelay(TimeUnit.MILLISECONDS) > timeSpan);
+		//Testing changes
 		controller.applyEffect(factory.createStatus(StatusEnum.BonusSpeed));
-		waitUntilApplied();
-		assertTrue(controller.getPlayerStatus().get(StatusEnum.BonusSpeed).get().getDelay(TimeUnit.MILLISECONDS) > timeSpan);
+		waitUntilApplied(new SpaceShip());
+		assertTrue(controller.getPlayerStatus().get(StatusEnum.BonusSpeed).get()
+				.getDelay(TimeUnit.MILLISECONDS) > timeSpan);
+	}
+
+	private void waitUntilApplied(SpaceShip p2) {
+		while (player.equals(p2));
 	}
 	
-
-	/*
-	 * }
-	 * 
-	 * @Test void applyEffectsOneTime() {
-	 * 
-	 * //Testing BonusSpeed
-	 * 
-	 * //Testing MalusCommand
-	 * controller.applyEffect(factory.createStatus(StatusEnum.MalusCommand));
-	 * waitUntilApplied(StatusEnum.MalusCommand);
-	 * assertTrue(player.isInvertedCommand()); //Testing MalusFire
-	 * controller.applyEffect(factory.createStatus(StatusEnum.MalusFire));
-	 * waitUntilApplied(StatusEnum.MalusFire); assertFalse(player.getCanFire());
-	 * //Testing MalusSpeed
-	 * 
-	 * }
-	 */
-
-	private void refreshField() {
+	private void renewField() {
 		this.player = new SpaceShip();
-		this.controller = new StatusController(player);
-		this.factory = new StatusFactory();
-	}
-
-	private void waitUntilApplied() {
-		SpaceShip p2 = new SpaceShip();
-		while (player.equals(p2))
-			;
+		this.controller = new StatusController(this.player);
 	}
 
 }
