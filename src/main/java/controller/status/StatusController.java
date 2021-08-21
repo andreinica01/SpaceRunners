@@ -37,19 +37,19 @@ public class StatusController {
 	 * 
 	 * @param Status status
 	 */
-	public void applyEffect(Status status) {
+	public boolean applyEffect(Status status) {
 
 		status.setPlayer(player);
 		Optional<ScheduledFuture<?>> task = playerStatus.get(status.getStatusName());
 		//Adding effect if never added before or already terminated
 		if (task.isEmpty() || task.get().isDone()) {
 			addTemporaryEffect(status);
-			return;
+			return true; 
 		}
 		//Else, refresh task's time
 		task.get().cancel(false);
 		addTemporaryEffect(status);
-
+		return false;
 	}
 
 	private void addTemporaryEffect(Status status) {
@@ -68,6 +68,10 @@ public class StatusController {
 		for (StatusEnum s : StatusEnum.values()) {
 			playerStatus.put(s, Optional.empty());
 		}
+	}
+	
+	public HashMap<StatusEnum, Optional<ScheduledFuture<?>>> getPlayerStatus() {
+		return playerStatus;
 	}
 
 	public SpaceShip getPlayer() {

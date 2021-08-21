@@ -10,6 +10,8 @@ public class SpaceShip extends EntityImpl {
 
     public SpaceShip() {
         this.lifePoints = Parameters.INITIAL_PLAYER_POINTS;
+        setSpeed((double)10);
+        setInvertedCommand(false);
     }
     
     	

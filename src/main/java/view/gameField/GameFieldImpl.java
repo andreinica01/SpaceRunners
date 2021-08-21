@@ -40,13 +40,13 @@ public class GameFieldImpl implements GameField {
 		this.gameContainer.prefWidth(width);
 		this.gameContainer.prefHeight(height);
 
+		this.gameEventController = new GameEventController(this.gameContainer);
 		this.entities = new HashSet<Entity>();
 		this.bullets = new HashSet<Bullet>();
 		this.enemyships = new HashSet<SpaceShip>();
 
 		this.backGroundImage = new ImageView[2];
 		
-		this.gameEventController = new GameEventController(this.gameContainer);
 
 		this.width = width;
 		this.height = height;

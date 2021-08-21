@@ -14,9 +14,7 @@ public class BonusLife extends Status{
 	
 	public BonusLife () {
 		super();
-		Image v = Parameters.getlifePointsImage();
-		setImage(Parameters.bonusSpeedImage); //Si rompe tutto qui.
-
+		//setImage(Parameters.bonusSpeedImage); //Si rompe tutto qui.
 		setStatusName(StatusEnum.BonusLife);
 		
 		setEffect(() -> {
