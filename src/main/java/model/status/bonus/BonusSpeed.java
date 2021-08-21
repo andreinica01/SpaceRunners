@@ -14,10 +14,10 @@ public class BonusSpeed extends Status {
 		//setImage(Parameters.bonusSpeedImage);
 		//getNode().setRotate(0);
 		setStatusName(StatusEnum.BonusSpeed);
-		setBoostFactor(3/2);
+		setBoostFactor((double)3/2);
 		
-		setEffect(() -> getPlayer().setSpeed((Integer)getPlayer().getSpeed() * getBoostFactor()));
-		setRemoveEffect(() -> getPlayer().setSpeed((Integer)getPlayer().getSpeed() * 1/getBoostFactor()));
+		setEffect(() -> getPlayer().setSpeed(getPlayer().getSpeed().doubleValue() * getBoostFactor()));
+		setRemoveEffect(() -> getPlayer().setSpeed(getPlayer().getSpeed().doubleValue() * (double)1/getBoostFactor()));
 		setDuration(10); 
 	}
 	
