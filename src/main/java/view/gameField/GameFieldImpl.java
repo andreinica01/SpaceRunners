@@ -85,7 +85,7 @@ public class GameFieldImpl implements GameField {
 
 	@Override
 	public Set<SpaceShip> getActiveEnemyShips() {
-		return null;
+		return this.enemyships;
 	}
 
 	@Override

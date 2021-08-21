@@ -81,11 +81,12 @@ public class HUDModelImpl extends Label implements IHUDModel {
                                                 BackgroundPosition.DEFAULT, 
                                                 DEFAULT_SIZE);
         setBackground(new Background(backImage));
-        
         setPadding(new Insets(INSETS_MEASURES, 
                 INSETS_MEASURES, 
                 INSETS_MEASURES, 
                 INSETS_MEASURES));
+
+        
         
         this.lifePoints = INITIAL_LIFE_POINTS;
         this.level = POINTS_UP;

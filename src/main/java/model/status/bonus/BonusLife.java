@@ -1,8 +1,6 @@
 package model.status.bonus;
 
-import java.io.File;
-
-import javafx.scene.image.Image;
+import Utilities.Parameters;
 import model.status.Status;
 import model.status.StatusEnum;
 /**
@@ -14,7 +12,7 @@ public class BonusLife extends Status{
 	
 	public BonusLife () {
 		super();
-		setImage(new Image(new File("/src/main/resources/Images/"+"BonusSpeed.png").toURI().toString(),40,40,false,false));
+		setImage(Parameters.bonusSpeedImage);
 		setStatusName(StatusEnum.BonusLife);
 		
 		setEffect(() -> {
