@@ -6,6 +6,8 @@ import Utilities.Direction;
 import Utilities.InputCommand;
 import Utilities.Parameters;
 import Utilities.Vector2DImpl;
+import controller.collisionEngine.PhysicsEngine;
+import controller.collisionEngine.PhysicsEngineImpl;
 import controller.enemyAI.enemyAI;
 import controller.frameManager.FrameManager;
 //import controller.hudcontroller.HUDControllerImpl;
@@ -25,6 +27,7 @@ public class GameContollerImpl implements GameController {
     Parameters param;
     //private Set<Entity> enemies;
 
+    private PhysicsEngine engine;
     private SpaceShip player;
     private InputControllerImpl inputController;
     private enemyAI AIController;
@@ -34,8 +37,6 @@ public class GameContollerImpl implements GameController {
 
         this.gamefield = gamefield;
         this.player = new SpaceShip();
-
-
 
         param = new Parameters();
         this.player.setDimension(new Vector2DImpl<Number>(100, 100));
@@ -56,26 +57,13 @@ public class GameContollerImpl implements GameController {
         this.inputController = new InputControllerImpl(this.player.getNode().getScene(), this.player);
         this.AIController = new enemyAI(this.gamefield);
         
+        this.engine = new PhysicsEngineImpl(this.gamefield);
 
 
         
     }
 
-    private void playerAttack() {
-
-        Bullet x = new Bullet().bulletDamage(10);
-
-        x.setPosition(this.player.getNode().getTranslateX() - 190, this.player.getNode().getTranslateY() - 200);
-
-        x.setSpeed(10);
-
-        this.gamefield.addBullet(x);
-
-        SoundManager.playBulletSound();
-
-
-    }
-
+    
     public void update() {
 
     	Map<InputCommand, Boolean> controlStates = this.inputController.getControlStates();
@@ -100,8 +88,32 @@ public class GameContollerImpl implements GameController {
         	
         }
         
+
+        this.removeAttacked();
         this.AIController.update();
         frame.update();
+
+
     }
 
+    private void playerAttack() {
+
+        Bullet x = new Bullet().bulletDamage(10);
+
+        x.setPosition(this.player.getNode().getTranslateX() - 190, this.player.getNode().getTranslateY() - 200);
+
+        x.setSpeed(10);
+
+        this.gamefield.addBullet(x);
+
+        SoundManager.playBulletSound();
+
+
+    }
+
+    private void removeAttacked()
+    {
+        this.engine.removeCollidedShips();
+
+    }
 }

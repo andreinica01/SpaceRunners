@@ -14,8 +14,7 @@ public interface PhysicsEngine {
      * @param y2
      * @return
      */
-    public double checkDistance(final double x1, final double x2, final double y1, final double y2);
-    
+
     /**
      * Subtract a life when an enemy ship hits the player
      */
@@ -29,5 +28,5 @@ public interface PhysicsEngine {
     /**
      * Checks entities collision
      */
-    public void checkIfElementsCollide();
+    public void removeCollidedShips();
 }
