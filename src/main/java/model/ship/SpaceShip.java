@@ -41,5 +41,17 @@ public class SpaceShip extends EntityImpl {
 	public void setInvertedCommand(boolean invertedCommand) {
 		this.invertedCommand = invertedCommand;
 	}
+	
+	public boolean equals(SpaceShip p2) {
+		if(this.lifePoints != p2.lifePoints)
+			return false;
+		if(this.invertedCommand != p2.invertedCommand)
+			return false;
+		if((double)this.getSpeed() != (double)p2.getSpeed())
+			return false;
+		if(this.getCanFire() != p2.getCanFire())
+			return false;
+		return true;
+	}
 
 }
