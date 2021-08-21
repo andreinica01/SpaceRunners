@@ -63,9 +63,5 @@ public class PhysicsEngineImpl implements PhysicsEngine {
 
 
 
-@Override
-public double checkDistance(double x1, double x2, double y1, double y2) {
-    // TODO Auto-generated method stub
-    return 0;
-}
+
 }
