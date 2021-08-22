@@ -28,7 +28,8 @@ class StatusControllerTest {
 
 
 	public StatusControllerTest() {
-		renewField();
+		this.player = new SpaceShip();
+		this.controller = new StatusController(this.player);
 		this.factory = new StatusFactory();
 		this.panel = new JFXPanel();
 	}
@@ -38,7 +39,6 @@ class StatusControllerTest {
 	 */
 	@Test
 	void bonuLifeTest() {
-		renewField();
 		controller.applyEffect(factory.createStatus(StatusEnum.BonusLife));
 		Integer prevValue = player.getLifePoints();
 		waitUntilApplied(() -> prevValue.equals(player.getLifePoints()));
@@ -50,7 +50,6 @@ class StatusControllerTest {
 	 */
 	@Test
 	void bonusSpeedTest() {
-		renewField();
 		Status bonusSpeed = factory.createStatus(StatusEnum.BonusSpeed);
 		double speed = player.getSpeed().doubleValue() * bonusSpeed.getBoostFactor();
 		Double prevValue = player.getSpeed().doubleValue();
@@ -64,7 +63,6 @@ class StatusControllerTest {
 	 */
 	@Test
 	void malusCommandTest() {
-		renewField();
 		Boolean prevValue = player.isInvertedCommand();
 		controller.applyEffect(factory.createStatus(StatusEnum.MalusCommand));
 		waitUntilApplied(() -> prevValue.equals(player.isInvertedCommand()));
@@ -76,7 +74,6 @@ class StatusControllerTest {
 	 */
 	@Test
 	void malusFire() {
-		renewField();
 		Boolean prevValue = player.getCanFire();
 		controller.applyEffect(factory.createStatus(StatusEnum.MalusFire));
 		waitUntilApplied(() -> prevValue.equals(player.getCanFire()));
@@ -88,7 +85,6 @@ class StatusControllerTest {
 	 */
 	@Test
 	void malusSpeedTest() {
-		renewField();
 		Status malusSpeed = factory.createStatus(StatusEnum.MalusSpeed);
 		double speed = player.getSpeed().doubleValue() * malusSpeed.getBoostFactor();
 		Double prevValue = player.getSpeed().doubleValue();
@@ -106,7 +102,7 @@ class StatusControllerTest {
 		//Testing only one Status (with cooldown feature), because this mechanism is shared
 		bonusSpeedTest();
 		long timeSpan = (long) (new BonusSpeed().getCoolDown() - 2.0) * 1000;
-		//Waiting until delay goes down of a bit (timeSpan)
+		//Waiting until cooldown goes down of a bit (timeSpan)
 		while (controller.getPlayerStatus().get(StatusEnum.BonusSpeed).get()
 				.getDelay(TimeUnit.MILLISECONDS) > timeSpan);
 		//Testing changes
@@ -120,11 +116,6 @@ class StatusControllerTest {
 	private void waitUntilApplied(Supplier<Boolean> condition) {
 		while (condition.get()) {
 		}
-	}
-	
-	private void renewField() {
-		this.player = new SpaceShip();
-		this.controller = new StatusController(this.player);
 	}
 
 

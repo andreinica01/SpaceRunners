@@ -20,6 +20,7 @@ public class GameFieldImpl implements GameField {
 	private Set<Entity> entities;
 	private Set<Bullet> bullets;
 	private Set<SpaceShip> enemyships;
+	private Set<Status> status;
 	
 	private SpaceShip player;
 
@@ -44,6 +45,7 @@ public class GameFieldImpl implements GameField {
 		this.entities = new HashSet<Entity>();
 		this.bullets = new HashSet<Bullet>();
 		this.enemyships = new HashSet<SpaceShip>();
+		this.status = new HashSet<Status>();
 
 		this.backGroundImage = new ImageView[2];
 		
@@ -152,9 +154,10 @@ public class GameFieldImpl implements GameField {
 		this.gameContainer.getChildren().add(enemy.getNode());
 	}
 
+	@Override
 	public void addBonus(Status bonus) {
 		this.entities.add(bonus);
-		this.entities.add(bonus);
+		this.status.add(bonus);
 		this.gameContainer.getChildren().add(bonus.getNode());
 	}
 
