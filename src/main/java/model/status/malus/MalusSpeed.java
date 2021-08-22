@@ -14,9 +14,12 @@ public class MalusSpeed extends Status {
 		getNode().setRotate(0);
 		setBoostFactor((double)1/3);
 		setStatusName(StatusEnum.MalusSpeed);
+		setCoolDown(7); //7 s
 
-		setEffect(() -> getPlayer().setSpeed(getPlayer().getSpeed().doubleValue() * getBoostFactor()));
-		setRemoveEffect(() -> getPlayer().setSpeed(getPlayer().getSpeed().doubleValue() * (double)1/getBoostFactor()));
-		setDuration(4); // 8 s
+		setEffect(() -> getPlayer().setSpeed(getPlayer().getSpeed().doubleValue() 
+				* getBoostFactor()));
+		
+		setRemoveEffect(() -> getPlayer().setSpeed(getPlayer().getSpeed().doubleValue() 
+				* (double)1/getBoostFactor()));
 	}
 }

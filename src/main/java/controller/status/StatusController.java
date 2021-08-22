@@ -56,7 +56,7 @@ public class StatusController {
 		//Applying effect
 		ses.execute(status.getEffect());
 		//Scheduling effect timeout, and add it to the map
-		var task = ses.schedule(status.getRemoveEffect(), status.getDuration(), TimeUnit.SECONDS);
+		var task = ses.schedule(status.getRemoveEffect(), status.getCoolDown(), TimeUnit.SECONDS);
 		addTask(status, task);
 	}
 	

@@ -33,6 +33,9 @@ class StatusControllerTest {
 		this.panel = new JFXPanel();
 	}
 	
+	/**
+	 * Testing if BonusLife is applied
+	 */
 	@Test
 	void bonuLifeTest() {
 		renewField();
@@ -42,6 +45,9 @@ class StatusControllerTest {
 		assertEquals(4, player.getLifePoints());
 	}
 
+	/**
+	 * Testing if BonusSpeed is applied
+	 */
 	@Test
 	void bonusSpeedTest() {
 		renewField();
@@ -53,6 +59,9 @@ class StatusControllerTest {
 		assertEquals(player.getSpeed().doubleValue(), speed);
 	}
 
+	/**
+	 * Testing if MalusCommand is applied
+	 */
 	@Test
 	void malusCommandTest() {
 		renewField();
@@ -62,6 +71,9 @@ class StatusControllerTest {
 		assertTrue(player.isInvertedCommand()); // Testing MalusFire
 	}
 
+	/**
+	 * Testing if MalusFire is applied
+	 */
 	@Test
 	void malusFire() {
 		renewField();
@@ -71,6 +83,9 @@ class StatusControllerTest {
 		assertFalse(player.getCanFire());
 	}
 
+	/**
+	 * Testing if MalusSpeed is applied
+	 */
 	@Test
 	void malusSpeedTest() {
 		renewField();
@@ -82,12 +97,15 @@ class StatusControllerTest {
 		assertEquals(player.getSpeed().doubleValue(), speed);
 	}
 
+	/**
+	 * Verify that cooldown is refreshed after applying for the second time,
+	 * before the first expires, a Status.
+	 */
 	@Test
 	void refreshTimeTest() {
-		renewField();
 		//Testing only one Status (with cooldown feature), because this mechanism is shared
 		bonusSpeedTest();
-		long timeSpan = (long) (new BonusSpeed().getDuration() - 2.0) * 1000;
+		long timeSpan = (long) (new BonusSpeed().getCoolDown() - 2.0) * 1000;
 		//Waiting until delay goes down of a bit (timeSpan)
 		while (controller.getPlayerStatus().get(StatusEnum.BonusSpeed).get()
 				.getDelay(TimeUnit.MILLISECONDS) > timeSpan);
@@ -99,7 +117,6 @@ class StatusControllerTest {
 				.getDelay(TimeUnit.MILLISECONDS) > timeSpan);
 	}
 
-
 	private void waitUntilApplied(Supplier<Boolean> condition) {
 		while (condition.get()) {
 		}
@@ -109,5 +126,6 @@ class StatusControllerTest {
 		this.player = new SpaceShip();
 		this.controller = new StatusController(this.player);
 	}
+
 
 }
