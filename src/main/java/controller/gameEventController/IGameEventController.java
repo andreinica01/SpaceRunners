@@ -1,6 +1,7 @@
 package controller.gameEventController;
 
 import javafx.scene.layout.AnchorPane;
+import model.hud.HUDLifeImpl;
 
 /**
  * This interface shows the methods that are used in order to handle the hud situations
@@ -16,9 +17,9 @@ public interface IGameEventController {
     
     /**
      * Sets all HUD parts for the game.
-     * @param the game panel
+     * @param the game panel and the lives
      */
-    public void createHUD(AnchorPane gamePane);
+    public void createHUD(AnchorPane gamePane, HUDLifeImpl lives);
     
     /**
      * @return the game status value: if false, end the game.
