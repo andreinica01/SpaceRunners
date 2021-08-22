@@ -38,7 +38,7 @@ public class enemyAI {
             enemyship.getNode().setScaleX(0.15);
             enemyship.getNode().setScaleY(0.15);
 
-            enemyship.setPosition(-rnd.nextInt(400), -300);
+            enemyship.setPosition(-rnd.nextInt(400), -300 + Parameters.HUD_HEIGHT);
 
     
             this.gamefield.addEnemyShip(enemyship);

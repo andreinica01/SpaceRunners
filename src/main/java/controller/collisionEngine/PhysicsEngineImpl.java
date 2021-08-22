@@ -50,6 +50,9 @@ public class PhysicsEngineImpl implements PhysicsEngine {
                 {
                      this.gamefield.getGameContainer().getChildren().remove(spaceship.getNode());
                      this.gamefield.getActiveEnemyShips().remove(spaceship);
+                     this.gamefield.getGameContainer().getChildren().remove(bullet.getNode());
+                     this.gamefield.getActiveBulletsShotbyPlayer().remove(bullet);
+                    
                 }
 
             }
@@ -68,7 +71,8 @@ public class PhysicsEngineImpl implements PhysicsEngine {
             
             if(this.gamefield.getPlayer().getNode().getBoundsInParent().intersects(shipBound))
             {
-                System.exit(0);
+                //game over
+              //  System.exit(0);
             }
 
     

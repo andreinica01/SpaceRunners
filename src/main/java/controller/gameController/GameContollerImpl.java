@@ -25,13 +25,14 @@ public class GameContollerImpl implements GameController {
     private GameField gamefield;
     private FrameManager frame;
     Parameters param;
-    //private Set<Entity> enemies;
+    // private Set<Entity> enemies;
 
     private PhysicsEngine engine;
     private SpaceShip player;
     private InputControllerImpl inputController;
     private enemyAI AIController;
-    //private HUDControllerImpl hud;
+    Map<InputCommand, Boolean> controlStates;
+    // private HUDControllerImpl hud;
 
     public GameContollerImpl(GameField gamefield) {
 
@@ -43,12 +44,11 @@ public class GameContollerImpl implements GameController {
         this.player.setImage(Parameters.playerImage);
         this.player.setSpeed(4);
         this.player.setDirection(Direction.NONE);
-        this.player.setPosition(this.gamefield.getWidth().intValue() / 2,
-        						this.gamefield.getHeight().intValue() - 200);
+        this.player.setPosition(this.gamefield.getWidth().intValue() / 2, this.gamefield.getHeight().intValue() - 200);
         /* setup player info */
 
         this.gamefield.setPlayer(this.player);
-        //this.hud = new HUDControllerImpl(this.gamefield);
+        // this.hud = new HUDControllerImpl(this.gamefield);
 
         this.frame = new FrameManager(this.gamefield);
         this.gamefield.setInputController(this.inputController);
@@ -56,44 +56,39 @@ public class GameContollerImpl implements GameController {
         this.gamefield.setBackgroundImage(Parameters.ImageFolder + "back.png");
         this.inputController = new InputControllerImpl(this.player.getNode().getScene(), this.player);
         this.AIController = new enemyAI(this.gamefield);
-        
+
         this.engine = new PhysicsEngineImpl(this.gamefield);
 
-
-        
     }
 
-    
     public void update() {
 
-    	Map<InputCommand, Boolean> controlStates = this.inputController.getControlStates();
-    	
+        controlStates = this.inputController.getControlStates();
 
-    	
         if (controlStates.get(InputCommand.GO_LEFT))
-        	if (!this.player.isInvertedCommand())
-        			this.player.setDirection(Direction.LEFT);
-        	else this.player.setDirection(Direction.RIGHT);
-        
+            if (!this.player.isInvertedCommand())
+                this.player.setDirection(Direction.LEFT);
+            else
+                this.player.setDirection(Direction.RIGHT);
+
         if (controlStates.get(InputCommand.GO_RIGHT))
-        	if (!this.player.isInvertedCommand())
-        			this.player.setDirection(Direction.RIGHT);
-        	else this.player.setDirection(Direction.LEFT);
-        
+            if (!this.player.isInvertedCommand())
+                this.player.setDirection(Direction.RIGHT);
+            else
+                this.player.setDirection(Direction.LEFT);
+
         if (controlStates.get(InputCommand.NONE))
-        	this.player.setDirection(Direction.NONE);
-        
+            this.player.setDirection(Direction.NONE);
+
         if (controlStates.get(InputCommand.ATTACK)) {
-        	playerAttack();
-        	
+            playerAttack();
+
         }
-        
 
         this.removeAttacked();
         this.engine.playerShipCollision();
         this.AIController.update();
         frame.update();
-
 
     }
 
@@ -109,11 +104,9 @@ public class GameContollerImpl implements GameController {
 
         SoundManager.playBulletSound();
 
-
     }
 
-    private void removeAttacked()
-    {
+    private void removeAttacked() {
         this.engine.removeCollidedShips();
 
     }
