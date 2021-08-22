@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,12 +15,15 @@ import model.status.Status;
 import model.status.StatusEnum;
 import model.status.StatusFactory;
 import model.status.bonus.BonusSpeed;
-
+/**
+ * Class Test to verify the correct Status behavior
+ */
 class StatusControllerTest {
 
 	private SpaceShip player;
 	private StatusController controller;
 	private StatusFactory factory;
+	@SuppressWarnings("unused")
 	private JFXPanel panel; // Needed for test purpose
 
 
@@ -33,9 +37,8 @@ class StatusControllerTest {
 	void bonuLifeTest() {
 		renewField();
 		controller.applyEffect(factory.createStatus(StatusEnum.BonusLife));
-		SpaceShip p2 = player.clone();
-		waitUntilApplied(p2);
-		System.out.println(player.getLifePoints());		
+		Integer prevValue = player.getLifePoints();
+		waitUntilApplied(() -> prevValue.equals(player.getLifePoints()));
 		assertEquals(4, player.getLifePoints());
 	}
 
@@ -44,30 +47,27 @@ class StatusControllerTest {
 		renewField();
 		Status bonusSpeed = factory.createStatus(StatusEnum.BonusSpeed);
 		double speed = player.getSpeed().doubleValue() * bonusSpeed.getBoostFactor();
-		SpaceShip p2 = player.clone();
+		Double prevValue = player.getSpeed().doubleValue();
 		controller.applyEffect(bonusSpeed);
-		waitUntilApplied(p2);
+		waitUntilApplied(() -> prevValue.equals(player.getSpeed()));
 		assertEquals(player.getSpeed().doubleValue(), speed);
 	}
 
 	@Test
 	void malusCommandTest() {
 		renewField();
-		SpaceShip p2 = player.clone();
-		System.out.println(p2.isInvertedCommand());
+		Boolean prevValue = player.isInvertedCommand();
 		controller.applyEffect(factory.createStatus(StatusEnum.MalusCommand));
-		System.out.println(player.isInvertedCommand());
-		waitUntilApplied(p2);
-		System.out.println(player.isInvertedCommand());
+		waitUntilApplied(() -> prevValue.equals(player.isInvertedCommand()));
 		assertTrue(player.isInvertedCommand()); // Testing MalusFire
 	}
 
 	@Test
 	void malusFire() {
 		renewField();
-		SpaceShip p2 = player.clone();
+		Boolean prevValue = player.getCanFire();
 		controller.applyEffect(factory.createStatus(StatusEnum.MalusFire));
-		waitUntilApplied(p2);
+		waitUntilApplied(() -> prevValue.equals(player.getCanFire()));
 		assertFalse(player.getCanFire());
 	}
 
@@ -76,10 +76,9 @@ class StatusControllerTest {
 		renewField();
 		Status malusSpeed = factory.createStatus(StatusEnum.MalusSpeed);
 		double speed = player.getSpeed().doubleValue() * malusSpeed.getBoostFactor();
-		SpaceShip p2 = player.clone();
+		Double prevValue = player.getSpeed().doubleValue();
 		controller.applyEffect(malusSpeed);
-		waitUntilApplied(p2);
-		System.out.println(player.getSpeed());
+		waitUntilApplied(() -> prevValue.equals(player.getSpeed()));
 		assertEquals(player.getSpeed().doubleValue(), speed);
 	}
 
@@ -94,13 +93,16 @@ class StatusControllerTest {
 				.getDelay(TimeUnit.MILLISECONDS) > timeSpan);
 		//Testing changes
 		controller.applyEffect(factory.createStatus(StatusEnum.BonusSpeed));
-		waitUntilApplied(new SpaceShip());
+		waitUntilApplied(() -> controller.getPlayerStatus().get(StatusEnum.BonusSpeed).get()
+				.getDelay(TimeUnit.MILLISECONDS) < timeSpan);
 		assertTrue(controller.getPlayerStatus().get(StatusEnum.BonusSpeed).get()
 				.getDelay(TimeUnit.MILLISECONDS) > timeSpan);
 	}
 
-	private void waitUntilApplied(SpaceShip p2) {
-		while (player.equals(p2));
+
+	private void waitUntilApplied(Supplier<Boolean> condition) {
+		while (condition.get()) {
+		}
 	}
 	
 	private void renewField() {
