@@ -27,7 +27,7 @@ public interface IHUDPoints {
     public void pointsDown();
     
     /**
-     * Set the points to the value you decide.
+     * Set the points to the value you decide. Helper method.
      * @param value to set
      */
     public void pointsSetter(int value);

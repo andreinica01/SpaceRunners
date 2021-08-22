@@ -1,6 +1,7 @@
 package model.hud;
 
 import java.io.File;
+import Utilities.Parameters;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -22,8 +23,7 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
     /*
      * File System
      */
-    private final static String RES_FOLDER = "src/main/resources/";
-    public final static String PNG_FOLDER = RES_FOLDER + "Images/";
+    public final static String PNG_FOLDER = Parameters.ImageFolder;
     
     /*
      * HUD structure
@@ -32,8 +32,8 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
     private final static int PREF_HEIGHT = 50;
     private final static Pos PREF_ALIGNEMENT = Pos.CENTER_LEFT;
     private final static double INSETS_MEASURES = 10;
-    private final static boolean RATIO = false;
-    private final static boolean SMOOTH = true;
+    public final static boolean RATIO = false;
+    public final static boolean SMOOTH = true;
     private final static BackgroundSize DEFAULT_SIZE = null;
     private final static String MATTER = "Points: ";
     private final static String FONT = "Verdana";
@@ -41,7 +41,7 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
     public final static int ZERO = 0;
     private final static int POINTS_UP = 1;
     private final static int POINTS_DOWN = -5;
-    private final static int FIVE = 5;
+    public final static int FIVE = 5;
    
     /*
      * Control fields
@@ -77,7 +77,9 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
         setFont(new Font(FONT, FONT_SIZE));
         
         this.level = POINTS_UP;
-        this.points = ZERO;       
+        this.points = ZERO;
+        
+        //decidere come gestire posizionamento display livello
     }
     
     /*
@@ -99,17 +101,17 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
     @Override
     public void pointsUp() {
         this.pointsSetter(POINTS_UP);
-        setText(MATTER + getPoints());
+        setText(MATTER + this.getPoints());
     }
     
     @Override
     public void pointsDown() {
         if(this.getPoints() < FIVE) {
             this.points = ZERO;
-            setText(MATTER + getPoints());
+            setText(MATTER + this.getPoints());
         } else {
             this.pointsSetter(POINTS_DOWN);
-            setText(MATTER + getPoints());
+            setText(MATTER + this.getPoints());
         }
     }
     
