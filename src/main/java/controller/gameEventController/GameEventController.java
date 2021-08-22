@@ -1,8 +1,8 @@
 package controller.gameEventController;
-
-import javafx.application.ConditionalFeature;
+ 
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import model.hud.EndGameGUI;
 import model.hud.HUDModelImpl;
 import controller.collisionEngine.*;
 
@@ -11,8 +11,8 @@ public class GameEventController implements IGameEventController {
     /*
      * HUD values
      */
-    private final static int X_LAYOUT = 340;
-    private final static int Y_LAYOUT = 20;
+    private final static int X_LAYOUT = 353;
+    private final static int Y_LAYOUT = 3;
     
     /*
      * Game Container
@@ -43,7 +43,7 @@ public class GameEventController implements IGameEventController {
     
     @Override
     public void endGame() {
-        // TODO Auto-generated method stub        
+        new EndGameGUI().end(this.checkPoints(), this.checkLevel());        
     }
     
     @Override

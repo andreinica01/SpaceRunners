@@ -90,6 +90,7 @@ public class GameContollerImpl implements GameController {
         
 
         this.removeAttacked();
+        this.engine.playerShipCollision();
         this.AIController.update();
         frame.update();
 
