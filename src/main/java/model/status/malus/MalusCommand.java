@@ -13,9 +13,9 @@ public class MalusCommand extends Status {
 		setImage(Parameters.bonusSpeedImage);
 		getNode().setRotate(0);
 		setStatusName(StatusEnum.MalusCommand);
+		setCoolDown(10); //10 s
 
 		setEffect(() -> getPlayer().setInvertedCommand(true));
 		setRemoveEffect(() -> getPlayer().setInvertedCommand(false));
-		setDuration(8); // 8 s
 	}
 }

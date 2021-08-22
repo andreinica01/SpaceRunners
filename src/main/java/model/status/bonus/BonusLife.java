@@ -8,17 +8,18 @@ import model.status.StatusEnum;
  */
 public class BonusLife extends Status{
 	
-	private int maximumNumberLife = 4;
+	private int MAXIMUM_LIFE = 4;
 	
 	public BonusLife () {
 		super();
 		setImage(Parameters.bonusSpeedImage);
 		setStatusName(StatusEnum.BonusLife);
+		setCoolDown(0); 
 		
 		setEffect(() -> {
-			if (getPlayer().getLifePoints() < maximumNumberLife && getPlayer().getLifePoints() > 0)
+			if (getPlayer().getLifePoints() < MAXIMUM_LIFE)
 				getPlayer().increaseLifePoints(1);});
+		
 		setRemoveEffect(() -> {});
-		setDuration(0); 
 	}
 }

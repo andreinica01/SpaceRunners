@@ -41,26 +41,5 @@ public class SpaceShip extends EntityImpl {
 		this.invertedCommand = invertedCommand;
 	}
 	
-	public boolean equals(SpaceShip p2) {
-		if(this.lifePoints != p2.lifePoints)
-			return false;
-		if(this.invertedCommand != p2.invertedCommand)
-			return false;
-		if((double)this.getSpeed() != (double)p2.getSpeed())
-			return false;
-		if(this.getCanFire() != p2.getCanFire())
-			return false;
-		return true;
-	}
-	
-	public SpaceShip clone() {
-		SpaceShip newShip =  new SpaceShip();
-		
-		newShip.setLifePoints(this.lifePoints);
-		newShip.setInvertedCommand(this.invertedCommand);
-		newShip.setSpeed(this.getSpeed());
-		newShip.setCanFire(this.getCanFire());
-		return newShip;
-	}
 
 }
