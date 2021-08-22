@@ -29,4 +29,8 @@ public interface PhysicsEngine {
      * Checks entities collision
      */
     public void removeCollidedShips();
+
+
+    public void playerShipCollision();
+    
 }
