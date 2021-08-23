@@ -1,6 +1,5 @@
 package model.hud;
 
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -37,14 +36,16 @@ public class EndGameGUI implements IEndGameGUI {
         this.exitButton.setOnAction(e -> this.quit());
         this.saveAndExitButton.setOnAction(e -> this.saveAndQuit()); 
         
-        Label label = new Label();
-        label.setText("What do you want to do?");
+        this.exitButton.setPrefWidth(167);
+        this.saveAndExitButton.setPrefWidth(167);
+        this.exitButton.setPrefHeight(59);
+        this.saveAndExitButton.setPrefHeight(59);
         
-        HBox layout = new HBox(10);
-        layout.getChildren().addAll(label, exitButton, saveAndExitButton);
-        layout.setAlignment(Pos.CENTER);
+        this.exitButton.setLayoutX(314);
+        this.exitButton.setLayoutY(245);
+        this.exitButton.setLayoutX(120);
+        this.exitButton.setLayoutY(245);
         
-        Scene scene = new Scene(layout, 600, 450);
         endGameWindow.setScene(scene);
         endGameWindow.show();
     }

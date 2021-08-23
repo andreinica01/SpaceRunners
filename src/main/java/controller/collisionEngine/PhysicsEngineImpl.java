@@ -18,6 +18,8 @@ public class PhysicsEngineImpl implements PhysicsEngine {
     private HUDPointsImpl pointsHUD;
     private HUDLifeImpl livesHUD;
     private Bounds bounds;
+    private Bounds bonusBounds;
+    private Entity toremove; 
 
     private List<Entity> toBeRemovedList;
     public PhysicsEngineImpl(final GameField gamefield, final HUDPointsImpl pointsHUD, final HUDLifeImpl livesHUD) {
@@ -27,12 +29,27 @@ public class PhysicsEngineImpl implements PhysicsEngine {
         this.livesHUD = livesHUD;
         this.bounds = this.gamefield.getScene().getRoot().getBoundsInLocal();
 
-       
 
+        this.toBeRemovedList = new ArrayList<Entity>();
 
-       this.toBeRemovedList = new ArrayList<Entity>();
+      
+    
+
     }
-
+    
+    @Override
+    public void removePoints() {
+        this.pointsHUD.pointsDown();
+    }
+    
+    @Override
+    public void addPoints() {
+        this.pointsHUD.pointsUp();
+    }
+   
+    /*
+     * Collision detection
+     */
     @Override
     public void playerCollsionBorders() {
         if (this.gamefield.getPlayer().getPosition().getX().intValue() > this.bounds.getMaxX() - 120) {
@@ -47,43 +64,40 @@ public class PhysicsEngineImpl implements PhysicsEngine {
             this.gamefield.getPlayer().setPosition(limit, this.gamefield.getPlayer().getPosition().getY().intValue());
         }
     }
-
-    @Override
-    public void removeLife() {
-        this.livesHUD.lifeDown();
-    }
-
-    @Override
-    public void removePoints() {
-        this.pointsHUD.pointsDown();
-    }
-
+    
     @Override
     public void removeCollidedShips() {
 
+       
         for (Bullet bullet : this.gamefield.getActiveBulletsShotbyPlayer()) {
             for (SpaceShip spaceship : this.gamefield.getActiveEnemyShips()) {
 
                 Bounds bulletBound = bullet.getNode().getBoundsInParent();
                 Bounds shipBound = spaceship.getNode().getBoundsInParent();
 
+                 //Bounds bonusBound = 
                 if (bulletBound.intersects(shipBound)) {
+                   
                     this.gamefield.getGameContainer().getChildren().remove(spaceship.getNode());
                     this.gamefield.getGameContainer().getChildren().remove(bullet.getNode());
-                 
+
+                    this.addPoints();
+
                     this.toBeRemovedList.add(spaceship);
-                    this.toBeRemovedList.add(bullet);
+                  
+                    
+                this.toremove = spaceship;
+                this.gamefield.getActiveBulletsShotbyPlayer().remove(bullet);
 
-
-                    this.pointsHUD.pointsUp();
-                }
             }
         }
 
         this.gamefield.getActiveEnemyShips().removeAll(this.toBeRemovedList);
-        this.gamefield.getActiveBulletsShotbyPlayer().removeAll(this.toBeRemovedList);
+        this.gamefield.getActiveBulletsShotbyPlayer().remove(toremove);
+    
 
         this.toBeRemovedList.clear();
+    }
     }
 
     public void playerShipCollision() {
@@ -99,12 +113,18 @@ public class PhysicsEngineImpl implements PhysicsEngine {
                     this.removeLife();
                     this.removePoints();
                     this.gamefield.getGameContainer().getChildren().remove(spaceship.getNode());
-                    toBeRemovedList.add((Entity) spaceship);
+                    toBeRemovedList.add(spaceship);
                 }
             }
             this.gamefield.getActiveEnemyShips().removeAll(toBeRemovedList);
             this.toBeRemovedList.clear();
             
         }
+
+    @Override
+    public void removeLife() {
+        this.livesHUD.lifeDown();
+        
+    }
       
 }

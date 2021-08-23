@@ -15,7 +15,6 @@ public class GameEventController implements IGameEventController {
      */
     private final static int X_LAYOUT = 353;
     private final static int Y_LAYOUT = 3;
-    private final static boolean TRUE = true;
     public static final double VIEW_ORDER = -51;
     
     /*
@@ -26,11 +25,6 @@ public class GameEventController implements IGameEventController {
     private HUDLifeImpl playerLives;
     public PhysicsEngineImpl collision;
     private GameField gameField;
-
-    /*
-     * Gamestatus = this is important for gamecycle to continue
-     */
-    private boolean gameStatus;
     
     /**
      * Constructor.
@@ -38,7 +32,6 @@ public class GameEventController implements IGameEventController {
      */
     public GameEventController(final AnchorPane container, final GameField gameField) {
         this.gameContainer = container;
-        this.gameStatus = TRUE;
         this.gameField = gameField;
         
         createHUD(this.gameContainer, this.playerLives);
@@ -77,7 +70,7 @@ public class GameEventController implements IGameEventController {
     
     @Override
     public boolean checkGameStatus() {
-        return this.gameStatus;
+        return this.playerLives.getStatus();
     }
     
     @Override

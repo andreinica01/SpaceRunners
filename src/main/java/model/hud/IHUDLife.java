@@ -16,4 +16,9 @@ public interface IHUDLife {
      * It decreases life points.
      */
     public void lifeDown();
+    
+    /**
+     * @return game status.
+     */
+    public boolean getStatus();
 }
