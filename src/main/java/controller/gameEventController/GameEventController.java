@@ -13,6 +13,7 @@ public class GameEventController implements IGameEventController {
     private final static int X_LAYOUT = 353;
     private final static int Y_LAYOUT = 3;
     private final static boolean TRUE = true;
+    public static final double VIEW_ORDER = -51;
     
     /*
      * Game Container reference and HUD elements
@@ -48,6 +49,7 @@ public class GameEventController implements IGameEventController {
         this.hud.setLayoutX(X_LAYOUT);
         this.hud.setLayoutY(Y_LAYOUT);
         gamePane.getChildren().add(this.hud);
+        this.hud.setViewOrder(VIEW_ORDER);
         
         this.playerLives = new HUDLifeImpl(gamePane);
     }

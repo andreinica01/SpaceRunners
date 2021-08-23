@@ -2,6 +2,7 @@ package model.hud;
 
 import java.io.File;
 import Utilities.Parameters;
+import controller.gameEventController.GameEventController;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -79,6 +80,7 @@ public class HUDLifeImpl implements IHUDLife {
         this.lives[index].setLayoutX(index * SPACING);
         this.lives[index].setLayoutY(HUDPointsImpl.FIVE);
         this.pane.getChildren().add(lives[index]);
+        this.lives[index].setViewOrder(GameEventController.VIEW_ORDER);
     }
    
     /**
