@@ -1,4 +1,4 @@
-cpackage controller.gameEventController;
+package controller.gameEventController;
 
 import controller.collisionEngine.PhysicsEngine;
 import controller.collisionEngine.PhysicsEngineImpl;

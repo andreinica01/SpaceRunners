@@ -12,7 +12,6 @@ import controller.gameEventController.GameEventController;
 import controller.inputController.InputControllerImpl;
 import model.bullet.Bullet;
 import model.ship.SpaceShip;
-import view.SoundManager.SoundManager;
 import view.gameField.GameField;
 
 public class GameContollerImpl implements GameController {
