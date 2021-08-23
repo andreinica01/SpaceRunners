@@ -58,11 +58,13 @@ public class GameManager extends AnimationTimer {
 
        
             this.gameController.update();
-            
-          
             prevtime = now;
-
-
     }
-
+    
+    /**
+     * @return time sleep value
+     */
+    public long getTimeSleep() {
+        return this.sleepNs;
+    }
 }

@@ -1,11 +1,9 @@
 package view.gameField;
 
-import java.util.HashSet; 
+import java.util.HashSet;
 import java.util.Set;
-
 import Utilities.Parameters;
 import controller.inputController.InputControllerImpl;
-import controller.gameEventController.GameEventController;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
@@ -156,4 +154,9 @@ public class GameFieldImpl implements GameField {
 		this.status.add(bonus);
 		this.gameContainer.getChildren().add(bonus.getNode());
 	}
+
+        @Override
+        public Scene getScene() {
+            return this.scene;
+        }
 }

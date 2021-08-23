@@ -73,6 +73,11 @@ public interface GameField {
      * @return all active bullets shot towards the player
      */
     Set<Bullet> getActiveBulletsShotbyEnemies();
+    
+    /**
+     * @return the scene.
+     */
+    Scene getScene();
 
     void setInputController(InputControllerImpl controller);
 
