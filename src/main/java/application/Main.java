@@ -12,7 +12,7 @@ public class Main extends Application {
 		try {
 			GameManager x = new GameManager(mainwindow);
 			
-			System.out.println(x);
+		//	System.out.println(x);
 			x.start();
                 
 		} catch(Exception e) {

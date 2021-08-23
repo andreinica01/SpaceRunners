@@ -80,7 +80,8 @@ public class GameContollerImpl implements GameController {
         this.gameEventController.getCollisionEngine().playerCollsionBorders();
         this.AIController.update();
         frame.update();
-
+        
+        
     }
 
     private void playerAttack() {

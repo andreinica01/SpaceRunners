@@ -46,7 +46,7 @@ public class GameManager extends AnimationTimer {
     public void handle(long now) {
 
         /* if ((now - prevtime) < sleepNs) {
-            System.out.println("exit");
+            ("exit");
             return;
         } */
 
