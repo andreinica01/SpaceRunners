@@ -1,28 +1,24 @@
 package model.hud;
 
 import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.geometry.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 public class EndGameGUI implements IEndGameGUI {
 
-    private final static int X_LAYOUT = 800;
-    private final static int Y_LAYOUT = 650;
-    
-    private Button exitButton;
-    private Button saveAndExitButton;
-    private VBox layout;
-    private Scene scene;
+    private final static int X_LAYOUT = 600;
+    private final static int Y_LAYOUT = 400;
+
     private Stage endGameWindow;
     private int points;
     private int level;
     
     @Override
-    public void end(int points, int level) {
+    public void end(int points, int level) throws Exception {
         this.points = points;
         this.level = level;
         
@@ -30,23 +26,8 @@ public class EndGameGUI implements IEndGameGUI {
         this.endGameWindow.setTitle("Game is over, you lost! :c");
         this.endGameWindow.setResizable(false);
         
-        this.exitButton = new Button("Quit");
-        this.saveAndExitButton = new Button("Save and Quit");
-        
-        this.exitButton.setOnAction(e -> this.quit());
-        this.saveAndExitButton.setOnAction(e -> this.saveAndQuit()); 
-        
-        this.exitButton.setPrefWidth(167);
-        this.saveAndExitButton.setPrefWidth(167);
-        this.exitButton.setPrefHeight(59);
-        this.saveAndExitButton.setPrefHeight(59);
-        
-        this.exitButton.setLayoutX(314);
-        this.exitButton.setLayoutY(245);
-        this.exitButton.setLayoutX(120);
-        this.exitButton.setLayoutY(245);
-        
-        endGameWindow.setScene(scene);
+        Parent root = FXMLLoader.load(getClass().getResource("EndGameGui.fxml"));
+        endGameWindow.setScene(new Scene(root, X_LAYOUT, Y_LAYOUT));
         endGameWindow.show();
     }
     

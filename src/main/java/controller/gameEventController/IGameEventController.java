@@ -2,7 +2,7 @@ package controller.gameEventController;
 
 import controller.collisionEngine.PhysicsEngine;
 import javafx.scene.layout.AnchorPane;
-import model.hud.HUDLifeImpl;
+import model.status.Status;
 
 /**
  * This interface shows the methods that are used in order to handle the hud situations
@@ -20,7 +20,7 @@ public interface IGameEventController {
      * Sets all HUD parts for the game.
      * @param the game panel and the lives
      */
-    public void createHUD(AnchorPane gamePane, HUDLifeImpl lives);
+    public void createHUD(AnchorPane gamePane);
     
     /**
      * @return the game status value: if false, end the game.
@@ -46,4 +46,9 @@ public interface IGameEventController {
      * @return collision engine.
      */
     public PhysicsEngine getCollisionEngine();
+    
+    /**
+     * @return status collected.
+     */
+    public Status getStatusCollected();
 }
