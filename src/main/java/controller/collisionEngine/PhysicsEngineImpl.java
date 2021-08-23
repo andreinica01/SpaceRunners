@@ -84,10 +84,9 @@ public class PhysicsEngineImpl implements PhysicsEngine {
                     this.addPoints();
 
                     this.toBeRemovedList.add(spaceship);
-                  
-                    
-                this.toremove = spaceship;
-                this.gamefield.getActiveBulletsShotbyPlayer().remove(bullet);
+                 
+                    this.toremove = spaceship;
+
 
             }
         }
