@@ -60,13 +60,14 @@ public class PhysicsEngineImpl implements PhysicsEngine {
                      this.gamefield.getActiveEnemyShips().remove(spaceship);
                      this.gamefield.getGameContainer().getChildren().remove(bullet.getNode());
                      this.gamefield.getActiveBulletsShotbyPlayer().remove(bullet);
+                     this.pointsHUD.pointsUp();
                 }
             }
         }   
     }
 
-   public void playerShipCollision() {
-       for (SpaceShip spaceship : this.gamefield.getActiveEnemyShips()) {
+    public void playerShipCollision() {
+        for (SpaceShip spaceship : this.gamefield.getActiveEnemyShips()) {
                 Bounds shipBound = spaceship.getNode().getBoundsInParent();
             
                 if(this.gamefield.getPlayer().getNode().getBoundsInParent().intersects(shipBound)) {
@@ -76,5 +77,5 @@ public class PhysicsEngineImpl implements PhysicsEngine {
                     this.gamefield.getActiveEnemyShips().remove(spaceship);
                 }
         }
-   }
+    }
 }
