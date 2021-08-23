@@ -1,6 +1,9 @@
 package controller.status;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -76,5 +79,16 @@ public class StatusController {
 
 	public SpaceShip getPlayer() {
 		return player;
+	}
+	
+	public List<Optional<ScheduledFuture<?>>> getActiveStatus () {
+		
+		ArrayList<Optional<ScheduledFuture<?>>> activeStatus = new ArrayList<>();
+		List<Optional<ScheduledFuture<?>>> allTasks = new ArrayList<>(this.playerStatus.values());
+		for(Optional<ScheduledFuture<?>> e : allTasks) {
+			if(e.isPresent() && !(e.get().isDone())) 
+				activeStatus.add(e);
+		}
+		return activeStatus;
 	}
 }
