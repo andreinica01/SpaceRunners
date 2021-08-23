@@ -51,7 +51,7 @@ public class enemyAI {
 			enemyship.getNode().setRotate(0);
 			enemyship.getNode().setScaleX(0.15);
 			enemyship.getNode().setScaleY(0.15);
-			enemyship.setPosition(-rnd.nextInt(400), -300 + Parameters.HUD_HEIGHT);
+			enemyship.setPosition(-rnd.nextInt(400), -300);
 
 			this.gamefield.addEnemyShip(enemyship);
 			SoundManager.playShipPassing();
@@ -67,7 +67,7 @@ public class enemyAI {
 			status.setDimension(new Vector2DImpl<Number>(50, 50));
 			status.getNode().setScaleX(0.15);
 			status.getNode().setScaleY(0.15);
-			status.setPosition(-rnd.nextInt(400), -300 + Parameters.HUD_HEIGHT);
+			status.setPosition(-rnd.nextInt(400), -300);
 			this.gamefield.addBonus(status);
 			
 			statusInterval = (long) ((getRandomDouble(5.0, 10.0) * 1000));

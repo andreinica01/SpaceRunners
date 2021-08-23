@@ -126,7 +126,6 @@ public class GameFieldImpl implements GameField {
 			this.backGroundImage[i].setFitHeight(this.height);
 			this.backGroundImage[i].setViewOrder(+10);
 			this.gameContainer.getChildren().add(this.backGroundImage[i]);
-
 		}
 
 		this.backGroundImage[0].setTranslateX(0);
