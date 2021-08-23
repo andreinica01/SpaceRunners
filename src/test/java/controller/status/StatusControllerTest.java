@@ -10,6 +10,7 @@ import java.util.function.Supplier;
 import org.junit.jupiter.api.Test;
 
 import javafx.embed.swing.JFXPanel;
+import model.ship.PlayerSpaceShip;
 import model.ship.SpaceShip;
 import model.status.Status;
 import model.status.StatusEnum;
@@ -28,7 +29,7 @@ class StatusControllerTest {
 
 
 	public StatusControllerTest() {
-		this.player = new SpaceShip();
+		this.player = new PlayerSpaceShip();
 		this.controller = new StatusController(this.player);
 		this.factory = new StatusFactory();
 		this.panel = new JFXPanel();
