@@ -17,6 +17,7 @@ public interface PhysicsEngine {
 
     /**
      * Subtract a life when an enemy ship hits the player
+     * @return 
      */
     public void removeLife();
     
