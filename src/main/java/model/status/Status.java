@@ -1,6 +1,7 @@
 package model.status;
 
 import Utilities.Direction;
+import Utilities.Parameters;
 import model.EntityImpl;
 import model.ship.SpaceShip;
 
@@ -21,7 +22,7 @@ public abstract class Status extends EntityImpl {
 
 	public Status() {
 		setDirection(Direction.DOWN);
-		setSpeed(3);
+		setSpeed(Parameters.STATUS_SPEED);
 	}
 
 	public long getCoolDown() {

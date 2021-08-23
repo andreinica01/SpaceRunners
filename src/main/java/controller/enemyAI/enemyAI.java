@@ -2,7 +2,6 @@ package controller.enemyAI;
 
 import java.util.Random;
 
-import Utilities.*;
 import model.ship.EnemyShip;
 import model.ship.SpaceShip;
 import model.status.Status;
@@ -17,7 +16,7 @@ public class enemyAI {
 
 	private GameField gamefield;
 	private StatusFactory statusFactory;
-	
+
 	private int enemySpeed = 10;
 
 	long enemyInterval;
@@ -31,7 +30,7 @@ public class enemyAI {
 	public enemyAI(GameField gamefield) {
 		this.gamefield = gamefield;
 		statusFactory = new StatusFactory();
-		enemyResetTime = System.currentTimeMillis();	
+		enemyResetTime = System.currentTimeMillis();
 		statusResetTime = System.currentTimeMillis();
 		enemyInterval = (long) ((getRandomDouble(0.0, 5.0) * 1000));
 		statusInterval = (long) ((getRandomDouble(5.0, 15.0) * 1000));
@@ -50,7 +49,7 @@ public class enemyAI {
 			enemyship.setPosition(-rnd.nextInt(400), -300);
 
 			this.gamefield.addEnemyShip(enemyship);
-	
+
 			enemyInterval = (long) ((getRandomDouble(0.0, 3.5) * 1000));
 			enemyResetTime = System.currentTimeMillis();
 		}
@@ -59,7 +58,6 @@ public class enemyAI {
 	private void generateStatus() {
 		if (System.currentTimeMillis() - statusResetTime > statusInterval) {
 			Status status = statusFactory.createStatus(StatusEnum.getRandom());
-			status.setSpeed(Parameters.STATUS_SPEED);
 			status.setPosition(rnd.nextInt(400), -300);
 
 			this.gamefield.addBonus(status);
@@ -69,7 +67,6 @@ public class enemyAI {
 
 		}
 
-		
 	}
 
 	/**
