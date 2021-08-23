@@ -75,6 +75,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
     }
 
     public void playerShipCollision() {
+        
         for (SpaceShip spaceship : this.gamefield.getActiveEnemyShips()) {
                 Bounds shipBound = spaceship.getNode().getBoundsInParent();
             
