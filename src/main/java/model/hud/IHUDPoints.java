@@ -4,12 +4,7 @@ package model.hud;
  * This interface shows the specific methods of our HUD that must be implemented. It is needed to 
  * handle points, current level and lifepoints. Font for words must be set here!
  */
-public interface IHUDModel {
-    
-    /**
-     * Set the font of the chosen label.
-     */
-    public void setLabelFont();
+public interface IHUDPoints {
     
     /**
      * @return actual points.
@@ -20,12 +15,7 @@ public interface IHUDModel {
      * @return actual level.
      */
     public int getActualLevel();
-    
-    /**
-     * @return life points.
-     */
-    public int getLifePoints();
-    
+
     /**
      * It increases the points.
      */
@@ -37,20 +27,10 @@ public interface IHUDModel {
     public void pointsDown();
     
     /**
-     * Set the points to the value you decide.
+     * Set the points to the value you decide. Helper method.
      * @param value to set
      */
     public void pointsSetter(int value);
-    
-    /**
-     * It increases life points.
-     */
-    public void lifeUp();
-    
-    /**
-     * It decreases life points.
-     */
-    public void lifeDown();
     
     /**
      * It increases the level

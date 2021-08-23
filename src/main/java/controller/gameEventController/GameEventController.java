@@ -1,10 +1,9 @@
 package controller.gameEventController;
- 
-import javafx.scene.image.ImageView;
+
 import javafx.scene.layout.AnchorPane;
 import model.hud.EndGameGUI;
-import model.hud.HUDModelImpl;
-import controller.collisionEngine.*;
+import model.hud.HUDLifeImpl;
+import model.hud.HUDPointsImpl;
 
 public class GameEventController implements IGameEventController {
     
@@ -13,21 +12,18 @@ public class GameEventController implements IGameEventController {
      */
     private final static int X_LAYOUT = 353;
     private final static int Y_LAYOUT = 3;
+    private final static boolean TRUE = true;
+    public static final double VIEW_ORDER = -51;
     
     /*
-     * Game Container
+     * Game Container reference and HUD elements
      */
     private AnchorPane gameContainer;
-    
-    /*
-     * HUD Elements
-     */
-    private HUDModelImpl hud;
-    private ImageView[] playerLifes;
-    //bonus
+    private HUDPointsImpl hud;
+    private HUDLifeImpl playerLives;
 
     /*
-     * Other fields
+     * Gamestatus = this is important for gamecycle to continue
      */
     private boolean gameStatus;
     
@@ -37,8 +33,9 @@ public class GameEventController implements IGameEventController {
      */
     public GameEventController(final AnchorPane container) {
         this.gameContainer = container;
+        this.gameStatus = TRUE;
         
-        createHUD(this.gameContainer);
+        createHUD(this.gameContainer, this.playerLives);
     }
     
     @Override
@@ -47,12 +44,14 @@ public class GameEventController implements IGameEventController {
     }
     
     @Override
-    public void createHUD(final AnchorPane gamePane) {
-        this.hud = new HUDModelImpl();
+    public void createHUD(final AnchorPane gamePane, final HUDLifeImpl lives) {
+        this.hud = new HUDPointsImpl();
         this.hud.setLayoutX(X_LAYOUT);
         this.hud.setLayoutY(Y_LAYOUT);
         gamePane.getChildren().add(this.hud);
-        //bisogna trovare il modo di metterlo di fronte
+        this.hud.setViewOrder(VIEW_ORDER);
+        
+        this.playerLives = new HUDLifeImpl(gamePane);
     }
     
     @Override
@@ -67,7 +66,7 @@ public class GameEventController implements IGameEventController {
     
     @Override
     public int checkLives() {
-        return this.hud.getLifePoints();
+        return this.playerLives.getLifePoints();
     }
     
     @Override

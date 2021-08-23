@@ -1,6 +1,7 @@
 package model.hud;
 
 import java.io.File;
+import Utilities.Parameters;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -17,56 +18,41 @@ import javafx.scene.text.Font;
  * fields in order to let it work and every part of it that must be
  * displayed
  */
-public class HUDModelImpl extends Label implements IHUDModel {
-    
-    /*
-     * Measures
-     */
-    public final static int PREF_WIDTH = 130;
-    public final static int PREF_HEIGHT = 50;
+public class HUDPointsImpl extends Label implements IHUDPoints {
     
     /*
      * File System
      */
-
-    public final static String RES_FOLDER = "src/main/resources/";
-    public final static String PNG_FOLDER = RES_FOLDER + "Images/";
-    public final static String FONT_PATH = "src/main/resources/Images/kenvector_future.ttf";
-    public final static String POINTS_PATH = "src/main/resources/Images/info_label.png";
+    public final static String PNG_FOLDER = Parameters.ImageFolder;
     
     /*
      * HUD structure
      */
-    public final static Pos PREF_ALIGNEMENT = Pos.CENTER_LEFT;
+    private final static int PREF_WIDTH = 130;
+    private final static int PREF_HEIGHT = 50;
+    private final static Pos PREF_ALIGNEMENT = Pos.CENTER_LEFT;
     private final static double INSETS_MEASURES = 10;
-    private final static boolean RATIO = false;
-    private final static boolean SMOOTH = true;
+    public final static boolean RATIO = false;
+    public final static boolean SMOOTH = true;
     private final static BackgroundSize DEFAULT_SIZE = null;
     private final static String MATTER = "Points: ";
-    
-    /*
-     * Values
-     */
-    private final static int FONT_SIZE = 15;
-    private final static int ZERO = 0;
+    private final static String FONT = "Verdana";
+    private final static int FONT_SIZE = 20;
+    public final static int ZERO = 0;
     private final static int POINTS_UP = 1;
     private final static int POINTS_DOWN = -5;
-    private final static int FIVE = 5;
-    private final static int MAX_LIFE_POINTS = 4;
-    public final static int INITIAL_LIFE_POINTS = 3;
-    private final static int LESS_LIVES_POSSIBLE = 1;
+    public final static int FIVE = 5;
    
     /*
      * Control fields
      */
-    private int lifePoints;
     private int level;
     private int points;
     
     /**
      * Constructor
      */
-    public HUDModelImpl() {
+    public HUDPointsImpl() {
         
         setPrefWidth(PREF_WIDTH);
         setPrefHeight(PREF_HEIGHT);
@@ -86,22 +72,14 @@ public class HUDModelImpl extends Label implements IHUDModel {
                 INSETS_MEASURES, 
                 INSETS_MEASURES));
 
+        setAlignment(PREF_ALIGNEMENT);
+        setText(MATTER + getPoints());
+        setFont(new Font(FONT, FONT_SIZE));
         
-        
-        this.lifePoints = INITIAL_LIFE_POINTS;
         this.level = POINTS_UP;
         this.points = ZERO;
         
-        setAlignment(PREF_ALIGNEMENT);
-        setText(MATTER + getPoints());
-    }
-    
-    /*
-     * Font loader
-     */
-    @Override
-    public void setLabelFont() {
-        setFont(Font.loadFont(getClass().getResourceAsStream(FONT_PATH), FONT_SIZE));
+        //decidere come gestire posizionamento display livello
     }
     
     /*
@@ -117,47 +95,29 @@ public class HUDModelImpl extends Label implements IHUDModel {
         return this.level;
     }
     
-    @Override
-    public int getLifePoints() {
-        return this.lifePoints;
-    }
-    
     /*
      * Setter
      */
     @Override
     public void pointsUp() {
         this.pointsSetter(POINTS_UP);
+        setText(MATTER + this.getPoints());
     }
     
     @Override
     public void pointsDown() {
         if(this.getPoints() < FIVE) {
             this.points = ZERO;
+            setText(MATTER + this.getPoints());
         } else {
             this.pointsSetter(POINTS_DOWN);
+            setText(MATTER + this.getPoints());
         }
     }
     
     @Override
     public void pointsSetter(final int value) {
         this.points += value;
-    }
-    
-    @Override
-    public void lifeUp() {
-        if (this.getLifePoints() < MAX_LIFE_POINTS) {
-            this.lifePoints++;
-        }
-    }
-    
-    @Override
-    public void lifeDown() {
-        if (this.getLifePoints() > LESS_LIVES_POSSIBLE) {
-            this.lifePoints--;
-        } else {
-            this.lifePoints = ZERO; 
-        }      
     }
     
     @Override

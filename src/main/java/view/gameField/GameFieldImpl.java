@@ -20,6 +20,7 @@ public class GameFieldImpl implements GameField {
 	private Set<Entity> entities;
 	private Set<Bullet> bullets;
 	private Set<SpaceShip> enemyships;
+	private Set<Status> status;
 	
 	private SpaceShip player;
 
@@ -44,10 +45,10 @@ public class GameFieldImpl implements GameField {
 		this.entities = new HashSet<Entity>();
 		this.bullets = new HashSet<Bullet>();
 		this.enemyships = new HashSet<SpaceShip>();
+		this.status = new HashSet<Status>();
 
 		this.backGroundImage = new ImageView[2];
 		
-
 		this.width = width;
 		this.height = height;
 	}
@@ -125,7 +126,6 @@ public class GameFieldImpl implements GameField {
 			this.backGroundImage[i].setFitHeight(this.height);
 			this.backGroundImage[i].setViewOrder(+10);
 			this.gameContainer.getChildren().add(this.backGroundImage[i]);
-
 		}
 
 		this.backGroundImage[0].setTranslateX(0);
@@ -152,9 +152,10 @@ public class GameFieldImpl implements GameField {
 		this.gameContainer.getChildren().add(enemy.getNode());
 	}
 
+	@Override
 	public void addBonus(Status bonus) {
 		this.entities.add(bonus);
-		this.entities.add(bonus);
+		this.status.add(bonus);
 		this.gameContainer.getChildren().add(bonus.getNode());
 	}
 

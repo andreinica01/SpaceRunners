@@ -23,7 +23,6 @@ public class Parameters {
     public static final int HEIGHT = 720;
 
     public static final int INITIAL_PLAYER_POINTS = 3;
-    public static final int HUD_HEIGHT = 150;
 
     public static String ResourcesFolder = "src/main/resources/";
     public static String ImageFolder = ResourcesFolder+"Images/";
