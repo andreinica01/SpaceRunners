@@ -81,6 +81,7 @@ public class GameContollerImpl implements GameController {
 
         this.removeAttacked();
         this.gameEventController.getCollisionEngine().playerShipCollision();
+        this.gameEventController.getCollisionEngine().playerCollsionBorders();
         this.AIController.update();
         frame.update();
 

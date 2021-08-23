@@ -1,10 +1,12 @@
 package controller.collisionEngine;
 
 import javafx.geometry.Bounds;
+import javafx.scene.Node;
 import model.bullet.Bullet;
 import model.hud.HUDLifeImpl;
 import model.hud.HUDPointsImpl;
 import model.ship.SpaceShip;
+import view.SoundManager.SoundManager;
 import view.gameField.GameField;
 
 public class PhysicsEngineImpl implements PhysicsEngine {
@@ -26,12 +28,22 @@ public class PhysicsEngineImpl implements PhysicsEngine {
         this.gamefield.getActiveBulletsShotbyEnemies();
         this.gamefield.getActiveBulletsShotbyPlayer();
    }
+   
+   @Override
+   public void playerCollsionBorders()
+   {
+      if(this.gamefield.getPlayer().getPosition().getX().intValue()<5)
+      {
+          SoundManager.playClashWall();
+      }
+       
+   }
 
     @Override
     public void removeLife() {
-        this.livesHUD.lifeDown();
-    }
-
+         this.livesHUD.lifeDown();
+     }
+    
     @Override
     public void removePoints() {
         this.pointsHUD.pointsDown();
