@@ -66,7 +66,6 @@ public class HUDLifeImpl implements IHUDLife {
             this.removeLife();
         } else {
             this.lifePoints = HUDPointsImpl.ZERO;
-            //end game check
         }      
     }
     
