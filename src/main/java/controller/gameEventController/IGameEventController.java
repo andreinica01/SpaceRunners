@@ -1,5 +1,6 @@
 package controller.gameEventController;
 
+import controller.collisionEngine.PhysicsEngine;
 import javafx.scene.layout.AnchorPane;
 import model.hud.HUDLifeImpl;
 
@@ -40,4 +41,9 @@ public interface IGameEventController {
      * @return actual level.
      */
     public int checkLevel();
+    
+    /**
+     * @return collision engine.
+     */
+    public PhysicsEngine getCollisionEngine();
 }

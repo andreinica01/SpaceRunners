@@ -2,7 +2,6 @@ package view.gameField;
 
 
 import java.util.Set;
-
 import controller.inputController.InputControllerImpl;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -91,6 +90,5 @@ public interface GameField {
 
     void addEnemyShip(SpaceShip enemy);
     
-    void addBonus (Status bonus);
-  
+    void addBonus (Status bonus); 
 }

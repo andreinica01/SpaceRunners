@@ -26,7 +26,6 @@ public class GameFieldImpl implements GameField {
 	private SpaceShip player;
 
 	private ImageView[] backGroundImage;
-	private GameEventController gameEventController;
 
 	private Scene scene;
 
@@ -44,7 +43,6 @@ public class GameFieldImpl implements GameField {
 		this.gameContainer.prefWidth(width);
 		this.gameContainer.prefHeight(height);
 
-		this.gameEventController = new GameEventController(this.gameContainer);
 		this.entities = new HashSet<Entity>();
 		this.bullets = new HashSet<Bullet>();
 		this.enemyships = new HashSet<SpaceShip>();
