@@ -79,10 +79,14 @@ public class PhysicsEngineImpl implements PhysicsEngine {
 
                     this.addPoints();
 
+                    this.gamefield.getActiveBulletsShotbyPlayer().remove(bullet);
+                    bullet = null;
+
                     this.toBeRemovedList.add(spaceship);
 
                     this.toremove = spaceship;
                     check = true;
+                   // bullet.getNode().setDisable(true);
 
                 }
             }
@@ -93,9 +97,11 @@ public class PhysicsEngineImpl implements PhysicsEngine {
         {
             this.gamefield.getActiveEnemyShips().removeAll(this.toBeRemovedList);
             this.gamefield.getActiveBulletsShotbyPlayer().remove(toremove);
+            
     
             this.toBeRemovedList.clear();
             this.gamefield.getSoundManager().playSpaceshipExplosion();
+            check = false;
         }
        
     }
@@ -111,6 +117,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
                 this.removePoints();
                 this.gamefield.getGameContainer().getChildren().remove(spaceship.getNode());
                 toBeRemovedList.add(spaceship);
+                
 
                 this.gamefield.getSoundManager().playPlayerImpact();
             }
