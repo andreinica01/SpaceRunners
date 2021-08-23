@@ -51,15 +51,28 @@ public class GameEventController implements IGameEventController {
     
     @Override
     public void createHUD(final AnchorPane gamePane, final HUDLifeImpl lives) {
+        /*
+         * Points HUD
+         */
         this.hud = new HUDPointsImpl();
         this.hud.setLayoutX(X_LAYOUT);
         this.hud.setLayoutY(Y_LAYOUT);
         gamePane.getChildren().add(this.hud);
         this.hud.setViewOrder(VIEW_ORDER);
         
+        /*
+         * Lives HUD
+         */
         this.playerLives = new HUDLifeImpl(gamePane);
-
-        this.collision = new PhysicsEngineImpl(gameField, this.hud, this.playerLives);
+        
+        /*
+         * PowerUP HUD
+         */
+        
+        /*
+         * Collision engine comes with HUD creation!
+         */
+        this.collision = new PhysicsEngineImpl(this.gameField, this.hud, this.playerLives);
     }
     
     @Override

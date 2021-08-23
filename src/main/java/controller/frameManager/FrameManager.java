@@ -2,7 +2,6 @@ package controller.frameManager;
 
 import java.util.Set;
 
-import Utilities.Parameters;
 import javafx.scene.Node;
 import model.Entity;
 import view.gameField.GameField;

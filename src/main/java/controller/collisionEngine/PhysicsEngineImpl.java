@@ -1,7 +1,6 @@
 package controller.collisionEngine;
 
 import javafx.geometry.Bounds;
-import javafx.scene.Node;
 import model.bullet.Bullet;
 import model.hud.HUDLifeImpl;
 import model.hud.HUDPointsImpl;

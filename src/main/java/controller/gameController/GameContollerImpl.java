@@ -10,11 +10,8 @@ import controller.enemyAI.enemyAI;
 import controller.frameManager.FrameManager;
 import controller.gameEventController.GameEventController;
 import controller.inputController.InputControllerImpl;
-import controller.status.StatusController;
 import model.bullet.Bullet;
 import model.ship.SpaceShip;
-import model.status.StatusEnum;
-import model.status.StatusFactory;
 import view.SoundManager.SoundManager;
 import view.gameField.GameField;
 
