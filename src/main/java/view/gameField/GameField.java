@@ -10,6 +10,7 @@ import model.Entity;
 import model.bullet.Bullet;
 import model.ship.SpaceShip;
 import model.status.Status;
+import view.SoundManager.SoundManager;
 
 
 
@@ -80,6 +81,9 @@ public interface GameField {
     Scene getScene();
 
     void setInputController(InputControllerImpl controller);
+
+    
+    SoundManager getSoundManager();
 
     void setScene(Scene scene);
     

@@ -31,7 +31,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
     @Override
     public void playerCollsionBorders() {
        if(this.gamefield.getPlayer().getPosition().getX().intValue() < HUDPointsImpl.FIVE) {
-           SoundManager.playClashWall();
+           this.gamefield.getSoundManager().playClashWall();
        }        
     }
 

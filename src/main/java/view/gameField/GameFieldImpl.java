@@ -12,6 +12,7 @@ import model.Entity;
 import model.bullet.Bullet;
 import model.ship.SpaceShip;
 import model.status.Status;
+import view.SoundManager.SoundManager;
 
 public class GameFieldImpl implements GameField {
 
@@ -29,6 +30,8 @@ public class GameFieldImpl implements GameField {
 	private final int width;
 	private final int height;
 
+
+	private SoundManager soundmanager;
 	private AnchorPane gameContainer;
 
 	public GameFieldImpl(final int width, final int height) {
@@ -43,10 +46,15 @@ public class GameFieldImpl implements GameField {
 		this.enemyships = new HashSet<SpaceShip>();
 		this.status = new HashSet<Status>();
 
+		//to load in specific class container
 		this.backGroundImage = new ImageView[2];
 		
 		this.width = width;
 		this.height = height;
+
+		this.soundmanager = new SoundManager();
+
+		
 	}
 
 	public AnchorPane getGameContainer() {
@@ -155,8 +163,14 @@ public class GameFieldImpl implements GameField {
 		this.gameContainer.getChildren().add(bonus.getNode());
 	}
 
-        @Override
+	@Override
         public Scene getScene() {
             return this.scene;
         }
+	
+	@Override
+	public SoundManager getSoundManager() {
+		
+		return this.soundmanager;
+	}
 }
