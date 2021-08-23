@@ -11,25 +11,25 @@ import view.SoundManager.SoundManager;
 import view.gameField.GameField;
 
 /**
- * a class to manage the movement of the enemy ships
+ * Class to manage the movement of the enemy ships
  */
 public class enemyAI {
 
 	private GameField gamefield;
 	private StatusFactory statusFactory;
-	
+
 	long enemyInterval;
 	long enemyResetTime;
-	
+
 	long statusInterval;
 	long statusResetTime;
-	
+
 	Random rnd;
 
 	public enemyAI(GameField gamefield) {
 		this.gamefield = gamefield;
 		statusFactory = new StatusFactory();
-		enemyResetTime = System.currentTimeMillis();
+		enemyResetTime = System.currentTimeMillis();	
 		statusResetTime = System.currentTimeMillis();
 		enemyInterval = (long) ((getRandomDouble(0.0, 5.0) * 1000));
 		statusInterval = (long) ((getRandomDouble(5.0, 15.0) * 1000));
@@ -40,11 +40,11 @@ public class enemyAI {
 		generateEnemy();
 		generateStatus();
 	}
-	
+
 	private void generateEnemy() {
 		if (System.currentTimeMillis() - enemyResetTime > enemyInterval) {
 			SpaceShip enemyship = new SpaceShip();
-			enemyship.setDimension(new Vector2DImpl<Number>(50, 50));
+			enemyship.setDimension(new Vector2DImpl<Number>(50, 50));	
 			enemyship.setImage(Parameters.enemyImage);
 			enemyship.setSpeed(10);
 			enemyship.setDirection(Direction.DOWN);
@@ -55,34 +55,34 @@ public class enemyAI {
 
 			this.gamefield.addEnemyShip(enemyship);
 			SoundManager.playShipPassing();
-			
-			enemyInterval = (long) ((getRandomDouble(0.0, 3.5) * 1000));
+
+			enemyInterval = (long) ((getRandomDouble(0.0, 3.5) * 1000));	
 			enemyResetTime = System.currentTimeMillis();
 		}
 	}
-	
+
 	private void generateStatus() {
 		if (System.currentTimeMillis() - statusResetTime > statusInterval) {
 			Status status = statusFactory.createStatus(StatusEnum.getRandom());
-			status.setDimension(new Vector2DImpl<Number>(50, 50));
-			status.getNode().setScaleX(0.15);
-			status.getNode().setScaleY(0.15);
-			status.setPosition(-rnd.nextInt(400), -300);
+			status.setSpeed(6);
+			status.setPosition(rnd.nextInt(400), -300);
+
 			this.gamefield.addBonus(status);
-			
-			statusInterval = (long) ((getRandomDouble(5.0, 10.0) * 1000));
+
+			statusInterval = (long) ((getRandomDouble(4.0, 15.0) * 1000));
 			statusResetTime = System.currentTimeMillis();
 		}
 	}
-	
+
 	/**
-	 * Get a random int between two values.
+	 * Get a random Double between two values.
+	 * 
 	 * @param min
 	 * @param max
-	 * @return A random int
+	 * @return A random Double
 	 */
 	private Double getRandomDouble(Double min, Double max) {
 		return min + new Random().nextDouble() * (max - min);
 	}
-	
+
 }
