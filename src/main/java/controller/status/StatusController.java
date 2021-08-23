@@ -81,14 +81,16 @@ public class StatusController {
 		return player;
 	}
 	
-	public List<ScheduledFuture<?>> getActiveStatus () {
+	public List<StatusEnum> getActiveStatus () {
 		
-		ArrayList<ScheduledFuture<?>> activeStatus = new ArrayList<>();
-		List<Optional<ScheduledFuture<?>>> allTasks = new ArrayList<>(this.playerStatus.values());
-		for(Optional<ScheduledFuture<?>> e : allTasks) {
-			if(e.isPresent() && !(e.get().isDone())) 
-				activeStatus.add(e.get());
+		ArrayList<StatusEnum> activeStatus = new ArrayList<>();
+		List<StatusEnum> allTasks = new ArrayList<>(this.playerStatus.keySet());
+		
+		for(StatusEnum e : allTasks) {
+			if(this.playerStatus.get(e).isPresent() && !this.playerStatus.get(e).get().isDone())
+				activeStatus.add(e);
 		}
+		
 		return activeStatus;
 	}
 }
