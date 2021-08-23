@@ -22,6 +22,8 @@ public class HUDLifeImpl implements IHUDLife {
     private final static int INITIAL_LIFE_POINTS = 3;
     private final static int LESS_LIVES_POSSIBLE = 1;
     public final static int MAX_LIFE_POINTS = 4;
+    private final static boolean TRUE = true;
+    private final static boolean FALSE = false;
     
     /*
      * Control fields
@@ -30,10 +32,16 @@ public class HUDLifeImpl implements IHUDLife {
     private int lifePoints;
     private ImageView[] lives = new ImageView[MAX_LIFE_POINTS];
     
+    /*
+     * Gamestatus = this is important for gamecycle to continue
+     */
+    private boolean gameStatus;
+    
     public HUDLifeImpl(final AnchorPane gamePane) {
         
         this.pane = gamePane;
         this.lifePoints = INITIAL_LIFE_POINTS;
+        this.gameStatus = TRUE;
         
         for(int i = HUDPointsImpl.ZERO; i < lives.length - INITIAL_MALUS; i++) {
             this.addLife(i);
@@ -66,6 +74,7 @@ public class HUDLifeImpl implements IHUDLife {
             this.removeLife();
         } else {
             this.lifePoints = HUDPointsImpl.ZERO;
+            this.gameStatus = FALSE;
         }      
     }
     
@@ -87,5 +96,10 @@ public class HUDLifeImpl implements IHUDLife {
      */
     public void removeLife() {
         this.pane.getChildren().remove(lives[this.lifePoints]);
+    }
+
+    @Override
+    public boolean getStatus() {
+        return this.gameStatus;
     }
 }
