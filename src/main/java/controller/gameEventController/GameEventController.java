@@ -1,9 +1,12 @@
 package controller.gameEventController;
 
+import controller.collisionEngine.PhysicsEngine;
+import controller.collisionEngine.PhysicsEngineImpl;
 import javafx.scene.layout.AnchorPane;
 import model.hud.EndGameGUI;
 import model.hud.HUDLifeImpl;
 import model.hud.HUDPointsImpl;
+import view.gameField.GameField;
 
 public class GameEventController implements IGameEventController {
     
@@ -21,6 +24,8 @@ public class GameEventController implements IGameEventController {
     private AnchorPane gameContainer;
     private HUDPointsImpl hud;
     private HUDLifeImpl playerLives;
+    public PhysicsEngineImpl collision;
+    private GameField gameField;
 
     /*
      * Gamestatus = this is important for gamecycle to continue
@@ -31,9 +36,10 @@ public class GameEventController implements IGameEventController {
      * Constructor.
      * @param Game container
      */
-    public GameEventController(final AnchorPane container) {
+    public GameEventController(final AnchorPane container, final GameField gameField) {
         this.gameContainer = container;
         this.gameStatus = TRUE;
+        this.gameField = gameField;
         
         createHUD(this.gameContainer, this.playerLives);
     }
@@ -52,6 +58,8 @@ public class GameEventController implements IGameEventController {
         this.hud.setViewOrder(VIEW_ORDER);
         
         this.playerLives = new HUDLifeImpl(gamePane);
+
+        this.collision = new PhysicsEngineImpl(gameField, this.hud, this.playerLives);
     }
     
     @Override
@@ -73,4 +81,9 @@ public class GameEventController implements IGameEventController {
     public int checkLevel() {
         return this.hud.getActualLevel();
     } 
+
+    @Override
+    public PhysicsEngine getCollisionEngine() {
+        return this.collision;
+    }
 }

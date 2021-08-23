@@ -28,6 +28,9 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
     /*
      * HUD structure
      */
+    public final static int ZERO = 0;
+    public final static int ONE = 1;
+    public final static int FIVE = 5;
     private final static int PREF_WIDTH = 130;
     private final static int PREF_HEIGHT = 50;
     private final static Pos PREF_ALIGNEMENT = Pos.CENTER_LEFT;
@@ -38,10 +41,8 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
     private final static String MATTER = "Points: ";
     private final static String FONT = "Verdana";
     private final static int FONT_SIZE = 20;
-    public final static int ZERO = 0;
     private final static int POINTS_UP = 1;
     private final static int POINTS_DOWN = -5;
-    public final static int FIVE = 5;
    
     /*
      * Control fields
@@ -54,8 +55,8 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
      */
     public HUDPointsImpl() {
         
-        setPrefWidth(PREF_WIDTH);
-        setPrefHeight(PREF_HEIGHT);
+        this.setPrefWidth(PREF_WIDTH);
+        this.setPrefHeight(PREF_HEIGHT);
         
         BackgroundImage backImage = new BackgroundImage(new Image(new File(PNG_FOLDER + "info_label.png").toURI().toString(), 
                                                             PREF_WIDTH, 
@@ -66,15 +67,15 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
                                                 BackgroundRepeat.REPEAT, 
                                                 BackgroundPosition.DEFAULT, 
                                                 DEFAULT_SIZE);
-        setBackground(new Background(backImage));
-        setPadding(new Insets(INSETS_MEASURES, 
+        this.setBackground(new Background(backImage));
+        this.setPadding(new Insets(INSETS_MEASURES, 
                 INSETS_MEASURES, 
                 INSETS_MEASURES, 
                 INSETS_MEASURES));
 
-        setAlignment(PREF_ALIGNEMENT);
-        setText(MATTER + getPoints());
-        setFont(new Font(FONT, FONT_SIZE));
+        this.setAlignment(PREF_ALIGNEMENT);
+        this.setText(MATTER + getPoints());
+        this.setFont(new Font(FONT, FONT_SIZE));
         
         this.level = POINTS_UP;
         this.points = ZERO;
@@ -101,17 +102,17 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
     @Override
     public void pointsUp() {
         this.pointsSetter(POINTS_UP);
-        setText(MATTER + this.getPoints());
+        this.setText(MATTER + this.getPoints());
     }
     
     @Override
     public void pointsDown() {
         if(this.getPoints() < FIVE) {
             this.points = ZERO;
-            setText(MATTER + this.getPoints());
+            this.setText(MATTER + this.getPoints());
         } else {
             this.pointsSetter(POINTS_DOWN);
-            setText(MATTER + this.getPoints());
+            this.setText(MATTER + this.getPoints());
         }
     }
     

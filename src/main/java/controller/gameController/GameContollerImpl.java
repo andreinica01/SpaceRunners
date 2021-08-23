@@ -6,11 +6,9 @@ import Utilities.Direction;
 import Utilities.InputCommand;
 import Utilities.Parameters;
 import Utilities.Vector2DImpl;
-import controller.collisionEngine.PhysicsEngine;
-import controller.collisionEngine.PhysicsEngineImpl;
 import controller.enemyAI.enemyAI;
 import controller.frameManager.FrameManager;
-//import controller.hudcontroller.HUDControllerImpl;
+import controller.gameEventController.GameEventController;
 import controller.inputController.InputControllerImpl;
 import controller.status.StatusController;
 import model.bullet.Bullet;
@@ -25,9 +23,8 @@ public class GameContollerImpl implements GameController {
     private GameField gamefield;
     private FrameManager frame;
     Parameters param;
-    // private Set<Entity> enemies;
-
-    private PhysicsEngine engine;
+    
+    private GameEventController gameEventController;
     private SpaceShip player;
     private InputControllerImpl inputController;
     private enemyAI AIController;
@@ -47,7 +44,6 @@ public class GameContollerImpl implements GameController {
         /* setup player info */
 
         this.gamefield.setPlayer(this.player);
-        // this.hud = new HUDControllerImpl(this.gamefield);
 
         this.frame = new FrameManager(this.gamefield);
         this.gamefield.setInputController(this.inputController);
@@ -55,9 +51,8 @@ public class GameContollerImpl implements GameController {
         this.gamefield.setBackgroundImage(Parameters.ImageFolder + "back.png");
         this.inputController = new InputControllerImpl(this.player.getNode().getScene(), this.player);
         this.AIController = new enemyAI(this.gamefield);
-
-        this.engine = new PhysicsEngineImpl(this.gamefield);
-
+        
+        this.gameEventController = new GameEventController(this.gamefield.getGameContainer(), this.gamefield);
     }
 
     public void update() {
@@ -85,8 +80,8 @@ public class GameContollerImpl implements GameController {
         }
 
         this.removeAttacked();
-        this.engine.playerShipCollision();
-        this.engine.playerCollsionBorders();
+        this.gameEventController.getCollisionEngine().playerShipCollision();
+        this.gameEventController.getCollisionEngine().playerCollsionBorders();
         this.AIController.update();
         frame.update();
 
@@ -107,7 +102,6 @@ public class GameContollerImpl implements GameController {
     }
 
     private void removeAttacked() {
-        this.engine.removeCollidedShips();
-
+        this.gameEventController.getCollisionEngine().removeCollidedShips();
     }
 }
