@@ -29,15 +29,12 @@ public class PhysicsEngineImpl implements PhysicsEngine {
         this.gamefield.getActiveBulletsShotbyPlayer();
    }
    
-   @Override
-   public void playerCollsionBorders()
-   {
-      if(this.gamefield.getPlayer().getPosition().getX().intValue()<5)
-      {
-          SoundManager.playClashWall();
-      }
-       
-   }
+    @Override
+    public void playerCollsionBorders() {
+       if(this.gamefield.getPlayer().getPosition().getX().intValue() < HUDPointsImpl.FIVE) {
+           SoundManager.playClashWall();
+       }        
+    }
 
     @Override
     public void removeLife() {
@@ -69,14 +66,14 @@ public class PhysicsEngineImpl implements PhysicsEngine {
     }
 
    public void playerShipCollision() {
-
        for (SpaceShip spaceship : this.gamefield.getActiveEnemyShips()) {
-                
                 Bounds shipBound = spaceship.getNode().getBoundsInParent();
             
                 if(this.gamefield.getPlayer().getNode().getBoundsInParent().intersects(shipBound)) {
                     this.removeLife();
                     this.removePoints();
+                    this.gamefield.getGameContainer().getChildren().remove(spaceship.getNode());
+                    this.gamefield.getActiveEnemyShips().remove(spaceship);
                 }
         }
    }
