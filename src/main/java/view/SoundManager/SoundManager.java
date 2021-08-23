@@ -59,6 +59,12 @@ public class SoundManager {
         playSound("spaceship_explosion2.wav");
     }
 
+    public void playPlayerImpact()
+    {
+        playSound("player_impact.wav");
+
+    }
+
     private void cleanSoundMemory()
     {
         Iterator<Clip> soundsToRemove = this.sounds.subList(0, 10).iterator();

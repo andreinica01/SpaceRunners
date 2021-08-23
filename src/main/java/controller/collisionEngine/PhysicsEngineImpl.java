@@ -111,6 +111,8 @@ public class PhysicsEngineImpl implements PhysicsEngine {
                 this.removePoints();
                 this.gamefield.getGameContainer().getChildren().remove(spaceship.getNode());
                 toBeRemovedList.add(spaceship);
+
+                this.gamefield.getSoundManager().playPlayerImpact();
             }
         }
         this.gamefield.getActiveEnemyShips().removeAll(toBeRemovedList);

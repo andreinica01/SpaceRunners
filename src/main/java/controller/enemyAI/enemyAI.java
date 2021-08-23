@@ -54,7 +54,7 @@ public class enemyAI {
 
 			this.gamefield.addEnemyShip(enemyship);
 
-			this.gamefield.getSoundManager().playShipPassing();
+			//this.gamefield.getSoundManager().playShipPassing();
 	
 			
 			enemyInterval = (long) ((getRandomDouble(0.0, 3.5) * 1000));
