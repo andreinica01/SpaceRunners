@@ -12,12 +12,14 @@ public class PhysicsEngineImpl implements PhysicsEngine {
     private GameField gamefield;
     private HUDPointsImpl pointsHUD;
     private HUDLifeImpl livesHUD;
+    private Bounds bounds;
 
     public PhysicsEngineImpl(final GameField gamefield, final HUDPointsImpl pointsHUD, final HUDLifeImpl livesHUD) {
            
         this.gamefield = gamefield;
         this.pointsHUD = pointsHUD;
         this.livesHUD = livesHUD;
+        this.bounds = this.gamefield.getScene().getRoot().getBoundsInLocal(); 
 
         this.gamefield.getPlayer(); this.gamefield.getActiveEnemyShips();
         this.gamefield.getBonusObjects();
@@ -29,8 +31,16 @@ public class PhysicsEngineImpl implements PhysicsEngine {
    
     @Override
     public void playerCollsionBorders() {
-       if(this.gamefield.getPlayer().getPosition().getX().intValue() < HUDPointsImpl.FIVE) {
+       if(this.gamefield.getPlayer().getPosition().getX().intValue() > this.bounds.getMaxX() - 120) {
            this.gamefield.getSoundManager().playClashWall();
+           int limit = this.gamefield.getPlayer().getPosition().getX().intValue() - 4;
+           this.gamefield.getPlayer().setPosition(limit, this.gamefield.getPlayer().getPosition().getY().intValue());
+       }
+               
+       if(this.gamefield.getPlayer().getPosition().getX().intValue() < this.bounds.getMinX() - 25) {
+           this.gamefield.getSoundManager().playClashWall();
+           int limit = this.gamefield.getPlayer().getPosition().getX().intValue() + 4;
+           this.gamefield.getPlayer().setPosition(limit, this.gamefield.getPlayer().getPosition().getY().intValue());
        }        
     }
 
