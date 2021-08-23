@@ -1,5 +1,6 @@
 package view.gameField;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import Utilities.Parameters;
@@ -42,8 +43,8 @@ public class GameFieldImpl implements GameField {
 		this.gameContainer.prefHeight(height);
 
 		this.entities = new HashSet<Entity>();
-		this.bullets = new HashSet<Bullet>();
-		this.enemyships = new HashSet<SpaceShip>();
+		this.bullets = Collections.synchronizedSet(new HashSet<Bullet>());
+		this.enemyships = Collections.synchronizedSet( new HashSet<SpaceShip>());
 		this.status = new HashSet<Status>();
 
 		//to load in specific class container
