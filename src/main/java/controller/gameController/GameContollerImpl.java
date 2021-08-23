@@ -101,8 +101,7 @@ public class GameContollerImpl implements GameController {
         x.setSpeed(10);
 
         this.gamefield.addBullet(x);
-
-        SoundManager.playBulletSound();
+        this.gamefield.getSoundManager().playBulletSound();
 
     }
 

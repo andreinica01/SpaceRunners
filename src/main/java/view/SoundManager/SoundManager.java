@@ -1,6 +1,7 @@
 package view.SoundManager;
 
 import java.io.File;
+import java.util.List;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -9,7 +10,9 @@ import Utilities.Parameters;
 
 public class SoundManager {
 
-    static private void playSound(String sound) {
+    private List<Clip> sounds;
+
+    private void playSound(String sound) {
         try {
 
             Clip bulletSound = AudioSystem.getClip();
@@ -23,17 +26,18 @@ public class SoundManager {
 
     }
 
-    static public void playBulletSound() {
+    public void playBulletSound() {
         playSound("laser.wav");
     }
 
-    static public void playShipPassing() {
+    public void playShipPassing() {
         playSound("passingby.wav");
     }
 
-    static public void playClashWall()
-    {
+    public void playClashWall() {
         playSound("wall_clash.wav");
     }
+
+    //to do
 
 }

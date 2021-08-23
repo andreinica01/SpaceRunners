@@ -7,7 +7,6 @@ import model.ship.SpaceShip;
 import model.status.Status;
 import model.status.StatusEnum;
 import model.status.StatusFactory;
-import view.SoundManager.SoundManager;
 import view.gameField.GameField;
 
 /**
@@ -54,7 +53,9 @@ public class enemyAI {
 			enemyship.setPosition(-rnd.nextInt(400), -300);
 
 			this.gamefield.addEnemyShip(enemyship);
-			SoundManager.playShipPassing();
+
+			this.gamefield.getSoundManager().playShipPassing();
+	
 			
 			enemyInterval = (long) ((getRandomDouble(0.0, 3.5) * 1000));
 			enemyResetTime = System.currentTimeMillis();
