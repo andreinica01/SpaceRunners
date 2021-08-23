@@ -37,7 +37,12 @@ public class PhysicsEngineImpl implements PhysicsEngine {
     public void removePoints() {
         this.pointsHUD.pointsDown();
     }
-
+    
+    @Override
+    public void removeLife() {
+        this.livesHUD.lifeDown();
+    }
+    
     @Override
     public void addPoints() {
         this.pointsHUD.pointsUp();
@@ -71,31 +76,30 @@ public class PhysicsEngineImpl implements PhysicsEngine {
                 Bounds bulletBound = bullet.getNode().getBoundsInParent();
                 Bounds shipBound = spaceship.getNode().getBoundsInParent();
 
-                // Bounds bonusBound =
                 if (bulletBound.intersects(shipBound)) {
 
                     this.gamefield.getGameContainer().getChildren().remove(spaceship.getNode());
                     this.gamefield.getGameContainer().getChildren().remove(bullet.getNode());
+                    bullet.setPosition(-1000, bullet.getBounds().getY());
 
                     this.addPoints();
 
                     this.toBeRemovedList.add(spaceship);
-
                     this.toremove = spaceship;
+                    
                     check = true;
-
                 }
             }
-
         }
 
-        if(check)
-        {
+        if(check) {
             this.gamefield.getActiveEnemyShips().removeAll(this.toBeRemovedList);
             this.gamefield.getActiveBulletsShotbyPlayer().remove(toremove);
     
             this.toBeRemovedList.clear();
             this.gamefield.getSoundManager().playSpaceshipExplosion();
+            
+            check = false;
         }
        
     }
@@ -111,7 +115,6 @@ public class PhysicsEngineImpl implements PhysicsEngine {
                 this.removePoints();
                 this.gamefield.getGameContainer().getChildren().remove(spaceship.getNode());
                 toBeRemovedList.add(spaceship);
-
                 this.gamefield.getSoundManager().playPlayerImpact();
             }
         }
@@ -119,11 +122,4 @@ public class PhysicsEngineImpl implements PhysicsEngine {
         this.toBeRemovedList.clear();
 
     }
-
-    @Override
-    public void removeLife() {
-        this.livesHUD.lifeDown();
-
-    }
-
 }
