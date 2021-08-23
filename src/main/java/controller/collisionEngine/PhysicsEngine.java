@@ -27,13 +27,23 @@ public interface PhysicsEngine {
     public void removePoints();
     
     /**
-     * Checks entities collision
+     * Add points when an enemy ship is destroyed
      */
-    public void removeCollidedShips();
-
+    public void addPoints();
+    
+    /**
+     * Detects collision with border
+     */
     public void playerCollsionBorders();
     
-
+    /**
+     * Remove entities which collide
+     */
+    public void removeCollidedShips();
+    
+    /**
+     * Detects player collision
+     */
     public void playerShipCollision();
     
 }
