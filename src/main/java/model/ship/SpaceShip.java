@@ -3,7 +3,7 @@ package model.ship;
 import Utilities.Parameters;
 import model.EntityImpl;
 
-public class SpaceShip extends EntityImpl {
+public abstract class SpaceShip extends EntityImpl {
 
     private int lifePoints;
     private boolean invertedCommand;
@@ -11,7 +11,7 @@ public class SpaceShip extends EntityImpl {
     
     public SpaceShip() {
         this.lifePoints = Parameters.INITIAL_PLAYER_POINTS;
-        setSpeed((double)10);
+        setSpeed(10);
         setInvertedCommand(false);
         setCanFire(true);
     }

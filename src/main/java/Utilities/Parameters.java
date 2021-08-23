@@ -3,26 +3,16 @@ package Utilities;
 import java.io.File;
 
 import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
 
 import javafx.scene.image.Image;
 
 public class Parameters {
-
-    public Parameters()
-    {
-        try {
-            bulletSound = AudioSystem.getAudioInputStream(new File(Parameters.SoundFolder+"laser.wav"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-      
-    }
-    
+ 
     public static final int WIDTH = 500;
     public static final int HEIGHT = 720;
 
     public static final int INITIAL_PLAYER_POINTS = 3;
+    public static final int  STATUS_SPEED = 6;
 
     public static String ResourcesFolder = "src/main/resources/";
     public static String ImageFolder = ResourcesFolder+"Images/";

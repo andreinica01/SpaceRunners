@@ -3,6 +3,7 @@ package controller.enemyAI;
 import java.util.Random;
 
 import Utilities.*;
+import model.ship.EnemyShip;
 import model.ship.SpaceShip;
 import model.status.Status;
 import model.status.StatusEnum;
@@ -16,6 +17,8 @@ public class enemyAI {
 
 	private GameField gamefield;
 	private StatusFactory statusFactory;
+	
+	private int enemySpeed = 10;
 
 	long enemyInterval;
 	long enemyResetTime;
@@ -23,7 +26,7 @@ public class enemyAI {
 	long statusInterval;
 	long statusResetTime;
 
-	Random rnd;
+	private final Random rnd;
 
 	public enemyAI(GameField gamefield) {
 		this.gamefield = gamefield;
@@ -42,21 +45,12 @@ public class enemyAI {
 
 	private void generateEnemy() {
 		if (System.currentTimeMillis() - enemyResetTime > enemyInterval) {
-			SpaceShip enemyship = new SpaceShip();
-			enemyship.setDimension(new Vector2DImpl<Number>(50, 50));	
-			enemyship.setImage(Parameters.enemyImage);
-			enemyship.setSpeed(10);
-			enemyship.setDirection(Direction.DOWN);
-			enemyship.getNode().setRotate(0);
-			enemyship.getNode().setScaleX(0.15);
-			enemyship.getNode().setScaleY(0.15);
+			SpaceShip enemyship = new EnemyShip();
+			enemyship.setSpeed(this.enemySpeed);
 			enemyship.setPosition(-rnd.nextInt(400), -300);
 
 			this.gamefield.addEnemyShip(enemyship);
-
-			//this.gamefield.getSoundManager().playShipPassing();
 	
-			
 			enemyInterval = (long) ((getRandomDouble(0.0, 3.5) * 1000));
 			enemyResetTime = System.currentTimeMillis();
 		}
@@ -65,7 +59,7 @@ public class enemyAI {
 	private void generateStatus() {
 		if (System.currentTimeMillis() - statusResetTime > statusInterval) {
 			Status status = statusFactory.createStatus(StatusEnum.getRandom());
-			status.setSpeed(6);
+			status.setSpeed(Parameters.STATUS_SPEED);
 			status.setPosition(rnd.nextInt(400), -300);
 
 			this.gamefield.addBonus(status);

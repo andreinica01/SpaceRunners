@@ -5,12 +5,12 @@ import java.util.Map;
 import Utilities.Direction;
 import Utilities.InputCommand;
 import Utilities.Parameters;
-import Utilities.Vector2DImpl;
 import controller.enemyAI.enemyAI;
 import controller.frameManager.FrameManager;
 import controller.gameEventController.GameEventController;
 import controller.inputController.InputControllerImpl;
 import model.bullet.Bullet;
+import model.ship.PlayerSpaceShip;
 import model.ship.SpaceShip;
 import view.gameField.GameField;
 
@@ -29,13 +29,8 @@ public class GameContollerImpl implements GameController {
     public GameContollerImpl(GameField gamefield) {
 
         this.gamefield = gamefield;
-        this.player = new SpaceShip();
+        this.player = new PlayerSpaceShip();
 
-        param = new Parameters();
-        this.player.setDimension(new Vector2DImpl<Number>(100, 100));
-        this.player.setImage(Parameters.playerImage);
-        this.player.setSpeed(4);
-        this.player.setDirection(Direction.NONE);
         this.player.setPosition(this.gamefield.getWidth().intValue() / 2, this.gamefield.getHeight().intValue() - 200);
         /* setup player info */
 
