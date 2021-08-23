@@ -99,7 +99,7 @@ public class InputControllerImpl {
 			this.controlStates.put(InputCommand.ATTACK, false);
 			setFireFlag(true);
 		}
-		System.out.println(fireFlag);
+	//	System.out.println(fireFlag);
 
 	}
 

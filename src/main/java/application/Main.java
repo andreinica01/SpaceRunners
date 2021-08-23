@@ -11,8 +11,8 @@ public class Main extends Application {
 	public void start(Stage mainwindow) {
 		try {
 			GameManager x = new GameManager(mainwindow);
+			mainwindow.setTitle("SpaceInvaders");
 			
-			System.out.println(x);
 			x.start();
                 
 		} catch(Exception e) {

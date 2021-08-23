@@ -84,7 +84,8 @@ public class GameContollerImpl implements GameController {
             System.exit(0);
         }
         frame.update();
-
+        
+        
     }
 
     private void playerAttack() {

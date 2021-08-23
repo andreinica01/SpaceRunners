@@ -72,7 +72,10 @@ public class enemyAI {
 
 			statusInterval = (long) ((getRandomDouble(4.0, 15.0) * 1000));
 			statusResetTime = System.currentTimeMillis();
+
 		}
+
+		
 	}
 
 	/**
