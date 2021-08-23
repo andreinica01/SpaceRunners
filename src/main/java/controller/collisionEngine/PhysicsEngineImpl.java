@@ -5,7 +5,6 @@ import model.bullet.Bullet;
 import model.hud.HUDLifeImpl;
 import model.hud.HUDPointsImpl;
 import model.ship.SpaceShip;
-import view.SoundManager.SoundManager;
 import view.gameField.GameField;
 
 public class PhysicsEngineImpl implements PhysicsEngine {

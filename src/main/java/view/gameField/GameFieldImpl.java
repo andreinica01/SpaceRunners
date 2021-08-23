@@ -170,7 +170,6 @@ public class GameFieldImpl implements GameField {
 	
 	@Override
 	public SoundManager getSoundManager() {
-		
 		return this.soundmanager;
 	}
 }
