@@ -1,8 +1,10 @@
 package controller.collisionEngine;
 
 import javafx.geometry.Bounds;
+import javafx.scene.Node;
 import model.bullet.Bullet;
 import model.ship.SpaceShip;
+import view.SoundManager.SoundManager;
 import view.gameField.GameField;
 
 public class PhysicsEngineImpl implements PhysicsEngine {
@@ -29,7 +31,19 @@ public class PhysicsEngineImpl implements PhysicsEngine {
        // TODO Auto-generated method stub
        
    }
+   
+   @Override
+   public void playerCollsionBorders()
+   {
+      if(this.gamefield.getPlayer().getPosition().getX().intValue()<5)
+      {
+        SoundManager.playClashWall();
 
+      }
+       
+   }
+
+   
    @Override
    public void removePoints() {
        // TODO Auto-generated method stub

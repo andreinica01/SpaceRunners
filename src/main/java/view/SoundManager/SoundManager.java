@@ -31,4 +31,9 @@ public class SoundManager {
         playSound("passingby.wav");
     }
 
+    static public void playClashWall()
+    {
+        playSound("wall_clash.wav");
+    }
+
 }

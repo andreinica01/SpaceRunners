@@ -30,6 +30,8 @@ public interface PhysicsEngine {
      */
     public void removeCollidedShips();
 
+    public void playerCollsionBorders();
+    
 
     public void playerShipCollision();
     
