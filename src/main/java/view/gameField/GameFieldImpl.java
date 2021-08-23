@@ -49,7 +49,6 @@ public class GameFieldImpl implements GameField {
 
 		this.backGroundImage = new ImageView[2];
 		
-
 		this.width = width;
 		this.height = height;
 	}

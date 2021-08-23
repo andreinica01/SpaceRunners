@@ -32,7 +32,6 @@ public class GameContollerImpl implements GameController {
     private InputControllerImpl inputController;
     private enemyAI AIController;
     Map<InputCommand, Boolean> controlStates;
-    // private HUDControllerImpl hud;
 
     public GameContollerImpl(GameField gamefield) {
 
