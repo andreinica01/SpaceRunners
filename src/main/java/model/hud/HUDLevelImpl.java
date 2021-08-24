@@ -17,6 +17,9 @@ public class HUDLevelImpl extends Label implements IHUDLevel {
      */
     private int level;
     
+    /*
+     * Constructor
+     */
     public HUDLevelImpl() {
         
 

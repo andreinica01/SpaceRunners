@@ -37,6 +37,9 @@ public class HUDLifeImpl implements IHUDLife {
      */
     private boolean gameStatus;
     
+    /*
+     * Constructor
+     */
     public HUDLifeImpl(final AnchorPane gamePane) {
         
         this.pane = gamePane;

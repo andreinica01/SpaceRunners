@@ -34,7 +34,7 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
     private int points;
     private BackgroundImage backImage;
     
-    /**
+    /*
      * Constructor
      */
     public HUDPointsImpl() {
