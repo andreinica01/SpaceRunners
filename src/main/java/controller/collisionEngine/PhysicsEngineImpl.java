@@ -132,12 +132,12 @@ public class PhysicsEngineImpl implements PhysicsEngine {
                 
                 this.gamefield.getStatusController().applyEffect(bonus);
                 this.bonusHUD.refreshBonus();
-            }
                 
                 this.gamefield.getGameContainer().getChildren().remove(bonus.getNode());
                 this.toBeRemovedList.add(bonus);
             }
         }
+    }
 
     /**
      * Collision between bullet and enemy entities.
