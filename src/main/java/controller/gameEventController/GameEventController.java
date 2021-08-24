@@ -4,7 +4,7 @@ import controller.collisionEngine.PhysicsEngine;
 import controller.collisionEngine.PhysicsEngineImpl;
 import javafx.scene.layout.AnchorPane;
 import model.hud.EndGameGUI;
-//import model.hud.HUDBonusImpl;
+import model.hud.HUDBonusImpl;
 import model.hud.HUDLifeImpl;
 import model.hud.HUDPointsImpl;
 import model.status.Status;
@@ -17,7 +17,7 @@ public class GameEventController implements IGameEventController {
      */
     private final static int X_LAYOUT = 353;
     private final static int Y_LAYOUT = 3;
-    public static final double VIEW_ORDER = -51;
+    public final static int VIEW_ORDER = -51;
     
     /*
      * Game Container reference and HUD elements
@@ -25,8 +25,8 @@ public class GameEventController implements IGameEventController {
     private AnchorPane gameContainer;
     private HUDPointsImpl hud;
     private HUDLifeImpl playerLives;
-    public PhysicsEngineImpl collision;
-    //public HUDBonusImpl bonus;
+    private PhysicsEngineImpl collisionEngine;
+    private HUDBonusImpl bonusHUD;
     private GameField gameField;
     
     /**
@@ -47,6 +47,7 @@ public class GameEventController implements IGameEventController {
     
     @Override
     public void createHUD(final AnchorPane gamePane) {
+        
         /*
          * Points HUD
          */
@@ -64,12 +65,12 @@ public class GameEventController implements IGameEventController {
         /*
          * PowerUP HUD
          */
-        //this.bonus = new HUDBonusImpl(this.gameField);
+        this.bonusHUD = new HUDBonusImpl(gamePane);
         
         /*
          * Collision engine comes with HUD creation!
          */
-        this.collision = new PhysicsEngineImpl(this.gameField, this.hud, this.playerLives);
+        this.collisionEngine = new PhysicsEngineImpl(this.gameField, this.hud, this.playerLives);
     }
     
     @Override
@@ -94,7 +95,7 @@ public class GameEventController implements IGameEventController {
 
     @Override
     public PhysicsEngine getCollisionEngine() {
-        return this.collision;
+        return this.collisionEngine;
     }
 
     @Override
