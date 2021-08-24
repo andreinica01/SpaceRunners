@@ -1,6 +1,7 @@
 package model.hud;
 
 import javafx.scene.image.ImageView;
+import model.status.StatusEnum;
 
 public interface IHUDBonus {
     
@@ -14,7 +15,7 @@ public interface IHUDBonus {
      */
     void addBonuses();
     
-    void showBonus(int index);
+    void showBonus(StatusEnum bonus);
     
-    void hideBonus(int index);
+    void hideBonus(StatusEnum bonus);
 }

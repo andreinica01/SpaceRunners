@@ -9,6 +9,7 @@ import model.bullet.Bullet;
 import model.hud.HUDLifeImpl;
 import model.hud.HUDPointsImpl;
 import model.ship.SpaceShip;
+import model.status.Status;
 import view.gameField.GameField;
 
 public class PhysicsEngineImpl implements PhysicsEngine {
@@ -16,61 +17,98 @@ public class PhysicsEngineImpl implements PhysicsEngine {
     private GameField gamefield;
     private HUDPointsImpl pointsHUD;
     private HUDLifeImpl livesHUD;
-    private Bounds bounds;
-    private Bounds bonusBounds;
     private Entity toremove;
+    private Bounds fieldBounds;
 
     private List<Entity> toBeRemovedList;
+    private boolean check;
 
     public PhysicsEngineImpl(final GameField gamefield, final HUDPointsImpl pointsHUD, final HUDLifeImpl livesHUD) {
 
         this.gamefield = gamefield;
         this.pointsHUD = pointsHUD;
         this.livesHUD = livesHUD;
-        this.bounds = this.gamefield.getScene().getRoot().getBoundsInLocal();
-        //this.bonusBounds = this.gamefield.get
 
         this.toBeRemovedList = new ArrayList<Entity>();
 
+        this.fieldBounds = this.gamefield.getScene().getRoot().getBoundsInLocal();
+
     }
 
-    @Override
-    public void removePoints() {
-        this.pointsHUD.pointsDown();
-    }
-    
-    @Override
-    public void removeLife() {
-        this.livesHUD.lifeDown();
-    }
-    
-    @Override
-    public void addPoints() {
-        this.pointsHUD.pointsUp();
+    public void update() {
+        collisionWalls();
+        playerCollisionWithEnemies();
+        playerBonusCollision();
+        bulletCollsionwithEnemies();
+
     }
 
-    /*
-     * Collision detection
-     */
-    @Override
-    public void playerCollsionBorders() {
-        if (this.gamefield.getPlayer().getPosition().getX().intValue() > this.bounds.getMaxX() - 120) {
+    private void collisionWalls() {
+        int limit = this.gamefield.getPlayer().getPosition().getX().intValue();
+
+        if (isPlayerCollidingLeftWall()) {
+            this.gamefield.getPlayer().setPosition(limit - 4,
+                    this.gamefield.getPlayer().getPosition().getY().intValue());
+
             this.gamefield.getSoundManager().playClashWall();
-            int limit = this.gamefield.getPlayer().getPosition().getX().intValue() - 4;
-            this.gamefield.getPlayer().setPosition(limit, this.gamefield.getPlayer().getPosition().getY().intValue());
-        }
 
-        if (this.gamefield.getPlayer().getPosition().getX().intValue() < this.bounds.getMinX() - 25) {
+        } else if (isPlayerCollidingRightWall()) {
             this.gamefield.getSoundManager().playClashWall();
-            int limit = this.gamefield.getPlayer().getPosition().getX().intValue() + 4;
-            this.gamefield.getPlayer().setPosition(limit, this.gamefield.getPlayer().getPosition().getY().intValue());
+            this.gamefield.getPlayer().setPosition(limit + 4,
+                    this.gamefield.getPlayer().getPosition().getY().intValue());
+
+            this.gamefield.getSoundManager().playClashWall();
         }
     }
 
-    @Override
-    public void removeCollidedShips() {
+    private boolean isPlayerCollidingLeftWall() {
+        return this.gamefield.getPlayer().getPosition().getX().intValue() > this.fieldBounds.getMaxX() - 120;
+    }
 
-        boolean check = false;
+    private boolean isPlayerCollidingRightWall() {
+        return this.gamefield.getPlayer().getPosition().getX().intValue() < this.fieldBounds.getMinX() - 25;
+    }
+
+    public void playerCollisionWithEnemies() {
+
+        for (SpaceShip spaceship : this.gamefield.getActiveEnemyShips()) {
+
+            Bounds shipBound = spaceship.getNode().getBoundsInParent();
+
+            // rimozione navi se superano il player, rimozione bound
+
+            if (this.gamefield.getPlayer().getNode().getBoundsInParent().intersects(shipBound)) {
+                this.removeLife();
+                this.removePoints();
+                this.gamefield.getGameContainer().getChildren().remove(spaceship.getNode());
+                toBeRemovedList.add(spaceship);
+
+                this.gamefield.getSoundManager().playPlayerImpact();
+            }
+        }
+        this.gamefield.getActiveEnemyShips().removeAll(toBeRemovedList);
+        this.toBeRemovedList.clear();
+    }
+
+    @Override
+    public void playerBonusCollision() {
+
+        for (Status bonus : this.gamefield.getBonusObjects()) {
+            if (this.gamefield.getPlayer().getNode().getBoundsInParent()
+                    .intersects(bonus.getNode().getBoundsInParent()))
+                ;
+            {
+                this.gamefield.getStatusController().applyEffect(bonus);
+            }
+
+        }
+
+    }
+
+    @Override
+    public void bulletCollsionwithEnemies() {
+        check = false;
+
         for (Bullet bullet : this.gamefield.getActiveBulletsShotbyPlayer()) {
             for (SpaceShip spaceship : this.gamefield.getActiveEnemyShips()) {
 
@@ -86,42 +124,36 @@ public class PhysicsEngineImpl implements PhysicsEngine {
                     this.addPoints();
                     this.toBeRemovedList.add(spaceship);
                     this.toremove = spaceship;
-                    
+
                     check = true;
                 }
             }
         }
 
-        if(check) {
+        if (check) {
             this.gamefield.getActiveEnemyShips().removeAll(this.toBeRemovedList);
             this.gamefield.getActiveBulletsShotbyPlayer().remove(toremove);
-            
-    
+
             this.toBeRemovedList.clear();
             this.gamefield.getSoundManager().playSpaceshipExplosion();
             check = false;
         }
-       
+
     }
 
-    public void playerShipCollision() {
-
-        for (SpaceShip spaceship : this.gamefield.getActiveEnemyShips()) {
-
-            Bounds shipBound = spaceship.getNode().getBoundsInParent();
-            
-            //rimozione navi se superano il player, rimozione bound
-
-            if (this.gamefield.getPlayer().getNode().getBoundsInParent().intersects(shipBound)) {
-                this.removeLife();
-                this.removePoints();
-                this.gamefield.getGameContainer().getChildren().remove(spaceship.getNode());
-                toBeRemovedList.add(spaceship);
-
-                this.gamefield.getSoundManager().playPlayerImpact();
-            }
-        }
-        this.gamefield.getActiveEnemyShips().removeAll(toBeRemovedList);
-        this.toBeRemovedList.clear();
+    @Override
+    public void removePoints() {
+        this.pointsHUD.pointsDown();
     }
+
+    @Override
+    public void removeLife() {
+        this.livesHUD.lifeDown();
+    }
+
+    @Override
+    public void addPoints() {
+        this.pointsHUD.pointsUp();
+    }
+
 }

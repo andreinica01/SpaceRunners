@@ -1,9 +1,11 @@
 package model.hud;
 
 import java.io.File;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
+import model.status.StatusEnum;
+import view.gameField.GameField;
 
 public class HUDBonusImpl implements IHUDBonus {
 
@@ -18,15 +20,16 @@ public class HUDBonusImpl implements IHUDBonus {
     /*
      * Control fields
      */
-    private AnchorPane pane;
     private ImageView[] bonus = new ImageView[HUDParameters.TOTAL_BONUS];
-    
+    private GameField gamfield;
+
     /*
      * Constructor
      */
-    public HUDBonusImpl(final AnchorPane gamePane) {
-        this.pane = gamePane;
-        
+    public HUDBonusImpl(final GameField gamefield) {
+
+        this.gamfield = gamefield;
+
         this.addBonuses();
     }
 
@@ -37,29 +40,37 @@ public class HUDBonusImpl implements IHUDBonus {
 
     @Override
     public void addBonuses() {
-        int index = HUDParameters.ZERO;
-        
-        while (index < 5) {
-            this.bonus[index] = new ImageView(new Image(new File(HUDParameters.PNG_FOLDER + "BonusSpeed.png").toURI().toString(), DIMENSIONS, 
-                    DIMENSIONS, HUDParameters.RATIO, HUDParameters.SMOOTH));
-            this.bonus[index].setLayoutX(X_LAYOUT);
-            this.bonus[index].setLayoutY(index * -SPACING);
-            this.bonus[index].setTranslateY(X_TRANSLATION);
-            this.bonus[index].setViewOrder(HUDParameters.VIEW_ORDER);
-            
-            this.pane.getChildren().add(this.bonus[index]);
-            
-            index++;
+
+        for (StatusEnum status : StatusEnum.values()) {
+
+            this.bonus[status.ordinal()] = new ImageView(
+            new Image(new File(HUDParameters.PNG_FOLDER + "Bonus"+status.ordinal()+".png").toURI().toString(), DIMENSIONS,
+             DIMENSIONS, HUDParameters.RATIO, HUDParameters.SMOOTH));
+            this.bonus[status.ordinal()].setLayoutX(X_LAYOUT);
+            this.bonus[status.ordinal()].setLayoutY(status.ordinal() * -SPACING);
+            this.bonus[status.ordinal()].setTranslateY(X_TRANSLATION);
+            this.bonus[status.ordinal()].setViewOrder(HUDParameters.VIEW_ORDER);
+
+            this.gamfield.getGameContainer().getChildren().add(this.bonus[status.ordinal()]);
+
         }
+
+    }
+
+    
+    
+
+    @Override
+    public void showBonus(StatusEnum bonus) {
+        this.bonus[bonus.ordinal()].setDisable(false);
+      //  this.gamfield.getGameContainer().getChildren().remove(this.bonus[index]);
+
+        
     }
 
     @Override
-    public void showBonus(final int index) {
-        this.pane.getChildren().add(this.bonus[index]);
+    public void hideBonus(StatusEnum bonus) {
+        this.bonus[bonus.ordinal()].setDisable(true);
+        
     }
-
-    @Override
-    public void hideBonus(final int index) {
-        this.pane.getChildren().remove(this.bonus[index]);
-    }   
 }

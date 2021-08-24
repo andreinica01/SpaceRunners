@@ -23,7 +23,7 @@ public class GameContollerImpl implements GameController {
     private GameEventController gameEventController;
     private SpaceShip player;
     private InputControllerImpl inputController;
-    private enemyAI AIController;
+    private final enemyAI AIController;
     private Map<InputCommand, Boolean> controlStates;
 
     public GameContollerImpl(GameField gamefield) {
@@ -45,13 +45,14 @@ public class GameContollerImpl implements GameController {
          * HUD and game conditions setup
          */
         
-        this.gameEventController = new GameEventController(this.gamefield.getGameContainer(), this.gamefield);
+        this.gameEventController = new GameEventController(this.gamefield);
         this.AIController = new enemyAI(this.gamefield, this.gameEventController);
     }
 
     public void update() {
 
         controlStates = this.inputController.getControlStates();
+
 
         if (controlStates.get(InputCommand.GO_LEFT))
             if (!this.player.isInvertedCommand())
@@ -75,12 +76,11 @@ public class GameContollerImpl implements GameController {
         /*
          * Collision and update system
          */
-        this.removeAttacked();
-        this.gameEventController.getCollisionEngine().playerShipCollision();
-        this.gameEventController.getCollisionEngine().playerCollsionBorders();
+
+        this.gameEventController.getCollisionEngine().update();
         this.AIController.update();
         
-        if(this.gameEventController.checkGameStatus() == false) {
+        if(!this.gameEventController.checkGameStatus()) {
             System.exit(0);
         }
         
@@ -98,7 +98,4 @@ public class GameContollerImpl implements GameController {
         this.gamefield.getSoundManager().playBulletSound();
     }
 
-    private void removeAttacked() {
-        this.gameEventController.getCollisionEngine().removeCollidedShips();
-    }
 }

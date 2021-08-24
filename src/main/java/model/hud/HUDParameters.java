@@ -28,4 +28,6 @@ public class HUDParameters {
     public final static String FONT = "Verdana";
     
     public final static Pos PREF_ALIGNEMENT = Pos.CENTER_LEFT;
+
+
 }

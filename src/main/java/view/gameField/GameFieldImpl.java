@@ -98,7 +98,7 @@ public class GameFieldImpl implements GameField {
 
 	@Override
 	public Set<Status> getBonusObjects() {
-		return null;
+		return this.status;
 	}
 
 	@Override
