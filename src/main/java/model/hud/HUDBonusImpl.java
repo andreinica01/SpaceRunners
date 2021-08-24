@@ -1,8 +1,9 @@
 package model.hud;
 
+import java.io.File;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import model.status.StatusEnum;
 
 public class HUDBonusImpl implements IHUDBonus {
 
@@ -15,7 +16,6 @@ public class HUDBonusImpl implements IHUDBonus {
      * Control fields
      */
     private AnchorPane pane;
-    private int activeBonus;
     private ImageView[] bonus = new ImageView[HUDParameters.TOTAL_BONUS];
     
     /*
@@ -23,28 +23,34 @@ public class HUDBonusImpl implements IHUDBonus {
      */
     public HUDBonusImpl(final AnchorPane gamePane) {
         this.pane = gamePane;
-        this.activeBonus = HUDParameters.ZERO;
         
-        for(int i = HUDParameters.ZERO; i < this.bonus.length; i++) {
-            this.addBonus(i);
-        }
+        this.addBonuses();
     }
 
     @Override
-    public StatusEnum getBonusTaken() {
-        return null;
+    public ImageView[] getBonusTaken() {
+        return this.bonus;
     }
 
     @Override
-    public void addBonus(final int index) {
-        // TODO Auto-generated method stub
-        
+    public void addBonuses() {
+        int index = HUDParameters.ZERO;
+        this.bonus[index] = new ImageView(new Image(new File(HUDParameters.PNG_FOLDER + "BonusSpeed.png").toURI().toString(), SPACING, 
+                SPACING, HUDParameters.RATIO, HUDParameters.SMOOTH));
+        this.bonus[index].setLayoutX(HUDParameters.FIVE);
+        this.bonus[index].setLayoutY(index * SPACING);
+        this.bonus[index].setViewOrder(HUDParameters.VIEW_ORDER);
+
+        this.pane.getChildren().add(this.bonus[index]);
     }
 
     @Override
-    public void removeBonus() {
-        // TODO Auto-generated method stub
-        
+    public void showBonus(final int index) {
+        this.pane.getChildren().add(this.bonus[index]);
     }
-    
+
+    @Override
+    public void hideBonus(final int index) {
+        this.pane.getChildren().remove(this.bonus[index]);
+    }   
 }

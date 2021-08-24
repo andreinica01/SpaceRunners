@@ -1,21 +1,20 @@
 package model.hud;
 
-import model.status.StatusEnum;
+import javafx.scene.image.ImageView;
 
 public interface IHUDBonus {
     
     /**
-     * @return life points.
+     * @return bonus taken.
      */
-    StatusEnum getBonusTaken();
+    ImageView[] getBonusTaken();
     
     /**
-     * It increases life points.
+     * Add all bonuses.
      */
-    void addBonus(int index);
+    void addBonuses();
     
-    /**
-     * It decreases life points.
-     */
-    void removeBonus();
+    void showBonus(int index);
+    
+    void hideBonus(int index);
 }
