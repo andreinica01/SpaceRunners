@@ -81,14 +81,15 @@ public class StatusController {
 		return player;
 	}
 	
-	public List<StatusEnum> getActiveStatus () {
+	public HashMap<StatusEnum, Boolean> getActiveStatus () {
 		
-		ArrayList<StatusEnum> activeStatus = new ArrayList<>();
-		List<StatusEnum> allTasks = new ArrayList<>(this.playerStatus.keySet());
-		
-		for(StatusEnum e : allTasks) {
+		HashMap<StatusEnum, Boolean> activeStatus = new HashMap<>();
+		for(StatusEnum e : StatusEnum.values()) {
 			if(this.playerStatus.get(e).isPresent() && !this.playerStatus.get(e).get().isDone())
-				activeStatus.add(e);
+				activeStatus.put(e, true);
+			else {
+				activeStatus.put(e, false);
+			}
 		}
 		
 		return activeStatus;
