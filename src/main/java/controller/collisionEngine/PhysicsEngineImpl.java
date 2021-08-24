@@ -131,7 +131,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
                     .intersects(bonus.getNode().getBoundsInParent())) {
                 
                 this.gamefield.getStatusController().applyEffect(bonus);
-                //this.bonusHUD.refreshBonus();
+                this.bonusHUD.refreshBonus();
                 
                 this.gamefield.getGameContainer().getChildren().remove(bonus.getNode());
                 this.toBeRemovedList.add(bonus);
