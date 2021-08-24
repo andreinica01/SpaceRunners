@@ -1,6 +1,5 @@
 package model.status.bonus;
 
-import Utilities.Parameters;
 import model.status.Status;
 import model.status.StatusEnum;
 /**
@@ -11,7 +10,6 @@ public class BonusSpeed extends Status {
 	
 	public BonusSpeed () {
 		super();
-		setImage(Parameters.bonusSpeedImage);
 		getNode().setRotate(0);
 		setStatusName(StatusEnum.BonusSpeed);
 		setCoolDown(7); //7 s

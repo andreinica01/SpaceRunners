@@ -1,6 +1,5 @@
 package model.status.malus;
 
-import Utilities.Parameters;
 import model.status.Status;
 import model.status.StatusEnum;
 /**
@@ -10,7 +9,6 @@ public class MalusSpeed extends Status {
 
 	public MalusSpeed() {
 		super();
-		setImage(Parameters.bonusSpeedImage);
 		getNode().setRotate(0);
 		setBoostFactor((double)1/3);
 		setStatusName(StatusEnum.MalusSpeed);

@@ -23,6 +23,7 @@ public abstract class Status extends EntityImpl {
 	public Status() {
 		setDirection(Direction.DOWN);
 		setSpeed(Parameters.STATUS_SPEED);
+		setImage(Parameters.randomStatusImage);
 	}
 
 	public long getCoolDown() {
