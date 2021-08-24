@@ -10,7 +10,6 @@ public class HUDBonusImpl implements IHUDBonus {
     /*
      * HUD parameters
      */
-    private final static int DIMENSIONS = 30;
     private final static int SPACING = 30;
     private static final double X_LAYOUT = 450;
     private static final double X_TRANSLATION = 645;
@@ -37,20 +36,62 @@ public class HUDBonusImpl implements IHUDBonus {
 
     @Override
     public void addBonuses() {
-        int index = HUDParameters.ZERO;
+        int index = this.bonus.length;
         
-        while (index < 5) {
-            this.bonus[index] = new ImageView(new Image(new File(HUDParameters.PNG_FOLDER + "BonusSpeed.png").toURI().toString(), DIMENSIONS, 
-                    DIMENSIONS, HUDParameters.RATIO, HUDParameters.SMOOTH));
-            this.bonus[index].setLayoutX(X_LAYOUT);
-            this.bonus[index].setLayoutY(index * -SPACING);
-            this.bonus[index].setTranslateY(X_TRANSLATION);
-            this.bonus[index].setViewOrder(HUDParameters.VIEW_ORDER);
-            
-            this.pane.getChildren().add(this.bonus[index]);
-            
-            index++;
-        }
+        /*
+         * Life
+         */
+        this.bonus[index] = new ImageView(new Image(new File(HUDParameters.PNG_FOLDER + ".png").toURI().toString(), SPACING, 
+                SPACING, HUDParameters.RATIO, HUDParameters.SMOOTH));
+        this.bonus[index].setLayoutX(X_LAYOUT);
+        this.bonus[index].setLayoutY(index * -SPACING);
+        this.bonus[index].setTranslateY(X_TRANSLATION);
+        this.bonus[index].setViewOrder(HUDParameters.VIEW_ORDER);
+        index++;
+        
+        /*
+         * Speed bonus
+         */
+        this.bonus[index] = new ImageView(new Image(new File(HUDParameters.PNG_FOLDER + "BonusSpeed.png").toURI().toString(), SPACING, 
+                SPACING, HUDParameters.RATIO, HUDParameters.SMOOTH));
+        this.bonus[index].setLayoutX(X_LAYOUT);
+        this.bonus[index].setLayoutY(index * -SPACING);
+        this.bonus[index].setTranslateY(X_TRANSLATION);
+        this.bonus[index].setViewOrder(HUDParameters.VIEW_ORDER);
+        index++;
+        
+        /*
+         * Speed malus
+         */
+        this.bonus[index] = new ImageView(new Image(new File(HUDParameters.PNG_FOLDER + ".png").toURI().toString(), SPACING, 
+                SPACING, HUDParameters.RATIO, HUDParameters.SMOOTH));
+        this.bonus[index].setLayoutX(X_LAYOUT);
+        this.bonus[index].setLayoutY(index * -SPACING);
+        this.bonus[index].setTranslateY(X_TRANSLATION);
+        this.bonus[index].setViewOrder(HUDParameters.VIEW_ORDER);
+        index++;
+        
+        /*
+         * Command malus
+         */
+        this.bonus[index] = new ImageView(new Image(new File(HUDParameters.PNG_FOLDER + ".png").toURI().toString(), SPACING, 
+                SPACING, HUDParameters.RATIO, HUDParameters.SMOOTH));
+        this.bonus[index].setLayoutX(X_LAYOUT);
+        this.bonus[index].setLayoutY(index * -SPACING);
+        this.bonus[index].setTranslateY(X_TRANSLATION);
+        this.bonus[index].setViewOrder(HUDParameters.VIEW_ORDER);
+        index++;
+        
+        /*
+         * Fire malus
+         */
+        this.bonus[index] = new ImageView(new Image(new File(HUDParameters.PNG_FOLDER + ".png").toURI().toString(), SPACING, 
+                SPACING, HUDParameters.RATIO, HUDParameters.SMOOTH));
+        this.bonus[index].setLayoutX(X_LAYOUT);
+        this.bonus[index].setLayoutY(index * -SPACING);
+        this.bonus[index].setTranslateY(X_TRANSLATION);
+        this.bonus[index].setViewOrder(HUDParameters.VIEW_ORDER);
+        index++;
     }
 
     @Override
