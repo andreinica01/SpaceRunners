@@ -37,7 +37,7 @@ public class HUDBonusImpl implements IHUDBonus {
 
     @Override
     public void addBonuses() {
-        int index = this.bonus.length;
+        int index = HUDParameters.ZERO;
         
         /*
          * Life

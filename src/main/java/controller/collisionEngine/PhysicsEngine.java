@@ -3,8 +3,7 @@ package controller.collisionEngine;
 /**
  * Collision detection methods.
  */
-public interface PhysicsEngine {
-    
+public interface PhysicsEngine { 
 
     /**
      * Checks for each game cycle if collisions are detected.
@@ -16,7 +15,6 @@ public interface PhysicsEngine {
      * @return 
      */
     void removeLife();
-
     
     /**
      * Subtract points when an enemy ship hits the player
