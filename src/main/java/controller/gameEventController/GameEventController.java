@@ -85,6 +85,11 @@ public class GameEventController implements IGameEventController {
     }
 
     @Override
+    public HUDBonusImpl getBonusImpl() {
+        return this.bonusHUD;
+    }
+    
+    @Override
     public PhysicsEngine getCollisionEngine() {
         return this.collisionEngine;
     }
