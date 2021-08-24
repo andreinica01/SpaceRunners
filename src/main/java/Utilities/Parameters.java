@@ -29,12 +29,12 @@ public class Parameters {
     public static Image playerImage = new Image(new File(ImageFolder+"spaceship2.png").toURI().toString());
     public static Image enemyImage = new Image(new File(ImageFolder+"enemyship.png").toURI().toString());
     public static Image lifePointsImage = new Image(new File(ImageFolder+"spaceshipLife.png").toURI().toString());
-    public static Image bonusLifeImage = new Image(new File(ImageFolder+"bonusLife.png").toURI().toString());
-    public static Image bonusSpeedImage = new Image(new File(ImageFolder+"bonusSpeed.png").toURI().toString());
-    public static Image malusCommandImage = new Image(new File(ImageFolder+"malusCommand.png").toURI().toString());
-    public static Image malusFireImage = new Image(new File(ImageFolder+"malusFire.png").toURI().toString());
-    public static Image malusSpeedImage = new Image(new File(ImageFolder+"malusSpeed.png").toURI().toString());
-    public static Image randomStatusImage = new Image(new File(ImageFolder+"randomStatus.png").toURI().toString());
+    public static Image bonusLifeImage = new Image(new File(ImageFolder+"bonusLife.png").toURI().toString(), 50, 50, true, true);
+    public static Image bonusSpeedImage = new Image(new File(ImageFolder+"randomStatus.png").toURI().toString(), 50, 50, true, true);
+    public static Image malusCommandImage = new Image(new File(ImageFolder+"malusCommand.png").toURI().toString(), 50, 50, true, true);
+    public static Image malusFireImage = new Image(new File(ImageFolder+"malusFire.png").toURI().toString(), 50, 50, true, true);
+    public static Image malusSpeedImage = new Image(new File(ImageFolder+"malusSpeed.png").toURI().toString(), 50, 50, true, true);
+    public static Image randomStatusImage = new Image(new File(ImageFolder+"randomStatus.png").toURI().toString(), 50, 50, true, true);
     /*Sounds */
     public static AudioInputStream bulletSound ;
   
