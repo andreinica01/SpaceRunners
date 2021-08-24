@@ -7,32 +7,25 @@ package controller.collisionEngine;
 public interface PhysicsEngine {
     
     /**
-     * This is an helper method used to check collision between objects
-     * @param x1
-     * @param x2
-     * @param y1
-     * @param y2
-     * @return
-     */
-
-
-    public void update();
-
-    /**
      * Subtract a life when an enemy ship hits the player
      * @return 
      */
-    public void removeLife();
+
+     
+    void update();
+
+
+    void removeLife();
     
     /**
      * Subtract points when an enemy ship hits the player
      */
-    public void removePoints();
+    void removePoints();
     
     /**
      * Add points when an enemy ship is destroyed
      */
-    public void addPoints();
+    void addPoints();
     
     /**
      * Remove entities which collide

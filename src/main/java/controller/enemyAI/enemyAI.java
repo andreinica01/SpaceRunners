@@ -3,6 +3,7 @@ package controller.enemyAI;
 import java.util.Iterator;
 import java.util.Random;
 
+import controller.gameEventController.GameEventController;
 import model.ship.EnemyShip;
 import model.ship.SpaceShip;
 import model.status.Status;
@@ -16,9 +17,11 @@ import view.gameField.GameField;
 public class enemyAI {
 
 	private GameField gamefield;
+	private GameEventController gameEvent;
 	private StatusFactory statusFactory;
+	
+	private int playerPoints;
 
-	private int enemySpeed = 10;
 
 	long enemyInterval;
 	long enemyResetTime;
@@ -28,8 +31,9 @@ public class enemyAI {
 
 	private final Random rnd;
 
-	public enemyAI(GameField gamefield) {
+	public enemyAI(GameField gamefield, GameEventController gameEventController) {
 		this.gamefield = gamefield;
+		this.gameEvent = gameEventController;
 		statusFactory = new StatusFactory();
 		enemyResetTime = System.currentTimeMillis();
 		statusResetTime = System.currentTimeMillis();
@@ -39,7 +43,7 @@ public class enemyAI {
 	}
 
 	public void update() {
-		generateEnemy();
+		generateEnemy(checkAndSetDifficulty());
 		generateStatus();
 		
 	}
@@ -66,15 +70,15 @@ public class enemyAI {
 
 	}
 
-	private void generateEnemy() {
+	private void generateEnemy(Double difficultyFactor) {
 		if (System.currentTimeMillis() - enemyResetTime > enemyInterval) {
 			SpaceShip enemyship = new EnemyShip();
-			enemyship.setSpeed(this.enemySpeed);
+			enemyship.setSpeed(enemyship.getSpeed().doubleValue() * difficultyFactor);
 			enemyship.setPosition(-rnd.nextInt(400), -300);
 
 			this.gamefield.addEnemyShip(enemyship);
 
-			enemyInterval = (long) ((getRandomDouble(0.0, 3.5) * 1000));
+			enemyInterval = (long) ((getRandomDouble(0.0, 5 * 1/difficultyFactor) * 1000));
 			enemyResetTime = System.currentTimeMillis();
 
 			removeUnused();
@@ -94,7 +98,12 @@ public class enemyAI {
 			statusResetTime = System.currentTimeMillis();
 
 		}
-
+	}
+	
+	private Double checkAndSetDifficulty () {
+		this.playerPoints = this.gameEvent.checkPoints();
+		//Every 20 points difficulty increasing by 20%
+		return 1 + (((double)this.playerPoints / 20) * 0.2);
 	}
 
 	/**

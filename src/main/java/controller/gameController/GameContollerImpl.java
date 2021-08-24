@@ -23,7 +23,7 @@ public class GameContollerImpl implements GameController {
     private GameEventController gameEventController;
     private SpaceShip player;
     private InputControllerImpl inputController;
-    private enemyAI AIController;
+    private final enemyAI AIController;
     private Map<InputCommand, Boolean> controlStates;
 
     public GameContollerImpl(GameField gamefield) {
@@ -40,12 +40,13 @@ public class GameContollerImpl implements GameController {
 
         this.gamefield.setBackgroundImage(Parameters.ImageFolder + "back.png");
         this.inputController = new InputControllerImpl(this.player.getNode().getScene(), this.player);
-        this.AIController = new enemyAI(this.gamefield);
         
         /*
          * HUD and game conditions setup
          */
-        this.gameEventController = new GameEventController(this.gamefield.getGameContainer(), this.gamefield);
+        
+        this.gameEventController = new GameEventController(this.gamefield);
+        this.AIController = new enemyAI(this.gamefield, this.gameEventController);
     }
 
     public void update() {

@@ -1,7 +1,6 @@
 package controller.gameEventController;
 
 import controller.collisionEngine.PhysicsEngine;
-import javafx.scene.layout.AnchorPane;
 import model.status.Status;
 
 /**
@@ -20,7 +19,7 @@ public interface IGameEventController {
      * Sets all HUD parts for the game.
      * @param the game panel
      */
-    void createHUD(AnchorPane gamePane);
+    void createHUD();
     
     /**
      * @return the game status value: if false, the game ends.
@@ -36,11 +35,6 @@ public interface IGameEventController {
      * @return the remaining life points.
      */
     int checkLives();
-    
-    /**
-     * @return level reached.
-     */
-    int checkLevel();
     
     /**
      * @return collision engine.

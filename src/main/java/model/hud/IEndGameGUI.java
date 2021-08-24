@@ -8,16 +8,16 @@ public interface IEndGameGUI {
      * @param level
      * @throws Exception 
      */
-    public void end(int points, int level) throws Exception;
+    void end(int points, int level) throws Exception;
     
     /**
      * After clicking the relative button, it will grant you to save and quit.
      */
-    public void saveAndQuit();
+    void saveAndQuit();
     
     /**
      * After clicking the relative button, it will grant you just quit.
      */
-    public void quit();
+    void quit();
 
 }
