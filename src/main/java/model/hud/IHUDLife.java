@@ -1,5 +1,8 @@
 package model.hud;
 
+/**
+ * This interface gives an indication how to handle a basic HUD lives system.
+ */
 public interface IHUDLife {
 
     /**

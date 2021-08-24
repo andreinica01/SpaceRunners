@@ -14,9 +14,7 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.text.Font;
 
 /**
- * This class defines how the HUD must look. It contains all of his
- * fields in order to let it work and every part of it that must be
- * displayed
+ * This class defines how the points HUD must look.
  */
 public class HUDPointsImpl extends Label implements IHUDPoints {
     
@@ -31,12 +29,13 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
     public final static int ZERO = 0;
     public final static int ONE = 1;
     public final static int FIVE = 5;
+    public final static double INSETS_MEASURES = 10;
+    public final static boolean RATIO = false;
+    public final static boolean SMOOTH = true;
+    
     private final static int PREF_WIDTH = 130;
     private final static int PREF_HEIGHT = 50;
     private final static Pos PREF_ALIGNEMENT = Pos.CENTER_LEFT;
-    private final static double INSETS_MEASURES = 10;
-    public final static boolean RATIO = false;
-    public final static boolean SMOOTH = true;
     private final static BackgroundSize DEFAULT_SIZE = null;
     private final static String MATTER = "Points: ";
     private final static String FONT = "Verdana";
@@ -45,9 +44,8 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
     private final static int POINTS_DOWN = -5;
    
     /*
-     * Control fields
+     * Control field
      */
-    private int level;
     private int points;
     
     /**
@@ -79,8 +77,6 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
         
         this.level = POINTS_UP;
         this.points = ZERO;
-        
-        //decidere come gestire posizionamento display livello
     }
     
     /*
@@ -89,11 +85,6 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
     @Override
     public int getPoints() {
         return this.points;
-    }
-    
-    @Override
-    public int getActualLevel() {
-        return this.level;
     }
     
     /*
