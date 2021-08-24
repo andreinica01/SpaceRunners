@@ -1,7 +1,6 @@
 package model.hud;
 
 import java.io.File;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import view.gameField.GameField;
@@ -42,7 +41,7 @@ public class HUDBonusImpl implements IHUDBonus {
         /*
          * Life
          */
-        this.bonus[index] = new ImageView(new Image(new File(HUDParameters.PNG_FOLDER + ".png").toURI().toString(), SPACING, 
+        this.bonus[index] = new ImageView(new Image(new File(HUDParameters.PNG_FOLDER + "bonusLife.png").toURI().toString(), SPACING, 
                 SPACING, HUDParameters.RATIO, HUDParameters.SMOOTH));
         this.bonus[index].setLayoutX(X_LAYOUT);
         this.bonus[index].setLayoutY(index * -SPACING);
@@ -62,20 +61,9 @@ public class HUDBonusImpl implements IHUDBonus {
         index++;
         
         /*
-         * Speed malus
-         */
-        this.bonus[index] = new ImageView(new Image(new File(HUDParameters.PNG_FOLDER + ".png").toURI().toString(), SPACING, 
-                SPACING, HUDParameters.RATIO, HUDParameters.SMOOTH));
-        this.bonus[index].setLayoutX(X_LAYOUT);
-        this.bonus[index].setLayoutY(index * -SPACING);
-        this.bonus[index].setTranslateY(X_TRANSLATION);
-        this.bonus[index].setViewOrder(HUDParameters.VIEW_ORDER);
-        index++;
-        
-        /*
          * Command malus
          */
-        this.bonus[index] = new ImageView(new Image(new File(HUDParameters.PNG_FOLDER + ".png").toURI().toString(), SPACING, 
+        this.bonus[index] = new ImageView(new Image(new File(HUDParameters.PNG_FOLDER + "malusCommand.png").toURI().toString(), SPACING, 
                 SPACING, HUDParameters.RATIO, HUDParameters.SMOOTH));
         this.bonus[index].setLayoutX(X_LAYOUT);
         this.bonus[index].setLayoutY(index * -SPACING);
@@ -86,7 +74,18 @@ public class HUDBonusImpl implements IHUDBonus {
         /*
          * Fire malus
          */
-        this.bonus[index] = new ImageView(new Image(new File(HUDParameters.PNG_FOLDER + ".png").toURI().toString(), SPACING, 
+        this.bonus[index] = new ImageView(new Image(new File(HUDParameters.PNG_FOLDER + "malusFire.png").toURI().toString(), SPACING, 
+                SPACING, HUDParameters.RATIO, HUDParameters.SMOOTH));
+        this.bonus[index].setLayoutX(X_LAYOUT);
+        this.bonus[index].setLayoutY(index * -SPACING);
+        this.bonus[index].setTranslateY(X_TRANSLATION);
+        this.bonus[index].setViewOrder(HUDParameters.VIEW_ORDER);
+        index++;
+        
+        /*
+         * Speed malus
+         */
+        this.bonus[index] = new ImageView(new Image(new File(HUDParameters.PNG_FOLDER + "malusSpeed.png").toURI().toString(), SPACING, 
                 SPACING, HUDParameters.RATIO, HUDParameters.SMOOTH));
         this.bonus[index].setLayoutX(X_LAYOUT);
         this.bonus[index].setLayoutY(index * -SPACING);
