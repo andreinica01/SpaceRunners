@@ -109,6 +109,8 @@ public class PhysicsEngineImpl implements PhysicsEngine {
         for (SpaceShip spaceship : this.gamefield.getActiveEnemyShips()) {
 
             Bounds shipBound = spaceship.getNode().getBoundsInParent();
+            
+            //rimozione navi se superano il player, rimozione bound
 
             if (this.gamefield.getPlayer().getNode().getBoundsInParent().intersects(shipBound)) {
                 this.removeLife();
