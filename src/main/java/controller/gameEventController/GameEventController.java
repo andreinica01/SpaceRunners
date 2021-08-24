@@ -2,6 +2,7 @@ package controller.gameEventController;
 
 import controller.collisionEngine.PhysicsEngine;
 import controller.collisionEngine.PhysicsEngineImpl;
+import controller.status.StatusController;
 import model.hud.EndGameGUI;
 import model.hud.HUDBonusImpl;
 import model.hud.HUDLifeImpl;

@@ -3,6 +3,7 @@ package view.gameField;
 
 import java.util.Set;
 import controller.inputController.InputControllerImpl;
+import controller.status.StatusController;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -96,4 +97,8 @@ public interface GameField {
     void addEnemyShip(SpaceShip enemy);
     
     void addBonus (Status bonus); 
+    
+    StatusController getStatusController();
+    
+    void setStatusController(StatusController statusController);
 }

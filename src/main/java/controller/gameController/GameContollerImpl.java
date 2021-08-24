@@ -51,6 +51,7 @@ public class GameContollerImpl implements GameController {
         this.AIController = new enemyAI(this.gamefield, this.gameEventController);
        
         this.statusController = new StatusController(this.gamefield.getPlayer());
+        this.gamefield.setStatusController(this.statusController);
     }
 
     public void update() {
@@ -99,5 +100,9 @@ public class GameContollerImpl implements GameController {
         this.gamefield.addBullet(x);
         this.gamefield.getSoundManager().playBulletSound();
     }
+
+	public StatusController getStatusController() {
+		return statusController;
+	}
 
 }

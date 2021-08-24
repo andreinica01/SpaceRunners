@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import Utilities.Parameters;
 import controller.inputController.InputControllerImpl;
+import controller.status.StatusController;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
@@ -31,6 +32,7 @@ public class GameFieldImpl implements GameField {
 	private final int width;
 	private final int height;
 
+	private StatusController statusController;
 	private SoundManager soundmanager;
 	private AnchorPane gameContainer;
 
@@ -170,4 +172,14 @@ public class GameFieldImpl implements GameField {
 	public SoundManager getSoundManager() {
 		return this.soundmanager;
 	}
+
+	public StatusController getStatusController() {
+		return statusController;
+	}
+
+	public void setStatusController(StatusController statusController) {
+		this.statusController = statusController;
+	}
+	
+
 }
