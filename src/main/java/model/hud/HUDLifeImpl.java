@@ -39,7 +39,7 @@ public class HUDLifeImpl implements IHUDLife {
         this.lifePoints = INITIAL_LIFE_POINTS;
         this.gameStatus = HUDParameters.TRUE;
         
-        for(int i = HUDParameters.ZERO; i < lives.length - INITIAL_MALUS; i++) {
+        for(int i = HUDParameters.ZERO; i < this.lives.length - INITIAL_MALUS; i++) {
             this.addLife(i);
         }
     }
@@ -83,7 +83,7 @@ public class HUDLifeImpl implements IHUDLife {
                 SPACING, HUDParameters.RATIO, HUDParameters.SMOOTH));
         this.lives[index].setLayoutX(index * SPACING);
         this.lives[index].setLayoutY(HUDParameters.FIVE);
-        this.pane.getChildren().add(lives[index]);
+        this.pane.getChildren().add(this.lives[index]);
         this.lives[index].setViewOrder(HUDParameters.VIEW_ORDER);
     }
    

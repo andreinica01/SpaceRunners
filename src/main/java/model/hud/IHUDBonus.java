@@ -5,7 +5,17 @@ import model.status.StatusEnum;
 public interface IHUDBonus {
     
     /**
-     * Loads the corrected image
+     * @return life points.
      */
-    public void loadStatus(StatusEnum statusToLoad);
+    public StatusEnum getBonusTaken();
+    
+    /**
+     * It increases life points.
+     */
+    public void addBonus();
+    
+    /**
+     * It decreases life points.
+     */
+    public void removeBonus();
 }

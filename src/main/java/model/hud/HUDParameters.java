@@ -17,6 +17,7 @@ public class HUDParameters {
     public final static int INSETS_MEASURES = 10;
     public final static int FONT_SIZE = 20;
     public final static int MAX_LIFE_POINTS = 4;
+    public final static int TOTAL_BONUS = 5;
     public final static int VIEW_ORDER = -51;
     
     public final static boolean RATIO = false;
