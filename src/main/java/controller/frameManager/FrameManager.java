@@ -1,6 +1,7 @@
 package controller.frameManager;
 
 import java.util.Set;
+import java.util.stream.IntStream;
 
 import javafx.scene.Node;
 import model.Entity;
@@ -43,14 +44,14 @@ public class FrameManager {
 					entity.getPosition().getY());
 			break;
 		case NONE:
-			// do nothing
+
 			break;
 		}
 	}
 	
 
 	private void updateBackground() {
-
+		
 		for (Node image : this.gamefield.getBackground()) {
 			image.setLayoutY(image.getLayoutY() + (this.gamefield.getPlayer().getSpeed().intValue() * 2 / 3));
 

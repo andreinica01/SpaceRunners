@@ -1,7 +1,9 @@
 package controller.enemyAI;
 
+
 import java.util.Iterator;
 import java.util.Random;
+
 
 import controller.gameEventController.GameEventController;
 import model.ship.EnemyShip;
@@ -10,17 +12,20 @@ import model.status.Status;
 import model.status.StatusEnum;
 import model.status.StatusFactory;
 import view.gameField.GameField;
+import Utilities.Utilities;
 
 /**
  * Class to manage the movement of the enemy ships
  */
 public class enemyAI {
 
-	private GameField gamefield;
-	private GameEventController gameEvent;
-	private StatusFactory statusFactory;
+	private final GameField gamefield;
+	private final GameEventController gameEvent;
+	private final StatusFactory statusFactory;
+	
 	
 	private int playerPoints;
+	private boolean bossEnabled;
 
 
 	long enemyInterval;
@@ -30,55 +35,69 @@ public class enemyAI {
 	long statusResetTime;
 
 	private final Random rnd;
+	private final BossAI bossAI;
 
 	public enemyAI(GameField gamefield, GameEventController gameEventController) {
 		this.gamefield = gamefield;
 		this.gameEvent = gameEventController;
-		statusFactory = new StatusFactory();
+		this.statusFactory = new StatusFactory();
+		this.bossAI = new BossAI(this.gamefield);
 		enemyResetTime = System.currentTimeMillis();
 		statusResetTime = System.currentTimeMillis();
-		enemyInterval = (long) ((getRandomDouble(0.0, 5.0) * 1000));
-		statusInterval = (long) ((getRandomDouble(5.0, 15.0) * 1000));
+		enemyInterval = (long) (Utilities.getRandomDouble(0.0, 5.0) * 1000);
+		statusInterval = (long) (Utilities.getRandomDouble(5.0, 15.0) * 1000);
 		rnd = new Random();
 	}
 
 	public void update() {
 		generateEnemy(checkAndSetDifficulty());
 		generateStatus();
+
+		//gameEvent.checkPoints()
+
+		if(this.playerPoints==2 && !bossEnabled)
+		{
+			bossAI.generateBoss();
+			this.bossEnabled = true;
+		}
+
 		
+		
+	}
+
+	public void createBoss()
+	{
+	
+
+
 	}
 
 	public void removeUnused()
 	{
-		int i = 0;
 		
 		Iterator<SpaceShip> ships = this.gamefield.getActiveEnemyShips().iterator();
 		
-		while(ships.hasNext()&& i<10)
+		while(ships.hasNext())
 		{
 			SpaceShip ship = ships.next();
 			if(!this.gamefield.getGameContainer().getBoundsInLocal().contains(ship.getNode().getBoundsInParent()))
 			{
 				this.gamefield.getGameContainer().getChildren().remove(ship.getNode());
 				ships.remove();
-
 			}
 			
 		}
-		System.out.println("ships :" + this.gamefield.getActiveBulletsShotbyEnemies());
-
-
 	}
 
 	private void generateEnemy(Double difficultyFactor) {
 		if (System.currentTimeMillis() - enemyResetTime > enemyInterval) {
-			SpaceShip enemyship = new EnemyShip();
+			SpaceShip enemyship = new EnemyShip(this.gamefield);
 			enemyship.setSpeed(enemyship.getSpeed().doubleValue() * difficultyFactor);
 			enemyship.setPosition(-rnd.nextInt(400), -300);
 
 			this.gamefield.addEnemyShip(enemyship);
 
-			enemyInterval = (long) ((getRandomDouble(0.0, 5 * 1/difficultyFactor) * 1000));
+			enemyInterval = (long) ((Utilities.getRandomDouble(0.0, 5 * 1/difficultyFactor) * 1000));
 			enemyResetTime = System.currentTimeMillis();
 
 			removeUnused();
@@ -94,7 +113,7 @@ public class enemyAI {
 
 			this.gamefield.addBonus(status);
 
-			statusInterval = (long) ((getRandomDouble(4.0, 15.0) * 1000));
+			statusInterval = (long) ((Utilities.getRandomDouble(4.0, 15.0) * 1000));
 			statusResetTime = System.currentTimeMillis();
 
 		}
@@ -106,15 +125,6 @@ public class enemyAI {
 		return 1 + (((double)this.playerPoints / 20) * 0.2);
 	}
 
-	/**
-	 * Get a random Double between two values.
-	 * 
-	 * @param min
-	 * @param max
-	 * @return A random Double
-	 */
-	private Double getRandomDouble(Double min, Double max) {
-		return min + new Random().nextDouble() * (max - min);
-	}
+	
 
 }

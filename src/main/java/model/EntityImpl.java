@@ -13,6 +13,7 @@ public abstract class EntityImpl implements Entity {
 	private Vector2D<Number> dimension;
 
 	private Number speed;
+	private Number horrizontalSpeed;
 
 	private Node entityNode;
 	private Direction direction;
@@ -23,11 +24,11 @@ public abstract class EntityImpl implements Entity {
 		this.position = new Vector2DImpl<Number>(0, 0);
 		this.dimension = new Vector2DImpl<Number>(0, 0);
 		this.canFire = true;
-	} 
-		
-        public Node getNode() {
-            return this.entityNode;
-        }
+	}
+
+	public Node getNode() {
+		return this.entityNode;
+	}
 
 	public void setImage(Image image) {
 		this.entityNode = new ImageView(image);
@@ -80,6 +81,29 @@ public abstract class EntityImpl implements Entity {
 	}
 
 	@Override
+	public void invertDirection() {
+
+		switch(this.direction)
+		{
+			case DOWN:
+				this.direction = Direction.UP;
+				break;
+			case LEFT:
+				this.direction = Direction.RIGHT;
+				break;
+			case RIGHT:
+				this.direction = Direction.LEFT;
+				break;
+			case UP:
+				this.direction = Direction.DOWN;
+				break;
+			default:
+				break;
+		
+		}
+	}
+
+	@Override
 	public Number getSpeed() {
 		return this.speed;
 	}
@@ -91,6 +115,18 @@ public abstract class EntityImpl implements Entity {
 
 	}
 
+	@Override
+	public void setHorrizontalSpeed(Number speed) {
+		this.horrizontalSpeed = speed;
+
+	}
+
+	@Override
+	public Number getHorrizontalSpeed() {
+		return this.horrizontalSpeed;
+
+	}
+
 	public boolean getCanFire() {
 		return canFire;
 	}
@@ -98,4 +134,6 @@ public abstract class EntityImpl implements Entity {
 	public void setCanFire(boolean canFire) {
 		this.canFire = canFire;
 	}
+
+
 }

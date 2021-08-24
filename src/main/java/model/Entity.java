@@ -8,6 +8,7 @@ import Utilities.Direction;
 
 public interface Entity {
 
+
     Node getNode();
 
     void setImage(Image image);
@@ -27,5 +28,11 @@ public interface Entity {
     Number getSpeed();
 
     void setSpeed(Number speed);
+
+    void setHorrizontalSpeed(Number speed);
+
+    Number getHorrizontalSpeed();
+
+    void invertDirection();
     
 }

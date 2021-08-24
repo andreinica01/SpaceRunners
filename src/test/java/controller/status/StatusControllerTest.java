@@ -16,6 +16,8 @@ import model.status.StatusEnum;
 import model.status.StatusFactory;
 import model.status.bonus.BonusSpeed;
 
+import view.gameField.*;
+
 /**
  * Class Test to verify the correct Status behavior
  */
@@ -24,12 +26,16 @@ class StatusControllerTest {
 	private PlayerSpaceShip player;
 	private StatusController controller;
 	private StatusFactory factory;
+	private GameField gamefield;
+
 	@SuppressWarnings("unused")
 	private JFXPanel panel; // Needed for test purpose
 
 	public StatusControllerTest() {
+
+		this.gamefield = new GameFieldImpl(1920,1080);
 		this.panel = new JFXPanel();
-		this.player = new PlayerSpaceShip();
+		this.player = new PlayerSpaceShip(this.gamefield);
 		this.controller = new StatusController(this.player);
 		this.factory = new StatusFactory();
 	}

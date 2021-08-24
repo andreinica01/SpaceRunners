@@ -2,18 +2,23 @@ package model.ship;
 
 import Utilities.Parameters;
 import model.EntityImpl;
+import view.gameField.GameField;
 
 public abstract class SpaceShip extends EntityImpl {
 
     private int lifePoints;
     private boolean invertedCommand;
+   
+    protected GameField gamefield;
     
     
-    public SpaceShip() {
+    public SpaceShip(GameField gamefield) {
         this.lifePoints = Parameters.INITIAL_PLAYER_POINTS;
         setSpeed(10);
         setInvertedCommand(false);
         setCanFire(true);
+
+        this.gamefield = gamefield;
     }
 
     
@@ -40,6 +45,11 @@ public abstract class SpaceShip extends EntityImpl {
 	public void setInvertedCommand(boolean invertedCommand) {
 		this.invertedCommand = invertedCommand;
 	}
+
+    /**
+     * attack 
+     */
+    public abstract void attack();
 	
 
 }

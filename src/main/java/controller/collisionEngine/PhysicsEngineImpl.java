@@ -7,7 +7,7 @@ import javafx.geometry.Bounds;
 import model.Entity;
 import model.bullet.Bullet;
 import model.hud.HUDLifeImpl;
-import model.hud.HUDPointsImpl;
+import model.hud.HUDPointsImpl; 
 import model.ship.SpaceShip;
 import model.status.Status;
 import view.gameField.GameField;
@@ -35,6 +35,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
 
     }
 
+    @Override
     public void update() {
         collisionWalls();
         playerCollisionWithEnemies();
@@ -99,6 +100,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
                 ;
             {
                 this.gamefield.getStatusController().applyEffect(bonus);
+                
             }
 
         }

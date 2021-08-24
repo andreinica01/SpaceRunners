@@ -35,6 +35,7 @@ public class Parameters {
     public static Image malusFireImage = new Image(new File(ImageFolder+"malusFire.png").toURI().toString(), 50, 50, true, true);
     public static Image malusSpeedImage = new Image(new File(ImageFolder+"malusSpeed.png").toURI().toString(), 50, 50, true, true);
     public static Image randomStatusImage = new Image(new File(ImageFolder+"randomStatus.png").toURI().toString(), 50, 50, true, true);
+    public static Image bossShipImage = new Image(new File(ImageFolder+"bossShip.png").toURI().toString());
     /*Sounds */
     public static AudioInputStream bulletSound ;
   

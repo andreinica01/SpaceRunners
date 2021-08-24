@@ -31,7 +31,7 @@ public class GameContollerImpl implements GameController {
         this.gamefield = gamefield;
         
         /* setup player info */
-        this.player = new PlayerSpaceShip();
+        this.player = new PlayerSpaceShip(this.gamefield);
         this.player.setPosition(this.gamefield.getWidth().intValue() / 2, this.gamefield.getHeight().intValue() - 200);
 
         this.gamefield.setPlayer(this.player);
@@ -70,7 +70,8 @@ public class GameContollerImpl implements GameController {
             this.player.setDirection(Direction.NONE);
 
         if (controlStates.get(InputCommand.ATTACK)) {
-            playerAttack();
+            this.player.attack();
+        
         }
 
         /*
@@ -87,15 +88,6 @@ public class GameContollerImpl implements GameController {
         frame.update();
     }
 
-    private void playerAttack() {
-
-        Bullet x = new Bullet().bulletDamage(10);
-
-        x.setPosition(this.player.getNode().getTranslateX() - 190, this.player.getNode().getTranslateY() - 200);
-        x.setSpeed(10);
-
-        this.gamefield.addBullet(x);
-        this.gamefield.getSoundManager().playBulletSound();
-    }
+  
 
 }
