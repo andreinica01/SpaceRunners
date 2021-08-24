@@ -2,7 +2,6 @@ package controller.collisionEngine;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.geometry.Bounds;
 import model.Entity;
 import model.bullet.Bullet;
@@ -14,35 +13,44 @@ import view.gameField.GameField;
 
 public class PhysicsEngineImpl implements PhysicsEngine {
 
+    /*
+     * Control fields
+     */
     private GameField gamefield;
     private HUDPointsImpl pointsHUD;
     private HUDLifeImpl livesHUD;
     private Entity toremove;
     private Bounds fieldBounds;
-
-    private List<Entity> toBeRemovedList;
     private boolean check;
 
-    public PhysicsEngineImpl(final GameField gamefield, final HUDPointsImpl pointsHUD, final HUDLifeImpl livesHUD) {
+    /*
+     * List of entities that must be removed
+     */
+    private List<Entity> toBeRemovedList;
 
+    /*
+     * Constructor
+     */
+    public PhysicsEngineImpl(final GameField gamefield, final HUDPointsImpl pointsHUD, final HUDLifeImpl livesHUD) {
         this.gamefield = gamefield;
         this.pointsHUD = pointsHUD;
         this.livesHUD = livesHUD;
 
         this.toBeRemovedList = new ArrayList<Entity>();
-
         this.fieldBounds = this.gamefield.getScene().getRoot().getBoundsInLocal();
-
     }
 
+    @Override
     public void update() {
         collisionWalls();
         playerCollisionWithEnemies();
         playerBonusCollision();
         bulletCollsionwithEnemies();
-
     }
 
+    /**
+     * This methods detects collisions with the 
+     */
     private void collisionWalls() {
         int limit = this.gamefield.getPlayer().getPosition().getX().intValue();
 
@@ -141,6 +149,9 @@ public class PhysicsEngineImpl implements PhysicsEngine {
 
     }
 
+    /*
+     * HUD change methods
+     */
     @Override
     public void removePoints() {
         this.pointsHUD.pointsDown();
@@ -155,5 +166,4 @@ public class PhysicsEngineImpl implements PhysicsEngine {
     public void addPoints() {
         this.pointsHUD.pointsUp();
     }
-
 }

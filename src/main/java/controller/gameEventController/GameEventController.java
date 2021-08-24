@@ -62,7 +62,7 @@ public class GameEventController implements IGameEventController {
         /*
          * PowerUP HUD
          */
-        //this.bonusHUD = new HUDBonusImpl(this.gameContainer);
+        this.bonusHUD = new HUDBonusImpl(this.gameField);
         
         /*
          * Collision engine comes with HUD creation!
