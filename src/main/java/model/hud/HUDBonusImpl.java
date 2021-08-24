@@ -107,7 +107,6 @@ public class HUDBonusImpl implements IHUDBonus {
 //            this.bonus[status.ordinal()].setViewOrder(HUDParameters.VIEW_ORDER);
 //
 //            this.gamfield.getGameContainer().getChildren().add(this.bonus[status.ordinal()]);
-//
 //        }
     }
     
