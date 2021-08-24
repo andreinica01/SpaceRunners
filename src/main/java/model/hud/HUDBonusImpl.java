@@ -95,33 +95,6 @@ public class HUDBonusImpl implements IHUDBonus {
         this.bonus[index].setTranslateY(X_TRANSLATION);
         this.bonus[index].setViewOrder(HUDParameters.VIEW_ORDER);
         index++;
-
-//        for (StatusEnum status : StatusEnum.values()) {
-//
-//            this.bonus[status.ordinal()] = new ImageView(
-//            new Image(new File(HUDParameters.PNG_FOLDER + "Bonus"+status.ordinal()+".png").toURI().toString(), DIMENSIONS,
-//             DIMENSIONS, HUDParameters.RATIO, HUDParameters.SMOOTH));
-//            this.bonus[status.ordinal()].setLayoutX(X_LAYOUT);
-//            this.bonus[status.ordinal()].setLayoutY(status.ordinal() * -SPACING);
-//            this.bonus[status.ordinal()].setTranslateY(X_TRANSLATION);
-//            this.bonus[status.ordinal()].setViewOrder(HUDParameters.VIEW_ORDER);
-//
-//            this.gamfield.getGameContainer().getChildren().add(this.bonus[status.ordinal()]);
-//        }
-    }
-    
-    public void refreshBonus() {
-        
-        HashMap <StatusEnum, Boolean> activeBonus = this.gamefield.getStatusController().getActiveStatus();
-        
-        for (final StatusEnum bonus : StatusEnum.values()) {
-                if(activeBonus.get(bonus)) {
-                    showBonus(this.conversionIndex.get(bonus));
-                }
-                else {
-                    hideBonus(this.conversionIndex.get(bonus));
-                }
-        }       
     }
 
     @Override
