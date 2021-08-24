@@ -42,7 +42,7 @@ public class GameEventController implements IGameEventController {
     
     @Override
     public void endGame() {
-        new EndGameGUI().end(this.checkPoints(), this.checkLevel());        
+        //new EndGameGUI().end(this.checkPoints(), this.checkLevel());        
     }
     
     @Override
