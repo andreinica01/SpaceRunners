@@ -1,8 +1,10 @@
 package model.hud;
 
 import java.io.File;
+import java.util.HashMap;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import model.status.StatusEnum;
 import view.gameField.GameField;
 
 public class HUDBonusImpl implements IHUDBonus {
@@ -18,6 +20,7 @@ public class HUDBonusImpl implements IHUDBonus {
      * Control fields
      */
     private ImageView[] bonus = new ImageView[HUDParameters.TOTAL_BONUS];
+    private HashMap<StatusEnum, Integer> conversionIndex = new HashMap<>();
     private GameField gamefield;
 
     /*
@@ -106,6 +109,20 @@ public class HUDBonusImpl implements IHUDBonus {
 //            this.gamfield.getGameContainer().getChildren().add(this.bonus[status.ordinal()]);
 //
 //        }
+    }
+    
+    public void refreshBonus() {
+        
+        HashMap <StatusEnum, Boolean> activeBonus = this.gamefield.getStatusController().getActiveStatus();
+        
+        for (final StatusEnum bonus : StatusEnum.values()) {
+                if(activeBonus.get(bonus)) {
+                    showBonus(this.conversionIndex.get(bonus));
+                }
+                else {
+                    hideBonus(this.conversionIndex.get(bonus));
+                }
+        }       
     }
 
     @Override
