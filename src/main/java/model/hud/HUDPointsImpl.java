@@ -1,9 +1,7 @@
 package model.hud;
 
 import java.io.File;
-import Utilities.Parameters;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
@@ -18,28 +16,15 @@ import javafx.scene.text.Font;
  */
 public class HUDPointsImpl extends Label implements IHUDPoints {
     
-    /*
-     * File System
-     */
-    public final static String PNG_FOLDER = Parameters.ImageFolder;
-    
+
     /*
      * HUD structure
-     */
-    public final static int ZERO = 0;
-    public final static int ONE = 1;
-    public final static int FIVE = 5;
-    public final static double INSETS_MEASURES = 10;
-    public final static boolean RATIO = false;
-    public final static boolean SMOOTH = true;
-    
+     */    
+    private static final double INSETS = HUDParameters.INSETS_MEASURES;
     private final static int PREF_WIDTH = 130;
     private final static int PREF_HEIGHT = 50;
-    private final static Pos PREF_ALIGNEMENT = Pos.CENTER_LEFT;
     private final static BackgroundSize DEFAULT_SIZE = null;
     private final static String MATTER = "Points: ";
-    private final static String FONT = "Verdana";
-    private final static int FONT_SIZE = 20;
     private final static int POINTS_UP = 1;
     private final static int POINTS_DOWN = -5;
    
@@ -47,6 +32,7 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
      * Control field
      */
     private int points;
+    private BackgroundImage backImage;
     
     /**
      * Constructor
@@ -56,27 +42,40 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
         this.setPrefWidth(PREF_WIDTH);
         this.setPrefHeight(PREF_HEIGHT);
         
-        BackgroundImage backImage = new BackgroundImage(new Image(new File(PNG_FOLDER + "info_label.png").toURI().toString(), 
-                                                            PREF_WIDTH, 
-                                                            PREF_HEIGHT, 
-                                                            RATIO, 
-                                                            SMOOTH), 
-                                                BackgroundRepeat.REPEAT, 
-                                                BackgroundRepeat.REPEAT, 
-                                                BackgroundPosition.DEFAULT, 
-                                                DEFAULT_SIZE);
-        this.setBackground(new Background(backImage));
-        this.setPadding(new Insets(INSETS_MEASURES, 
-                INSETS_MEASURES, 
-                INSETS_MEASURES, 
-                INSETS_MEASURES));
-
-        this.setAlignment(PREF_ALIGNEMENT);
-        this.setText(MATTER + getPoints());
-        this.setFont(new Font(FONT, FONT_SIZE));
+        /*
+         * Background set
+         */
+        this.backImage = 
+                
+                new BackgroundImage(
+                    new Image(
+                        new File(
+                            HUDParameters.PNG_FOLDER + "info_label.png")
+                            .toURI()
+                            .toString(),
+                        PREF_WIDTH, 
+                        PREF_HEIGHT, 
+                        HUDParameters.RATIO, 
+                        HUDParameters.SMOOTH),
+                    BackgroundRepeat.REPEAT, 
+                    BackgroundRepeat.REPEAT, 
+                    BackgroundPosition.DEFAULT, 
+                    DEFAULT_SIZE);
         
-        this.level = POINTS_UP;
-        this.points = ZERO;
+        this.setBackground(new Background(this.backImage));
+        
+        this.setPadding(new Insets(INSETS, 
+                                INSETS, 
+                                INSETS, 
+                                INSETS));
+
+        this.points = HUDParameters.ZERO;
+        
+        this.setAlignment(HUDParameters.PREF_ALIGNEMENT);
+        
+        this.setText(MATTER + this.getPoints());
+        
+        this.setFont(new Font(HUDParameters.FONT, HUDParameters.FONT_SIZE));
     }
     
     /*
@@ -93,27 +92,20 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
     @Override
     public void pointsUp() {
         this.pointsSetter(POINTS_UP);
-        this.setText(MATTER + this.getPoints());
     }
     
     @Override
     public void pointsDown() {
-        if(this.getPoints() < FIVE) {
-            this.points = ZERO;
-            this.setText(MATTER + this.getPoints());
+        if(this.getPoints() < HUDParameters.FIVE) {
+            this.pointsSetter(-this.getPoints());;
         } else {
             this.pointsSetter(POINTS_DOWN);
-            this.setText(MATTER + this.getPoints());
         }
     }
     
     @Override
     public void pointsSetter(final int value) {
         this.points += value;
-    }
-    
-    @Override
-    public void levelUp() {
-        this.level++; 
+        this.setText(MATTER + this.getPoints());
     }
 }

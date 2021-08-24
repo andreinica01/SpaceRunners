@@ -8,9 +8,20 @@ import javafx.scene.control.Label;
 public class HUDLevelImpl extends Label implements IHUDLevel {
 
     /*
+     * HUDStructure
+     */
+    private static final int LEVEL_UP = 1;
+    
+    /*
      * Control field
      */
     private int level;
+    
+    public HUDLevelImpl() {
+        
+
+        this.level = LEVEL_UP;
+    }
 
     @Override
     public int getActualLevel() {
@@ -19,7 +30,6 @@ public class HUDLevelImpl extends Label implements IHUDLevel {
 
     @Override
     public void levelUp() {
-        // TODO Auto-generated method stub
-        
+        this.level++; 
     }
 }
