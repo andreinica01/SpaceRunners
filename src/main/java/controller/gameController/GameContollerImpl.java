@@ -1,7 +1,6 @@
 package controller.gameController;
 
 import java.util.Map;
-
 import Utilities.Direction;
 import Utilities.InputCommand;
 import Utilities.Parameters;
@@ -16,26 +15,26 @@ import view.gameField.GameField;
 
 public class GameContollerImpl implements GameController {
 
+    /*
+     * Fields
+     */
     private GameField gamefield;
     private FrameManager frame;
-    Parameters param;
-    
     private GameEventController gameEventController;
     private SpaceShip player;
     private InputControllerImpl inputController;
     private enemyAI AIController;
-    Map<InputCommand, Boolean> controlStates;
+    private Map<InputCommand, Boolean> controlStates;
 
     public GameContollerImpl(GameField gamefield) {
 
         this.gamefield = gamefield;
-        this.player = new PlayerSpaceShip();
-
-        this.player.setPosition(this.gamefield.getWidth().intValue() / 2, this.gamefield.getHeight().intValue() - 200);
+        
         /* setup player info */
+        this.player = new PlayerSpaceShip();
+        this.player.setPosition(this.gamefield.getWidth().intValue() / 2, this.gamefield.getHeight().intValue() - 200);
 
         this.gamefield.setPlayer(this.player);
-
         this.frame = new FrameManager(this.gamefield);
         this.gamefield.setInputController(this.inputController);
 
@@ -43,6 +42,9 @@ public class GameContollerImpl implements GameController {
         this.inputController = new InputControllerImpl(this.player.getNode().getScene(), this.player);
         this.AIController = new enemyAI(this.gamefield);
         
+        /*
+         * HUD and game conditions setup
+         */
         this.gameEventController = new GameEventController(this.gamefield.getGameContainer(), this.gamefield);
     }
 
@@ -67,9 +69,11 @@ public class GameContollerImpl implements GameController {
 
         if (controlStates.get(InputCommand.ATTACK)) {
             playerAttack();
-
         }
 
+        /*
+         * Collision and update system
+         */
         this.removeAttacked();
         this.gameEventController.getCollisionEngine().playerShipCollision();
         this.gameEventController.getCollisionEngine().playerCollsionBorders();
@@ -78,9 +82,8 @@ public class GameContollerImpl implements GameController {
         if(this.gameEventController.checkGameStatus() == false) {
             System.exit(0);
         }
+        
         frame.update();
-        
-        
     }
 
     private void playerAttack() {
@@ -88,12 +91,10 @@ public class GameContollerImpl implements GameController {
         Bullet x = new Bullet().bulletDamage(10);
 
         x.setPosition(this.player.getNode().getTranslateX() - 190, this.player.getNode().getTranslateY() - 200);
-
         x.setSpeed(10);
 
         this.gamefield.addBullet(x);
         this.gamefield.getSoundManager().playBulletSound();
-
     }
 
     private void removeAttacked() {

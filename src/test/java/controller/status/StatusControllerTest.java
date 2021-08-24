@@ -11,30 +11,29 @@ import org.junit.jupiter.api.Test;
 
 import javafx.embed.swing.JFXPanel;
 import model.ship.PlayerSpaceShip;
-import model.ship.SpaceShip;
 import model.status.Status;
 import model.status.StatusEnum;
 import model.status.StatusFactory;
 import model.status.bonus.BonusSpeed;
+
 /**
  * Class Test to verify the correct Status behavior
  */
 class StatusControllerTest {
 
-	private SpaceShip player;
+	private PlayerSpaceShip player;
 	private StatusController controller;
 	private StatusFactory factory;
 	@SuppressWarnings("unused")
 	private JFXPanel panel; // Needed for test purpose
 
-
 	public StatusControllerTest() {
+		this.panel = new JFXPanel();
 		this.player = new PlayerSpaceShip();
 		this.controller = new StatusController(this.player);
 		this.factory = new StatusFactory();
-		this.panel = new JFXPanel();
 	}
-	
+
 	/**
 	 * Testing if BonusLife is applied
 	 */
@@ -52,10 +51,10 @@ class StatusControllerTest {
 	@Test
 	void bonusSpeedTest() {
 		Status bonusSpeed = factory.createStatus(StatusEnum.BonusSpeed);
-		double speed = player.getSpeed().doubleValue() * bonusSpeed.getBoostFactor();
+		Double speed = player.getSpeed().doubleValue() * bonusSpeed.getBoostFactor();
 		Double prevValue = player.getSpeed().doubleValue();
 		controller.applyEffect(bonusSpeed);
-		waitUntilApplied(() -> prevValue.equals(player.getSpeed()));
+		waitUntilApplied(() -> prevValue.equals(player.getSpeed().doubleValue()));
 		assertEquals(player.getSpeed().doubleValue(), speed);
 	}
 
@@ -87,26 +86,27 @@ class StatusControllerTest {
 	@Test
 	void malusSpeedTest() {
 		Status malusSpeed = factory.createStatus(StatusEnum.MalusSpeed);
-		double speed = player.getSpeed().doubleValue() * malusSpeed.getBoostFactor();
+		Double speed = player.getSpeed().doubleValue() * malusSpeed.getBoostFactor();
 		Double prevValue = player.getSpeed().doubleValue();
 		controller.applyEffect(malusSpeed);
-		waitUntilApplied(() -> prevValue.equals(player.getSpeed()));
+		waitUntilApplied(() -> prevValue.equals(player.getSpeed().doubleValue()));
 		assertEquals(player.getSpeed().doubleValue(), speed);
 	}
 
 	/**
-	 * Verify that cooldown is refreshed after applying for the second time,
-	 * before the first expires, a Status.
+	 * Verify that cooldown is refreshed after applying for the second time, before
+	 * the first expires, a Status.
 	 */
 	@Test
 	void refreshTimeTest() {
-		//Testing only one Status (with cooldown feature), because this mechanism is shared
+		// Testing only one Status (with cooldown feature), because this mechanism is
+		// shared
 		bonusSpeedTest();
 		long timeSpan = (long) (new BonusSpeed().getCoolDown() - 2.0) * 1000;
-		//Waiting until cooldown goes down of a bit (timeSpan)
-		while (controller.getPlayerStatus().get(StatusEnum.BonusSpeed).get()
-				.getDelay(TimeUnit.MILLISECONDS) > timeSpan);
-		//Testing changes
+		// Waiting until cooldown goes down of a bit (timeSpan)
+		while (controller.getPlayerStatus().get(StatusEnum.BonusSpeed).get().getDelay(TimeUnit.MILLISECONDS) > timeSpan)
+			;
+		// Testing changes
 		controller.applyEffect(factory.createStatus(StatusEnum.BonusSpeed));
 		waitUntilApplied(() -> controller.getPlayerStatus().get(StatusEnum.BonusSpeed).get()
 				.getDelay(TimeUnit.MILLISECONDS) < timeSpan);
@@ -118,6 +118,5 @@ class StatusControllerTest {
 		while (condition.get()) {
 		}
 	}
-
 
 }

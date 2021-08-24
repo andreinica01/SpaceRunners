@@ -3,6 +3,7 @@ package view.gameField;
 
 import java.util.Set;
 import controller.inputController.InputControllerImpl;
+import controller.status.StatusController;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -79,6 +80,11 @@ public interface GameField {
      * @return the scene.
      */
     Scene getScene();
+    
+    /**
+     * @return an istance of StatusController
+     */
+    StatusController getStatusController();
 
     void setInputController(InputControllerImpl controller);
 

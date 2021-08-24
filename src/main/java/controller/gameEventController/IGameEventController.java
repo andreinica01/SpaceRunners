@@ -2,48 +2,53 @@ package controller.gameEventController;
 
 import controller.collisionEngine.PhysicsEngine;
 import javafx.scene.layout.AnchorPane;
-import model.hud.HUDLifeImpl;
+import model.status.Status;
 
 /**
- * This interface shows the methods that are used in order to handle the hud situations
- * and coordinating the event with the game conditions.
- * Detecting collisions causes changes in HUD and in game stats of the player.
+ * This interface shows the methods that are used in order to handle the HUD situations
+ * and coordinating the events with the game conditions.
+ * Detecting collisions causes changes in HUD and in the stats of the player.
  */
 public interface IGameEventController {
     /**
      * end the game loop and sets a new GUI showing the points earned and giving you
-     * the choice beetween saving and quitting or exit from the game without saving.
+     * the choice beetween saving and quitting or just quitting.
      */
-    public void endGame();
+    void endGame();
     
     /**
      * Sets all HUD parts for the game.
-     * @param the game panel and the lives
+     * @param the game panel
      */
-    public void createHUD(AnchorPane gamePane, HUDLifeImpl lives);
+    void createHUD(AnchorPane gamePane);
     
     /**
-     * @return the game status value: if false, end the game.
+     * @return the game status value: if false, the game ends.
      */
-    public boolean checkGameStatus();
+    boolean checkGameStatus();
     
     /**
-     * @return the value of the points, it is needed to set the end game interface.
+     * @return the value of the points.
      */
-    public int checkPoints();
+    int checkPoints();
     
     /**
      * @return the remaining life points.
      */
-    public int checkLives();
+    int checkLives();
     
     /**
-     * @return actual level.
+     * @return level reached.
      */
-    public int checkLevel();
+    int checkLevel();
     
     /**
      * @return collision engine.
      */
-    public PhysicsEngine getCollisionEngine();
+    PhysicsEngine getCollisionEngine();
+    
+    /**
+     * @return status collected.
+     */
+    Status getStatusCollected();
 }

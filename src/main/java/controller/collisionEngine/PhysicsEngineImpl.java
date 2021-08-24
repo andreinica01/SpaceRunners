@@ -30,6 +30,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
         this.pointsHUD = pointsHUD;
         this.livesHUD = livesHUD;
         this.bounds = this.gamefield.getScene().getRoot().getBoundsInLocal();
+        //this.bonusBounds = this.gamefield.get
 
         this.toBeRemovedList = new ArrayList<Entity>();
 
@@ -110,6 +111,8 @@ public class PhysicsEngineImpl implements PhysicsEngine {
         for (SpaceShip spaceship : this.gamefield.getActiveEnemyShips()) {
 
             Bounds shipBound = spaceship.getNode().getBoundsInParent();
+            
+            //rimozione navi se superano il player, rimozione bound
 
             if (this.gamefield.getPlayer().getNode().getBoundsInParent().intersects(shipBound)) {
                 this.removeLife();
@@ -122,6 +125,5 @@ public class PhysicsEngineImpl implements PhysicsEngine {
         }
         this.gamefield.getActiveEnemyShips().removeAll(toBeRemovedList);
         this.toBeRemovedList.clear();
-
     }
 }
