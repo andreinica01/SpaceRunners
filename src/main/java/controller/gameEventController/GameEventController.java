@@ -4,7 +4,7 @@ import controller.collisionEngine.PhysicsEngine;
 import controller.collisionEngine.PhysicsEngineImpl;
 import javafx.scene.layout.AnchorPane;
 import model.hud.EndGameGUI;
-import model.hud.HUDBonusImpl;
+//import model.hud.HUDBonusImpl;
 import model.hud.HUDLifeImpl;
 import model.hud.HUDPointsImpl;
 import model.status.Status;
@@ -26,7 +26,7 @@ public class GameEventController implements IGameEventController {
     private HUDPointsImpl hud;
     private HUDLifeImpl playerLives;
     private PhysicsEngineImpl collisionEngine;
-    private HUDBonusImpl bonusHUD;
+    //private HUDBonusImpl bonusHUD;
     private GameField gameField;
     
     /**
@@ -42,7 +42,7 @@ public class GameEventController implements IGameEventController {
     
     @Override
     public void endGame() {
-        //new EndGameGUI().end(this.checkPoints(), this.checkLevel());        
+        //new EndGameGUI().end(this.checkPoints());        
     }
     
     @Override
@@ -65,7 +65,7 @@ public class GameEventController implements IGameEventController {
         /*
          * PowerUP HUD
          */
-        this.bonusHUD = new HUDBonusImpl(gamePane);
+        //this.bonusHUD = new HUDBonusImpl(gamePane);
         
         /*
          * Collision engine comes with HUD creation!
@@ -87,11 +87,6 @@ public class GameEventController implements IGameEventController {
     public int checkLives() {
         return this.playerLives.getLifePoints();
     }
-    
-    @Override
-    public int checkLevel() {
-        return this.hud.getActualLevel();
-    } 
 
     @Override
     public PhysicsEngine getCollisionEngine() {
