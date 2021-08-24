@@ -28,8 +28,13 @@ public class Parameters {
     public static Image BackgroundImage = new Image(new File(ImageFolder+"stars2.png").toURI().toString());
     public static Image playerImage = new Image(new File(ImageFolder+"spaceship2.png").toURI().toString());
     public static Image enemyImage = new Image(new File(ImageFolder+"enemyship.png").toURI().toString());
-    public static Image bonusSpeedImage = new Image(new File(ImageFolder+"BonusSpeed.png").toURI().toString(),40,40,false,false);
     public static Image lifePointsImage = new Image(new File(ImageFolder+"spaceshipLife.png").toURI().toString());
+    public static Image bonusLifeImage = new Image(new File(ImageFolder+"bonusLife.png").toURI().toString());
+    public static Image bonusSpeedImage = new Image(new File(ImageFolder+"bonusSpeed.png").toURI().toString());
+    public static Image malusCommandImage = new Image(new File(ImageFolder+"malusCommand.png").toURI().toString());
+    public static Image malusFireImage = new Image(new File(ImageFolder+"malusFire.png").toURI().toString());
+    public static Image malusSpeedImage = new Image(new File(ImageFolder+"malusSpeed.png").toURI().toString());
+    public static Image randomStatusImage = new Image(new File(ImageFolder+"randomStatus.png").toURI().toString());
     /*Sounds */
     public static AudioInputStream bulletSound ;
   

@@ -1,9 +1,10 @@
 package model.hud;
 
 import java.io.File;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
+import view.gameField.GameField;
 
 public class HUDBonusImpl implements IHUDBonus {
 
@@ -17,15 +18,15 @@ public class HUDBonusImpl implements IHUDBonus {
     /*
      * Control fields
      */
-    private AnchorPane pane;
     private ImageView[] bonus = new ImageView[HUDParameters.TOTAL_BONUS];
-    
+    private GameField gamefield;
+
     /*
      * Constructor
      */
-    public HUDBonusImpl(final AnchorPane gamePane) {
-        this.pane = gamePane;
-        
+    public HUDBonusImpl(final GameField gamefield) {
+        this.gamefield = gamefield;
+
         this.addBonuses();
     }
 
@@ -92,15 +93,29 @@ public class HUDBonusImpl implements IHUDBonus {
         this.bonus[index].setTranslateY(X_TRANSLATION);
         this.bonus[index].setViewOrder(HUDParameters.VIEW_ORDER);
         index++;
+
+//        for (StatusEnum status : StatusEnum.values()) {
+//
+//            this.bonus[status.ordinal()] = new ImageView(
+//            new Image(new File(HUDParameters.PNG_FOLDER + "Bonus"+status.ordinal()+".png").toURI().toString(), DIMENSIONS,
+//             DIMENSIONS, HUDParameters.RATIO, HUDParameters.SMOOTH));
+//            this.bonus[status.ordinal()].setLayoutX(X_LAYOUT);
+//            this.bonus[status.ordinal()].setLayoutY(status.ordinal() * -SPACING);
+//            this.bonus[status.ordinal()].setTranslateY(X_TRANSLATION);
+//            this.bonus[status.ordinal()].setViewOrder(HUDParameters.VIEW_ORDER);
+//
+//            this.gamfield.getGameContainer().getChildren().add(this.bonus[status.ordinal()]);
+//
+//        }
     }
 
     @Override
     public void showBonus(final int index) {
-        this.pane.getChildren().add(this.bonus[index]);
+        this.gamefield.getGameContainer().getChildren().add(this.bonus[index]);
     }
 
     @Override
     public void hideBonus(final int index) {
-        this.pane.getChildren().remove(this.bonus[index]);
-    }   
+        this.gamefield.getGameContainer().getChildren().remove(this.bonus[index]);
+    }
 }

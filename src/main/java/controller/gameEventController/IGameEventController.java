@@ -1,7 +1,6 @@
 package controller.gameEventController;
 
 import controller.collisionEngine.PhysicsEngine;
-import javafx.scene.layout.AnchorPane;
 import model.status.Status;
 
 /**

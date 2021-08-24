@@ -1,7 +1,6 @@
 package controller.status;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -42,7 +41,8 @@ public class StatusController {
 	 */
 	public boolean applyEffect(Status status) {
 
-		status.setPlayer(player);
+		
+		status.setPlayer(this.player);
 		Optional<ScheduledFuture<?>> task = playerStatus.get(status.getStatusName());
 		//Adding effect if never added before or already terminated
 		if (task.isEmpty() || task.get().isDone()) {

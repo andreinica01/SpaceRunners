@@ -1,5 +1,6 @@
 package controller.enemyAI;
 
+import java.util.Iterator;
 import java.util.Random;
 
 import controller.gameEventController.GameEventController;
@@ -44,6 +45,29 @@ public class enemyAI {
 	public void update() {
 		generateEnemy(checkAndSetDifficulty());
 		generateStatus();
+		
+	}
+
+	public void removeUnused()
+	{
+		int i = 0;
+		
+		Iterator<SpaceShip> ships = this.gamefield.getActiveEnemyShips().iterator();
+		
+		while(ships.hasNext()&& i<10)
+		{
+			SpaceShip ship = ships.next();
+			if(!this.gamefield.getGameContainer().getBoundsInLocal().contains(ship.getNode().getBoundsInParent()))
+			{
+				this.gamefield.getGameContainer().getChildren().remove(ship.getNode());
+				ships.remove();
+
+			}
+			
+		}
+		System.out.println("ships :" + this.gamefield.getActiveBulletsShotbyEnemies());
+
+
 	}
 
 	private void generateEnemy(Double difficultyFactor) {
@@ -56,7 +80,11 @@ public class enemyAI {
 
 			enemyInterval = (long) ((getRandomDouble(0.0, 5 * 1/difficultyFactor) * 1000));
 			enemyResetTime = System.currentTimeMillis();
+
+			removeUnused();
 		}
+
+
 	}
 
 	private void generateStatus() {
