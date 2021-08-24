@@ -7,7 +7,6 @@ import model.hud.HUDBonusImpl;
 import model.hud.HUDLifeImpl;
 import model.hud.HUDParameters;
 import model.hud.HUDPointsImpl;
-import model.status.Status;
 import view.gameField.GameField;
 
 public class GameEventController implements IGameEventController {
@@ -67,7 +66,7 @@ public class GameEventController implements IGameEventController {
         /*
          * Collision engine comes with HUD creation!
          */
-        this.collisionEngine = new PhysicsEngineImpl(this.gameField, this.hud, this.playerLives);
+        this.collisionEngine = new PhysicsEngineImpl(this.gameField, this.hud, this.playerLives, this.bonusHUD);
     }
     
     @Override
@@ -88,10 +87,5 @@ public class GameEventController implements IGameEventController {
     @Override
     public PhysicsEngine getCollisionEngine() {
         return this.collisionEngine;
-    }
-
-    @Override
-    public Status getStatusCollected() {
-        return null;
     }
 }

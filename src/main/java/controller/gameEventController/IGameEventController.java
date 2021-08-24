@@ -1,7 +1,6 @@
 package controller.gameEventController;
 
 import controller.collisionEngine.PhysicsEngine;
-import model.status.Status;
 
 /**
  * This interface shows the methods that are used in order to handle the HUD situations
@@ -40,9 +39,4 @@ public interface IGameEventController {
      * @return collision engine.
      */
     PhysicsEngine getCollisionEngine();
-    
-    /**
-     * @return status collected.
-     */
-    Status getStatusCollected();
 }

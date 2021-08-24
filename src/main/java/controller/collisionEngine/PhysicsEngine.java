@@ -25,19 +25,4 @@ public interface PhysicsEngine {
      * Add points when an enemy ship is destroyed
      */
     void addPoints();
-    
-    /**
-     * Remove entities which collide
-     */
-    public void bulletCollsionwithEnemies();
-    
-    /**
-     * Detects player collision
-     */
-    public void playerCollisionWithEnemies();
-
-    /**
-     * Detects collisionwithBonus
-     */
-    public void playerBonusCollision();
 }
