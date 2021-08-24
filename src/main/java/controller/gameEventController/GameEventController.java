@@ -6,6 +6,7 @@ import javafx.scene.layout.AnchorPane;
 import model.hud.EndGameGUI;
 //import model.hud.HUDBonusImpl;
 import model.hud.HUDLifeImpl;
+import model.hud.HUDParameters;
 import model.hud.HUDPointsImpl;
 import model.status.Status;
 import view.gameField.GameField;
@@ -17,7 +18,6 @@ public class GameEventController implements IGameEventController {
      */
     private final static int X_LAYOUT = 353;
     private final static int Y_LAYOUT = 3;
-    public final static int VIEW_ORDER = -51;
     
     /*
      * Game Container reference and HUD elements
@@ -55,7 +55,7 @@ public class GameEventController implements IGameEventController {
         this.hud.setLayoutX(X_LAYOUT);
         this.hud.setLayoutY(Y_LAYOUT);
         gamePane.getChildren().add(this.hud);
-        this.hud.setViewOrder(VIEW_ORDER);
+        this.hud.setViewOrder(HUDParameters.VIEW_ORDER);
         
         /*
          * Lives HUD

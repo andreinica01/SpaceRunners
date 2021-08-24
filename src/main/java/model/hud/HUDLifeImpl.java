@@ -1,19 +1,15 @@
 package model.hud;
 
 import java.io.File;
-import Utilities.Parameters;
-import controller.gameEventController.GameEventController;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * Class for building HUD lives components.
+ */
 public class HUDLifeImpl implements IHUDLife {
 
-    /*
-     * File System
-     */
-    public final static String PNG_FOLDER = Parameters.ImageFolder;
-    
     /*
      * HUD structure
      */
@@ -21,16 +17,13 @@ public class HUDLifeImpl implements IHUDLife {
     private final static int INITIAL_MALUS = 1;
     private final static int INITIAL_LIFE_POINTS = 3;
     private final static int LESS_LIVES_POSSIBLE = 1;
-    public final static int MAX_LIFE_POINTS = 4;
-    private final static boolean TRUE = true;
-    private final static boolean FALSE = false;
     
     /*
      * Control fields
      */
     private AnchorPane pane;
     private int lifePoints;
-    private ImageView[] lives = new ImageView[MAX_LIFE_POINTS];
+    private ImageView[] lives = new ImageView[HUDParameters.MAX_LIFE_POINTS];
     
     /*
      * Gamestatus = this is important for gamecycle to continue
@@ -44,7 +37,7 @@ public class HUDLifeImpl implements IHUDLife {
         
         this.pane = gamePane;
         this.lifePoints = INITIAL_LIFE_POINTS;
-        this.gameStatus = TRUE;
+        this.gameStatus = HUDParameters.TRUE;
         
         for(int i = HUDParameters.ZERO; i < lives.length - INITIAL_MALUS; i++) {
             this.addLife(i);
@@ -64,7 +57,7 @@ public class HUDLifeImpl implements IHUDLife {
      */
     @Override
     public void lifeUp() {
-        if (this.getLifePoints() < MAX_LIFE_POINTS) {
+        if (this.getLifePoints() < HUDParameters.MAX_LIFE_POINTS) {
             this.addLife(this.lifePoints);
             this.lifePoints++;
         }
@@ -76,8 +69,8 @@ public class HUDLifeImpl implements IHUDLife {
             this.lifePoints--;
             this.removeLife();
         } else {
-            this.lifePoints = HUDPointsImpl.ZERO;
-            this.gameStatus = FALSE;
+            this.lifePoints = HUDParameters.ZERO;
+            this.gameStatus = HUDParameters.FALSE;
         }      
     }
     
@@ -86,19 +79,19 @@ public class HUDLifeImpl implements IHUDLife {
      * @param index
      */
     public void addLife(final int index) {
-        this.lives[index] = new ImageView(new Image(new File(HUDPointsImpl.PNG_FOLDER + "spaceshipLife.png").toURI().toString(), SPACING, 
-                SPACING, HUDPointsImpl.RATIO, HUDPointsImpl.SMOOTH));
+        this.lives[index] = new ImageView(new Image(new File(HUDParameters.PNG_FOLDER + "life.png").toURI().toString(), SPACING, 
+                SPACING, HUDParameters.RATIO, HUDParameters.SMOOTH));
         this.lives[index].setLayoutX(index * SPACING);
-        this.lives[index].setLayoutY(HUDPointsImpl.FIVE);
+        this.lives[index].setLayoutY(HUDParameters.FIVE);
         this.pane.getChildren().add(lives[index]);
-        this.lives[index].setViewOrder(GameEventController.VIEW_ORDER);
+        this.lives[index].setViewOrder(HUDParameters.VIEW_ORDER);
     }
    
     /**
      * Helper method used to remove a life on the screen, it is combined with game logic
      */
     public void removeLife() {
-        this.pane.getChildren().remove(lives[this.lifePoints]);
+        this.pane.getChildren().remove(this.lives[this.lifePoints]);
     }
 
     @Override
