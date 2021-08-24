@@ -1,6 +1,5 @@
 package model.status.bonus;
 
-import Utilities.Parameters;
 import model.status.Status;
 import model.status.StatusEnum;
 /**
@@ -12,7 +11,6 @@ public class BonusLife extends Status{
 	
 	public BonusLife () {
 		super();
-		setImage(Parameters.bonusSpeedImage);
 		setStatusName(StatusEnum.BonusLife);
 		setCoolDown(0); 
 		

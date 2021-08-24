@@ -13,6 +13,7 @@ public class EnemyShip extends SpaceShip {
         this.setDirection(Direction.DOWN);
         this.getNode().setScaleX(0.15);
         this.getNode().setScaleY(0.15);
+        this.setSpeed(10);
 
     }
 }
