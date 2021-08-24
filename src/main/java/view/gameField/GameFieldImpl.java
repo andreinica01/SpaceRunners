@@ -32,9 +32,9 @@ public class GameFieldImpl implements GameField {
 	private final int width;
 	private final int height;
 
+	private StatusController statusController;
 	private SoundManager soundmanager;
 	private AnchorPane gameContainer;
-	private StatusController statusController;
 
 	public GameFieldImpl(final int width, final int height) {
 
@@ -55,9 +55,6 @@ public class GameFieldImpl implements GameField {
 		this.height = height;
 
 		this.soundmanager = new SoundManager();
-		this.statusController = new StatusController(this.player);
-
-		
 	}
 
 	public AnchorPane getGameContainer() {
@@ -172,12 +169,17 @@ public class GameFieldImpl implements GameField {
         }
 	
 	@Override
-    	public StatusController getStatusController() {
-    	    return this.statusController;
-    	}
-	
-	@Override
 	public SoundManager getSoundManager() {
 		return this.soundmanager;
 	}
+
+	public StatusController getStatusController() {
+		return statusController;
+	}
+
+	public void setStatusController(StatusController statusController) {
+		this.statusController = statusController;
+	}
+	
+
 }

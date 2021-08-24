@@ -1,7 +1,7 @@
 package controller.gameEventController;
 
 import controller.collisionEngine.PhysicsEngine;
-import model.status.Status;
+import model.hud.HUDBonusImpl;
 
 /**
  * This interface shows the methods that are used in order to handle the HUD situations
@@ -37,12 +37,12 @@ public interface IGameEventController {
     int checkLives();
     
     /**
+     * @return the HUDBonus object.
+     */
+    HUDBonusImpl getBonusImpl();
+    
+    /**
      * @return collision engine.
      */
     PhysicsEngine getCollisionEngine();
-    
-    /**
-     * @return status collected.
-     */
-    Status getStatusCollected();
 }

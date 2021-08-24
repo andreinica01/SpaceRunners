@@ -80,11 +80,6 @@ public interface GameField {
      * @return the scene.
      */
     Scene getScene();
-    
-    /**
-     * @return an istance of StatusController
-     */
-    StatusController getStatusController();
 
     void setInputController(InputControllerImpl controller);
 
@@ -102,4 +97,8 @@ public interface GameField {
     void addEnemyShip(SpaceShip enemy);
     
     void addBonus (Status bonus); 
+    
+    StatusController getStatusController();
+    
+    void setStatusController(StatusController statusController);
 }
