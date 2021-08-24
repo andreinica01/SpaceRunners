@@ -38,11 +38,6 @@ public interface IGameEventController {
     int checkLives();
     
     /**
-     * @return level reached.
-     */
-    int checkLevel();
-    
-    /**
      * @return collision engine.
      */
     PhysicsEngine getCollisionEngine();
