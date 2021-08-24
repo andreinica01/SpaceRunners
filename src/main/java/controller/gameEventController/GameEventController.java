@@ -4,7 +4,7 @@ import controller.collisionEngine.PhysicsEngine;
 import controller.collisionEngine.PhysicsEngineImpl;
 import javafx.scene.layout.AnchorPane;
 import model.hud.EndGameGUI;
-//import model.hud.HUDBonusImpl;
+import model.hud.HUDBonusImpl;
 import model.hud.HUDLifeImpl;
 import model.hud.HUDParameters;
 import model.hud.HUDPointsImpl;
@@ -26,7 +26,7 @@ public class GameEventController implements IGameEventController {
     private HUDPointsImpl hud;
     private HUDLifeImpl playerLives;
     private PhysicsEngineImpl collisionEngine;
-    //private HUDBonusImpl bonusHUD;
+    private HUDBonusImpl bonusHUD;
     private GameField gameField;
     
     /**
@@ -37,7 +37,7 @@ public class GameEventController implements IGameEventController {
         this.gameContainer = container;
         this.gameField = gameField;
         
-        createHUD(this.gameContainer);
+        createHUD();
     }
     
     @Override
@@ -46,7 +46,7 @@ public class GameEventController implements IGameEventController {
     }
     
     @Override
-    public void createHUD(final AnchorPane gamePane) {
+    public void createHUD() {
         
         /*
          * Points HUD
@@ -54,18 +54,18 @@ public class GameEventController implements IGameEventController {
         this.hud = new HUDPointsImpl();
         this.hud.setLayoutX(X_LAYOUT);
         this.hud.setLayoutY(Y_LAYOUT);
-        gamePane.getChildren().add(this.hud);
+        this.gameContainer.getChildren().add(this.hud);
         this.hud.setViewOrder(HUDParameters.VIEW_ORDER);
         
         /*
          * Lives HUD
          */
-        this.playerLives = new HUDLifeImpl(gamePane);
+        this.playerLives = new HUDLifeImpl(this.gameContainer);
         
         /*
          * PowerUP HUD
          */
-        //this.bonusHUD = new HUDBonusImpl(gamePane);
+        this.bonusHUD = new HUDBonusImpl(this.gameContainer);
         
         /*
          * Collision engine comes with HUD creation!

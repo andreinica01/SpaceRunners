@@ -20,7 +20,7 @@ public interface IGameEventController {
      * Sets all HUD parts for the game.
      * @param the game panel
      */
-    void createHUD(AnchorPane gamePane);
+    void createHUD();
     
     /**
      * @return the game status value: if false, the game ends.
