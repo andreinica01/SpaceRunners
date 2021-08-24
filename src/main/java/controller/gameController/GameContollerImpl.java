@@ -52,6 +52,7 @@ public class GameContollerImpl implements GameController {
 
         controlStates = this.inputController.getControlStates();
 
+
         if (controlStates.get(InputCommand.GO_LEFT))
             if (!this.player.isInvertedCommand())
                 this.player.setDirection(Direction.LEFT);
@@ -74,12 +75,11 @@ public class GameContollerImpl implements GameController {
         /*
          * Collision and update system
          */
-        this.removeAttacked();
-        this.gameEventController.getCollisionEngine().playerShipCollision();
-        this.gameEventController.getCollisionEngine().playerCollsionBorders();
+
+        this.gameEventController.getCollisionEngine().update();
         this.AIController.update();
         
-        if(this.gameEventController.checkGameStatus() == false) {
+        if(!this.gameEventController.checkGameStatus()) {
             System.exit(0);
         }
         
@@ -97,7 +97,4 @@ public class GameContollerImpl implements GameController {
         this.gamefield.getSoundManager().playBulletSound();
     }
 
-    private void removeAttacked() {
-        this.gameEventController.getCollisionEngine().removeCollidedShips();
-    }
 }

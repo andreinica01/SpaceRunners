@@ -25,7 +25,8 @@ public class StatusFactory {
 			return new MalusFire();
 		case MalusSpeed:
 			return new MalusSpeed();
+		default:
+			return null;
 		}
-		return null;
 	}
 }
