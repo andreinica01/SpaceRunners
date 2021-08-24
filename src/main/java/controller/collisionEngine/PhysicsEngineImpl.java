@@ -13,6 +13,7 @@ import view.gameField.GameField;
 
 public class PhysicsEngineImpl implements PhysicsEngine {
 
+    private static final int RESET_X = 4;
     /*
      * Control fields
      */
@@ -48,35 +49,50 @@ public class PhysicsEngineImpl implements PhysicsEngine {
         bulletCollsionwithEnemies();
     }
 
+    /*
+     * Collision detection
+     */
     /**
-     * This methods detects collisions with the 
+     * This methods detects collisions with the border of the gameField.
      */
     private void collisionWalls() {
         int limit = this.gamefield.getPlayer().getPosition().getX().intValue();
 
-        if (isPlayerCollidingLeftWall()) {
-            this.gamefield.getPlayer().setPosition(limit - 4,
-                    this.gamefield.getPlayer().getPosition().getY().intValue());
+        if (this.isPlayerCollidingLeftWall()) {
+            this.gamefield.getPlayer()
+                .setPosition(limit - RESET_X, this.gamefield.getPlayer().getPosition().getY().intValue());
 
+            //Sound
             this.gamefield.getSoundManager().playClashWall();
 
-        } else if (isPlayerCollidingRightWall()) {
+        } else if (this.isPlayerCollidingRightWall()) {
             this.gamefield.getSoundManager().playClashWall();
-            this.gamefield.getPlayer().setPosition(limit + 4,
-                    this.gamefield.getPlayer().getPosition().getY().intValue());
-
+            this.gamefield.getPlayer()
+                .setPosition(limit + RESET_X, this.gamefield.getPlayer().getPosition().getY().intValue());
+            //Sound
             this.gamefield.getSoundManager().playClashWall();
         }
     }
 
+    /**
+     * Helper method.
+     * @return true if player touches left side of the gameField.
+     */
     private boolean isPlayerCollidingLeftWall() {
         return this.gamefield.getPlayer().getPosition().getX().intValue() > this.fieldBounds.getMaxX() - 120;
     }
 
+    /**
+     * Helper method.
+     * @return true if player touches right side of the gameField.
+     */
     private boolean isPlayerCollidingRightWall() {
         return this.gamefield.getPlayer().getPosition().getX().intValue() < this.fieldBounds.getMinX() - 25;
     }
 
+    /**
+     * Detects collision between player and enemy ships.
+     */
     public void playerCollisionWithEnemies() {
 
         for (SpaceShip spaceship : this.gamefield.getActiveEnemyShips()) {
