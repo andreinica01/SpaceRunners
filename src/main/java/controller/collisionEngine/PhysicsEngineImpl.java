@@ -21,9 +21,11 @@ public class PhysicsEngineImpl implements PhysicsEngine {
     private Entity toremove;
 
     private List<Entity> toBeRemovedList;
+    private boolean check;
 
     public PhysicsEngineImpl(final GameField gamefield, final HUDPointsImpl pointsHUD, final HUDLifeImpl livesHUD) {
 
+        
         this.gamefield = gamefield;
         this.pointsHUD = pointsHUD;
         this.livesHUD = livesHUD;
@@ -68,8 +70,8 @@ public class PhysicsEngineImpl implements PhysicsEngine {
 
     @Override
     public void removeCollidedShips() {
-
-        boolean check = false;
+        check = false;
+       
         for (Bullet bullet : this.gamefield.getActiveBulletsShotbyPlayer()) {
             for (SpaceShip spaceship : this.gamefield.getActiveEnemyShips()) {
 
