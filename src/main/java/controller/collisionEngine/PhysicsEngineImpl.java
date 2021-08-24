@@ -7,6 +7,7 @@ import model.Entity;
 import model.bullet.Bullet;
 import model.hud.HUDBonusImpl;
 import model.hud.HUDLifeImpl;
+import model.hud.HUDParameters;
 import model.hud.HUDPointsImpl;
 import model.ship.SpaceShip;
 import model.status.Status;
@@ -131,10 +132,25 @@ public class PhysicsEngineImpl implements PhysicsEngine {
                     .intersects(bonus.getNode().getBoundsInParent())) {
                 
                 this.gamefield.getStatusController().applyEffect(bonus);
-                this.bonusHUD.refreshBonus();
                 
-                this.gamefield.getGameContainer().getChildren().remove(bonus.getNode());
-                this.toBeRemovedList.add(bonus);
+                switch(bonus.getStatusName()) {
+                case BonusLife:
+                    this.bonusHUD.showBonus(HUDParameters.ZERO);
+                    break;
+                case BonusSpeed:
+                    this.bonusHUD.showBonus(HUDParameters.ONE);
+                    break;
+                case MalusCommand:
+                    this.bonusHUD.showBonus(HUDParameters.TWO);
+                    break;
+                case MalusFire:
+                    this.bonusHUD.showBonus(HUDParameters.THREE);
+                    break;
+                case MalusSpeed:
+                    this.bonusHUD.showBonus(HUDParameters.FOUR);
+                    break;
+                }
+                bonus.setPosition(-1000, bonus.getNode().getLayoutY());
             }
         }
     }
