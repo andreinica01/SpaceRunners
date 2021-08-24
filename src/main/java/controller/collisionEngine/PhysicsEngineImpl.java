@@ -149,6 +149,9 @@ public class PhysicsEngineImpl implements PhysicsEngine {
                     this.bonusHUD.showBonus(HUDParameters.FOUR);
                     break;
                 }
+                
+                this.gamefield.getGameContainer().getChildren().remove(bonus.getNode());
+                this.toBeRemovedList.add(bonus);
             }
         }
     }
