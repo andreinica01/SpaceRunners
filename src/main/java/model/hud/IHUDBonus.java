@@ -7,15 +7,15 @@ public interface IHUDBonus {
     /**
      * @return life points.
      */
-    public StatusEnum getBonusTaken();
+    StatusEnum getBonusTaken();
     
     /**
      * It increases life points.
      */
-    public void addBonus();
+    void addBonus(int index);
     
     /**
      * It decreases life points.
      */
-    public void removeBonus();
+    void removeBonus();
 }

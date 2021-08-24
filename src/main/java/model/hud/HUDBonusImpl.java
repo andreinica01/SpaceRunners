@@ -26,7 +26,7 @@ public class HUDBonusImpl implements IHUDBonus {
         this.activeBonus = HUDParameters.ZERO;
         
         for(int i = HUDParameters.ZERO; i < this.bonus.length; i++) {
-            
+            this.addBonus(i);
         }
     }
 
@@ -36,7 +36,7 @@ public class HUDBonusImpl implements IHUDBonus {
     }
 
     @Override
-    public void addBonus() {
+    public void addBonus(final int index) {
         // TODO Auto-generated method stub
         
     }

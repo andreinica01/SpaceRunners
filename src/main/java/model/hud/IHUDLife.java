@@ -8,20 +8,20 @@ public interface IHUDLife {
     /**
      * @return life points.
      */
-    public int getLifePoints();
+    int getLifePoints();
     
     /**
      * It increases life points.
      */
-    public void lifeUp();
+    void lifeUp();
     
     /**
      * It decreases life points.
      */
-    public void lifeDown();
+    void lifeDown();
     
     /**
      * @return game status.
      */
-    public boolean getStatus();
+    boolean getStatus();
 }

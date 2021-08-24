@@ -19,31 +19,30 @@ public interface PhysicsEngine {
      * Subtract a life when an enemy ship hits the player
      * @return 
      */
-    public void removeLife();
+    void removeLife();
     
     /**
      * Subtract points when an enemy ship hits the player
      */
-    public void removePoints();
+    void removePoints();
     
     /**
      * Add points when an enemy ship is destroyed
      */
-    public void addPoints();
+    void addPoints();
     
     /**
      * Detects collision with border
      */
-    public void playerCollsionBorders();
+    void playerCollsionBorders();
     
     /**
      * Remove entities which collide
      */
-    public void removeCollidedShips();
+    void removeCollidedShips();
     
     /**
      * Detects player collision
      */
-    public void playerShipCollision();
-    
+    void playerShipCollision(); 
 }
