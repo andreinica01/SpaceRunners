@@ -106,18 +106,36 @@ class StatusControllerTest {
     bonusSpeedTest();
     long timeSpan = (long) (new BonusSpeed().getCoolDown() - 2.0) * 1000;
     // Waiting until cooldown goes down of a bit (timeSpan)
-    while (controller.getPlayerStatus().get(StatusEnum.BonusSpeed).get().getDelay(TimeUnit.MILLISECONDS) > timeSpan)
-      ;
+    while (
+      controller
+        .getPlayerStatus()
+        .get(StatusEnum.BonusSpeed)
+        .get()
+        .getDelay(TimeUnit.MILLISECONDS) >
+      timeSpan
+    );
     // Testing changes
     controller.applyEffect(factory.createStatus(StatusEnum.BonusSpeed));
     waitUntilApplied(
-        () -> controller.getPlayerStatus().get(StatusEnum.BonusSpeed).get().getDelay(TimeUnit.MILLISECONDS) < timeSpan);
+      () ->
+        controller
+          .getPlayerStatus()
+          .get(StatusEnum.BonusSpeed)
+          .get()
+          .getDelay(TimeUnit.MILLISECONDS) <
+        timeSpan
+    );
     assertTrue(
-        controller.getPlayerStatus().get(StatusEnum.BonusSpeed).get().getDelay(TimeUnit.MILLISECONDS) > timeSpan);
+      controller
+        .getPlayerStatus()
+        .get(StatusEnum.BonusSpeed)
+        .get()
+        .getDelay(TimeUnit.MILLISECONDS) >
+      timeSpan
+    );
   }
 
   private void waitUntilApplied(Supplier<Boolean> condition) {
-    while (condition.get()) {
-    }
+    while (condition.get()) {}
   }
 }
