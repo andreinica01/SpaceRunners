@@ -13,6 +13,10 @@ public class Utilities {
 	public static Double getRandomDouble(Double min, Double max) {
 		return min + new Random().nextDouble() * (max - min);
 	}
+	
+	public static Long getRandomMillis(Double min, Double max) {
+		return (long) (getRandomDouble(min, max)* 1000);
+	}
     
     
 }

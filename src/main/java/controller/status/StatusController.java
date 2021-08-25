@@ -83,8 +83,9 @@ public class StatusController {
 		
 		HashMap<StatusEnum, Boolean> activeStatus = new HashMap<>();
 		for(StatusEnum e : StatusEnum.values()) {
-			if(Optional.ofNullable(this.playerStatus.get(e)).isPresent() && !this.playerStatus.get(e).get().isDone())
+			if(Optional.ofNullable(this.playerStatus.get(e)).isPresent() && !this.playerStatus.get(e).get().isDone()) {
 				activeStatus.put(e, true);
+			}
 			else {
 				activeStatus.put(e, false);
 			}

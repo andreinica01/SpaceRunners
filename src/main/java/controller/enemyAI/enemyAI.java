@@ -1,9 +1,7 @@
 package controller.enemyAI;
 
-
 import java.util.Iterator;
 import java.util.Random;
-
 
 import controller.gameEventController.GameEventController;
 import model.ship.EnemyShip;
@@ -22,11 +20,9 @@ public class enemyAI {
 	private final GameField gamefield;
 	private final GameEventController gameEvent;
 	private final StatusFactory statusFactory;
-	
-	
+
 	private int playerPoints;
 	private boolean bossEnabled;
-
 
 	long enemyInterval;
 	long enemyResetTime;
@@ -52,40 +48,31 @@ public class enemyAI {
 	public void update() {
 		generateEnemy(checkAndSetDifficulty());
 		generateStatus();
-
-		//gameEvent.checkPoints()
-
-		if(this.playerPoints==2 && !bossEnabled)
-		{
-			bossAI.generateBoss();
-			this.bossEnabled = true;
-		}
-
-		
-		
-	}
-
-	public void createBoss()
-	{
-	
-
+		manageBoss();
 
 	}
 
-	public void removeUnused()
-	{
-		
+	public void removeUnused() {
+
 		Iterator<SpaceShip> ships = this.gamefield.getActiveEnemyShips().iterator();
-		
-		while(ships.hasNext())
-		{
+
+		while (ships.hasNext()) {
 			SpaceShip ship = ships.next();
-			if(!this.gamefield.getGameContainer().getBoundsInLocal().contains(ship.getNode().getBoundsInParent()))
-			{
+			if (!this.gamefield.getGameContainer().getBoundsInLocal().contains(ship.getNode().getBoundsInParent())) {
 				this.gamefield.getGameContainer().getChildren().remove(ship.getNode());
 				ships.remove();
 			}
-			
+
+		}
+	}
+
+	public void manageBoss() {
+		if (this.playerPoints == 2 && !bossEnabled) {
+			bossAI.generateBoss();
+			this.bossEnabled = true;
+		}
+		if (bossEnabled) {
+			bossAI.updateBoss();
 		}
 	}
 
@@ -97,12 +84,11 @@ public class enemyAI {
 
 			this.gamefield.addEnemyShip(enemyship);
 
-			enemyInterval = (long) ((Utilities.getRandomDouble(0.0, 5 * 1/difficultyFactor) * 1000));
+			enemyInterval = (long) ((Utilities.getRandomDouble(0.0, 5 * 1 / difficultyFactor) * 1000));
 			enemyResetTime = System.currentTimeMillis();
 
 			removeUnused();
 		}
-
 
 	}
 
@@ -118,13 +104,11 @@ public class enemyAI {
 
 		}
 	}
-	
-	private Double checkAndSetDifficulty () {
-		this.playerPoints = this.gameEvent.checkPoints();
-		//Every 20 points difficulty increasing by 20%
-		return 1 + (((double)this.playerPoints / 20) * 0.2);
-	}
 
-	
+	private Double checkAndSetDifficulty() {
+		this.playerPoints = this.gameEvent.checkPoints();
+		// Every 20 points difficulty increasing by 20%
+		return 1 + (((double) this.playerPoints / 20) * 0.2);
+	}
 
 }
