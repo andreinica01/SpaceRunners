@@ -70,9 +70,9 @@ public class GameContollerImpl implements GameController {
         Direction.LEFT
       );
 
-    if (this.controlStates.get(InputCommand.NONE)) this.player.setDirection(
-        Direction.NONE
-      );
+    if (this.controlStates.get(InputCommand.NONE)) {
+      this.player.setDirection(Direction.NONE);
+    }
 
     if (controlStates.get(InputCommand.ATTACK)) {
       this.player.attack();

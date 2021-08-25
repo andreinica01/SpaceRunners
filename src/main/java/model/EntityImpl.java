@@ -9,131 +9,115 @@ import javafx.scene.image.ImageView;
 
 public abstract class EntityImpl implements Entity {
 
-	private Vector2D<Number> position;
-	private Vector2D<Number> dimension;
+  private Vector2D<Number> position;
+  private Vector2D<Number> dimension;
 
-	private Number speed;
-	private Number horrizontalSpeed;
+  private Number speed;
+  private Number horrizontalSpeed;
 
-	private Node entityNode;
-	private Direction direction;
+  private Node entityNode;
+  private Direction direction;
 
-	private boolean canFire;
+  private boolean canFire;
 
-	public EntityImpl() {
-		this.position = new Vector2DImpl<Number>(0, 0);
-		this.dimension = new Vector2DImpl<Number>(0, 0);
-		this.canFire = true;
-	}
+  public EntityImpl() {
+    this.position = new Vector2DImpl<Number>(0, 0);
+    this.dimension = new Vector2DImpl<Number>(0, 0);
+    this.canFire = true;
+  }
 
-	public Node getNode() {
-		return this.entityNode;
-	}
+  public Node getNode() {
+    return this.entityNode;
+  }
 
-	public void setImage(Image image) {
-		this.entityNode = new ImageView(image);
-		this.entityNode.setRotate(180);
-	}
+  public void setImage(Image image) {
+    this.entityNode = new ImageView(image);
+    this.entityNode.setRotate(180);
+  }
 
-	public void SetDirection(Direction direction) {
-		this.direction = direction;
+  public void SetDirection(Direction direction) {
+    this.direction = direction;
+  }
 
-	}
+  @Override
+  public Vector2D<Number> getPosition() {
+    return this.position;
+  }
 
-	@Override
-	public Vector2D<Number> getPosition() {
+  @Override
+  public void setPosition(Number x, Number y) {
+    this.position.setX(x);
+    this.position.setY(y);
 
-		return this.position;
+    this.entityNode.setTranslateX(x.intValue());
+    this.entityNode.setTranslateY(y.intValue());
+  }
 
-	}
+  @Override
+  public Vector2D<Number> getDimension() {
+    return this.dimension;
+  }
 
-	@Override
-	public void setPosition(Number x, Number y) {
+  @Override
+  public void setDimension(Vector2D<Number> dimension) {
+    this.dimension.setFromVector(dimension);
+  }
 
-		this.position.setX(x);
-		this.position.setY(y);
+  @Override
+  public Direction getDirection() {
+    return this.direction;
+  }
 
-		this.entityNode.setTranslateX(x.intValue());
-		this.entityNode.setTranslateY(y.intValue());
+  @Override
+  public void setDirection(Direction direction) {
+    this.direction = direction;
+  }
 
-	}
+  @Override
+  public void invertDirection() {
+    switch (this.direction) {
+      case DOWN:
+        this.direction = Direction.UP;
+        break;
+      case LEFT:
+        this.direction = Direction.RIGHT;
+        break;
+      case RIGHT:
+        this.direction = Direction.LEFT;
+        break;
+      case UP:
+        this.direction = Direction.DOWN;
+        break;
+      default:
+        break;
+    }
+  }
 
-	@Override
-	public Vector2D<Number> getDimension() {
-		return this.dimension;
-	}
+  @Override
+  public Number getSpeed() {
+    return this.speed;
+  }
 
-	@Override
-	public void setDimension(Vector2D<Number> dimension) {
-		this.dimension.setFromVector(dimension);
+  @Override
+  public void setSpeed(Number speed) {
+    this.speed = speed;
+  }
 
-	}
+  @Override
+  public void setHorrizontalSpeed(Number speed) {
+    this.horrizontalSpeed = speed;
+  }
 
-	@Override
-	public Direction getDirection() {
-		return this.direction;
-	}
+  @Override
+  public Number getHorrizontalSpeed() {
+    return this.horrizontalSpeed;
+  }
 
-	@Override
-	public void setDirection(Direction direction) {
-		this.direction = direction;
+  public boolean getCanFire() {
+    return canFire;
+  }
 
-	}
-
-	@Override
-	public void invertDirection() {
-
-		switch(this.direction)
-		{
-			case DOWN:
-				this.direction = Direction.UP;
-				break;
-			case LEFT:
-				this.direction = Direction.RIGHT;
-				break;
-			case RIGHT:
-				this.direction = Direction.LEFT;
-				break;
-			case UP:
-				this.direction = Direction.DOWN;
-				break;
-			default:
-				break;
-		
-		}
-	}
-
-	@Override
-	public Number getSpeed() {
-		return this.speed;
-	}
-
-	@Override
-	public void setSpeed(Number speed) {
-
-		this.speed = speed;
-
-	}
-
-	@Override
-	public void setHorrizontalSpeed(Number speed) {
-		this.horrizontalSpeed = speed;
-
-	}
-
-	@Override
-	public Number getHorrizontalSpeed() {
-		return this.horrizontalSpeed;
-
-	}
-
-	public boolean getCanFire() {
-		return canFire;
-	}
-
-	public void setCanFire(boolean canFire) {
-		this.canFire = canFire;
-	}
-
-
+  public void setCanFire(boolean canFire) {
+    this.canFire = canFire;
+  }
 }
