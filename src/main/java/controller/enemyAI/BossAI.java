@@ -13,9 +13,7 @@ public class BossAI {
   private final GameField gamefield;
   private SpaceShip bossShip;
 
-  private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(
-    1
-  );
+  private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
   public BossAI(GameField gamefield) {
     this.gamefield = gamefield;
@@ -29,47 +27,34 @@ public class BossAI {
 
     this.gamefield.addEnemyShip(bossShip);
 
-    //movement
+    // movement
     final Runnable bossMovement = new Runnable() {
       public void run() {
         bossShip.invertDirection();
       }
     };
 
-    final ScheduledFuture<?> bossThread = scheduler.scheduleAtFixedRate(
-      bossMovement,
-      1,
-      1,
-      TimeUnit.SECONDS
-    );
-    scheduler.schedule(
-      new Runnable() {
-        public void run() {}
-      },
-      60 * 60,
-      TimeUnit.SECONDS
-    );
-    //attack
-    /*   final Runnable boss = new Runnable() {
-            public void run() {  
-                 bossShip.invertDirection();
-                
-                }
-          };
-        
-          final ScheduledFuture<?> bossThread =
-            scheduler.scheduleAtFixedRate(boss, 1, 1, TimeUnit.SECONDS);
-          scheduler.schedule(new Runnable() {
-            public void run() { 
-                }
-          }, 60 * 60, TimeUnit.SECONDS); */
+    final ScheduledFuture<?> bossThread = scheduler.scheduleAtFixedRate(bossMovement, 1, 1, TimeUnit.SECONDS);
+    scheduler.schedule(new Runnable() {
+      public void run() {
+      }
+    }, 60 * 60, TimeUnit.SECONDS);
+    // attack
+    /*
+     * final Runnable boss = new Runnable() { public void run() {
+     * bossShip.invertDirection();
+     * 
+     * } };
+     * 
+     * final ScheduledFuture<?> bossThread = scheduler.scheduleAtFixedRate(boss, 1,
+     * 1, TimeUnit.SECONDS); scheduler.schedule(new Runnable() { public void run() {
+     * } }, 60 * 60, TimeUnit.SECONDS);
+     */
 
   }
 
   public void removeBoss() {
-    this.gamefield.getGameContainer()
-      .getChildren()
-      .remove(this.bossShip.getNode());
+    this.gamefield.getGameContainer().getChildren().remove(this.bossShip.getNode());
     this.gamefield.getActiveEnemyShips().remove(this.bossShip);
   }
 }
