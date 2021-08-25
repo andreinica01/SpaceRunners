@@ -7,7 +7,6 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
-
 import model.ship.SpaceShip;
 import model.status.Status;
 import model.status.StatusEnum;
@@ -66,7 +65,7 @@ public class StatusController {
   }
 
   private void setPlayerStatus() {
-	  Stream.of(StatusEnum.values()).forEach(e -> this.playerStatus.put(e, Optional.empty()));
+    Stream.of(StatusEnum.values()).forEach(e -> this.playerStatus.put(e, Optional.empty()));
   }
 
   public HashMap<StatusEnum, Optional<ScheduledFuture<?>>> getPlayerStatus() {
@@ -80,9 +79,10 @@ public class StatusController {
   public HashMap<StatusEnum, Boolean> getActiveStatus() {
     HashMap<StatusEnum, Boolean> activeStatus = new HashMap<>();
     Stream.of(StatusEnum.values()).forEach(e -> activeStatus.put(e, false));
-    Stream.of(StatusEnum.values()).filter(e -> Optional.ofNullable(this.playerStatus.get(e)).isPresent())
-    							  .filter(e -> !this.playerStatus.get(e).get().isDone())
-    							  .forEach(e -> activeStatus.put(e, true));
+    Stream.of(StatusEnum.values())
+        .filter(e -> Optional.ofNullable(this.playerStatus.get(e)).isPresent())
+        .filter(e -> !this.playerStatus.get(e).get().isDone())
+        .forEach(e -> activeStatus.put(e, true));
     return activeStatus;
   }
 }

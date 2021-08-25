@@ -37,10 +37,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
   /*
    * Constructor
    */
-  public PhysicsEngineImpl(
-      final GameField gamefield,
-      final HUDPointsImpl pointsHUD,
-      final HUDLifeImpl livesHUD,
+  public PhysicsEngineImpl(final GameField gamefield, final HUDPointsImpl pointsHUD, final HUDLifeImpl livesHUD,
       final HUDBonusImpl bonusHUD) {
     this.gamefield = gamefield;
     this.pointsHUD = pointsHUD;
@@ -67,17 +64,15 @@ public class PhysicsEngineImpl implements PhysicsEngine {
     int limit = this.gamefield.getPlayer().getPosition().getX().intValue();
 
     if (this.isPlayerCollidingLeftWall()) {
-      this.gamefield
-          .getPlayer()
-          .setPosition(limit - RESET_X, this.gamefield.getPlayer().getPosition().getY().intValue());
+      this.gamefield.getPlayer().setPosition(limit - RESET_X,
+          this.gamefield.getPlayer().getPosition().getY().intValue());
 
       // Sound
       this.gamefield.getSoundManager().playClashWall();
     } else if (this.isPlayerCollidingRightWall()) {
       this.gamefield.getSoundManager().playClashWall();
-      this.gamefield
-          .getPlayer()
-          .setPosition(limit + RESET_X, this.gamefield.getPlayer().getPosition().getY().intValue());
+      this.gamefield.getPlayer().setPosition(limit + RESET_X,
+          this.gamefield.getPlayer().getPosition().getY().intValue());
       // Sound
       this.gamefield.getSoundManager().playClashWall();
     }
@@ -89,8 +84,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
    * @return true if player touches left side of the gameField.
    */
   private boolean isPlayerCollidingLeftWall() {
-    return (this.gamefield.getPlayer().getPosition().getX().intValue()
-        > this.fieldBounds.getMaxX() - X_LEFT_BORDER);
+    return (this.gamefield.getPlayer().getPosition().getX().intValue() > this.fieldBounds.getMaxX() - X_LEFT_BORDER);
   }
 
   /**
@@ -99,8 +93,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
    * @return true if player touches right side of the gameField.
    */
   private boolean isPlayerCollidingRightWall() {
-    return (this.gamefield.getPlayer().getPosition().getX().intValue()
-        < this.fieldBounds.getMinX() - X_RIGHT_BORDER);
+    return (this.gamefield.getPlayer().getPosition().getX().intValue() < this.fieldBounds.getMinX() - X_RIGHT_BORDER);
   }
 
   /** Detects collision between player and enemy ships. */
@@ -126,29 +119,25 @@ public class PhysicsEngineImpl implements PhysicsEngine {
   /** Collision between player and bonus entities. */
   public void playerBonusCollision() {
     for (Status bonus : this.gamefield.getBonusObjects()) {
-      if (this.gamefield
-          .getPlayer()
-          .getNode()
-          .getBoundsInParent()
-          .intersects(bonus.getNode().getBoundsInParent())) {
+      if (this.gamefield.getPlayer().getNode().getBoundsInParent().intersects(bonus.getNode().getBoundsInParent())) {
         this.gamefield.getStatusController().applyEffect(bonus);
 
         switch (bonus.getStatusName()) {
-          case BonusLife:
-            this.bonusHUD.showBonus(HUDParameters.ZERO);
-            break;
-          case BonusSpeed:
-            this.bonusHUD.showBonus(HUDParameters.ONE);
-            break;
-          case MalusCommand:
-            this.bonusHUD.showBonus(HUDParameters.TWO);
-            break;
-          case MalusFire:
-            this.bonusHUD.showBonus(HUDParameters.THREE);
-            break;
-          case MalusSpeed:
-            this.bonusHUD.showBonus(HUDParameters.FOUR);
-            break;
+        case BonusLife:
+          this.bonusHUD.showBonus(HUDParameters.ZERO);
+          break;
+        case BonusSpeed:
+          this.bonusHUD.showBonus(HUDParameters.ONE);
+          break;
+        case MalusCommand:
+          this.bonusHUD.showBonus(HUDParameters.TWO);
+          break;
+        case MalusFire:
+          this.bonusHUD.showBonus(HUDParameters.THREE);
+          break;
+        case MalusSpeed:
+          this.bonusHUD.showBonus(HUDParameters.FOUR);
+          break;
         }
         bonus.setPosition(-1000, bonus.getNode().getLayoutY());
       }
@@ -168,7 +157,6 @@ public class PhysicsEngineImpl implements PhysicsEngine {
           this.gamefield.getGameContainer().getChildren().remove(spaceship.getNode());
           this.gamefield.getGameContainer().getChildren().remove(bullet.getNode());
           bullet.setPosition(-1000, bullet.getBounds().getY());
-
           this.addPoints();
           this.toBeRemovedList.add(spaceship);
           this.toremove = spaceship;

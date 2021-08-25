@@ -20,7 +20,7 @@ public class Parameters {
     return new Image(new File(ImageFolder + "spaceshipLife.png").toURI().toString());
   }
 
-  /*Images*/
+  /* Images */
   public static Image bulletImage =
       new Image(new File(ImageFolder + "bullet.png").toURI().toString());
   public static Image BackgroundImage =
@@ -45,6 +45,7 @@ public class Parameters {
       new Image(new File(ImageFolder + "randomStatus.png").toURI().toString(), 50, 50, true, true);
   public static Image bossShipImage =
       new Image(new File(ImageFolder + "bossShip.png").toURI().toString());
-  /*Sounds */
+
+  /* Sounds */
   public static AudioInputStream bulletSound;
 }
