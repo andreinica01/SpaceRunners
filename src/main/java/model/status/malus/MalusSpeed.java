@@ -12,7 +12,7 @@ public class MalusSpeed extends Status {
 		super();
 		setImage(Parameters.malusSpeedImage);
 		getNode().setRotate(0);
-		setBoostFactor((double)1/3);
+		setBoostFactor((double)2/3);
 		setStatusName(StatusEnum.MalusSpeed);
 		setCoolDown(7); //7 s
 
