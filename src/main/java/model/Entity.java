@@ -1,38 +1,34 @@
 package model;
 
+import Utilities.Direction;
 import Utilities.Vector2D;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 
-import Utilities.Direction;
-
 public interface Entity {
+  Node getNode();
 
+  void setImage(Image image);
 
-    Node getNode();
+  Vector2D<Number> getPosition();
 
-    void setImage(Image image);
+  void setPosition(Number x, Number y);
 
-    Vector2D<Number> getPosition();
+  Vector2D<Number> getDimension();
 
-    void setPosition(Number x, Number y);
+  void setDimension(Vector2D<Number> dimension);
 
-    Vector2D<Number> getDimension();
+  Direction getDirection();
 
-    void setDimension(Vector2D<Number> dimension);
+  void setDirection(Direction direction);
 
-    Direction getDirection();
+  Number getSpeed();
 
-    void setDirection(Direction direction);
+  void setSpeed(Number speed);
 
-    Number getSpeed();
+  void setHorrizontalSpeed(Number speed);
 
-    void setSpeed(Number speed);
+  Number getHorrizontalSpeed();
 
-    void setHorrizontalSpeed(Number speed);
-
-    Number getHorrizontalSpeed();
-
-    void invertDirection();
-    
+  void invertDirection();
 }

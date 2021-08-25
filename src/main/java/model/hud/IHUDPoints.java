@@ -14,14 +14,15 @@ public interface IHUDPoints {
      * It increases the points.
      */
     void pointsUp();
-    
+
     /**
      * It decreases the points.
      */
     void pointsDown();
-    
+
     /**
      * Set the points to the value you decide. Helper method.
+     * 
      * @param value to set.
      */
     void pointsSetter(int value);

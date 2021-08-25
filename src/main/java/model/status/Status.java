@@ -12,65 +12,65 @@ import model.ship.SpaceShip;
  */
 public abstract class Status extends EntityImpl {
 
-	private long coolDown; //in s
-	private double boostFactor;
+  private long coolDown; //in s
+  private double boostFactor;
 
-	private SpaceShip player;
-	private Runnable effect;
-	private Runnable removeEffect;
-	private StatusEnum statusName;
+  private SpaceShip player;
+  private Runnable effect;
+  private Runnable removeEffect;
+  private StatusEnum statusName;
 
-	public Status() {
-		setDirection(Direction.DOWN);
-		setSpeed(Parameters.STATUS_SPEED);
-		setImage(Parameters.randomStatusImage);
-	}
+  public Status() {
+    setDirection(Direction.DOWN);
+    setSpeed(Parameters.STATUS_SPEED);
+    setImage(Parameters.randomStatusImage);
+  }
 
-	public long getCoolDown() {
-		return coolDown;
-	}
+  public long getCoolDown() {
+    return coolDown;
+  }
 
-	protected void setCoolDown(long coolDown) {
-		this.coolDown = coolDown;
-	}
+  protected void setCoolDown(long coolDown) {
+    this.coolDown = coolDown;
+  }
 
-	public Runnable getEffect() {
-		return effect;
-	}
+  public Runnable getEffect() {
+    return effect;
+  }
 
-	protected void setEffect(Runnable effect) {
-		this.effect = effect;
-	}
+  protected void setEffect(Runnable effect) {
+    this.effect = effect;
+  }
 
-	public Runnable getRemoveEffect() {
-		return removeEffect;
-	}
+  public Runnable getRemoveEffect() {
+    return removeEffect;
+  }
 
-	protected void setRemoveEffect(Runnable removeEffect) {
-		this.removeEffect = removeEffect;
-	}
+  protected void setRemoveEffect(Runnable removeEffect) {
+    this.removeEffect = removeEffect;
+  }
 
-	public SpaceShip getPlayer() {
-		return player;
-	}
+  public SpaceShip getPlayer() {
+    return player;
+  }
 
-	public void setPlayer(SpaceShip player) {
-		this.player = player;
-	}
+  public void setPlayer(SpaceShip player) {
+    this.player = player;
+  }
 
-	public StatusEnum getStatusName() {
-		return statusName;
-	}
+  public StatusEnum getStatusName() {
+    return statusName;
+  }
 
-	protected void setStatusName(StatusEnum statusName) {
-		this.statusName = statusName;
-	}
+  protected void setStatusName(StatusEnum statusName) {
+    this.statusName = statusName;
+  }
 
-	protected void setBoostFactor (double value) {
-		this.boostFactor = value;
-	}
+  protected void setBoostFactor(double value) {
+    this.boostFactor = value;
+  }
 
-	public double getBoostFactor() {
-		return this.boostFactor;
-	}
+  public double getBoostFactor() {
+    return this.boostFactor;
+  }
 }

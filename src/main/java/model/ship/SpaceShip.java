@@ -6,50 +6,46 @@ import view.gameField.GameField;
 
 public abstract class SpaceShip extends EntityImpl {
 
-    private int lifePoints;
-    private boolean invertedCommand;
-   
-    protected GameField gamefield;
-    
-    
-    public SpaceShip(GameField gamefield) {
-        this.lifePoints = Parameters.INITIAL_PLAYER_POINTS;
-        setSpeed(10);
-        setInvertedCommand(false);
-        setCanFire(true);
+  private int lifePoints;
+  private boolean invertedCommand;
 
-        this.gamefield = gamefield;
-    }
+  protected GameField gamefield;
 
-    
-	public int getLifePoints() {
-        return this.lifePoints;
-    }
-    
-    public void setLifePoints (int lifepoint) {
-    	this.lifePoints = lifepoint;
-    }
+  public SpaceShip(GameField gamefield) {
+    this.lifePoints = Parameters.INITIAL_PLAYER_POINTS;
+    setSpeed(10);
+    setInvertedCommand(false);
+    setCanFire(true);
 
-    public void increaseLifePoints(Number points) {
-        this.lifePoints +=points.intValue();
-    }
+    this.gamefield = gamefield;
+  }
 
-    public void decreaselifePoints(Number points) {
-        this.lifePoints -= points.intValue();
-    }
+  public int getLifePoints() {
+    return this.lifePoints;
+  }
 
-	public boolean isInvertedCommand() {
-		return invertedCommand;
-	}
+  public void setLifePoints(int lifepoint) {
+    this.lifePoints = lifepoint;
+  }
 
-	public void setInvertedCommand(boolean invertedCommand) {
-		this.invertedCommand = invertedCommand;
-	}
+  public void increaseLifePoints(Number points) {
+    this.lifePoints += points.intValue();
+  }
 
-    /**
-     * attack 
-     */
-    public abstract void attack();
-	
+  public void decreaselifePoints(Number points) {
+    this.lifePoints -= points.intValue();
+  }
 
+  public boolean isInvertedCommand() {
+    return invertedCommand;
+  }
+
+  public void setInvertedCommand(boolean invertedCommand) {
+    this.invertedCommand = invertedCommand;
+  }
+
+  /**
+   * attack
+   */
+  public abstract void attack();
 }
