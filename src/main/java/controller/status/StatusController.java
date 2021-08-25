@@ -6,6 +6,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
+
 import model.ship.SpaceShip;
 import model.status.Status;
 import model.status.StatusEnum;
@@ -54,7 +56,7 @@ public class StatusController {
   private void addTemporaryEffect(Status status) {
     // Applying effect
     ses.execute(status.getEffect());
-    // Scheduling effect timeout, and add it to the map
+    // Scheduling effect timeout, and add it to the local map
     var task = ses.schedule(status.getRemoveEffect(), status.getCoolDown(), TimeUnit.SECONDS);
     addTask(status, task);
   }
@@ -64,9 +66,7 @@ public class StatusController {
   }
 
   private void setPlayerStatus() {
-    for (StatusEnum s : StatusEnum.values()) {
-      playerStatus.put(s, Optional.empty());
-    }
+	  Stream.of(StatusEnum.values()).forEach(e -> this.playerStatus.put(e, Optional.empty()));
   }
 
   public HashMap<StatusEnum, Optional<ScheduledFuture<?>>> getPlayerStatus() {
@@ -79,15 +79,10 @@ public class StatusController {
 
   public HashMap<StatusEnum, Boolean> getActiveStatus() {
     HashMap<StatusEnum, Boolean> activeStatus = new HashMap<>();
-    for (StatusEnum e : StatusEnum.values()) {
-      if (Optional.ofNullable(this.playerStatus.get(e)).isPresent()
-          && !this.playerStatus.get(e).get().isDone()) {
-        activeStatus.put(e, true);
-      } else {
-        activeStatus.put(e, false);
-      }
-    }
-
+    Stream.of(StatusEnum.values()).forEach(e -> activeStatus.put(e, false));
+    Stream.of(StatusEnum.values()).filter(e -> Optional.ofNullable(this.playerStatus.get(e)).isPresent())
+    							  .filter(e -> !this.playerStatus.get(e).get().isDone())
+    							  .forEach(e -> activeStatus.put(e, true));
     return activeStatus;
   }
 }
