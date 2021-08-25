@@ -1,9 +1,10 @@
 package controller.enemyAI;
 
-import Utilities.Utilities;
-import controller.gameEventController.GameEventController;
 import java.util.Iterator;
 import java.util.Random;
+
+import Utilities.Utilities;
+import controller.gameEventController.GameEventController;
 import model.ship.EnemyShip;
 import model.ship.SpaceShip;
 import model.status.Status;
@@ -47,30 +48,31 @@ public class enemyAI {
   public void update() {
     generateEnemy(checkAndSetDifficulty());
     generateStatus();
+    manageBoss();
 
-    //gameEvent.checkPoints()
-
-    if (this.playerPoints == 2 && !bossEnabled) {
-      bossAI.generateBoss();
-      this.bossEnabled = true;
-    }
   }
 
-  public void createBoss() {}
-
   public void removeUnused() {
+
     Iterator<SpaceShip> ships = this.gamefield.getActiveEnemyShips().iterator();
 
     while (ships.hasNext()) {
       SpaceShip ship = ships.next();
-      if (
-        !this.gamefield.getGameContainer()
-          .getBoundsInLocal()
-          .contains(ship.getNode().getBoundsInParent())
-      ) {
+      if (!this.gamefield.getGameContainer().getBoundsInLocal().contains(ship.getNode().getBoundsInParent())) {
         this.gamefield.getGameContainer().getChildren().remove(ship.getNode());
         ships.remove();
       }
+
+    }
+  }
+
+  public void manageBoss() {
+    if (this.playerPoints == 2 && !bossEnabled) {
+      bossAI.generateBoss();
+      this.bossEnabled = true;
+    }
+    if (bossEnabled) {
+      bossAI.updateBoss();
     }
   }
 
@@ -87,6 +89,7 @@ public class enemyAI {
 
       removeUnused();
     }
+
   }
 
   private void generateStatus() {
@@ -98,12 +101,14 @@ public class enemyAI {
 
       statusInterval = (long) ((Utilities.getRandomDouble(4.0, 15.0) * 1000));
       statusResetTime = System.currentTimeMillis();
+
     }
   }
 
   private Double checkAndSetDifficulty() {
     this.playerPoints = this.gameEvent.checkPoints();
-    //Every 20 points difficulty increasing by 20%
+    // Every 20 points difficulty increasing by 20%
     return 1 + (((double) this.playerPoints / 20) * 0.2);
   }
+
 }

@@ -1,7 +1,6 @@
 package controller.frameManager;
 
 import java.util.Set;
-import java.util.stream.IntStream;
 import javafx.scene.Node;
 import model.Entity;
 import view.gameField.GameField;
@@ -25,39 +24,31 @@ public class FrameManager {
   private void updateEntityPosition(Entity entity) {
     switch (entity.getDirection()) {
       case UP:
-        entity.setPosition(
-          entity.getPosition().getX(),
-          entity.getPosition().getY().intValue() - entity.getSpeed().intValue()
-        );
+        entity.setPosition(entity.getPosition().getX(),
+            entity.getPosition().getY().intValue() - entity.getSpeed().intValue());
         break;
       case DOWN:
-        entity.setPosition(
-          entity.getPosition().getX(),
-          entity.getPosition().getY().intValue() + entity.getSpeed().intValue()
-        );
+        entity.setPosition(entity.getPosition().getX(),
+            entity.getPosition().getY().intValue() + entity.getSpeed().intValue());
         break;
       case LEFT:
-        entity.setPosition(
-          entity.getPosition().getX().intValue() - entity.getSpeed().intValue(),
-          entity.getPosition().getY()
-        );
+        entity.setPosition(entity.getPosition().getX().intValue() - entity.getSpeed().intValue(),
+            entity.getPosition().getY());
         break;
       case RIGHT:
-        entity.setPosition(
-          entity.getPosition().getX().intValue() + entity.getSpeed().intValue(),
-          entity.getPosition().getY()
-        );
+        entity.setPosition(entity.getPosition().getX().intValue() + entity.getSpeed().intValue(),
+            entity.getPosition().getY());
         break;
       case NONE:
+
         break;
     }
   }
 
   private void updateBackground() {
+
     for (Node image : this.gamefield.getBackground()) {
-      image.setLayoutY(
-        image.getLayoutY() + (this.gamefield.getPlayer().getSpeed().intValue() * 2 / 3)
-      );
+      image.setLayoutY(image.getLayoutY() + (this.gamefield.getPlayer().getSpeed().intValue() * (4 / 3)));
 
       if (image.getLayoutY() >= this.gamefield.getHeight().intValue()) {
         image.setLayoutY(-this.gamefield.getHeight().intValue());

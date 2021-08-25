@@ -11,8 +11,8 @@ import model.status.Status;
 import model.status.StatusEnum;
 
 /**
- * Controller Status class.
- * When certain condition are triggered, this class apply the StatusEffect to the player.
+ * Controller Status class. When certain condition are triggered, this class
+ * apply the StatusEffect to the player.
  */
 public class StatusController {
 
@@ -22,6 +22,7 @@ public class StatusController {
 
   /**
    * Create and Setting this StatusController to a SpaceShip instance.
+   * 
    * @param player
    */
   public StatusController(SpaceShip player) {
@@ -32,29 +33,28 @@ public class StatusController {
   }
 
   /**
-   * Applying StatusEffect to the Player.
-   * Every Status has his own expiring time.
+   * Applying StatusEffect to the Player. Every Status has his own expiring time.
    *
    * @param Status status
    */
   public boolean applyEffect(Status status) {
     status.setPlayer(this.player);
     Optional<ScheduledFuture<?>> task = playerStatus.get(status.getStatusName());
-    //Adding effect if never added before or already terminated
+    // Adding effect if never added before or already terminated
     if (task.isEmpty() || task.get().isDone()) {
       addTemporaryEffect(status);
       return true;
     }
-    //Else, refresh task's time
+    // Else, refresh task's time
     task.get().cancel(false);
     addTemporaryEffect(status);
     return false;
   }
 
   private void addTemporaryEffect(Status status) {
-    //Applying effect
+    // Applying effect
     ses.execute(status.getEffect());
-    //Scheduling effect timeout, and add it to the map
+    // Scheduling effect timeout, and add it to the map
     var task = ses.schedule(status.getRemoveEffect(), status.getCoolDown(), TimeUnit.SECONDS);
     addTask(status, task);
   }
@@ -78,12 +78,12 @@ public class StatusController {
   }
 
   public HashMap<StatusEnum, Boolean> getActiveStatus() {
+
     HashMap<StatusEnum, Boolean> activeStatus = new HashMap<>();
     for (StatusEnum e : StatusEnum.values()) {
-      if (
-        Optional.ofNullable(this.playerStatus.get(e)).isPresent() &&
-        !this.playerStatus.get(e).get().isDone()
-      ) activeStatus.put(e, true); else {
+      if (Optional.ofNullable(this.playerStatus.get(e)).isPresent() && !this.playerStatus.get(e).get().isDone()) {
+        activeStatus.put(e, true);
+      } else {
         activeStatus.put(e, false);
       }
     }
