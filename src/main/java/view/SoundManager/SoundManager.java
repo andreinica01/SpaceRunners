@@ -5,13 +5,14 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
 public class SoundManager {
 
   private List<Clip> sounds;
-  private int SOUND_MEMORY_BUFFER = 30;
+  private int SOUND_MEMORY_BUFFER = 10;
 
   public SoundManager() {
     this.sounds = new ArrayList<>();
@@ -25,10 +26,12 @@ public class SoundManager {
       soundClip.start();
       this.sounds.add(soundClip);
 
+    } catch (Exception e) {
+    } finally {
+
       if (this.sounds.size() > SOUND_MEMORY_BUFFER) {
         cleanSoundMemory();
       }
-    } catch (Exception e) {
     }
   }
 
@@ -53,7 +56,7 @@ public class SoundManager {
   }
 
   private void cleanSoundMemory() {
-    Iterator<Clip> soundsToRemove = this.sounds.subList(0, 10).iterator();
+    Iterator<Clip> soundsToRemove = this.sounds.subList(0, SOUND_MEMORY_BUFFER).iterator();
 
     while (soundsToRemove.hasNext()) {
       Clip v = soundsToRemove.next();
