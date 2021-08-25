@@ -16,6 +16,8 @@ public class BossAI {
   private final GameField gamefield;
   private SpaceShip bossShip;
 
+  int prova = 0;
+
   private TreeMap<String, ScheduledFuture<?>> bossControls;
   private Runnable bossMovement;
   private Runnable bossFiring;
@@ -48,22 +50,18 @@ public class BossAI {
   }
 
   private void addBossTask(String taskName) {
+
+    System.out.println("boss updated: " + prova);
+    prova++;
+
     switch (taskName) {
       case "Movement":
-        bossControls.put(
-          "Movement",
-          scheduler.schedule(
-            bossMovement,
-            Utilities.getRandomMillis(1.0, 4.0),
-            TimeUnit.MILLISECONDS
-          )
-        );
+        bossControls.put("Movement",
+            scheduler.schedule(bossMovement, Utilities.getRandomMillis(1.0, 4.0), TimeUnit.MILLISECONDS));
         break;
       case "Firing":
-        bossControls.put(
-          "Firing",
-          scheduler.schedule(bossFiring, Utilities.getRandomMillis(0.0, 3.0), TimeUnit.MILLISECONDS)
-        );
+        bossControls.put("Firing",
+            scheduler.schedule(bossFiring, Utilities.getRandomMillis(0.0, 3.0), TimeUnit.MILLISECONDS));
         break;
       default:
     }

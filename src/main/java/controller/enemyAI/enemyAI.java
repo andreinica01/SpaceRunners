@@ -55,11 +55,7 @@ public class enemyAI {
 
     while (ships.hasNext()) {
       SpaceShip ship = ships.next();
-      if (
-        !this.gamefield.getGameContainer()
-          .getBoundsInLocal()
-          .contains(ship.getNode().getBoundsInParent())
-      ) {
+      if (!this.gamefield.getGameContainer().getBoundsInLocal().contains(ship.getNode().getBoundsInParent())) {
         this.gamefield.getGameContainer().getChildren().remove(ship.getNode());
         ships.remove();
       }
