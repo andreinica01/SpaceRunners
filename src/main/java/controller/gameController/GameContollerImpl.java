@@ -71,7 +71,7 @@ public class GameContollerImpl implements GameController {
         if (this.controlStates.get(InputCommand.NONE))
             this.player.setDirection(Direction.NONE);
 
-        if (controlStates.get(InputCommand.ATTACK)) {
+        if (this.controlStates.get(InputCommand.ATTACK)) {
             this.player.attack();
         
         }
@@ -85,14 +85,10 @@ public class GameContollerImpl implements GameController {
         if(!this.gameEventController.checkGameStatus()) {
             System.exit(0);
         }
-        
-        frame.update();
+        this.frame.update();
     }
-
-  
-
-	public StatusController getStatusController() {
-		return statusController;
-	}
-
+    
+    public StatusController getStatusController() {
+        return this.statusController;
+    }
 }

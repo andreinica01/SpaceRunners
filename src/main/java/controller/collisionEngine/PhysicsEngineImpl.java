@@ -108,13 +108,14 @@ public class PhysicsEngineImpl implements PhysicsEngine {
             Bounds shipBound = spaceship.getNode().getBoundsInParent();
 
             if (this.gamefield.getPlayer().getNode().getBoundsInParent().intersects(shipBound)) {
-                this.removeLife();
-                this.removePoints();
-                this.gamefield.getGameContainer().getChildren().remove(spaceship.getNode());
-                this.toBeRemovedList.add(spaceship);
-
-                //Sound
-                this.gamefield.getSoundManager().playPlayerImpact();
+                
+                    this.removeLife();
+                    this.removePoints();
+                    this.gamefield.getGameContainer().getChildren().remove(spaceship.getNode());
+                    this.toBeRemovedList.add(spaceship);
+                    
+                    //Sound
+                    this.gamefield.getSoundManager().playPlayerImpact();
             }
         }
         
@@ -136,6 +137,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
                 switch(bonus.getStatusName()) {
                 case BonusLife:
                     this.bonusHUD.showBonus(HUDParameters.ZERO);
+                    this.livesHUD.lifeUp();
                     break;
                 case BonusSpeed:
                     this.bonusHUD.showBonus(HUDParameters.ONE);

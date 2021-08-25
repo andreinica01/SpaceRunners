@@ -13,6 +13,4 @@ public class Utilities {
 	public static Double getRandomDouble(Double min, Double max) {
 		return min + new Random().nextDouble() * (max - min);
 	}
-    
-    
 }
