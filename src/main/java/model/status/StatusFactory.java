@@ -6,9 +6,7 @@ import model.status.malus.MalusCommand;
 import model.status.malus.MalusFire;
 import model.status.malus.MalusSpeed;
 
-/**
- * Factory in order to create Status Class.
- */
+/** Factory in order to create Status Class. */
 public class StatusFactory {
 
   public StatusFactory() {}

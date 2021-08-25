@@ -9,7 +9,7 @@ public class Bullet extends EntityImpl {
   private int damage;
 
   public Bullet() {
-    //set default
+    // set default
     this.setImage(Parameters.bulletImage);
     this.setDirection(Direction.UP);
     this.getNode().setViewOrder(-50);

@@ -1,29 +1,21 @@
 package model.hud;
 
-/**
- * This interface gives an indication how to handle a basic HUD points system.
- */
+/** This interface gives an indication how to handle a basic HUD points system. */
 public interface IHUDPoints {
-    
-    /**
-     * @return actual points.
-     */
-    int getPoints();
 
-    /**
-     * It increases the points.
-     */
-    void pointsUp();
+  /** @return actual points. */
+  int getPoints();
 
-    /**
-     * It decreases the points.
-     */
-    void pointsDown();
+  /** It increases the points. */
+  void pointsUp();
 
-    /**
-     * Set the points to the value you decide. Helper method.
-     * 
-     * @param value to set.
-     */
-    void pointsSetter(int value);
+  /** It decreases the points. */
+  void pointsDown();
+
+  /**
+   * Set the points to the value you decide. Helper method.
+   *
+   * @param value to set.
+   */
+  void pointsSetter(int value);
 }

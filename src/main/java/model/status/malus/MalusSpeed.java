@@ -4,9 +4,7 @@ import Utilities.Parameters;
 import model.status.Status;
 import model.status.StatusEnum;
 
-/**
- * A Status that decrease player's speed of a certain amount.
- */
+/** A Status that decrease player's speed of a certain amount. */
 public class MalusSpeed extends Status {
 
   public MalusSpeed() {
@@ -20,8 +18,8 @@ public class MalusSpeed extends Status {
     setEffect(() -> getPlayer().setSpeed(getPlayer().getSpeed().doubleValue() * getBoostFactor()));
 
     setRemoveEffect(
-      () ->
-        getPlayer().setSpeed(getPlayer().getSpeed().doubleValue() * (double) 1 / getBoostFactor())
-    );
+        () ->
+            getPlayer()
+                .setSpeed(getPlayer().getSpeed().doubleValue() * (double) 1 / getBoostFactor()));
   }
 }
