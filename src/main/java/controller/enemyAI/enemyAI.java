@@ -77,7 +77,7 @@ public class enemyAI {
     if (System.currentTimeMillis() - enemyResetTime > enemyInterval) {
       SpaceShip enemyship = new EnemyShip(this.gamefield);
       enemyship.setSpeed(enemyship.getSpeed().doubleValue() * difficultyFactor);
-      enemyship.setPosition(-rnd.nextInt(400), -300);
+      enemyship.setPosition(rnd.nextInt(400), -300);
 
       this.gamefield.addEnemyShip(enemyship);
 
