@@ -13,22 +13,13 @@ import model.status.Status;
 import view.SoundManager.SoundManager;
 
 public interface GameField {
-  /**
-   *
-   * @return the draw panel where the content is draw
-   */
+  /** @return the draw panel where the content is draw */
   AnchorPane getGameContainer();
 
-  /**
-   *
-   * @return the active entities on the Gamefield
-   */
+  /** @return the active entities on the Gamefield */
   Set<Entity> getActiveEntities();
 
-  /**
-   *
-   * @return Width
-   */
+  /** @return Width */
   Number getWidth();
 
   /*
@@ -36,45 +27,25 @@ public interface GameField {
    */
   Number getHeight();
 
-  /**
-   *
-   * @param add the player Entity to the game
-   */
+  /** @param add the player Entity to the game */
   void setPlayer(SpaceShip player);
 
-  /**
-   *
-   * @return the player Entity
-   */
+  /** @return the player Entity */
   SpaceShip getPlayer();
 
-  /**
-   *
-   * @return a set with all the current enemy ships on the field
-   */
+  /** @return a set with all the current enemy ships on the field */
   Set<SpaceShip> getActiveEnemyShips();
 
-  /**
-   *
-   * @return a set with all the Bonus Objects in the game
-   */
+  /** @return a set with all the Bonus Objects in the game */
   Set<Status> getBonusObjects();
 
-  /**
-   *
-   * @return all active bullets shot by the player
-   */
+  /** @return all active bullets shot by the player */
   Set<Bullet> getActiveBulletsShotbyPlayer();
 
-  /**
-   *
-   * @return all active bullets shot towards the player
-   */
+  /** @return all active bullets shot towards the player */
   Set<Bullet> getActiveBulletsShotbyEnemies();
 
-  /**
-   * @return the scene.
-   */
+  /** @return the scene. */
   Scene getScene();
 
   void setInputController(InputControllerImpl controller);

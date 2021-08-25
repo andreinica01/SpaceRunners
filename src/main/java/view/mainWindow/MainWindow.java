@@ -8,5 +8,6 @@ public interface MainWindow {
   void addGameField(GameFieldImpl gamefield);
 
   void setWidth(Number width);
+
   void setHeight(Number heigth);
 }

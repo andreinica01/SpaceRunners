@@ -11,8 +11,8 @@ import model.status.Status;
 import model.status.StatusEnum;
 
 /**
- * Controller Status class. When certain condition are triggered, this class
- * apply the StatusEffect to the player.
+ * Controller Status class. When certain condition are triggered, this class apply the StatusEffect
+ * to the player.
  */
 public class StatusController {
 
@@ -80,10 +80,8 @@ public class StatusController {
   public HashMap<StatusEnum, Boolean> getActiveStatus() {
     HashMap<StatusEnum, Boolean> activeStatus = new HashMap<>();
     for (StatusEnum e : StatusEnum.values()) {
-      if (
-        Optional.ofNullable(this.playerStatus.get(e)).isPresent() &&
-        !this.playerStatus.get(e).get().isDone()
-      ) {
+      if (Optional.ofNullable(this.playerStatus.get(e)).isPresent()
+          && !this.playerStatus.get(e).get().isDone()) {
         activeStatus.put(e, true);
       } else {
         activeStatus.put(e, false);

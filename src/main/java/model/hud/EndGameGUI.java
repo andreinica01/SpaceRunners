@@ -48,11 +48,10 @@ public class EndGameGUI implements IEndGameGUI {
     saveButton.setMinWidth(200);
     GridPane.setConstraints(saveButton, 1, 1);
     saveButton.setOnAction(
-      e -> {
-        //save
-        this.endGameWindow.close();
-      }
-    );
+        e -> {
+          // save
+          this.endGameWindow.close();
+        });
 
     savePane.getChildren().addAll(nameLabel, nameInput, saveButton);
 

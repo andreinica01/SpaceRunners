@@ -11,9 +11,7 @@ import model.status.StatusEnum;
 import model.status.StatusFactory;
 import view.gameField.GameField;
 
-/**
- * Class to manage the movement of the enemy ships
- */
+/** Class to manage the movement of the enemy ships */
 public class enemyAI {
 
   private final GameField gamefield;
@@ -55,7 +53,10 @@ public class enemyAI {
 
     while (ships.hasNext()) {
       SpaceShip ship = ships.next();
-      if (!this.gamefield.getGameContainer().getBoundsInLocal().contains(ship.getNode().getBoundsInParent())) {
+      if (!this.gamefield
+          .getGameContainer()
+          .getBoundsInLocal()
+          .contains(ship.getNode().getBoundsInParent())) {
         this.gamefield.getGameContainer().getChildren().remove(ship.getNode());
         ships.remove();
       }

@@ -47,7 +47,7 @@ public class GameFieldImpl implements GameField {
     this.enemyships = Collections.synchronizedSet(new HashSet<SpaceShip>());
     this.status = new HashSet<Status>();
 
-    //to load in specific class container
+    // to load in specific class container
     this.backGroundImage = new ImageView[2];
 
     this.width = width;
@@ -109,7 +109,7 @@ public class GameFieldImpl implements GameField {
 
   @Override
   public void setInputController(InputControllerImpl controller) {
-    //this.scene.addEventHandler(KeyEvent.ANY, controller);
+    // this.scene.addEventHandler(KeyEvent.ANY, controller);
 
   }
 

@@ -42,9 +42,9 @@ public class GameManager extends AnimationTimer {
   @Override
   public void handle(long now) {
     /* if ((now - prevtime) < sleepNs) {
-            ("exit");
-            return;
-        } */
+        ("exit");
+        return;
+    } */
 
     try {
       Thread.sleep(0, 100000);
@@ -56,9 +56,7 @@ public class GameManager extends AnimationTimer {
     prevtime = now;
   }
 
-  /**
-   * @return time sleep value
-   */
+  /** @return time sleep value */
   public long getTimeSleep() {
     return this.sleepNs;
   }

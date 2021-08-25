@@ -7,6 +7,7 @@ public class Vector2DImpl<NumType extends Number> implements Vector2D<NumType> {
 
   /**
    * Constructor used to create a 2D Vector from x, y coordinates
+   *
    * @param x coordinate
    * @param y coordinate
    */
@@ -47,14 +48,13 @@ public class Vector2DImpl<NumType extends Number> implements Vector2D<NumType> {
 
   /**
    * Returns the euclidean distance between two 2D vectors
+   *
    * @param v1 vector
    * @param v2 vector
    * @return euclidean distance
    */
   public static double getDistance(
-    final Vector2D<? extends Number> v1,
-    final Vector2D<? extends Number> v2
-  ) {
+      final Vector2D<? extends Number> v1, final Vector2D<? extends Number> v2) {
     final double x = v1.getX().doubleValue() - v2.getX().doubleValue();
     final double y = v1.getY().doubleValue() - v2.getY().doubleValue();
     return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));

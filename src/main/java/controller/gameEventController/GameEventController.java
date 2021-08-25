@@ -2,8 +2,6 @@ package controller.gameEventController;
 
 import controller.collisionEngine.PhysicsEngine;
 import controller.collisionEngine.PhysicsEngineImpl;
-import controller.status.StatusController;
-import model.hud.EndGameGUI;
 import model.hud.HUDBonusImpl;
 import model.hud.HUDLifeImpl;
 import model.hud.HUDParameters;
@@ -29,6 +27,7 @@ public class GameEventController implements IGameEventController {
 
   /**
    * Constructor.
+   *
    * @param Game container
    */
   public GameEventController(final GameField gameField) {
@@ -39,7 +38,7 @@ public class GameEventController implements IGameEventController {
 
   @Override
   public void endGame() {
-    //new EndGameGUI().end(this.checkPoints());
+    // new EndGameGUI().end(this.checkPoints());
   }
 
   @Override
@@ -67,7 +66,7 @@ public class GameEventController implements IGameEventController {
      * Collision engine comes with HUD creation!
      */
     this.collisionEngine =
-      new PhysicsEngineImpl(this.gameField, this.hud, this.playerLives, this.bonusHUD);
+        new PhysicsEngineImpl(this.gameField, this.hud, this.playerLives, this.bonusHUD);
   }
 
   @Override

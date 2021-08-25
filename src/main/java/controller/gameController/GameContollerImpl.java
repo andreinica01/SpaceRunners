@@ -33,9 +33,7 @@ public class GameContollerImpl implements GameController {
     /* setup player info */
     this.player = new PlayerSpaceShip(this.gamefield);
     this.player.setPosition(
-        this.gamefield.getWidth().intValue() / 2,
-        this.gamefield.getHeight().intValue() - 200
-      );
+        this.gamefield.getWidth().intValue() / 2, this.gamefield.getHeight().intValue() - 200);
 
     this.gamefield.setPlayer(this.player);
     this.frame = new FrameManager(this.gamefield);
@@ -57,13 +55,13 @@ public class GameContollerImpl implements GameController {
   public void update() {
     this.controlStates = this.inputController.getControlStates();
 
-    if (this.controlStates.get(InputCommand.GO_LEFT)) if (
-      !this.player.isInvertedCommand()
-    ) this.player.setDirection(Direction.LEFT); else this.player.setDirection(Direction.RIGHT);
+    if (this.controlStates.get(InputCommand.GO_LEFT))
+      if (!this.player.isInvertedCommand()) this.player.setDirection(Direction.LEFT);
+      else this.player.setDirection(Direction.RIGHT);
 
-    if (this.controlStates.get(InputCommand.GO_RIGHT)) if (
-      !this.player.isInvertedCommand()
-    ) this.player.setDirection(Direction.RIGHT); else this.player.setDirection(Direction.LEFT);
+    if (this.controlStates.get(InputCommand.GO_RIGHT))
+      if (!this.player.isInvertedCommand()) this.player.setDirection(Direction.RIGHT);
+      else this.player.setDirection(Direction.LEFT);
 
     if (this.controlStates.get(InputCommand.NONE)) {
       this.player.setDirection(Direction.NONE);

@@ -28,7 +28,8 @@ public class SoundManager {
       if (this.sounds.size() > SOUND_MEMORY_BUFFER) {
         cleanSoundMemory();
       }
-    } catch (Exception e) {}
+    } catch (Exception e) {
+    }
   }
 
   public void playBulletSound() {

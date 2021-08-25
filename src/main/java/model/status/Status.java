@@ -6,13 +6,12 @@ import model.EntityImpl;
 import model.ship.SpaceShip;
 
 /**
- * An entity that can apply, under certain condition, an effect (bonus or malus)
- * to the player. Any type of effect are temporary, each of them have a different
- * cooldown.
+ * An entity that can apply, under certain condition, an effect (bonus or malus) to the player. Any
+ * type of effect are temporary, each of them have a different cooldown.
  */
 public abstract class Status extends EntityImpl {
 
-  private long coolDown; //in s
+  private long coolDown; // in s
   private double boostFactor;
 
   private SpaceShip player;

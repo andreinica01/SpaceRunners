@@ -44,8 +44,6 @@ public abstract class SpaceShip extends EntityImpl {
     this.invertedCommand = invertedCommand;
   }
 
-  /**
-   * attack
-   */
+  /** attack */
   public abstract void attack();
 }

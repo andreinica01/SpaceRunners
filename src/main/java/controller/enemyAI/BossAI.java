@@ -56,12 +56,16 @@ public class BossAI {
 
     switch (taskName) {
       case "Movement":
-        bossControls.put("Movement",
-            scheduler.schedule(bossMovement, Utilities.getRandomMillis(1.0, 4.0), TimeUnit.MILLISECONDS));
+        bossControls.put(
+            "Movement",
+            scheduler.schedule(
+                bossMovement, Utilities.getRandomMillis(1.0, 4.0), TimeUnit.MILLISECONDS));
         break;
       case "Firing":
-        bossControls.put("Firing",
-            scheduler.schedule(bossFiring, Utilities.getRandomMillis(0.0, 3.0), TimeUnit.MILLISECONDS));
+        bossControls.put(
+            "Firing",
+            scheduler.schedule(
+                bossFiring, Utilities.getRandomMillis(0.0, 3.0), TimeUnit.MILLISECONDS));
         break;
       default:
     }

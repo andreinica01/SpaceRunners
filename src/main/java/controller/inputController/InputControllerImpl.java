@@ -55,14 +55,12 @@ public class InputControllerImpl {
     this.scene.setOnKeyPressed(
         e -> {
           pressedkeys.put(e.getCode(), true);
-        }
-      );
+        });
 
     this.scene.setOnKeyReleased(
         e -> {
           pressedkeys.put(e.getCode(), false);
-        }
-      );
+        });
   }
 
   private void movePlayerShip() {
@@ -78,12 +76,8 @@ public class InputControllerImpl {
       this.controlStates.put(InputCommand.NONE, false);
     }
 
-    if (
-      (!this.pressedkeys.get(KeyCode.D)) &&
-      (!this.pressedkeys.get(KeyCode.A)) ||
-      (this.pressedkeys.get(KeyCode.D)) &&
-      (this.pressedkeys.get(KeyCode.A))
-    ) {
+    if ((!this.pressedkeys.get(KeyCode.D)) && (!this.pressedkeys.get(KeyCode.A))
+        || (this.pressedkeys.get(KeyCode.D)) && (this.pressedkeys.get(KeyCode.A))) {
       this.controlStates.put(InputCommand.NONE, true);
       this.controlStates.put(InputCommand.GO_RIGHT, false);
       this.controlStates.put(InputCommand.GO_LEFT, false);

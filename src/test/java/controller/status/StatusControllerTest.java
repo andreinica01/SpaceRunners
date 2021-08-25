@@ -15,9 +15,7 @@ import model.status.bonus.BonusSpeed;
 import org.junit.jupiter.api.Test;
 import view.gameField.*;
 
-/**
- * Class Test to verify the correct Status behavior
- */
+/** Class Test to verify the correct Status behavior */
 class StatusControllerTest {
 
   private PlayerSpaceShip player;
@@ -36,9 +34,7 @@ class StatusControllerTest {
     this.factory = new StatusFactory();
   }
 
-  /**
-   * Testing if BonusLife is applied
-   */
+  /** Testing if BonusLife is applied */
   @Test
   void bonuLifeTest() {
     controller.applyEffect(factory.createStatus(StatusEnum.BonusLife));
@@ -47,9 +43,7 @@ class StatusControllerTest {
     assertEquals(4, player.getLifePoints());
   }
 
-  /**
-   * Testing if BonusSpeed is applied
-   */
+  /** Testing if BonusSpeed is applied */
   @Test
   void bonusSpeedTest() {
     Status bonusSpeed = factory.createStatus(StatusEnum.BonusSpeed);
@@ -60,9 +54,7 @@ class StatusControllerTest {
     assertEquals(player.getSpeed().doubleValue(), speed);
   }
 
-  /**
-   * Testing if MalusCommand is applied
-   */
+  /** Testing if MalusCommand is applied */
   @Test
   void malusCommandTest() {
     Boolean prevValue = player.isInvertedCommand();
@@ -71,9 +63,7 @@ class StatusControllerTest {
     assertTrue(player.isInvertedCommand()); // Testing MalusFire
   }
 
-  /**
-   * Testing if MalusFire is applied
-   */
+  /** Testing if MalusFire is applied */
   @Test
   void malusFire() {
     Boolean prevValue = player.getCanFire();
@@ -82,9 +72,7 @@ class StatusControllerTest {
     assertFalse(player.getCanFire());
   }
 
-  /**
-   * Testing if MalusSpeed is applied
-   */
+  /** Testing if MalusSpeed is applied */
   @Test
   void malusSpeedTest() {
     Status malusSpeed = factory.createStatus(StatusEnum.MalusSpeed);
@@ -96,8 +84,8 @@ class StatusControllerTest {
   }
 
   /**
-   * Verify that cooldown is refreshed after applying for the second time, before
-   * the first expires, a Status.
+   * Verify that cooldown is refreshed after applying for the second time, before the first expires,
+   * a Status.
    */
   @Test
   void refreshTimeTest() {
@@ -106,33 +94,30 @@ class StatusControllerTest {
     bonusSpeedTest();
     long timeSpan = (long) (new BonusSpeed().getCoolDown() - 2.0) * 1000;
     // Waiting until cooldown goes down of a bit (timeSpan)
-    while (
-      controller
-        .getPlayerStatus()
-        .get(StatusEnum.BonusSpeed)
-        .get()
-        .getDelay(TimeUnit.MILLISECONDS) >
-      timeSpan
-    );
+    while (controller
+            .getPlayerStatus()
+            .get(StatusEnum.BonusSpeed)
+            .get()
+            .getDelay(TimeUnit.MILLISECONDS)
+        > timeSpan)
+      ;
     // Testing changes
     controller.applyEffect(factory.createStatus(StatusEnum.BonusSpeed));
     waitUntilApplied(
-      () ->
-        controller
-          .getPlayerStatus()
-          .get(StatusEnum.BonusSpeed)
-          .get()
-          .getDelay(TimeUnit.MILLISECONDS) <
-        timeSpan
-    );
+        () ->
+            controller
+                    .getPlayerStatus()
+                    .get(StatusEnum.BonusSpeed)
+                    .get()
+                    .getDelay(TimeUnit.MILLISECONDS)
+                < timeSpan);
     assertTrue(
-      controller
-        .getPlayerStatus()
-        .get(StatusEnum.BonusSpeed)
-        .get()
-        .getDelay(TimeUnit.MILLISECONDS) >
-      timeSpan
-    );
+        controller
+                .getPlayerStatus()
+                .get(StatusEnum.BonusSpeed)
+                .get()
+                .getDelay(TimeUnit.MILLISECONDS)
+            > timeSpan);
   }
 
   private void waitUntilApplied(Supplier<Boolean> condition) {

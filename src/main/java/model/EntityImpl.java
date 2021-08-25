@@ -55,6 +55,7 @@ public abstract class EntityImpl implements Entity {
 
   @Override
   public Vector2D<Number> getDimension() {
+    // to change
     return this.dimension;
   }
 

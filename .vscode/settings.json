@@ -1,7 +1,7 @@
 {
-    "[java]": {
-        "editor.defaultFormatter": "redhat.java"
-},
-"editor.formatOnSave": true
-
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+  },
+  "editor.formatOnSave": true,
+  "java.format.settings.url": "eclipse-formatter.xml"
 }

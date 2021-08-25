@@ -25,27 +25,23 @@ public class FrameManager {
     switch (entity.getDirection()) {
       case UP:
         entity.setPosition(
-          entity.getPosition().getX(),
-          entity.getPosition().getY().intValue() - entity.getSpeed().intValue()
-        );
+            entity.getPosition().getX(),
+            entity.getPosition().getY().intValue() - entity.getSpeed().intValue());
         break;
       case DOWN:
         entity.setPosition(
-          entity.getPosition().getX(),
-          entity.getPosition().getY().intValue() + entity.getSpeed().intValue()
-        );
+            entity.getPosition().getX(),
+            entity.getPosition().getY().intValue() + entity.getSpeed().intValue());
         break;
       case LEFT:
         entity.setPosition(
-          entity.getPosition().getX().intValue() - entity.getSpeed().intValue(),
-          entity.getPosition().getY()
-        );
+            entity.getPosition().getX().intValue() - entity.getSpeed().intValue(),
+            entity.getPosition().getY());
         break;
       case RIGHT:
         entity.setPosition(
-          entity.getPosition().getX().intValue() + entity.getSpeed().intValue(),
-          entity.getPosition().getY()
-        );
+            entity.getPosition().getX().intValue() + entity.getSpeed().intValue(),
+            entity.getPosition().getY());
         break;
       case NONE:
         break;
@@ -55,8 +51,7 @@ public class FrameManager {
   private void updateBackground() {
     for (Node image : this.gamefield.getBackground()) {
       image.setLayoutY(
-        image.getLayoutY() + (this.gamefield.getPlayer().getSpeed().intValue() * (4 / 3))
-      );
+          image.getLayoutY() + (this.gamefield.getPlayer().getSpeed().intValue() * (4 / 3)));
 
       if (image.getLayoutY() >= this.gamefield.getHeight().intValue()) {
         image.setLayoutY(-this.gamefield.getHeight().intValue());
