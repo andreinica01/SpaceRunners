@@ -17,18 +17,11 @@ public class BonusSpeed extends Status {
     setCoolDown(7); //7 s
     setBoostFactor((double) 3 / 2);
 
-    setEffect(
-      () ->
-        getPlayer()
-          .setSpeed(getPlayer().getSpeed().doubleValue() * getBoostFactor())
-    );
+    setEffect(() -> getPlayer().setSpeed(getPlayer().getSpeed().doubleValue() * getBoostFactor()));
 
     setRemoveEffect(
       () ->
-        getPlayer()
-          .setSpeed(
-            getPlayer().getSpeed().doubleValue() * (double) 1 / getBoostFactor()
-          )
+        getPlayer().setSpeed(getPlayer().getSpeed().doubleValue() * (double) 1 / getBoostFactor())
     );
   }
 }

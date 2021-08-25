@@ -18,10 +18,7 @@ public class PlayerSpaceShip extends SpaceShip {
   public void attack() {
     Bullet bullet = new Bullet().bulletDamage(10);
 
-    bullet.setPosition(
-      this.getNode().getTranslateX() - 190,
-      this.getNode().getTranslateY() - 200
-    );
+    bullet.setPosition(this.getNode().getTranslateX() - 190, this.getNode().getTranslateY() - 200);
     bullet.setSpeed(10);
 
     this.gamefield.addBullet(bullet);

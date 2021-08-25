@@ -38,11 +38,7 @@ public class HUDLifeImpl implements IHUDLife {
     this.lifePoints = INITIAL_LIFE_POINTS;
     this.gameStatus = HUDParameters.TRUE;
 
-    for (
-      int i = HUDParameters.ZERO;
-      i < this.lives.length - INITIAL_MALUS;
-      i++
-    ) {
+    for (int i = HUDParameters.ZERO; i < this.lives.length - INITIAL_MALUS; i++) {
       this.addLife(i);
     }
   }

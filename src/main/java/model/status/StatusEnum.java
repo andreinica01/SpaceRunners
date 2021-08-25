@@ -16,7 +16,6 @@ public enum StatusEnum {
    * Return a random Status type.
    */
   public static StatusEnum getRandom() {
-    return StatusEnum.values()[new Random()
-        .nextInt(StatusEnum.values().length)];
+    return StatusEnum.values()[new Random().nextInt(StatusEnum.values().length)];
   }
 }

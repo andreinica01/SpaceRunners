@@ -47,9 +47,7 @@ public class HUDBonusImpl implements IHUDBonus {
     this.bonus[index] =
       new ImageView(
         new Image(
-          new File(HUDParameters.PNG_FOLDER + "bonusLife.png")
-            .toURI()
-            .toString(),
+          new File(HUDParameters.PNG_FOLDER + "bonusLife.png").toURI().toString(),
           SPACING,
           SPACING,
           HUDParameters.RATIO,
@@ -68,9 +66,7 @@ public class HUDBonusImpl implements IHUDBonus {
     this.bonus[index] =
       new ImageView(
         new Image(
-          new File(HUDParameters.PNG_FOLDER + "BonusSpeed.png")
-            .toURI()
-            .toString(),
+          new File(HUDParameters.PNG_FOLDER + "BonusSpeed.png").toURI().toString(),
           SPACING,
           SPACING,
           HUDParameters.RATIO,
@@ -89,9 +85,7 @@ public class HUDBonusImpl implements IHUDBonus {
     this.bonus[index] =
       new ImageView(
         new Image(
-          new File(HUDParameters.PNG_FOLDER + "malusCommand.png")
-            .toURI()
-            .toString(),
+          new File(HUDParameters.PNG_FOLDER + "malusCommand.png").toURI().toString(),
           SPACING,
           SPACING,
           HUDParameters.RATIO,
@@ -110,9 +104,7 @@ public class HUDBonusImpl implements IHUDBonus {
     this.bonus[index] =
       new ImageView(
         new Image(
-          new File(HUDParameters.PNG_FOLDER + "malusFire.png")
-            .toURI()
-            .toString(),
+          new File(HUDParameters.PNG_FOLDER + "malusFire.png").toURI().toString(),
           SPACING,
           SPACING,
           HUDParameters.RATIO,
@@ -131,9 +123,7 @@ public class HUDBonusImpl implements IHUDBonus {
     this.bonus[index] =
       new ImageView(
         new Image(
-          new File(HUDParameters.PNG_FOLDER + "malusSpeed.png")
-            .toURI()
-            .toString(),
+          new File(HUDParameters.PNG_FOLDER + "malusSpeed.png").toURI().toString(),
           SPACING,
           SPACING,
           HUDParameters.RATIO,

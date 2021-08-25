@@ -15,17 +15,13 @@ public class CollisionDetector {
 
   public boolean isPlayerCollidingLeftWall() {
     return (
-      this.gamefield.getPlayer().getPosition().getX().intValue() >
-      this.fieldBounds.getMaxX() -
-      120
+      this.gamefield.getPlayer().getPosition().getX().intValue() > this.fieldBounds.getMaxX() - 120
     );
   }
 
   public boolean isPlayerCollidingRightWall() {
     return (
-      this.gamefield.getPlayer().getPosition().getX().intValue() <
-      this.fieldBounds.getMinX() -
-      25
+      this.gamefield.getPlayer().getPosition().getX().intValue() < this.fieldBounds.getMinX() - 25
     );
   }
 }

@@ -66,17 +66,13 @@ public class InputControllerImpl {
   }
 
   private void movePlayerShip() {
-    if (
-      (this.pressedkeys.get(KeyCode.A)) && (!this.pressedkeys.get(KeyCode.D))
-    ) {
+    if ((this.pressedkeys.get(KeyCode.A)) && (!this.pressedkeys.get(KeyCode.D))) {
       this.controlStates.put(InputCommand.GO_LEFT, true);
       this.controlStates.put(InputCommand.GO_RIGHT, false);
       this.controlStates.put(InputCommand.NONE, false);
     }
 
-    if (
-      (this.pressedkeys.get(KeyCode.D)) && (!this.pressedkeys.get(KeyCode.A))
-    ) {
+    if ((this.pressedkeys.get(KeyCode.D)) && (!this.pressedkeys.get(KeyCode.A))) {
       this.controlStates.put(InputCommand.GO_RIGHT, true);
       this.controlStates.put(InputCommand.GO_LEFT, false);
       this.controlStates.put(InputCommand.NONE, false);

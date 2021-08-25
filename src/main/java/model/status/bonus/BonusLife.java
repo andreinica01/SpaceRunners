@@ -19,8 +19,7 @@ public class BonusLife extends Status {
 
     setEffect(
       () -> {
-        if (getPlayer().getLifePoints() < MAXIMUM_LIFE) getPlayer()
-          .increaseLifePoints(1);
+        if (getPlayer().getLifePoints() < MAXIMUM_LIFE) getPlayer().increaseLifePoints(1);
       }
     );
 

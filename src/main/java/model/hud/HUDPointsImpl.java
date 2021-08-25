@@ -46,9 +46,7 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
     this.backImage =
       new BackgroundImage(
         new Image(
-          new File(HUDParameters.PNG_FOLDER + "info_label.png")
-            .toURI()
-            .toString(),
+          new File(HUDParameters.PNG_FOLDER + "info_label.png").toURI().toString(),
           PREF_WIDTH,
           PREF_HEIGHT,
           HUDParameters.RATIO,

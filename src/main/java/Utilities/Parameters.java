@@ -17,9 +17,7 @@ public class Parameters {
   public static String SoundFolder = ResourcesFolder + "Sounds/";
 
   public static Image getlifePointsImage() {
-    return new Image(
-      new File(ImageFolder + "spaceshipLife.png").toURI().toString()
-    );
+    return new Image(new File(ImageFolder + "spaceshipLife.png").toURI().toString());
   }
 
   /*Images*/

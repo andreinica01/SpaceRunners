@@ -20,11 +20,7 @@ public class SoundManager {
   private void playSound(String sound) {
     try {
       Clip soundClip = AudioSystem.getClip();
-      soundClip.open(
-        AudioSystem.getAudioInputStream(
-          new File(Parameters.SoundFolder + sound)
-        )
-      );
+      soundClip.open(AudioSystem.getAudioInputStream(new File(Parameters.SoundFolder + sound)));
 
       soundClip.start();
       this.sounds.add(soundClip);

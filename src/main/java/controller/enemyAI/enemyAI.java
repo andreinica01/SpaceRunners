@@ -82,10 +82,7 @@ public class enemyAI {
 
       this.gamefield.addEnemyShip(enemyship);
 
-      enemyInterval =
-        (long) (
-          (Utilities.getRandomDouble(0.0, 5 * 1 / difficultyFactor) * 1000)
-        );
+      enemyInterval = (long) ((Utilities.getRandomDouble(0.0, 5 * 1 / difficultyFactor) * 1000));
       enemyResetTime = System.currentTimeMillis();
 
       removeUnused();

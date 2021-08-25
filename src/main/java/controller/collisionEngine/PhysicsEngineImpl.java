@@ -71,20 +71,14 @@ public class PhysicsEngineImpl implements PhysicsEngine {
 
     if (this.isPlayerCollidingLeftWall()) {
       this.gamefield.getPlayer()
-        .setPosition(
-          limit - RESET_X,
-          this.gamefield.getPlayer().getPosition().getY().intValue()
-        );
+        .setPosition(limit - RESET_X, this.gamefield.getPlayer().getPosition().getY().intValue());
 
       //Sound
       this.gamefield.getSoundManager().playClashWall();
     } else if (this.isPlayerCollidingRightWall()) {
       this.gamefield.getSoundManager().playClashWall();
       this.gamefield.getPlayer()
-        .setPosition(
-          limit + RESET_X,
-          this.gamefield.getPlayer().getPosition().getY().intValue()
-        );
+        .setPosition(limit + RESET_X, this.gamefield.getPlayer().getPosition().getY().intValue());
       //Sound
       this.gamefield.getSoundManager().playClashWall();
     }
@@ -121,17 +115,10 @@ public class PhysicsEngineImpl implements PhysicsEngine {
     for (SpaceShip spaceship : this.gamefield.getActiveEnemyShips()) {
       Bounds shipBound = spaceship.getNode().getBoundsInParent();
 
-      if (
-        this.gamefield.getPlayer()
-          .getNode()
-          .getBoundsInParent()
-          .intersects(shipBound)
-      ) {
+      if (this.gamefield.getPlayer().getNode().getBoundsInParent().intersects(shipBound)) {
         this.removeLife();
         this.removePoints();
-        this.gamefield.getGameContainer()
-          .getChildren()
-          .remove(spaceship.getNode());
+        this.gamefield.getGameContainer().getChildren().remove(spaceship.getNode());
         this.toBeRemovedList.add(spaceship);
 
         //Sound
@@ -190,12 +177,8 @@ public class PhysicsEngineImpl implements PhysicsEngine {
         Bounds shipBound = spaceship.getNode().getBoundsInParent();
 
         if (bulletBound.intersects(shipBound)) {
-          this.gamefield.getGameContainer()
-            .getChildren()
-            .remove(spaceship.getNode());
-          this.gamefield.getGameContainer()
-            .getChildren()
-            .remove(bullet.getNode());
+          this.gamefield.getGameContainer().getChildren().remove(spaceship.getNode());
+          this.gamefield.getGameContainer().getChildren().remove(bullet.getNode());
           bullet.setPosition(-1000, bullet.getBounds().getY());
 
           this.addPoints();

@@ -67,12 +67,7 @@ public class GameEventController implements IGameEventController {
      * Collision engine comes with HUD creation!
      */
     this.collisionEngine =
-      new PhysicsEngineImpl(
-        this.gameField,
-        this.hud,
-        this.playerLives,
-        this.bonusHUD
-      );
+      new PhysicsEngineImpl(this.gameField, this.hud, this.playerLives, this.bonusHUD);
   }
 
   @Override

@@ -39,9 +39,7 @@ public class StatusController {
    */
   public boolean applyEffect(Status status) {
     status.setPlayer(this.player);
-    Optional<ScheduledFuture<?>> task = playerStatus.get(
-      status.getStatusName()
-    );
+    Optional<ScheduledFuture<?>> task = playerStatus.get(status.getStatusName());
     //Adding effect if never added before or already terminated
     if (task.isEmpty() || task.get().isDone()) {
       addTemporaryEffect(status);
@@ -57,11 +55,7 @@ public class StatusController {
     //Applying effect
     ses.execute(status.getEffect());
     //Scheduling effect timeout, and add it to the map
-    var task = ses.schedule(
-      status.getRemoveEffect(),
-      status.getCoolDown(),
-      TimeUnit.SECONDS
-    );
+    var task = ses.schedule(status.getRemoveEffect(), status.getCoolDown(), TimeUnit.SECONDS);
     addTask(status, task);
   }
 

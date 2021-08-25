@@ -56,8 +56,7 @@ public class FrameManager {
   private void updateBackground() {
     for (Node image : this.gamefield.getBackground()) {
       image.setLayoutY(
-        image.getLayoutY() +
-        (this.gamefield.getPlayer().getSpeed().intValue() * 2 / 3)
+        image.getLayoutY() + (this.gamefield.getPlayer().getSpeed().intValue() * 2 / 3)
       );
 
       if (image.getLayoutY() >= this.gamefield.getHeight().intValue()) {

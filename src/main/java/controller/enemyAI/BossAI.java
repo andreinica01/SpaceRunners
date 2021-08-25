@@ -34,18 +34,26 @@ public class BossAI {
       }
     };
 
-    final ScheduledFuture<?> bossThread = scheduler.scheduleAtFixedRate(bossMovement, 1, 1, TimeUnit.SECONDS);
-    scheduler.schedule(new Runnable() {
-      public void run() {
-      }
-    }, 60 * 60, TimeUnit.SECONDS);
+    final ScheduledFuture<?> bossThread = scheduler.scheduleAtFixedRate(
+      bossMovement,
+      1,
+      1,
+      TimeUnit.SECONDS
+    );
+    scheduler.schedule(
+      new Runnable() {
+        public void run() {}
+      },
+      60 * 60,
+      TimeUnit.SECONDS
+    );
     // attack
     /*
      * final Runnable boss = new Runnable() { public void run() {
      * bossShip.invertDirection();
-     * 
+     *
      * } };
-     * 
+     *
      * final ScheduledFuture<?> bossThread = scheduler.scheduleAtFixedRate(boss, 1,
      * 1, TimeUnit.SECONDS); scheduler.schedule(new Runnable() { public void run() {
      * } }, 60 * 60, TimeUnit.SECONDS);
