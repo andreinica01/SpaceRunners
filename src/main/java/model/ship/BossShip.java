@@ -8,8 +8,6 @@ public class BossShip extends SpaceShip {
 
   public BossShip(GameField gamefield) {
     super(gamefield);
-    // this.setDimension(new Vector2DImpl<Number>(50, 50));
-
     this.setImage(Parameters.bossShipImage);
     this.setDirection(Direction.DOWN);
     this.getNode().setScaleX(0.15);
