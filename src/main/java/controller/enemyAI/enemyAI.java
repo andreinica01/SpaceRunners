@@ -1,10 +1,9 @@
 package controller.enemyAI;
 
-import java.util.Iterator;
-import java.util.Random;
-
 import Utilities.Utilities;
 import controller.gameEventController.GameEventController;
+import java.util.Iterator;
+import java.util.Random;
 import model.ship.EnemyShip;
 import model.ship.SpaceShip;
 import model.status.Status;
@@ -49,20 +48,21 @@ public class enemyAI {
     generateEnemy(checkAndSetDifficulty());
     generateStatus();
     manageBoss();
-
   }
 
   public void removeUnused() {
-
     Iterator<SpaceShip> ships = this.gamefield.getActiveEnemyShips().iterator();
 
     while (ships.hasNext()) {
       SpaceShip ship = ships.next();
-      if (!this.gamefield.getGameContainer().getBoundsInLocal().contains(ship.getNode().getBoundsInParent())) {
+      if (
+        !this.gamefield.getGameContainer()
+          .getBoundsInLocal()
+          .contains(ship.getNode().getBoundsInParent())
+      ) {
         this.gamefield.getGameContainer().getChildren().remove(ship.getNode());
         ships.remove();
       }
-
     }
   }
 
@@ -89,7 +89,6 @@ public class enemyAI {
 
       removeUnused();
     }
-
   }
 
   private void generateStatus() {
@@ -101,7 +100,6 @@ public class enemyAI {
 
       statusInterval = (long) ((Utilities.getRandomDouble(4.0, 15.0) * 1000));
       statusResetTime = System.currentTimeMillis();
-
     }
   }
 
@@ -110,5 +108,4 @@ public class enemyAI {
     // Every 20 points difficulty increasing by 20%
     return 1 + (((double) this.playerPoints / 20) * 0.2);
   }
-
 }

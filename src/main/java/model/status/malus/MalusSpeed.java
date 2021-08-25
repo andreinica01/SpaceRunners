@@ -19,6 +19,9 @@ public class MalusSpeed extends Status {
 
     setEffect(() -> getPlayer().setSpeed(getPlayer().getSpeed().doubleValue() * getBoostFactor()));
 
-    setRemoveEffect(() -> getPlayer().setSpeed(getPlayer().getSpeed().doubleValue() * (double) 1 / getBoostFactor()));
+    setRemoveEffect(
+      () ->
+        getPlayer().setSpeed(getPlayer().getSpeed().doubleValue() * (double) 1 / getBoostFactor())
+    );
   }
 }

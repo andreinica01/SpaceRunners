@@ -1,13 +1,12 @@
 package controller.enemyAI;
 
+import Utilities.Direction;
+import Utilities.Utilities;
 import java.util.TreeMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
-
-import Utilities.Direction;
-import Utilities.Utilities;
 import model.ship.BossShip;
 import model.ship.SpaceShip;
 import view.gameField.GameField;
@@ -38,7 +37,6 @@ public class BossAI {
     this.gamefield.addEnemyShip(bossShip);
     this.addBossTask("Movement");
     this.addBossTask("Firing");
-
   }
 
   public void updateBoss() {
@@ -52,25 +50,28 @@ public class BossAI {
   private void addBossTask(String taskName) {
     switch (taskName) {
       case "Movement":
-        bossControls.put("Movement",
-            scheduler.schedule(bossMovement, Utilities.getRandomMillis(1.0, 4.0), TimeUnit.MILLISECONDS));
+        bossControls.put(
+          "Movement",
+          scheduler.schedule(
+            bossMovement,
+            Utilities.getRandomMillis(1.0, 4.0),
+            TimeUnit.MILLISECONDS
+          )
+        );
         break;
-
       case "Firing":
-        bossControls.put("Firing",
-            scheduler.schedule(bossFiring, Utilities.getRandomMillis(0.0, 3.0), TimeUnit.MILLISECONDS));
+        bossControls.put(
+          "Firing",
+          scheduler.schedule(bossFiring, Utilities.getRandomMillis(0.0, 3.0), TimeUnit.MILLISECONDS)
+        );
         break;
-
       default:
     }
-
   }
 
   public void removeBoss() {
     this.gamefield.getGameContainer().getChildren().remove(this.bossShip.getNode());
     this.gamefield.getActiveEnemyShips().remove(this.bossShip);
     this.bossControls.clear();
-
   }
-
 }
