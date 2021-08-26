@@ -122,7 +122,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
    *
    * @return true if player touches left side of the gameField.
    */
-  private boolean isEntityCollidingLeftWall(Entity entity) {
+  private boolean isEntityCollidingRightWall(Entity entity) {
     return (entity.getPosition().getX().intValue()
         > this.fieldBounds.getMaxX() - X_LEFT_BORDER);
   }
@@ -132,7 +132,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
    *
    * @return true if player touches right side of the gameField.
    */
-  private boolean isEntityCollidingRightWall(Entity entity) {
+  private boolean isEntityCollidingLeftWall(Entity entity) {
     return (entity.getPosition().getX().intValue()
         < this.fieldBounds.getMinX() - X_RIGHT_BORDER);
   }
