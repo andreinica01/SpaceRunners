@@ -18,8 +18,8 @@ import view.gameField.GameField;
 
 public class PhysicsEngineImpl implements PhysicsEngine {
 
-  private static final double X_LEFT_BORDER = 120;
-  private static final double X_RIGHT_BORDER = 25;
+  private static final double X_LEFT_BORDER = 146;
+  private static final double X_RIGHT_BORDER = 70;
   /*
    * Control fields
    */
