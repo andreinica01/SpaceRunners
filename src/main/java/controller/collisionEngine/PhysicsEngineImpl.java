@@ -10,7 +10,7 @@ import model.Entity;
 import model.bullet.Bullet;
 import model.hud.HUDBonusImpl;
 import model.hud.HUDLifeImpl;
-import model.hud.HUDParameters;
+import Utilities.HUDParameters;
 import model.hud.HUDPointsImpl;
 import model.ship.SpaceShip;
 import model.status.Status;
