@@ -5,7 +5,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
@@ -26,6 +25,7 @@ public class SoundManager {
         try {
             Clip soundClip = AudioSystem.getClip();
             soundClip.open(AudioSystem.getAudioInputStream(new File(Parameters.SoundFolder + sound)));
+            
 
             soundClip.start();
             this.sounds.add(soundClip);
@@ -51,6 +51,20 @@ public class SoundManager {
      */
     public void playShipPassing() {
         this.playSound("enemy.wav");
+    }
+    
+    /**
+     * Play player movement sound.
+     */
+    public void playPlayerMovementSound() {
+        this.playSound("playerMovement.wav");
+    }
+    
+    /**
+     * Play death sound.
+     */
+    public void playDeathSound() {
+        this.playSound("explosion.wav");
     }
 
     /**

@@ -77,7 +77,8 @@ public class GameContollerImpl implements GameController {
     this.AIController.update();
 
     if (!this.gameEventController.checkGameStatus()) {
-      System.exit(0);
+        this.gamefield.getSoundManager().playDeathSound();
+        System.exit(0);
     }
 
     frame.update();

@@ -18,6 +18,7 @@ public class FrameManager {
   public void update() {
     updateBackground();
 
+    this.gamefield.getSoundManager().playPlayerMovementSound();
     entities.forEach(entity -> updateEntityPosition(entity));
   }
 

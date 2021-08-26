@@ -6,6 +6,7 @@ import java.util.Map;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import model.ship.SpaceShip;
+import view.gameField.GameFieldImpl;
 
 public class InputControllerImpl {
 
@@ -93,7 +94,6 @@ public class InputControllerImpl {
       setFireFlag(true);
     }
     //	System.out.println(fireFlag);
-
   }
 
   public Map<InputCommand, Boolean> getControlStates() {
