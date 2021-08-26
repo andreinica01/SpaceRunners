@@ -80,6 +80,7 @@ public class enemyAI {
       enemyship.setPosition(rnd.nextInt(400), -300);
 
       this.gamefield.addEnemyShip(enemyship);
+      this.gamefield.getSoundManager().playShipPassing();
 
       enemyInterval = (long) ((Utilities.getRandomDouble(0.0, 5 * 1 / difficultyFactor) * 1000));
       enemyResetTime = System.currentTimeMillis();
