@@ -5,12 +5,12 @@ import java.util.Iterator;
 import java.util.List;
 
 import Utilities.Direction;
+import Utilities.HUDParameters;
 import javafx.geometry.Bounds;
 import model.Entity;
 import model.bullet.Bullet;
 import model.hud.HUDBonusImpl;
 import model.hud.HUDLifeImpl;
-import model.hud.HUDParameters;
 import model.hud.HUDPointsImpl;
 import model.ship.SpaceShip;
 import model.status.Status;
@@ -132,7 +132,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
    *
    * @return true if player touches right side of the gameField.
    */
-  private boolean isEntityCollidingWall(Entity entity) {
+  private boolean isEntityCollidingLeftWall(Entity entity) {
     return (entity.getPosition().getX().intValue()
         < this.fieldBounds.getMinX() - X_RIGHT_BORDER);
   }
