@@ -1,9 +1,6 @@
 package view.gameField;
 
-import controller.inputController.InputControllerImpl;
 import controller.status.StatusController;
-
-import java.util.List;
 import java.util.Set;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -50,12 +47,6 @@ public interface GameField {
     Scene getScene();
 
     /**
-     * Sets the input controller.
-     * @param controller
-     */
-    void setInputController(InputControllerImpl controller);
-  
-    /**
      * Remove entities from the game.
      * @param entity to be removed.
      */
@@ -79,12 +70,6 @@ public interface GameField {
     Node[] getBackground();
 
     /**
-     * Add a bullet to the game.
-     * @param bullet.
-     */
-    void addBullet(Bullet bullet);
-
-    /**
      * Add an enemy ship to the game.
      * @param enemy.
      */
@@ -104,4 +89,12 @@ public interface GameField {
      * @param statusController to be set.
      */
     void setStatusController(StatusController statusController);
+
+    Set<SpaceShip> getActiveBosses();
+
+    void addEnemyBullet(Bullet bullet);
+
+    void addBoss(BossShip boss);
+
+    void addPlayerBullet(Bullet bullet);
 }
