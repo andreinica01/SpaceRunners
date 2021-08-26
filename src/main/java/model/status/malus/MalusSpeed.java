@@ -1,6 +1,7 @@
 package model.status.malus;
 
 import Utilities.Parameters;
+import controller.collisionEngine.PhysicsEngineImpl;
 import model.status.Status;
 import model.status.StatusEnum;
 
@@ -19,7 +20,9 @@ public class MalusSpeed extends Status {
 
     setRemoveEffect(
         () ->
-            getPlayer()
-                .setSpeed(getPlayer().getSpeed().doubleValue() * (double) 1 / getBoostFactor()));
+            {getPlayer()
+                .setSpeed(getPlayer().getSpeed().doubleValue() * (double) 1 / getBoostFactor());
+           PhysicsEngineImpl.resetBound();             
+    });
   }
 }

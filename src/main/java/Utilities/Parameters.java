@@ -26,9 +26,9 @@ public class Parameters {
   public static Image BackgroundImage =
       new Image(new File(ImageFolder + "stars2.png").toURI().toString());
   public static Image playerImage =
-      new Image(new File(ImageFolder + "spaceship2.png").toURI().toString());
+      new Image(new File(ImageFolder + "playerShip.png").toURI().toString());
   public static Image enemyImage =
-      new Image(new File(ImageFolder + "enemyship.png").toURI().toString());
+      new Image(new File(ImageFolder + "enemy.png").toURI().toString());
   public static Image lifePointsImage =
       new Image(new File(ImageFolder + "spaceshipLife.png").toURI().toString());
   public static Image bonusLifeImage =

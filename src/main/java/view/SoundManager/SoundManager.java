@@ -27,6 +27,7 @@ public class SoundManager {
       this.sounds.add(soundClip);
 
     } catch (Exception e) {
+      System.out.println(e.toString());
     } finally {
 
       if (this.sounds.size() > SOUND_MEMORY_BUFFER) {

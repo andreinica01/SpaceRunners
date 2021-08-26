@@ -1,6 +1,7 @@
 package model.status.bonus;
 
 import Utilities.Parameters;
+import controller.collisionEngine.PhysicsEngineImpl;
 import model.status.Status;
 import model.status.StatusEnum;
 
@@ -19,7 +20,10 @@ public class BonusSpeed extends Status {
 
     setRemoveEffect(
         () ->
+        {
             getPlayer()
-                .setSpeed(getPlayer().getSpeed().doubleValue() * (double) 1 / getBoostFactor()));
+                .setSpeed(getPlayer().getSpeed().doubleValue() * (double) 1 / getBoostFactor());
+            PhysicsEngineImpl.resetBound();
+        });
   }
 }

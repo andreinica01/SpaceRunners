@@ -33,7 +33,7 @@ public class GameContollerImpl implements GameController {
     /* setup player info */
     this.player = new PlayerSpaceShip(this.gamefield);
     this.player.setPosition(
-        this.gamefield.getWidth().intValue() / 2, this.gamefield.getHeight().intValue() - 200);
+        this.gamefield.getWidth().intValue() / 2, this.gamefield.getHeight().intValue() - 220);
 
     this.gamefield.setPlayer(this.player);
     this.frame = new FrameManager(this.gamefield);

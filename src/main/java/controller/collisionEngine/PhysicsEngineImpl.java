@@ -15,7 +15,6 @@ import view.gameField.GameField;
 
 public class PhysicsEngineImpl implements PhysicsEngine {
 
-  private static final int RESET_X = 4;
   private static final double X_LEFT_BORDER = 120;
   private static final double X_RIGHT_BORDER = 25;
   /*
@@ -28,6 +27,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
   private Entity toremove;
   private Bounds fieldBounds;
   private boolean check;
+  public static double resetX;
 
   /*
    * List of entities that must be removed
@@ -43,6 +43,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
     this.pointsHUD = pointsHUD;
     this.livesHUD = livesHUD;
     this.bonusHUD = bonusHUD;
+    resetBound();
 
     this.toBeRemovedList = new ArrayList<Entity>();
     this.fieldBounds = this.gamefield.getScene().getRoot().getBoundsInLocal();
@@ -64,14 +65,14 @@ public class PhysicsEngineImpl implements PhysicsEngine {
     int limit = this.gamefield.getPlayer().getPosition().getX().intValue();
 
     if (this.isPlayerCollidingLeftWall()) {
-      this.gamefield.getPlayer().setPosition(limit - RESET_X,
+      this.gamefield.getPlayer().setPosition(limit - resetX,
           this.gamefield.getPlayer().getPosition().getY().intValue());
 
       // Sound
       this.gamefield.getSoundManager().playClashWall();
     } else if (this.isPlayerCollidingRightWall()) {
       this.gamefield.getSoundManager().playClashWall();
-      this.gamefield.getPlayer().setPosition(limit + RESET_X,
+      this.gamefield.getPlayer().setPosition(limit + resetX,
           this.gamefield.getPlayer().getPosition().getY().intValue());
       // Sound
       this.gamefield.getSoundManager().playClashWall();
@@ -125,9 +126,11 @@ public class PhysicsEngineImpl implements PhysicsEngine {
         switch (bonus.getStatusName()) {
         case BonusLife:
           this.bonusHUD.showBonus(HUDParameters.ZERO);
+          this.addLife();
           break;
         case BonusSpeed:
           this.bonusHUD.showBonus(HUDParameters.ONE);
+          resetX *= 1.5;
           break;
         case MalusCommand:
           this.bonusHUD.showBonus(HUDParameters.TWO);
@@ -137,6 +140,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
           break;
         case MalusSpeed:
           this.bonusHUD.showBonus(HUDParameters.FOUR);
+          resetX *= 0.5;
           break;
         }
         bonus.setPosition(-1000, bonus.getNode().getLayoutY());
@@ -157,6 +161,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
           this.gamefield.getGameContainer().getChildren().remove(spaceship.getNode());
           this.gamefield.getGameContainer().getChildren().remove(bullet.getNode());
           bullet.setPosition(-1000, bullet.getBounds().getY());
+
           this.addPoints();
           this.toBeRemovedList.add(spaceship);
           this.toremove = spaceship;
@@ -190,5 +195,14 @@ public class PhysicsEngineImpl implements PhysicsEngine {
   @Override
   public void addPoints() {
     this.pointsHUD.pointsUp();
+  }
+
+  @Override
+  public void addLife() {
+    this.livesHUD.lifeUp();
+  }
+
+  public static void resetBound() {
+    resetX = 4;
   }
 }

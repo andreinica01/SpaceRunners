@@ -1,10 +1,8 @@
 package model.hud;
 
 import java.io.File;
-import java.util.HashMap;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import model.status.StatusEnum;
 import view.gameField.GameField;
 
 public class HUDBonusImpl implements IHUDBonus {
@@ -20,7 +18,6 @@ public class HUDBonusImpl implements IHUDBonus {
    * Control fields
    */
   private ImageView[] bonus = new ImageView[HUDParameters.TOTAL_BONUS];
-  private HashMap<StatusEnum, Integer> conversionIndex = new HashMap<>();
   private GameField gamefield;
 
   /*
