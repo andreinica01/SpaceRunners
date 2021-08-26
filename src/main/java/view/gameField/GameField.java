@@ -2,12 +2,15 @@ package view.gameField;
 
 import controller.inputController.InputControllerImpl;
 import controller.status.StatusController;
+
+import java.util.List;
 import java.util.Set;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import model.Entity;
 import model.bullet.Bullet;
+import model.ship.BossShip;
 import model.ship.SpaceShip;
 import model.status.Status;
 import view.SoundManager.SoundManager;
@@ -48,7 +51,7 @@ public interface GameField {
   /** @return the scene. */
   Scene getScene();
 
-  void setInputController(InputControllerImpl controller);
+  void removeEntity(Entity entity);
 
   SoundManager getSoundManager();
 
@@ -58,7 +61,13 @@ public interface GameField {
 
   Node[] getBackground();
 
-  void addBullet(Bullet bullet);
+  void addEnemyBullet(Bullet bullet);
+
+  void addPlayerBullet(Bullet bullet);
+
+  void addBoss(BossShip boss);
+
+  Set<SpaceShip> getActiveBosses();
 
   void addEnemyShip(SpaceShip enemy);
 

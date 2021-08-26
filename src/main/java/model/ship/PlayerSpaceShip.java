@@ -12,6 +12,7 @@ public class PlayerSpaceShip extends SpaceShip {
     this.setSpeed(4);
     this.getNode().setScaleX(0.3);
     this.getNode().setScaleY(0.3);
+    this.lifePoints = Parameters.INITIAL_PLAYER_POINTS;
   }
 
   @Override
@@ -21,7 +22,7 @@ public class PlayerSpaceShip extends SpaceShip {
     bullet.setPosition(this.getNode().getTranslateX() - 157, this.getNode().getTranslateY() - 145);
     bullet.setSpeed(10);
 
-    this.gamefield.addBullet(bullet);
+    this.gamefield.addPlayerBullet(bullet);
     this.gamefield.getSoundManager().playBulletSound();
   }
 }

@@ -1,18 +1,17 @@
 package model.ship;
 
-import Utilities.Parameters;
 import model.EntityImpl;
 import view.gameField.GameField;
 
 public abstract class SpaceShip extends EntityImpl {
 
-  private int lifePoints;
+  protected int lifePoints;
   private boolean invertedCommand;
 
   protected GameField gamefield;
 
   public SpaceShip(GameField gamefield) {
-    this.lifePoints = Parameters.INITIAL_PLAYER_POINTS;
+
     setSpeed(10);
     setInvertedCommand(false);
     setCanFire(true);

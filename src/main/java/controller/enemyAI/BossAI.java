@@ -2,21 +2,21 @@ package controller.enemyAI;
 
 import Utilities.Direction;
 import Utilities.Utilities;
+import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import model.ship.BossShip;
-import model.ship.SpaceShip;
 import view.gameField.GameField;
 
 public class BossAI {
 
   private final GameField gamefield;
-  private SpaceShip bossShip;
+  private BossShip bossShip;
 
-  private TreeMap<String, ScheduledFuture<?>> bossControls;
+  private Map<String, ScheduledFuture<?>> bossControls;
   private Runnable bossMovement;
   private Runnable bossFiring;
 
@@ -34,7 +34,7 @@ public class BossAI {
     bossShip.setPosition(20, -300);
     bossShip.setDirection(Direction.LEFT);
     bossShip.setSpeed(4);
-    this.gamefield.addEnemyShip(bossShip);
+    this.gamefield.addBoss(bossShip);
     this.addBossTask("Movement");
     this.addBossTask("Firing");
   }

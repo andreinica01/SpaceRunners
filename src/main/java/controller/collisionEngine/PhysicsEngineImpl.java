@@ -1,7 +1,10 @@
 package controller.collisionEngine;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import Utilities.Direction;
 import javafx.geometry.Bounds;
 import model.Entity;
 import model.bullet.Bullet;
@@ -37,7 +40,10 @@ public class PhysicsEngineImpl implements PhysicsEngine {
   /*
    * Constructor
    */
-  public PhysicsEngineImpl(final GameField gamefield, final HUDPointsImpl pointsHUD, final HUDLifeImpl livesHUD,
+  public PhysicsEngineImpl(
+      final GameField gamefield,
+      final HUDPointsImpl pointsHUD,
+      final HUDLifeImpl livesHUD,
       final HUDBonusImpl bonusHUD) {
     this.gamefield = gamefield;
     this.pointsHUD = pointsHUD;
@@ -55,6 +61,36 @@ public class PhysicsEngineImpl implements PhysicsEngine {
     playerCollisionWithEnemies();
     playerBonusCollision();
     bulletCollsionwithEnemies();
+    bossesCollisionwithWall();
+  }
+
+
+  private void playerCollisionWithBullets()
+  {
+
+    Iterator<Bullet> x = this.gamefield.getActiveBulletsShotbyEnemies().iterator();
+
+   /*  while(x.hasNext())
+    {
+      if(x.next().getNode().getBoundsInParent().intersects(this.gamefield.getPlayer().getNode().getBoundsInParent())
+
+
+    }
+ */
+
+  }
+
+  private void bossesCollisionwithWall()
+  {
+
+    this.gamefield.getActiveBosses().forEach(boss -> {
+      if((isEntityCollidingLeftWall(boss) && boss.getDirection() == Direction.LEFT)
+       ||(isEntityCollidingRightWall(boss)&& boss.getDirection()==Direction.RIGHT))
+      {
+        boss.invertDirection();
+      }
+  
+    });
   }
 
   /*
@@ -64,16 +100,18 @@ public class PhysicsEngineImpl implements PhysicsEngine {
   private void collisionWalls() {
     int limit = this.gamefield.getPlayer().getPosition().getX().intValue();
 
-    if (this.isPlayerCollidingLeftWall()) {
-      this.gamefield.getPlayer().setPosition(limit - resetX,
-          this.gamefield.getPlayer().getPosition().getY().intValue());
+    if (this.isEntityCollidingLeftWall(this.gamefield.getPlayer())) {
+      this.gamefield
+          .getPlayer()
+          .setPosition(limit - resetX, this.gamefield.getPlayer().getPosition().getY().intValue());
 
       // Sound
       this.gamefield.getSoundManager().playClashWall();
-    } else if (this.isPlayerCollidingRightWall()) {
+    } else if (this.isEntityCollidingRightWall(this.gamefield.getPlayer())) {
       this.gamefield.getSoundManager().playClashWall();
-      this.gamefield.getPlayer().setPosition(limit + resetX,
-          this.gamefield.getPlayer().getPosition().getY().intValue());
+      this.gamefield
+          .getPlayer()
+          .setPosition(limit + resetX, this.gamefield.getPlayer().getPosition().getY().intValue());
       // Sound
       this.gamefield.getSoundManager().playClashWall();
     }
@@ -84,8 +122,9 @@ public class PhysicsEngineImpl implements PhysicsEngine {
    *
    * @return true if player touches left side of the gameField.
    */
-  private boolean isPlayerCollidingLeftWall() {
-    return (this.gamefield.getPlayer().getPosition().getX().intValue() > this.fieldBounds.getMaxX() - X_LEFT_BORDER);
+  private boolean isEntityCollidingLeftWall(Entity entity) {
+    return (entity.getPosition().getX().intValue()
+        > this.fieldBounds.getMaxX() - X_LEFT_BORDER);
   }
 
   /**
@@ -93,8 +132,9 @@ public class PhysicsEngineImpl implements PhysicsEngine {
    *
    * @return true if player touches right side of the gameField.
    */
-  private boolean isPlayerCollidingRightWall() {
-    return (this.gamefield.getPlayer().getPosition().getX().intValue() < this.fieldBounds.getMinX() - X_RIGHT_BORDER);
+  private boolean isEntityCollidingRightWall(Entity entity) {
+    return (entity.getPosition().getX().intValue()
+        < this.fieldBounds.getMinX() - X_RIGHT_BORDER);
   }
 
   /** Detects collision between player and enemy ships. */
@@ -120,28 +160,32 @@ public class PhysicsEngineImpl implements PhysicsEngine {
   /** Collision between player and bonus entities. */
   public void playerBonusCollision() {
     for (Status bonus : this.gamefield.getBonusObjects()) {
-      if (this.gamefield.getPlayer().getNode().getBoundsInParent().intersects(bonus.getNode().getBoundsInParent())) {
+      if (this.gamefield
+          .getPlayer()
+          .getNode()
+          .getBoundsInParent()
+          .intersects(bonus.getNode().getBoundsInParent())) {
         this.gamefield.getStatusController().applyEffect(bonus);
 
         switch (bonus.getStatusName()) {
-        case BonusLife:
-          this.bonusHUD.showBonus(HUDParameters.ZERO);
-          this.addLife();
-          break;
-        case BonusSpeed:
-          this.bonusHUD.showBonus(HUDParameters.ONE);
-          resetX *= 1.5;
-          break;
-        case MalusCommand:
-          this.bonusHUD.showBonus(HUDParameters.TWO);
-          break;
-        case MalusFire:
-          this.bonusHUD.showBonus(HUDParameters.THREE);
-          break;
-        case MalusSpeed:
-          this.bonusHUD.showBonus(HUDParameters.FOUR);
-          resetX *= 0.5;
-          break;
+          case BonusLife:
+            this.bonusHUD.showBonus(HUDParameters.ZERO);
+            this.addLife();
+            break;
+          case BonusSpeed:
+            this.bonusHUD.showBonus(HUDParameters.ONE);
+            resetX *= 1.5;
+            break;
+          case MalusCommand:
+            this.bonusHUD.showBonus(HUDParameters.TWO);
+            break;
+          case MalusFire:
+            this.bonusHUD.showBonus(HUDParameters.THREE);
+            break;
+          case MalusSpeed:
+            this.bonusHUD.showBonus(HUDParameters.FOUR);
+            resetX *= 0.5;
+            break;
         }
         bonus.setPosition(-1000, bonus.getNode().getLayoutY());
       }

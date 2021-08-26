@@ -4,7 +4,7 @@ import Utilities.Utilities;
 import controller.gameEventController.GameEventController;
 import java.util.Iterator;
 import java.util.Random;
-import model.ship.EnemyShip;
+import model.ship.EnemyNounShip;
 import model.ship.SpaceShip;
 import model.status.Status;
 import model.status.StatusEnum;
@@ -75,7 +75,7 @@ public class enemyAI {
 
   private void generateEnemy(Double difficultyFactor) {
     if (System.currentTimeMillis() - enemyResetTime > enemyInterval) {
-      SpaceShip enemyship = new EnemyShip(this.gamefield);
+      SpaceShip enemyship = new EnemyNounShip(this.gamefield);
       enemyship.setSpeed(enemyship.getSpeed().doubleValue() * difficultyFactor);
       enemyship.setPosition(rnd.nextInt(400), -300);
 

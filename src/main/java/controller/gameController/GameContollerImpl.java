@@ -37,7 +37,6 @@ public class GameContollerImpl implements GameController {
 
     this.gamefield.setPlayer(this.player);
     this.frame = new FrameManager(this.gamefield);
-    this.gamefield.setInputController(this.inputController);
 
     this.gamefield.setBackgroundImage(Parameters.ImageFolder + "back.png");
     this.inputController = new InputControllerImpl(this.player.getNode().getScene(), this.player);
