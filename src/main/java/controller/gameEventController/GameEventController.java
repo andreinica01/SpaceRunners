@@ -1,10 +1,10 @@
 package controller.gameEventController;
 
+import Utilities.HUDParameters;
 import controller.collisionEngine.PhysicsEngine;
 import controller.collisionEngine.PhysicsEngineImpl;
 import model.hud.HUDBonusImpl;
 import model.hud.HUDLifeImpl;
-import model.hud.HUDParameters;
 import model.hud.HUDPointsImpl;
 import view.gameField.GameField;
 

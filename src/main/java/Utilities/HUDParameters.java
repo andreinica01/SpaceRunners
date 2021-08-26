@@ -1,6 +1,5 @@
-package model.hud;
+package Utilities;
 
-import Utilities.Parameters;
 import javafx.geometry.Pos;
 
 /** This class contains various HUD parameters in order to give the code a better look */
