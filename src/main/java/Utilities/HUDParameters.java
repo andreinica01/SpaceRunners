@@ -1,6 +1,7 @@
 package Utilities;
 
 import javafx.geometry.Pos;
+import javafx.scene.text.Font;
 
 /**
  * This class contains various HUD parameters in order to give the code a better
@@ -20,6 +21,8 @@ public class HUDParameters {
     public static final int INSETS_MEASURES = 10;
     public static final int FONT_SIZE_999 = 18;
     public static final int FONT_SIZE_9999 = 16;
+    public static final Font FONT_9999 = new Font(HUDParameters.FONT, HUDParameters.FONT_SIZE_9999);
+    public static final Font FONT_999 = new Font(HUDParameters.FONT, HUDParameters.FONT_SIZE_999);
     public static final int FONT_TOLERANCE = 999;
     public static final int MAX_LIFE_POINTS = 4;
     public static final int TOTAL_BONUS = 5;

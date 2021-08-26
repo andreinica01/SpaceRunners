@@ -76,9 +76,9 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
     public void fontStabilizer() {
         
         if(this.getPoints() > HUDParameters.FONT_TOLERANCE) {
-            this.setFont(new Font(HUDParameters.FONT, HUDParameters.FONT_SIZE_9999));
+            this.setFont(HUDParameters.FONT_9999);
         } else {
-            this.setFont(new Font(HUDParameters.FONT, HUDParameters.FONT_SIZE_999));
+            this.setFont(HUDParameters.FONT_999);
         }
     }
 }

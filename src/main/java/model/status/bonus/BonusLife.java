@@ -22,7 +22,7 @@ public class BonusLife extends Status {
 
         this.setEffect(() -> {
             if (this.getPlayer().getLifePoints() < HUDParameters.MAX_LIFE_POINTS)
-                this.getPlayer().increaseLifePoints(1);
+                this.getPlayer().increaseLifePoints(HUDParameters.ONE);
         });
 
         this.setRemoveEffect(() -> {

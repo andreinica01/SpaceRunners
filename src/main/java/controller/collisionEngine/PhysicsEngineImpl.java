@@ -18,8 +18,8 @@ import view.gameField.GameField;
 
 public class PhysicsEngineImpl implements PhysicsEngine {
 
-  private static final double X_LEFT_BORDER = 120;
-  private static final double X_RIGHT_BORDER = 25;
+  private static final double X_LEFT_BORDER = 146;
+  private static final double X_RIGHT_BORDER = 70;
   /*
    * Control fields
    */
@@ -124,7 +124,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
    */
   private boolean isEntityCollidingRightWall(Entity entity) {
     return (entity.getPosition().getX().intValue()
-        > this.fieldBounds.getMaxX() - X_LEFT_BORDER);
+        < this.fieldBounds.getMinX() - X_RIGHT_BORDER);
   }
 
   /**
@@ -134,7 +134,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
    */
   private boolean isEntityCollidingLeftWall(Entity entity) {
     return (entity.getPosition().getX().intValue()
-        < this.fieldBounds.getMinX() - X_RIGHT_BORDER);
+        > this.fieldBounds.getMaxX() - X_LEFT_BORDER);
   }
 
   /** Detects collision between player and enemy ships. */
@@ -202,6 +202,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
         Bounds shipBound = spaceship.getNode().getBoundsInParent();
 
         if (bulletBound.intersects(shipBound)) {
+
           this.gamefield.getGameContainer().getChildren().remove(spaceship.getNode());
           this.gamefield.getGameContainer().getChildren().remove(bullet.getNode());
           bullet.setPosition(-1000, bullet.getBounds().getY());
