@@ -11,10 +11,6 @@ import model.Entity;
 import model.bullet.Bullet;
 import model.hud.HUDBonusImpl;
 import model.hud.HUDLifeImpl;
-<<<<<<< HEAD
-import Utilities.HUDParameters;
-=======
->>>>>>> de25b957d06ecb702864655fefb7ff40aa6757b9
 import model.hud.HUDPointsImpl;
 import model.ship.SpaceShip;
 import model.status.Status;
