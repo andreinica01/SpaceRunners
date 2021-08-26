@@ -1,6 +1,8 @@
 package model.hud;
 
 import java.io.File;
+
+import Utilities.HUDParameters;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
