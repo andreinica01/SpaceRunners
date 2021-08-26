@@ -26,7 +26,7 @@ public class StatusController {
      *
      * @param player
      */
-    public StatusController(SpaceShip player) {
+    public StatusController(final SpaceShip player) {
         this.ses = Executors.newScheduledThreadPool(1);
         this.player = player;
         this.playerStatus = new HashMap<>();
@@ -38,9 +38,9 @@ public class StatusController {
      *
      * @param Status status
      */
-    public boolean applyEffect(Status status) {
+    public boolean applyEffect(final Status status) {
         status.setPlayer(this.player);
-        Optional<ScheduledFuture<?>> task = playerStatus.get(status.getStatusName());
+        Optional<ScheduledFuture<?>> task = this.playerStatus.get(status.getStatusName());
         // Adding effect if never added before or already terminated
         if (task.isEmpty() || task.get().isDone()) {
             addTemporaryEffect(status);
@@ -52,9 +52,9 @@ public class StatusController {
         return false;
     }
 
-    private void addTemporaryEffect(Status status) {
+    private void addTemporaryEffect(final Status status) {
         // Applying effect
-        ses.execute(status.getEffect());
+        this.ses.execute(status.getEffect());
         // Scheduling effect timeout, and add it to the local map
         var task = ses.schedule(status.getRemoveEffect(), status.getCoolDown(), TimeUnit.SECONDS);
         addTask(status, task);
@@ -69,11 +69,11 @@ public class StatusController {
     }
 
     public HashMap<StatusEnum, Optional<ScheduledFuture<?>>> getPlayerStatus() {
-        return playerStatus;
+        return this.playerStatus;
     }
 
     public SpaceShip getPlayer() {
-        return player;
+        return this.player;
     }
 
     public HashMap<StatusEnum, Boolean> getActiveStatus() {

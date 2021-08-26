@@ -25,7 +25,7 @@ public class BonusSpeed extends Status {
         this.setEffect(() -> this.getPlayer().setSpeed(this.getPlayer().getSpeed().doubleValue() * this.getBoostFactor()));
 
         this.setRemoveEffect(() -> {
-            this.getPlayer().setSpeed(getPlayer().getSpeed().doubleValue() * (double) 1 / getBoostFactor());
+            this.getPlayer().setSpeed(getPlayer().getSpeed().doubleValue() * (double) 1 / this.getBoostFactor());
 
             /*
              * After the end of the effect we need to udpate collisions.

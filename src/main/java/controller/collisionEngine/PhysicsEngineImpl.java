@@ -5,12 +5,16 @@ import java.util.Iterator;
 import java.util.List;
 
 import Utilities.Direction;
+import Utilities.HUDParameters;
 import javafx.geometry.Bounds;
 import model.Entity;
 import model.bullet.Bullet;
 import model.hud.HUDBonusImpl;
 import model.hud.HUDLifeImpl;
+<<<<<<< HEAD
 import Utilities.HUDParameters;
+=======
+>>>>>>> de25b957d06ecb702864655fefb7ff40aa6757b9
 import model.hud.HUDPointsImpl;
 import model.ship.SpaceShip;
 import model.status.Status;
@@ -18,8 +22,8 @@ import view.gameField.GameField;
 
 public class PhysicsEngineImpl implements PhysicsEngine {
 
-  private static final double X_LEFT_BORDER = 120;
-  private static final double X_RIGHT_BORDER = 25;
+  private static final double X_LEFT_BORDER = 146;
+  private static final double X_RIGHT_BORDER = 70;
   /*
    * Control fields
    */
@@ -124,7 +128,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
    */
   private boolean isEntityCollidingRightWall(Entity entity) {
     return (entity.getPosition().getX().intValue()
-        > this.fieldBounds.getMaxX() - X_LEFT_BORDER);
+        < this.fieldBounds.getMinX() - X_RIGHT_BORDER);
   }
 
   /**
@@ -132,9 +136,9 @@ public class PhysicsEngineImpl implements PhysicsEngine {
    *
    * @return true if player touches right side of the gameField.
    */
-  private boolean isEntityCollidingWall(Entity entity) {
+  private boolean isEntityCollidingLeftWall(Entity entity) {
     return (entity.getPosition().getX().intValue()
-        < this.fieldBounds.getMinX() - X_RIGHT_BORDER);
+        > this.fieldBounds.getMaxX() - X_LEFT_BORDER);
   }
 
   /** Detects collision between player and enemy ships. */
@@ -202,6 +206,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
         Bounds shipBound = spaceship.getNode().getBoundsInParent();
 
         if (bulletBound.intersects(shipBound)) {
+
           this.gamefield.getGameContainer().getChildren().remove(spaceship.getNode());
           this.gamefield.getGameContainer().getChildren().remove(bullet.getNode());
           bullet.setPosition(-1000, bullet.getBounds().getY());
