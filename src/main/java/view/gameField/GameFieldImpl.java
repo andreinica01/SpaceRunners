@@ -1,10 +1,9 @@
 package view.gameField;
 
 import Utilities.Parameters;
-import controller.inputController.InputControllerImpl;
 import controller.status.StatusController;
-import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -12,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import model.Entity;
 import model.bullet.Bullet;
+import model.ship.BossShip;
 import model.ship.SpaceShip;
 import model.status.Status;
 import view.SoundManager.SoundManager;
@@ -19,9 +19,14 @@ import view.SoundManager.SoundManager;
 public class GameFieldImpl implements GameField {
 
   private Set<Entity> entities;
-  private Set<Bullet> bullets;
+
+  private Set<Bullet> playerBullets;
+  private Set<Bullet> enemyBullets;
+
+
   private Set<SpaceShip> enemyships;
   private Set<Status> status;
+  private Set<SpaceShip> bossShips;
 
   private SpaceShip player;
 
@@ -43,8 +48,13 @@ public class GameFieldImpl implements GameField {
     this.gameContainer.prefHeight(height);
 
     this.entities = new HashSet<Entity>();
-    this.bullets = Collections.synchronizedSet(new HashSet<Bullet>());
-    this.enemyships = Collections.synchronizedSet(new HashSet<SpaceShip>());
+
+    this.playerBullets = new HashSet<Bullet>();
+    this.enemyBullets = new HashSet<Bullet>();
+
+    this.enemyships = new HashSet<SpaceShip>();
+    this.bossShips = new HashSet<>();
+
     this.status = new HashSet<Status>();
 
     // to load in specific class container
@@ -99,19 +109,15 @@ public class GameFieldImpl implements GameField {
 
   @Override
   public Set<Bullet> getActiveBulletsShotbyPlayer() {
-    return this.bullets;
+    return this.playerBullets;
   }
 
   @Override
   public Set<Bullet> getActiveBulletsShotbyEnemies() {
-    return null;
+    return this.enemyBullets;
   }
 
-  @Override
-  public void setInputController(InputControllerImpl controller) {
-    // this.scene.addEventHandler(KeyEvent.ANY, controller);
-
-  }
+ 
 
   @Override
   public void setScene(Scene scene) {
@@ -139,9 +145,9 @@ public class GameFieldImpl implements GameField {
   }
 
   @Override
-  public void addBullet(Bullet bullet) {
+  public void addPlayerBullet(Bullet bullet) {
     this.entities.add(bullet);
-    this.bullets.add(bullet);
+    this.playerBullets.add(bullet);
     this.gameContainer.getChildren().add(bullet.getNode());
   }
 
@@ -151,6 +157,15 @@ public class GameFieldImpl implements GameField {
     this.entities.add(enemy);
     this.gameContainer.getChildren().add(enemy.getNode());
   }
+
+
+  @Override
+  public void addBoss(BossShip boss) {
+    this.entities.add(boss);
+    this.bossShips.add(boss);
+    this.gameContainer.getChildren().add(boss.getNode());
+  }
+
 
   @Override
   public void addBonus(Status bonus) {
@@ -176,4 +191,24 @@ public class GameFieldImpl implements GameField {
   public void setStatusController(StatusController statusController) {
     this.statusController = statusController;
   }
+
+  @Override
+  public void addEnemyBullet(Bullet bullet) {
+    this.entities.add(bullet);
+    this.enemyBullets.add(bullet);
+    this.gameContainer.getChildren().add(bullet.getNode());
+    
+  }
+
+  @Override
+  public void removeEntity(Entity entity) {
+    
+    
+  }
+
+  @Override
+  public Set<SpaceShip> getActiveBosses() {
+    return this.bossShips;
+  }
 }
+

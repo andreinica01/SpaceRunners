@@ -1,23 +1,30 @@
 package model.ship;
 
 import Utilities.Direction;
-import Utilities.Parameters;
-import view.gameField.*;
+import model.bullet.*;
+import view.gameField.GameField;
 
 public class EnemyShip extends SpaceShip {
 
-    public EnemyShip(GameField gamefield) {
-        super(gamefield);
-        this.setImage(Parameters.enemyImage);
-        this.setDirection(Direction.DOWN);
-        this.setSpeed(10);
-        this.getNode().setScaleX(0.5);
-        this.getNode().setScaleY(0.5);
-    }
+  public EnemyShip(GameField gamefield) {
+    super(gamefield);
+  }
 
-    @Override
-    public void attack() {
-        // TODO Auto-generated method stub
+  @Override
+  public void attack() {
+    Bullet bullet = new Bullet().bulletDamage(10);
 
-    }
+    // to change
+    double x = this.getNode().getLayoutX() - this.getNode().getBoundsInParent().getWidth();
+    double y = this.getNode().getLayoutY() - this.getNode().getBoundsInParent().getHeight();
+
+    bullet.setPosition(x, y);
+    bullet.setSpeed(10);
+    bullet.setDirection(Direction.DOWN);
+    bullet.getNode().setScaleX(20);
+    bullet.getNode().setScaleY(20);
+
+    this.gamefield.addEnemyBullet(bullet);
+    this.gamefield.getSoundManager().playBulletSound();
+  }
 }

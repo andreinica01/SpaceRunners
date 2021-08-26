@@ -1,0 +1,4 @@
+1) remove magic numbers
+2) boss projectile
+3) fix dimensions
+4) boss collisions

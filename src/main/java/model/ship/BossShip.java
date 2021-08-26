@@ -1,10 +1,9 @@
 package model.ship;
 
 import Utilities.*;
-import model.bullet.Bullet;
 import view.gameField.GameField;
 
-public class BossShip extends SpaceShip {
+public class BossShip extends EnemyShip {
 
   public BossShip(GameField gamefield) {
     super(gamefield);
@@ -13,19 +12,5 @@ public class BossShip extends SpaceShip {
     this.getNode().setScaleX(0.15);
     this.getNode().setScaleY(0.15);
     this.setSpeed(0);
-  }
-
-  @Override
-  public void attack() {
-    Bullet bullet = new Bullet().bulletDamage(10);
-
-    bullet.setPosition(
-        this.gamefield.getPlayer().getNode().getTranslateX() - 190,
-        this.gamefield.getPlayer().getNode().getTranslateY() - 200);
-    bullet.setSpeed(10);
-    bullet.setDirection(Direction.DOWN);
-
-    this.gamefield.addBullet(bullet);
-    this.gamefield.getSoundManager().playBulletSound();
   }
 }

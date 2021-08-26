@@ -2,12 +2,15 @@ package view.gameField;
 
 import controller.inputController.InputControllerImpl;
 import controller.status.StatusController;
+
+import java.util.List;
 import java.util.Set;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import model.Entity;
 import model.bullet.Bullet;
+import model.ship.BossShip;
 import model.ship.SpaceShip;
 import model.status.Status;
 import view.SoundManager.SoundManager;
@@ -51,6 +54,12 @@ public interface GameField {
      * @param controller
      */
     void setInputController(InputControllerImpl controller);
+  
+    /**
+     * Remove entities from the game.
+     * @param entity to be removed.
+     */
+    void removeEntity(Entity entity);
 
     /** @return the sound manager class. */
     SoundManager getSoundManager();
