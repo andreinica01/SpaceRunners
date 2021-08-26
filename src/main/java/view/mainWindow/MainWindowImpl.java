@@ -19,7 +19,7 @@ public class MainWindowImpl implements MainWindow {
     }
 
     @Override
-    public void setVisible(boolean visible) {
+    public void setVisible(final boolean visible) {
         if (visible) {
             this.stage.show();
             return;
@@ -29,21 +29,21 @@ public class MainWindowImpl implements MainWindow {
     }
 
     @Override
-    public void addGameField(GameFieldImpl gamefield) {
-        Scene scene = new Scene(new VBox(gamefield.getGameContainer()));
+    public void addGameField(final GameFieldImpl gameField) {
+        Scene scene = new Scene(new VBox(gameField.getGameContainer()));
 
-        gamefield.setScene(scene);
+        gameField.setScene(scene);
         this.stage.setScene(scene);
         this.stage.setResizable(false);
     }
 
     @Override
-    public void setWidth(Number width) {
+    public void setWidth(final Number width) {
         this.stage.setWidth(width.intValue());
     }
 
     @Override
-    public void setHeight(Number heigth) {
+    public void setHeight(final Number heigth) {
         this.stage.setHeight(heigth.intValue());
     }
 }

@@ -12,9 +12,9 @@ public interface MainWindow {
 
     /**
      * Add the gamefield to the stage and set its scene.
-     * @param gamefield
+     * @param gameField
      */
-    void addGameField(GameFieldImpl gamefield);
+    void addGameField(GameFieldImpl gameField);
 
     /**
      * Set stage widht.

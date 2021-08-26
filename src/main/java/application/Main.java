@@ -6,19 +6,19 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-  @Override
-  public void start(Stage mainwindow) {
-    try {
-      GameManager x = new GameManager(mainwindow);
-      mainwindow.setTitle("SpaceInvaders");
+    @Override
+    public void start(final Stage mainWindow) {
+        try {
+            GameManager gameManager = new GameManager(mainWindow);
+            mainWindow.setTitle("SpaceRunners");
 
-      x.start();
-    } catch (Exception e) {
-      e.printStackTrace();
+            gameManager.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-  }
 
-  public static void main(String[] args) {
-    launch(args);
-  }
+    public static void main(final String[] args) {
+        launch(args);
+    }
 }
