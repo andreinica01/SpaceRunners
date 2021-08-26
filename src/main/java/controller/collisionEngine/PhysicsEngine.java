@@ -12,6 +12,7 @@ public interface PhysicsEngine {
    */
   void removeLife();
 
+
   /** Subtract points when an enemy ship hits the player */
   void removePoints();
 
