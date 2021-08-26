@@ -5,24 +5,33 @@ import controller.collisionEngine.PhysicsEngineImpl;
 import model.status.Status;
 import model.status.StatusEnum;
 
-/** A Status that decrease player's speed of a certain amount. */
+/**
+ * A Status that decrease player's speed of a certain amount.
+ */
 public class MalusSpeed extends Status {
 
-  public MalusSpeed() {
-    super();
-    setImage(Parameters.malusSpeedImage);
-    getNode().setRotate(0);
-    setBoostFactor((double) 2 / 3);
-    setStatusName(StatusEnum.MalusSpeed);
-    setCoolDown(7); // 7 s
+    /**
+     * Constructor
+     */
+    public MalusSpeed() {
+        super();
+        
+        this.setImage(Parameters.malusSpeedImage);
+        this.getNode().setRotate(0);
+        this.setBoostFactor((double) 2 / 3);
+        this.setStatusName(StatusEnum.MalusSpeed);
+        this.setCoolDown(7); // 7 s
 
-    setEffect(() -> getPlayer().setSpeed(getPlayer().getSpeed().doubleValue() * getBoostFactor()));
+        this.setEffect(() -> 
+            this.getPlayer().setSpeed(this.getPlayer().getSpeed().doubleValue() * this.getBoostFactor()));
 
-    setRemoveEffect(
-        () -> {
-          getPlayer()
-              .setSpeed(getPlayer().getSpeed().doubleValue() * (double) 1 / getBoostFactor());
-          PhysicsEngineImpl.resetBound();
+        this.setRemoveEffect(() -> {
+            this.getPlayer().setSpeed(this.getPlayer().getSpeed().doubleValue() * (double) 1 / this.getBoostFactor());
+            
+            /*
+             * After the end of the effect we need to udpate collisions.
+             */
+            PhysicsEngineImpl.resetBound();
         });
-  }
+    }
 }
