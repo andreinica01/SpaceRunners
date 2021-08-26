@@ -9,7 +9,7 @@ public class BonusLife extends Status {
 
   private int MAXIMUM_LIFE = 4;
 
-  public BonusLife() {
+  public BonusLife() 
     super();
     setImage(Parameters.bonusLifeImage);
     setStatusName(StatusEnum.BonusLife);
