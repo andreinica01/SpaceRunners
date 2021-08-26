@@ -11,61 +11,82 @@ import javax.sound.sampled.Clip;
 
 public class SoundManager {
 
-  private List<Clip> sounds;
-  private int SOUND_MEMORY_BUFFER = 10;
+    private List<Clip> sounds;
+    private int SOUND_MEMORY_BUFFER = 10;
 
-  public SoundManager() {
-    this.sounds = new ArrayList<>();
-  }
-
-  private void playSound(String sound) {
-    try {
-      Clip soundClip = AudioSystem.getClip();
-      soundClip.open(AudioSystem.getAudioInputStream(new File(Parameters.SoundFolder + sound)));
-
-      soundClip.start();
-      this.sounds.add(soundClip);
-
-    } catch (Exception e) {
-      System.out.println(e.toString());
-    } finally {
-
-      if (this.sounds.size() > SOUND_MEMORY_BUFFER) {
-        cleanSoundMemory();
-      }
+    public SoundManager() {
+        this.sounds = new ArrayList<>();
     }
-  }
 
-  public void playBulletSound() {
-    playSound("laser.wav");
-  }
+    /**
+     * Play a specific sound following an event.
+     * @param sound to be played.
+     */
+    private void playSound(final String sound) {
+        try {
+            Clip soundClip = AudioSystem.getClip();
+            soundClip.open(AudioSystem.getAudioInputStream(new File(Parameters.SoundFolder + sound)));
 
-  public void playShipPassing() {
-    playSound("passingby.wav");
-  }
+            soundClip.start();
+            this.sounds.add(soundClip);
 
-  public void playClashWall() {
-    playSound("wall_clash.wav");
-  }
+        } catch (Exception e) {
+        } finally {
 
-  public void playSpaceshipExplosion() {
-    playSound("spaceship_explosion2.wav");
-  }
-
-  public void playPlayerImpact() {
-    playSound("player_impact.wav");
-  }
-
-  private void cleanSoundMemory() {
-    Iterator<Clip> soundsToRemove = this.sounds.subList(0, SOUND_MEMORY_BUFFER).iterator();
-
-    while (soundsToRemove.hasNext()) {
-      Clip v = soundsToRemove.next();
-      if (!v.isRunning()) {
-        v.flush();
-        v.close();
-        soundsToRemove.remove();
-      }
+            if (this.sounds.size() > SOUND_MEMORY_BUFFER) {
+                cleanSoundMemory();
+            }
+        }
     }
-  }
+
+    /**
+     * Play bullet sound.
+     */
+    public void playBulletSound() {
+        this.playSound("bulletSound.wav");
+    }
+
+    /**
+     * Play ship movement sound.
+     */
+    public void playShipPassing() {
+        this.playSound("enemy.wav");
+    }
+
+    /**
+     * Play player crashing into a wall sound.
+     */
+    public void playClashWall() {
+        this.playSound("wall_clash.wav");
+    }
+
+    /**
+     * Play an explosion sound.
+     */
+    public void playSpaceshipExplosion() {
+        this.playSound("spaceship_explosion2.wav");
+    }
+
+    /**
+     * Play a sound when something hits the player.
+     */
+    public void playPlayerImpact() {
+        this.playSound("player_impact.wav");
+    }
+
+    /**
+     * Clear the sound memory, this is due to ArrayList implementation.
+     */
+    private void cleanSoundMemory() {
+        Iterator<Clip> soundsToRemove = this.sounds.subList(0, SOUND_MEMORY_BUFFER).iterator();
+
+        while (soundsToRemove.hasNext()) {
+            Clip v = soundsToRemove.next();
+            if (!v.isRunning()) {
+                v.flush();
+                v.close();
+                soundsToRemove.remove();
+            }
+        }
+    }
 }

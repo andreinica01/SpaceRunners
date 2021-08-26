@@ -7,39 +7,43 @@ import view.gameField.GameFieldImpl;
 
 public class MainWindowImpl implements MainWindow {
 
-  private Stage stage;
+    private Stage stage;
 
-  public MainWindowImpl(Stage original) {
-    this.stage = original;
-    this.stage.setResizable(false);
-  }
-
-  @Override
-  public void setVisible(boolean visible) {
-    if (visible) {
-      this.stage.show();
-      return;
+    /**
+     * Constructor.
+     * @param original stage.
+     */
+    public MainWindowImpl(final Stage original) {
+        this.stage = original;
+        this.stage.setResizable(false);
     }
 
-    this.stage.hide();
-  }
+    @Override
+    public void setVisible(boolean visible) {
+        if (visible) {
+            this.stage.show();
+            return;
+        }
 
-  @Override
-  public void addGameField(GameFieldImpl gamefield) {
-    Scene scene = new Scene(new VBox(gamefield.getGameContainer()));
+        this.stage.hide();
+    }
 
-    gamefield.setScene(scene);
-    this.stage.setScene(scene);
-    this.stage.setResizable(false);
-  }
+    @Override
+    public void addGameField(GameFieldImpl gamefield) {
+        Scene scene = new Scene(new VBox(gamefield.getGameContainer()));
 
-  @Override
-  public void setWidth(Number width) {
-    this.stage.setWidth(width.intValue());
-  }
+        gamefield.setScene(scene);
+        this.stage.setScene(scene);
+        this.stage.setResizable(false);
+    }
 
-  @Override
-  public void setHeight(Number heigth) {
-    this.stage.setHeight(heigth.intValue());
-  }
+    @Override
+    public void setWidth(Number width) {
+        this.stage.setWidth(width.intValue());
+    }
+
+    @Override
+    public void setHeight(Number heigth) {
+        this.stage.setHeight(heigth.intValue());
+    }
 }
