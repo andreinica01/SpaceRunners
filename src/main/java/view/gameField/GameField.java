@@ -5,6 +5,7 @@ import java.util.Set;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import model.Entity;
 import model.bullet.Bullet;
 import model.ship.BossShip;
@@ -97,4 +98,8 @@ public interface GameField {
     void addBoss(BossShip boss);
 
     void addPlayerBullet(Bullet bullet);
+
+    void setStageReference(Stage stage);
+
+    Stage getStage();
 }
