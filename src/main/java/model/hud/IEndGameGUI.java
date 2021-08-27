@@ -8,7 +8,7 @@ public interface IEndGameGUI {
      * @param points.
      * @throws Exception.
      */
-    void end(int points) throws Exception;
+    void end(int points);
 
     /**
      * After clicking the relative button, it will grant you to save and quit.

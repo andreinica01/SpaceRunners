@@ -39,11 +39,7 @@ public class GameEventController implements IGameEventController {
     @Override
     public void endGame() {
         this.gameField.getStage().close();
-        try {
-            new EndGameGUI().end(this.checkPoints());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        new EndGameGUI().end(this.checkPoints());
     }
 
     @Override
