@@ -3,5 +3,6 @@
     "editor.defaultFormatter": "mngrm3a.vscode-google-java-formatter"
   },
   "editor.formatOnSave": true,
-  "java.format.settings.url": "eclipse-formatter.xml"
+  "java.format.settings.url": "eclipse-formatter.xml",
+  "java.configuration.updateBuildConfiguration": "interactive"
 }
