@@ -15,37 +15,59 @@ import model.status.Status;
 import view.SoundManager.SoundManager;
 
 public interface GameField {
-    /** @return the draw panel where the content is drawn. */
+    /** 
+     * @return the draw panel where the content is drawn. 
+     */
     AnchorPane getGameContainer();
 
-    /** @return the active entities on the Gamefield. */
+    /** 
+     * @return the active entities on the Gamefield. 
+     */
     Set<Entity> getActiveEntities();
 
-    /** @return Width. */
+    /** 
+     * @return Width. 
+     */
     Number getWidth();
 
-    /** @return Height. */
+    /** 
+     * @return Height. 
+     */
     Number getHeight();
 
-    /** @param add the player Entity to the game. */
+    /** 
+     * @param add the player Entity to the game. 
+     */
     void setPlayer(SpaceShip player);
 
-    /** @return the player Entity. */
+    /** 
+     * @return the player Entity. 
+     */
     SpaceShip getPlayer();
 
-    /** @return a set with all the current enemy ships on the field. */
+    /** 
+     * @return a set with all the current enemy ships on the field. 
+     */
     Set<SpaceShip> getActiveEnemyShips();
 
-    /** @return a set with all the Bonus Objects in the game. */
+    /** 
+     * @return a set with all the Bonus Objects in the game. 
+     */
     Set<Status> getBonusObjects();
 
-    /** @return all active bullets shot by the player. */
+    /** 
+     * @return all active bullets shot by the player. 
+     */
     Set<Bullet> getActiveBulletsShotbyPlayer();
 
-    /** @return all active bullets shot towards the player. */
+    /** 
+     * @return all active bullets shot towards the player. 
+     */
     Set<Bullet> getActiveBulletsShotbyEnemies();
 
-    /** @return the scene. */
+    /** 
+     * @return the scene. 
+     */
     Scene getScene();
 
     /**
@@ -54,7 +76,9 @@ public interface GameField {
      */
     void removeEntity(Entity entity);
 
-    /** @return the sound manager class. */
+    /** 
+     * @return the sound manager class. 
+     */
     SoundManager getSoundManager();
 
     /**
@@ -63,12 +87,15 @@ public interface GameField {
      */
     void setScene(Scene scene);
 
-    /** Set the background image. 
+    /** 
+     * Set the background image. 
      * @param the path of the file.
      */
     void setBackgroundImage(String path);
 
-    /** @return the background. */
+    /** 
+     * @return the background. 
+     */
     Node[] getBackground();
 
     /**
@@ -83,7 +110,9 @@ public interface GameField {
      */
     void addBonus(Status bonus);
 
-    /** @return StatusController */
+    /** 
+     * @return StatusController 
+     */
     StatusController getStatusController();
 
     /**
@@ -92,19 +121,48 @@ public interface GameField {
      */
     void setStatusController(StatusController statusController);
 
+    /**
+     * @return all active bosses.
+     */
     Set<SpaceShip> getActiveBosses();
 
+    /**
+     * Adds enemy bullets.
+     * @param bullet.
+     */
     void addEnemyBullet(Bullet bullet);
 
+    /**
+     * Adds a boss to the game.
+     * @param boss.
+     */
     void addBoss(BossShip boss);
 
+    /**
+     * Add player bullet.
+     * @param bullet.
+     */
     void addPlayerBullet(Bullet bullet);
 
+    /**
+     * Helper method for end game: set a stage reference.
+     * @param stage
+     */
     void setStageReference(Stage stage);
 
+    /**
+     * @return Stage reference.
+     */
     Stage getStage();
 
-    GameManager getGameManager();
-
+    /**
+     * Helper method for end game: set a GameManager reference.
+     * @param manager
+     */
     void setGameManager(GameManager manager);
+
+    /**
+     * @return GameManager reference.
+     */
+    GameManager getGameManager();
 }

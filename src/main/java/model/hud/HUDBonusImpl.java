@@ -1,11 +1,13 @@
 package model.hud;
 
 import java.io.File;
+import java.util.Map;
 import java.util.stream.IntStream;
-
+import java.util.stream.Stream;
 import Utilities.HUDParameters;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import model.status.StatusEnum;
 import view.gameField.GameField;
 
 public class HUDBonusImpl implements IHUDBonus {
@@ -66,5 +68,16 @@ public class HUDBonusImpl implements IHUDBonus {
     @Override
     public void hideBonus(final int index) {
         this.gamefield.getGameContainer().getChildren().remove(this.bonus[index]);
+    }
+    
+    public void statusHandler() {
+        Map<StatusEnum, Boolean> map = this.gamefield.getStatusController().getActiveStatus();
+        
+        Stream.of(map.values())
+        .forEach(e -> {
+            if(map.get(e) == HUDParameters.TRUE) {
+                
+            }
+        });
     }
 }
