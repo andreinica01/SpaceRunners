@@ -6,29 +6,76 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 
 public interface Entity {
-  Node getNode();
+    
+    /**
+     * @return the node.
+     */
+    Node getNode();
 
-  void setImage(Image image);
+    /**
+     * Set the image for the entity.
+     * @param image.
+     */
+    void setImage(Image image);
+    
+    /**
+     * @return entity position.
+     */
+    Vector2D<Number> getPosition();
 
-  Vector2D<Number> getPosition();
+    /**
+     * Set new entity position.
+     * @param x.
+     * @param y.
+     */
+    void setPosition(Number x, Number y);
 
-  void setPosition(Number x, Number y);
+    /**
+     * @return return dimension of entity.
+     */
+    Vector2D<Number> getDimension();
 
-  Vector2D<Number> getDimension();
+    /**
+     * Set entity dimension.
+     * @param dimension
+     */
+    void setDimension(Vector2D<Number> dimension);
 
-  void setDimension(Vector2D<Number> dimension);
+    /**
+     * @return entity direction.
+     */
+    Direction getDirection();
 
-  Direction getDirection();
+    /**
+     * Set entity direction.
+     * @param direction
+     */
+    void setDirection(Direction direction);
 
-  void setDirection(Direction direction);
+    /**
+     * @return entity speed.
+     */
+    Number getSpeed();
 
-  Number getSpeed();
+    /**
+     * Set entity speed.
+     * @param speed
+     */
+    void setSpeed(Number speed);
 
-  void setSpeed(Number speed);
+    /**
+     * Set horizontal speed.
+     * @param speed
+     */
+    void setHorizontalSpeed(Number speed);
 
-  void setHorrizontalSpeed(Number speed);
+    /**
+     * @return entity horizontal speed.
+     */
+    Number getHorrizontalSpeed();
 
-  Number getHorrizontalSpeed();
-
-  void invertDirection();
+    /**
+     * Inverts entity direction.
+     */
+    void invertDirection();
 }
