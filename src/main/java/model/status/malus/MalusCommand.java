@@ -1,5 +1,6 @@
 package model.status.malus;
 
+import Utilities.HUDParameters;
 import Utilities.Parameters;
 import model.status.Status;
 import model.status.StatusEnum;
@@ -16,11 +17,11 @@ public class MalusCommand extends Status {
         super();
         
         this.setImage(Parameters.malusCommandImage);
-        this.getNode().setRotate(0);
+        this.getNode().setRotate(HUDParameters.ZERO);
         this.setStatusName(StatusEnum.MalusCommand);
-        this.setCoolDown(10); // 10 s
+        this.setCoolDown(HUDParameters.TEN); // 10 s
 
-        this.setEffect(() -> this.getPlayer().setInvertedCommand(true));
-        this.setRemoveEffect(() -> this.getPlayer().setInvertedCommand(false));
+        this.setEffect(() -> this.getPlayer().setInvertedCommand(HUDParameters.TRUE));
+        this.setRemoveEffect(() -> this.getPlayer().setInvertedCommand(HUDParameters.FALSE));
     }
 }

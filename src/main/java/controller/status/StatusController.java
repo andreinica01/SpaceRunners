@@ -8,13 +8,14 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
+import Utilities.HUDParameters;
 import model.ship.SpaceShip;
 import model.status.Status;
 import model.status.StatusEnum;
 
 /**
- * Controller Status class. When certain condition are triggered, this class apply the StatusEffect
- * to the player.
+ * Controller Status class. When certain condition are triggered, this class
+ * apply the StatusEffect to the player.
  */
 public class StatusController {
 
@@ -22,7 +23,7 @@ public class StatusController {
     private SpaceShip player;
     private HashMap<StatusEnum, Optional<ScheduledFuture<?>>> playerStatus;
     private Map<StatusEnum, Boolean> activeStatus;
-	private Map<StatusEnum, Long> statusCooldown;
+    private Map<StatusEnum, Long> statusCooldown;
 
     /**
      * Create and Setting this StatusController to a SpaceShip instance.
@@ -35,7 +36,7 @@ public class StatusController {
         this.playerStatus = new HashMap<>();
         this.activeStatus = new HashMap<>();
         this.statusCooldown = new HashMap<>();
-        setPlayerStatus();
+        this.setPlayerStatus();
     }
 
     /**
@@ -48,13 +49,13 @@ public class StatusController {
         Optional<ScheduledFuture<?>> task = this.playerStatus.get(status.getStatusName());
         // Adding effect if never added before or already terminated
         if (task.isEmpty() || task.get().isDone()) {
-            addTemporaryEffect(status);
-            return true;
+            this.addTemporaryEffect(status);
+            return HUDParameters.TRUE;
         }
         // Else, refresh task's time
-        task.get().cancel(false);
-        addTemporaryEffect(status);
-        return false;
+        task.get().cancel(HUDParameters.FALSE);
+        this.addTemporaryEffect(status);
+        return HUDParameters.TRUE;
     }
 
     private void addTemporaryEffect(final Status status) {
@@ -62,10 +63,10 @@ public class StatusController {
         this.ses.execute(status.getEffect());
         // Scheduling effect timeout, and add it to the local map
         var task = ses.schedule(status.getRemoveEffect(), status.getCoolDown(), TimeUnit.SECONDS);
-        addTask(status, task);
+        this.addTask(status, task);
     }
 
-    private void addTask(Status status, ScheduledFuture<?> task) {
+    private void addTask(final Status status, final ScheduledFuture<?> task) {
         this.playerStatus.put(status.getStatusName(), Optional.of(task));
     }
 
@@ -81,31 +82,30 @@ public class StatusController {
         return this.player;
     }
 
-    
     /**
      * Mapping every Status with a boolean representing his own active state.
-     * Example : <BonusSpeed, false> //BonusSpeed is not active
-     * 			 <BonusSpeed, true>  //BonusSpeed is active
+     * Example : <BonusSpeed, false> //BonusSpeed is not active <BonusSpeed, true>
+     * //BonusSpeed is active
+     * 
      * @return Map <StatusEnum, Long>
      */
     public Map<StatusEnum, Boolean> getActiveStatus() {
         Stream.of(StatusEnum.values())
-        	  .forEach(e -> this.activeStatus.put(e,this.getAllCooldown(TimeUnit.MILLISECONDS).get(e) <= 0));
+                .forEach(e -> this.activeStatus.put(e, this.getAllCooldown(TimeUnit.MILLISECONDS).get(e) <= HUDParameters.ZERO));
         return this.activeStatus;
     }
-    
+
     /**
-     * Mapping every Status with his own (active) cooldown.
-     * Time is expressed by the TimeUnit passed by argument.
-     * Example : <BonusSpeed, 5211> //BonusSpeed end in 5211 TimeUnit.
+     * Mapping every Status with his own (active) cooldown. Time is expressed by the
+     * TimeUnit passed by argument. Example : <BonusSpeed, 5211> //BonusSpeed end in
+     * 5211 TimeUnit.
+     * 
      * @param timeUnit
      * @return Map <StatusEnum, Long>
      */
-    public Map <StatusEnum, Long> getAllCooldown(TimeUnit timeUnit) {
-    	Stream.of(StatusEnum.values())
-    	      .forEach(e -> this.statusCooldown.put(e,this.playerStatus.get(e).get().getDelay(timeUnit)));
-    	return this.statusCooldown;    
+    public Map<StatusEnum, Long> getAllCooldown(final TimeUnit timeUnit) {
+        Stream.of(StatusEnum.values())
+                .forEach(e -> this.statusCooldown.put(e, this.playerStatus.get(e).get().getDelay(timeUnit)));
+        return this.statusCooldown;
     }
-    
-    
 }

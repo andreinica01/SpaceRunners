@@ -1,5 +1,6 @@
 package view.mainWindow;
 
+import Utilities.HUDParameters;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -15,7 +16,7 @@ public class MainWindowImpl implements MainWindow {
      */
     public MainWindowImpl(final Stage original) {
         this.stage = original;
-        this.stage.setResizable(false);
+        this.stage.setResizable(HUDParameters.FALSE);
     }
 
     @Override
@@ -34,7 +35,7 @@ public class MainWindowImpl implements MainWindow {
 
         gameField.setScene(scene);
         this.stage.setScene(scene);
-        this.stage.setResizable(false);
+        this.stage.setResizable(HUDParameters.FALSE);
     }
 
     @Override

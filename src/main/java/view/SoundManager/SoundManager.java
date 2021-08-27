@@ -1,5 +1,6 @@
 package view.SoundManager;
 
+import Utilities.HUDParameters;
 import Utilities.Parameters;
 import java.io.File;
 import java.util.ArrayList;
@@ -92,7 +93,7 @@ public class SoundManager {
      * Clear the sound memory, this is due to ArrayList implementation.
      */
     private void cleanSoundMemory() {
-        Iterator<Clip> soundsToRemove = this.sounds.subList(0, SOUND_MEMORY_BUFFER).iterator();
+        Iterator<Clip> soundsToRemove = this.sounds.subList(HUDParameters.ZERO, SOUND_MEMORY_BUFFER).iterator();
 
         while (soundsToRemove.hasNext()) {
             Clip v = soundsToRemove.next();

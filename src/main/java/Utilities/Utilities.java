@@ -4,6 +4,8 @@ import java.util.Random;
 
 public class Utilities {
 
+    private static final double VALUE = 1000;
+
     /**
      * @param min.
      * @param max.
@@ -19,6 +21,6 @@ public class Utilities {
      * @return a random long value between two values.
      */
     public static Long getRandomMillis(final Double min, final Double max) {
-        return (long) (getRandomDouble(min, max) * 1000);
+        return (long) (getRandomDouble(min, max) * VALUE);
     }
 }

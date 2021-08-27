@@ -2,6 +2,7 @@ package Utilities;
 
 public class Vector2DImpl<NumType extends Number> implements Vector2D<NumType> {
 
+    private static final int HASH_NUMBER = 31;
     private NumType x;
     private NumType y;
 
@@ -59,16 +60,16 @@ public class Vector2DImpl<NumType extends Number> implements Vector2D<NumType> {
         final double x = v1.getX().doubleValue() - v2.getX().doubleValue();
         final double y = v1.getY().doubleValue() - v2.getY().doubleValue();
         
-        return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+        return Math.sqrt(Math.pow(x, HUDParameters.TWO) + Math.pow(y, HUDParameters.TWO));
     }
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
+        final int prime = HASH_NUMBER;
+        int result = HUDParameters.ONE;
         
-        result = prime * result + ((this.x == null) ? 0 : this.x.hashCode());
-        result = prime * result + ((this.y == null) ? 0 : this.y.hashCode());
+        result = prime * result + ((this.x == null) ? HUDParameters.ZERO : this.x.hashCode());
+        result = prime * result + ((this.y == null) ? HUDParameters.ZERO : this.y.hashCode());
         
         return result;
     }
