@@ -1,6 +1,7 @@
 package controller.gameController;
 
 import Utilities.Direction;
+import Utilities.HUDParameters;
 import Utilities.InputCommand;
 import Utilities.Parameters;
 import controller.enemyAI.enemyAI;
@@ -26,13 +27,19 @@ public class GameContollerImpl implements GameController {
     private StatusController statusController;
     private final enemyAI AIController;
     private Map<InputCommand, Boolean> controlStates;
+    
+    private static final int Y_STABILIZER = 220;
 
-    public GameContollerImpl(GameField gamefield) {
+    /**
+     * Constructor.
+     * @param gamefield.
+     */
+    public GameContollerImpl(final GameField gamefield) {
         this.gamefield = gamefield;
 
         /* setup player info */
         this.player = new PlayerSpaceShip(this.gamefield);
-        this.player.setPosition(this.gamefield.getWidth().intValue() / 2, this.gamefield.getHeight().intValue() - 220);
+        this.player.setPosition(this.gamefield.getWidth().intValue() / HUDParameters.TWO, this.gamefield.getHeight().intValue() - Y_STABILIZER);
 
         this.gamefield.setPlayer(this.player);
         this.frame = new FrameManager(this.gamefield);
@@ -50,26 +57,33 @@ public class GameContollerImpl implements GameController {
         this.gamefield.setStatusController(this.statusController);
     }
 
+    @Override
     public void update() {
         this.controlStates = this.inputController.getControlStates();
 
-        if (this.controlStates.get(InputCommand.GO_LEFT))
-            if (!this.player.isInvertedCommand())
+        if (this.controlStates.get(InputCommand.GO_LEFT)) {
+            if (!this.player.isInvertedCommand()) {
                 this.player.setDirection(Direction.LEFT);
-            else
+            }
+            else {
                 this.player.setDirection(Direction.RIGHT);
+            }
+        }
 
-        if (this.controlStates.get(InputCommand.GO_RIGHT))
-            if (!this.player.isInvertedCommand())
+        if (this.controlStates.get(InputCommand.GO_RIGHT)) {
+            if (!this.player.isInvertedCommand()) {
                 this.player.setDirection(Direction.RIGHT);
-            else
+            }
+            else {
                 this.player.setDirection(Direction.LEFT);
+            }
+        }
 
         if (this.controlStates.get(InputCommand.NONE)) {
             this.player.setDirection(Direction.NONE);
         }
 
-        if (controlStates.get(InputCommand.ATTACK)) {
+        if (this.controlStates.get(InputCommand.ATTACK)) {
             this.player.attack();
         }
 
