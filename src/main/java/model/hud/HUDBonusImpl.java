@@ -23,13 +23,13 @@ public class HUDBonusImpl implements IHUDBonus {
      * Control fields
      */
     private ImageView[] bonus = new ImageView[HUDParameters.TOTAL_BONUS];
-    private GameField gamefield;
+    private GameField gameField;
 
     /*
      * Constructor
      */
     public HUDBonusImpl(final GameField gamefield) {
-        this.gamefield = gamefield;
+        this.gameField = gamefield;
 
         this.addBonuses();
     }
@@ -56,7 +56,7 @@ public class HUDBonusImpl implements IHUDBonus {
     @Override
     public void showBonus(final int index) {
         try {
-            this.gamefield.getGameContainer().getChildren().add(this.bonus[index]);
+            this.gameField.getGameContainer().getChildren().add(this.bonus[index]);
         } catch (Exception e) {
             this.hideBonus(index);
             this.showBonus(index);
@@ -67,17 +67,17 @@ public class HUDBonusImpl implements IHUDBonus {
 
     @Override
     public void hideBonus(final int index) {
-        this.gamefield.getGameContainer().getChildren().remove(this.bonus[index]);
+        this.gameField.getGameContainer().getChildren().remove(this.bonus[index]);
     }
     
     public void statusHandler() {
-        Map<StatusEnum, Boolean> map = this.gamefield.getStatusController().getActiveStatus();
+        Map<StatusEnum, Boolean> map = this.gameField.getStatusController().getActiveStatus();
         
-        Stream.of(map.values())
-        .forEach(e -> {
-            if(map.get(e) == HUDParameters.TRUE) {
-                
-            }
-        });
+//        Stream.of(map.keySet())
+//        .forEach(e -> {
+//            if(map. == HUDParameters.TRUE) {
+//                this.showBonus(e.);
+//            }
+//        });
     }
 }

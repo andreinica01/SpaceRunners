@@ -27,6 +27,7 @@ public class BonusSpeed extends Status {
 
         this.setRemoveEffect(() -> {
             this.getPlayer().setSpeed(getPlayer().getSpeed().doubleValue() * (double) HUDParameters.ONE / this.getBoostFactor());
+            
 
             /*
              * After the end of the effect we need to udpate collisions.
