@@ -15,19 +15,26 @@ public class HUDParameters {
     public static final int THREE = 3;
     public static final int FOUR = 4;
     public static final int FIVE = 5;
+    public static final int SEVEN = 7;
+    public static final long TEN = 10;
 
     public static final String PNG_FOLDER = Parameters.ImageFolder;
 
+    public static final Font FONT_9999 = new Font(HUDParameters.FONT, HUDParameters.FONT_SIZE_9999);
+    public static final Font FONT_999 = new Font(HUDParameters.FONT, HUDParameters.FONT_SIZE_999);
+    
     public static final int INSETS_MEASURES = 10;
     public static final int FONT_SIZE_999 = 18;
     public static final int FONT_SIZE_9999 = 16;
-    public static final Font FONT_9999 = new Font(HUDParameters.FONT, HUDParameters.FONT_SIZE_9999);
-    public static final Font FONT_999 = new Font(HUDParameters.FONT, HUDParameters.FONT_SIZE_999);
     public static final int FONT_TOLERANCE = 999;
     public static final int MAX_LIFE_POINTS = 4;
     public static final int TOTAL_BONUS = 5;
     public static final int VIEW_ORDER = -51;
+    public static final int DIMENSION = 50;
 
+    public static final double BOOST = 3 / 2;
+    public static final double SLOW = 2 / 3;
+    
     public static final boolean RATIO = false;
     public static final boolean SMOOTH = true;
     public static final boolean TRUE = true;

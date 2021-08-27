@@ -1,5 +1,6 @@
 package model.status.malus;
 
+import Utilities.HUDParameters;
 import Utilities.Parameters;
 import model.status.Status;
 import model.status.StatusEnum;
@@ -16,11 +17,11 @@ public class MalusFire extends Status {
         super();
         
         this.setImage(Parameters.malusFireImage);
-        this.getNode().setRotate(0);
+        this.getNode().setRotate(HUDParameters.ZERO);
         this.setStatusName(StatusEnum.MalusFire);
-        this.setCoolDown(7); // 7 s
+        this.setCoolDown(HUDParameters.SEVEN); // 7 s
 
-        this.setEffect(() -> this.getPlayer().setCanFire(false));
-        this.setRemoveEffect(() -> this.getPlayer().setCanFire(true));
+        this.setEffect(() -> this.getPlayer().setCanFire(HUDParameters.FALSE));
+        this.setRemoveEffect(() -> this.getPlayer().setCanFire(HUDParameters.TRUE));
     }
 }

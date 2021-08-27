@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import model.Entity;
 import model.bullet.Bullet;
 import model.ship.BossShip;
@@ -38,6 +39,8 @@ public class GameFieldImpl implements GameField {
     private StatusController statusController;
     private SoundManager soundmanager;
     private AnchorPane gameContainer;
+
+    private Stage stage;
 
     public GameFieldImpl(final int width, final int height) {
         this.gameContainer = new AnchorPane();
@@ -223,5 +226,15 @@ public class GameFieldImpl implements GameField {
     @Override
     public Set<SpaceShip> getActiveBosses() {
         return this.bossShips;
+    }
+    
+    @Override
+    public void setStageReference(final Stage stage) { 
+        this.stage = stage;
+    }
+    
+    @Override
+    public Stage getStage()  {
+        return this.stage;
     }
 }

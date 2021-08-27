@@ -16,14 +16,12 @@ public interface IHUDBonus {
 
     /**
      * Show a specific bonus.
-     *
      * @param index.
      */
     void showBonus(int index);
 
     /**
      * Hide a specific bonus.
-     *
      * @param index.
      */
     void hideBonus(int index);

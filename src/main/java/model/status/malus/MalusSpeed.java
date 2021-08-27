@@ -1,5 +1,6 @@
 package model.status.malus;
 
+import Utilities.HUDParameters;
 import Utilities.Parameters;
 import controller.collisionEngine.PhysicsEngineImpl;
 import model.status.Status;
@@ -17,16 +18,16 @@ public class MalusSpeed extends Status {
         super();
         
         this.setImage(Parameters.malusSpeedImage);
-        this.getNode().setRotate(0);
-        this.setBoostFactor((double) 2 / 3);
+        this.getNode().setRotate(HUDParameters.ZERO);
+        this.setBoostFactor((double) HUDParameters.SLOW);
         this.setStatusName(StatusEnum.MalusSpeed);
-        this.setCoolDown(7); // 7 s
+        this.setCoolDown(HUDParameters.SEVEN); // 7 s
 
         this.setEffect(() -> 
             this.getPlayer().setSpeed(this.getPlayer().getSpeed().doubleValue() * this.getBoostFactor()));
 
         this.setRemoveEffect(() -> {
-            this.getPlayer().setSpeed(this.getPlayer().getSpeed().doubleValue() * (double) 1 / this.getBoostFactor());
+            this.getPlayer().setSpeed(this.getPlayer().getSpeed().doubleValue() * (double) HUDParameters.ONE / this.getBoostFactor());
             
             /*
              * After the end of the effect we need to udpate collisions.
