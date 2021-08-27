@@ -21,7 +21,7 @@ public class BonusSpeed extends Status {
         this.getNode().setRotate(HUDParameters.ZERO);
         this.setStatusName(StatusEnum.BonusSpeed);
         this.setCoolDown(HUDParameters.SEVEN); // 7 s
-        this.setBoostFactor((double) HUDParameters.BOOST);
+        this.setBoostFactor(HUDParameters.BOOST);
 
         this.setEffect(() -> this.getPlayer().setSpeed(this.getPlayer().getSpeed().doubleValue() * this.getBoostFactor()));
 

@@ -32,8 +32,8 @@ public class HUDParameters {
     public static final int VIEW_ORDER = -51;
     public static final int DIMENSION = 50;
 
-    public static final double BOOST = 3 / 2;
-    public static final double SLOW = 2 / 3;
+    public static final double BOOST = (double) 3 / 2;
+    public static final double SLOW = (double) 2 / 3;
     
     public static final boolean RATIO = false;
     public static final boolean SMOOTH = true;
