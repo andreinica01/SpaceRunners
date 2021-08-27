@@ -15,12 +15,10 @@ public class EndGameGUI implements IEndGameGUI {
 
   private Stage endGameWindow;
   private int points;
-  private int level;
 
   @Override
-  public void end(int points, int level) throws Exception {
+  public void end(int points) throws Exception {
     this.points = points;
-    this.level = level;
 
     this.endGameWindow = new Stage();
     this.endGameWindow.setTitle("Game is over, you lost! :c");

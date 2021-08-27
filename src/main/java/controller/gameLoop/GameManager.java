@@ -44,10 +44,10 @@ public class GameManager extends AnimationTimer {
 
     @Override
     public void handle(final long now) {
+        
         /*
          * if ((now - prevtime) < sleepNs) { ("exit"); return; }
          */
-
         try {
             Thread.sleep(0, 100000);
         } catch (InterruptedException e) {

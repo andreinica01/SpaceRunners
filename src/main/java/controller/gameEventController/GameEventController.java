@@ -3,6 +3,7 @@ package controller.gameEventController;
 import Utilities.HUDParameters;
 import controller.collisionEngine.PhysicsEngine;
 import controller.collisionEngine.PhysicsEngineImpl;
+import model.hud.EndGameGUI;
 import model.hud.HUDBonusImpl;
 import model.hud.HUDLifeImpl;
 import model.hud.HUDPointsImpl;
@@ -38,7 +39,11 @@ public class GameEventController implements IGameEventController {
     @Override
     public void endGame() {
         this.gameField.getStage().close();
-        // new EndGameGUI().end(this.checkPoints());
+        try {
+            new EndGameGUI().end(this.checkPoints());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

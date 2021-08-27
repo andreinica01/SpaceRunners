@@ -6,10 +6,9 @@ public interface IEndGameGUI {
      * Ends the game and call a small GUI showing the results.
      *
      * @param points.
-     * @param level.
      * @throws Exception.
      */
-    void end(int points, int level) throws Exception;
+    void end(int points) throws Exception;
 
     /**
      * After clicking the relative button, it will grant you to save and quit.
