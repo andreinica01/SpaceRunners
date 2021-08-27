@@ -1,6 +1,7 @@
 package view.gameField;
 
 import Utilities.Parameters;
+import controller.gameLoop.GameManager;
 import controller.status.StatusController;
 import java.util.HashSet;
 import java.util.Set;
@@ -41,6 +42,7 @@ public class GameFieldImpl implements GameField {
     private AnchorPane gameContainer;
 
     private Stage stage;
+    private GameManager gameManager;
 
     public GameFieldImpl(final int width, final int height) {
         this.gameContainer = new AnchorPane();
@@ -236,5 +238,15 @@ public class GameFieldImpl implements GameField {
     @Override
     public Stage getStage()  {
         return this.stage;
+    }
+    
+    @Override
+    public void setGameManager(final GameManager manager) {
+        this.gameManager = manager;
+    }
+    
+    @Override
+    public GameManager getGameManager() {
+        return this.gameManager;
     }
 }

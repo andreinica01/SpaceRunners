@@ -15,76 +15,84 @@ import view.gameField.GameField;
 
 public class GameContollerImpl implements GameController {
 
-  /*
-   * Fields
-   */
-  private GameField gamefield;
-  private FrameManager frame;
-  private GameEventController gameEventController;
-  private SpaceShip player;
-  private InputControllerImpl inputController;
-  private StatusController statusController;
-  private final enemyAI AIController;
-  private Map<InputCommand, Boolean> controlStates;
-
-  public GameContollerImpl(GameField gamefield) {
-    this.gamefield = gamefield;
-
-    /* setup player info */
-    this.player = new PlayerSpaceShip(this.gamefield);
-    this.player.setPosition(
-        this.gamefield.getWidth().intValue() / 2, this.gamefield.getHeight().intValue() - 220);
-
-    this.gamefield.setPlayer(this.player);
-    this.frame = new FrameManager(this.gamefield);
-
-    this.gamefield.setBackgroundImage(Parameters.ImageFolder + "back.png");
-    this.inputController = new InputControllerImpl(this.player.getNode().getScene(), this.player);
-
     /*
-     * HUD and game conditions setup
+     * Fields
      */
-    this.gameEventController = new GameEventController(this.gamefield);
-    this.AIController = new enemyAI(this.gamefield, this.gameEventController);
+    private GameField gamefield;
+    private FrameManager frame;
+    private GameEventController gameEventController;
+    private SpaceShip player;
+    private InputControllerImpl inputController;
+    private StatusController statusController;
+    private final enemyAI AIController;
+    private Map<InputCommand, Boolean> controlStates;
 
-    this.statusController = new StatusController(this.gamefield.getPlayer());
-    this.gamefield.setStatusController(this.statusController);
-  }
+    public GameContollerImpl(GameField gamefield) {
+        this.gamefield = gamefield;
 
-  public void update() {
-    this.controlStates = this.inputController.getControlStates();
+        /* setup player info */
+        this.player = new PlayerSpaceShip(this.gamefield);
+        this.player.setPosition(this.gamefield.getWidth().intValue() / 2, this.gamefield.getHeight().intValue() - 220);
 
-    if (this.controlStates.get(InputCommand.GO_LEFT))
-      if (!this.player.isInvertedCommand()) this.player.setDirection(Direction.LEFT);
-      else this.player.setDirection(Direction.RIGHT);
+        this.gamefield.setPlayer(this.player);
+        this.frame = new FrameManager(this.gamefield);
 
-    if (this.controlStates.get(InputCommand.GO_RIGHT))
-      if (!this.player.isInvertedCommand()) this.player.setDirection(Direction.RIGHT);
-      else this.player.setDirection(Direction.LEFT);
+        this.gamefield.setBackgroundImage(Parameters.ImageFolder + "back.png");
+        this.inputController = new InputControllerImpl(this.player.getNode().getScene(), this.player);
 
-    if (this.controlStates.get(InputCommand.NONE)) {
-      this.player.setDirection(Direction.NONE);
+        /*
+         * HUD and game conditions setup
+         */
+        this.gameEventController = new GameEventController(this.gamefield);
+        this.AIController = new enemyAI(this.gamefield, this.gameEventController);
+
+        this.statusController = new StatusController(this.gamefield.getPlayer());
+        this.gamefield.setStatusController(this.statusController);
     }
 
-    if (controlStates.get(InputCommand.ATTACK)) {
-      this.player.attack();
+    public void update() {
+        this.controlStates = this.inputController.getControlStates();
+
+        if (this.controlStates.get(InputCommand.GO_LEFT))
+            if (!this.player.isInvertedCommand())
+                this.player.setDirection(Direction.LEFT);
+            else
+                this.player.setDirection(Direction.RIGHT);
+
+        if (this.controlStates.get(InputCommand.GO_RIGHT))
+            if (!this.player.isInvertedCommand())
+                this.player.setDirection(Direction.RIGHT);
+            else
+                this.player.setDirection(Direction.LEFT);
+
+        if (this.controlStates.get(InputCommand.NONE)) {
+            this.player.setDirection(Direction.NONE);
+        }
+
+        if (controlStates.get(InputCommand.ATTACK)) {
+            this.player.attack();
+        }
+
+        /*
+         * Collision and update system
+         */
+        this.gameEventController.getCollisionEngine().update();
+        this.AIController.update();
+
+        if (!this.gameEventController.checkGameStatus()) {
+            this.gamefield.getSoundManager().playDeathSound();
+            this.gamefield.getStage().close();
+            this.gamefield.getGameManager().stop();
+            this.gameEventController.endGame();
+        }
+
+        this.frame.update();
     }
 
-    /*
-     * Collision and update system
+    /**
+     * @return the Status controller.
      */
-    this.gameEventController.getCollisionEngine().update();
-    this.AIController.update();
-
-    if (!this.gameEventController.checkGameStatus()) {
-        this.gamefield.getSoundManager().playDeathSound();
-        System.exit(0);
+    public StatusController getStatusController() {
+        return statusController;
     }
-
-    frame.update();
-  }
-
-  public StatusController getStatusController() {
-    return statusController;
-  }
 }

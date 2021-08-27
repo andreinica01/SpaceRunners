@@ -1,5 +1,6 @@
 package view.gameField;
 
+import controller.gameLoop.GameManager;
 import controller.status.StatusController;
 import java.util.Set;
 import javafx.scene.Node;
@@ -102,4 +103,8 @@ public interface GameField {
     void setStageReference(Stage stage);
 
     Stage getStage();
+
+    GameManager getGameManager();
+
+    void setGameManager(GameManager manager);
 }

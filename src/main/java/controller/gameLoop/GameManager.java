@@ -64,4 +64,11 @@ public class GameManager extends AnimationTimer {
     public long getTimeSleep() {
         return this.sleepNs;
     }
+    
+    /**
+     * @return the GameManager.
+     */
+    public GameManager getManager() {
+        return this;
+    }
 }
