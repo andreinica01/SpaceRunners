@@ -197,6 +197,27 @@ public class GameFieldImpl implements GameField {
     @Override
     public void removeEntity(Entity entity) {
 
+       if(!this.enemyBullets.remove(entity))
+       {
+            if(!this.playerBullets.remove(entity))
+            {
+                if(!this.status.remove(entity))
+                {
+                    if(!this.enemyships.remove(entity))
+                    {
+                        this.bossShips.remove(entity);
+
+
+                    }
+
+                }
+
+            }
+
+       }
+     
+        this.entities.remove(entity);
+        this.gameContainer.getChildren().remove(entity.getNode());
     }
 
     @Override

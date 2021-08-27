@@ -12,5 +12,6 @@ public class BossShip extends EnemyShip {
     this.getNode().setScaleX(0.15);
     this.getNode().setScaleY(0.15);
     this.setSpeed(0);
+    this.getNode().setPickOnBounds(true);
   }
 }
