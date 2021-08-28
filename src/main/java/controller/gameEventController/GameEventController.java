@@ -45,7 +45,7 @@ public class GameEventController implements IGameEventController {
         /*
          * Points HUD, setting poisition on screen due to his definition:
          * it is a label part so it needs a position on screen and it needs
-         * to be added on the nodes system.
+         * to be added on the nodes system, same for other nodes.
          */
         this.hud = new HUDPointsImpl();
         this.gameField.getGameContainer().getChildren().add(this.hud);
@@ -81,11 +81,11 @@ public class GameEventController implements IGameEventController {
     public int checkLives() {
         return this.playerLives.getLifePoints();
     }
-//
-//    @Override
-//    public HUDBonusImpl getBonusImpl() {
-//        return this.bonusHUD;
-//    }
+
+    @Override
+    public HUDBonusImpl getBonusImpl() {
+        return this.bonusHUD;
+    }
 
     @Override
     public PhysicsEngine getCollisionEngine() {
