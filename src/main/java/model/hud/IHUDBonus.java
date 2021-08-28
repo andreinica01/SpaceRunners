@@ -7,7 +7,7 @@ public interface IHUDBonus {
     /**
      * @return all bonuses taken.
      */
-    ImageView[] getBonusTaken();
+    ImageView[] getBonus();
 
     /**
      * Add all bonuses.

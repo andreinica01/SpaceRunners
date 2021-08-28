@@ -31,8 +31,9 @@ public class HUDLifeImpl implements IHUDLife {
      */
     private boolean gameStatus;
 
-    /*
+    /**
      * Constructor
+     * @param gamePane.
      */
     public HUDLifeImpl(final AnchorPane gamePane) {
         this.pane = gamePane;
@@ -56,7 +57,7 @@ public class HUDLifeImpl implements IHUDLife {
     @Override
     public void lifeUp() {
         if (this.getLifePoints() < HUDParameters.MAX_LIFE_POINTS) {
-            this.addLife(this.lifePoints);
+            this.addLife(this.getLifePoints());
             this.lifePoints++;
         }
     }
@@ -82,7 +83,6 @@ public class HUDLifeImpl implements IHUDLife {
         this.lives[index] = new ImageView(new Image(new File(HUDParameters.PNG_FOLDER + "life.png").toURI().toString(),
                 SPACING, SPACING, HUDParameters.RATIO, HUDParameters.SMOOTH));
         this.lives[index].setLayoutX(index * SPACING);
-        this.lives[index].setLayoutY(HUDParameters.FIVE);
         this.pane.getChildren().add(this.lives[index]);
         this.lives[index].setViewOrder(HUDParameters.VIEW_ORDER);
     }
@@ -92,7 +92,7 @@ public class HUDLifeImpl implements IHUDLife {
      * logic.
      */
     public void removeLife() {
-        this.pane.getChildren().remove(this.lives[this.lifePoints]);
+        this.pane.getChildren().remove(this.lives[this.getLifePoints()]);
     }
 
     @Override

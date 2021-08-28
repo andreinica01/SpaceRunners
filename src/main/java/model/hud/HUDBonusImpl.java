@@ -17,7 +17,7 @@ public class HUDBonusImpl implements IHUDBonus {
      */
     private static final int SPACING = 30;
     private static final double X_LAYOUT = 450;
-    private static final double X_TRANSLATION = 645;
+    private static final double Y_TRANSLATION = 645;
 
     /*
      * Control fields
@@ -25,17 +25,18 @@ public class HUDBonusImpl implements IHUDBonus {
     private ImageView[] bonus = new ImageView[HUDParameters.TOTAL_BONUS];
     private GameField gameField;
 
-    /*
+    /**
      * Constructor
+     * @param gameField
      */
-    public HUDBonusImpl(final GameField gamefield) {
-        this.gameField = gamefield;
+    public HUDBonusImpl(final GameField gameField) {
+        this.gameField = gameField;
 
         this.addBonuses();
     }
 
     @Override
-    public ImageView[] getBonusTaken() {
+    public ImageView[] getBonus() {
         return this.bonus;
     }
 
@@ -48,7 +49,7 @@ public class HUDBonusImpl implements IHUDBonus {
                             HUDParameters.RATIO, HUDParameters.SMOOTH));
             this.bonus[index].setLayoutX(X_LAYOUT);
             this.bonus[index].setLayoutY(index * -SPACING);
-            this.bonus[index].setTranslateY(X_TRANSLATION);
+            this.bonus[index].setTranslateY(Y_TRANSLATION);
             this.bonus[index].setViewOrder(HUDParameters.VIEW_ORDER);
         });
     }
@@ -60,6 +61,7 @@ public class HUDBonusImpl implements IHUDBonus {
         } catch (Exception e) {
             this.hideBonus(index);
             this.showBonus(index);
+            this.resetTime(index);
         } finally {
             
         }
@@ -68,6 +70,10 @@ public class HUDBonusImpl implements IHUDBonus {
     @Override
     public void hideBonus(final int index) {
         this.gameField.getGameContainer().getChildren().remove(this.bonus[index]);
+    }
+    
+    private void resetTime(final int index) {
+        // TODO Auto-generated method stub        
     }
     
     public void statusHandler() {
