@@ -5,44 +5,73 @@ import view.gameField.GameField;
 
 public abstract class SpaceShip extends EntityImpl {
 
-  protected int lifePoints;
-  private boolean invertedCommand;
+    protected int lifePoints;
+    private boolean invertedCommand;
 
-  protected GameField gamefield;
+    protected GameField gamefield;
 
-  public SpaceShip(GameField gamefield) {
+    /**
+     * Constructor.
+     * @param gamefield
+     */
+    public SpaceShip(final GameField gamefield) {
 
-    setSpeed(10);
-    setInvertedCommand(false);
-    setCanFire(true);
+        this.setSpeed(10);
+        this.setInvertedCommand(false);
+        this.setCanFire(true);
 
-    this.gamefield = gamefield;
-  }
+        this.gamefield = gamefield;
+    }
 
-  public int getLifePoints() {
-    return this.lifePoints;
-  }
+    /**
+     * Return spaceship lifepoints.
+     * @return
+     */
+    public int getLifePoints() {
+        return this.lifePoints;
+    }
 
-  public void setLifePoints(int lifepoint) {
-    this.lifePoints = lifepoint;
-  }
+    /**
+     * Set space ship lifepoints.
+     * @param lifepoint
+     */
+    public void setLifePoints(final int lifepoint) {
+        this.lifePoints = lifepoint;
+    }
 
-  public void increaseLifePoints(Number points) {
-    this.lifePoints += points.intValue();
-  }
+    /**
+     * Increase lifepoints.
+     * @param points
+     */
+    public void increaseLifePoints(final Number points) {
+        this.lifePoints += points.intValue();
+    }
 
-  public void decreaselifePoints(Number points) {
-    this.lifePoints -= points.intValue();
-  }
+    /**
+     * Decrease lifepoints.
+     * @param points
+     */
+    public void decreaselifePoints(final Number points) {
+        this.lifePoints -= points.intValue();
+    }
 
-  public boolean isInvertedCommand() {
-    return invertedCommand;
-  }
+    /**
+     * @return true if commands are inverted
+     */
+    public boolean isInvertedCommand() {
+        return this.invertedCommand;
+    }
 
-  public void setInvertedCommand(boolean invertedCommand) {
-    this.invertedCommand = invertedCommand;
-  }
+    /**
+     * Set if the commands are inverted or not.
+     * @param invertedCommand
+     */
+    public void setInvertedCommand(final boolean invertedCommand) {
+        this.invertedCommand = invertedCommand;
+    }
 
-  /** attack */
-  public abstract void attack();
+    /** 
+     * attack 
+     */
+    public abstract void attack();
 }
