@@ -13,30 +13,28 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
     /*
      * HUD structure
      */
-
-    private static final int PREF_WIDTH = 130;
-    private static final int PREF_HEIGHT = 50;
-    private static final String MATTER = "Points: ";
+    private static final int X_LAYOUT = 360;
+    private static final int Y_LAYOUT = 20;
     private static final int POINTS_UP = 1;
     private static final int POINTS_DOWN = -5;
+    private static final String MATTER = "Points: ";
 
     /*
      * Control field
      */
     private int points;
 
-    /*
+    /**
      * Constructor
      */
     public HUDPointsImpl() {
-        this.setPrefWidth(PREF_WIDTH);
-        this.setPrefHeight(PREF_HEIGHT);
 
         this.points = HUDParameters.ZERO;
 
-        this.setAlignment(HUDParameters.PREF_ALIGNEMENT);
+        this.setLayoutX(X_LAYOUT);
+        this.setLayoutY(Y_LAYOUT);
         this.setText(MATTER + this.getPoints());
-        this.setFont(new Font(HUDParameters.FONT, HUDParameters.FONT_SIZE_999));
+        this.setFont(new Font(HUDParameters.FONT, HUDParameters.FONT_SIZE));
         this.setTextFill(Paint.valueOf("yellow"));
     }
 
@@ -53,7 +51,9 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
      */
     @Override
     public void pointsUp() {
-        this.pointsSetter(POINTS_UP);
+        if(this.getPoints() < HUDParameters.MAX_POINTS_POSSIBLE) {
+            this.pointsSetter(POINTS_UP);
+        }
     }
 
     @Override
@@ -69,16 +69,5 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
     public void pointsSetter(final int value) {
         this.points += value;
         this.setText(MATTER + this.getPoints());
-        this.fontStabilizer();
-    }
-
-    @Override
-    public void fontStabilizer() {
-        
-        if(this.getPoints() > HUDParameters.FONT_TOLERANCE) {
-            this.setFont(HUDParameters.FONT_9999);
-        } else {
-            this.setFont(HUDParameters.FONT_999);
-        }
     }
 }

@@ -25,9 +25,4 @@ public interface IHUDPoints {
      * @param value to set.
      */
     void pointsSetter(int value);
-    
-    /**
-     * It stabilize font dimension.
-     */
-    void fontStabilizer();
 }

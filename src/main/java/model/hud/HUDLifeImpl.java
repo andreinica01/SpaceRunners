@@ -2,7 +2,6 @@ package model.hud;
 
 import java.io.File;
 import java.util.stream.IntStream;
-
 import Utilities.HUDParameters;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
