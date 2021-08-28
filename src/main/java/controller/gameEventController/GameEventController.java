@@ -14,8 +14,7 @@ public class GameEventController implements IGameEventController {
     /*
      * HUD values
      */
-    private static final int X_LAYOUT = 353;
-    private static final int Y_LAYOUT = 3;
+
 
     /*
      * Game Container reference and HUD elements
@@ -44,11 +43,11 @@ public class GameEventController implements IGameEventController {
     @Override
     public void createHUD() {
         /*
-         * Points HUD
+         * Points HUD, setting poisition on screen due to his definition:
+         * it is a label part so it needs a position on screen and it needs
+         * to be added on the nodes system.
          */
         this.hud = new HUDPointsImpl();
-        this.hud.setLayoutX(X_LAYOUT);
-        this.hud.setLayoutY(Y_LAYOUT);
         this.gameField.getGameContainer().getChildren().add(this.hud);
         this.hud.setViewOrder(HUDParameters.VIEW_ORDER);
 
@@ -82,11 +81,11 @@ public class GameEventController implements IGameEventController {
     public int checkLives() {
         return this.playerLives.getLifePoints();
     }
-
-    @Override
-    public HUDBonusImpl getBonusImpl() {
-        return this.bonusHUD;
-    }
+//
+//    @Override
+//    public HUDBonusImpl getBonusImpl() {
+//        return this.bonusHUD;
+//    }
 
     @Override
     public PhysicsEngine getCollisionEngine() {

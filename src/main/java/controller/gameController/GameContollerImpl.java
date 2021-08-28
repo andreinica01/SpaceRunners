@@ -107,6 +107,6 @@ public class GameContollerImpl implements GameController {
      * @return the Status controller.
      */
     public StatusController getStatusController() {
-        return statusController;
+        return this.statusController;
     }
 }
