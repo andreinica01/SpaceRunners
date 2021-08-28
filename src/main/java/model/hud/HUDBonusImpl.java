@@ -1,5 +1,6 @@
 package model.hud;
 
+import java.awt.List;
 import java.io.File;
 import java.util.Map;
 import java.util.stream.IntStream;
@@ -7,6 +8,7 @@ import java.util.stream.Stream;
 import Utilities.HUDParameters;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import model.status.Status;
 import model.status.StatusEnum;
 import view.gameField.GameField;
 
@@ -23,6 +25,7 @@ public class HUDBonusImpl implements IHUDBonus {
      * Control fields
      */
     private ImageView[] bonus = new ImageView[HUDParameters.TOTAL_BONUS];
+    private long[] cooldowns = new long[HUDParameters.FIVE];
     private GameField gameField;
 
     /**
@@ -50,40 +53,59 @@ public class HUDBonusImpl implements IHUDBonus {
             this.bonus[index].setLayoutX(X_LAYOUT);
             this.bonus[index].setLayoutY(index * -SPACING);
             this.bonus[index].setTranslateY(Y_TRANSLATION);
-            this.bonus[index].setViewOrder(HUDParameters.VIEW_ORDER);
+            this.bonus[index].setViewOrder(HUDParameters.VIEW_ORDER);  
         });
     }
 
     @Override
-    public void showBonus(final int index) {
+    public void showBonus(final Status bonus) {
         try {
-            this.gameField.getGameContainer().getChildren().add(this.bonus[index]);
+            switch (bonus.getStatusName()) {
+            case BonusLife:
+                this.gameField.getGameContainer().getChildren().add(this.bonus[HUDParameters.ZERO]);
+                break;
+            case BonusSpeed:
+                this.gameField.getGameContainer().getChildren().add(this.bonus[HUDParameters.ONE]);
+                break;
+            case MalusCommand:
+                this.gameField.getGameContainer().getChildren().add(this.bonus[HUDParameters.TWO]);
+                break;
+            case MalusFire:
+                this.gameField.getGameContainer().getChildren().add(this.bonus[HUDParameters.THREE]);
+                break;
+            case MalusSpeed:
+                this.gameField.getGameContainer().getChildren().add(this.bonus[HUDParameters.FOUR]);
+                break;
+           default:
+                break;    
+            }
         } catch (Exception e) {
-            this.hideBonus(index);
-            this.showBonus(index);
-            this.resetTime(index);
+            this.hideBonus(bonus);
+            this.showBonus(bonus);
+        }
+    }
+
+    @Override
+    public void hideBonus(final Status bonus) {
+        try {
+            this.gameField.getGameContainer().getChildren().remove(this.bonus[bonus.getStatusName().ordinal()]);
+        } catch (Exception e) {
+            
         } finally {
             
         }
     }
 
-    @Override
-    public void hideBonus(final int index) {
-        this.gameField.getGameContainer().getChildren().remove(this.bonus[index]);
-    }
-    
-    private void resetTime(final int index) {
-        // TODO Auto-generated method stub        
-    }
-    
-    public void statusHandler() {
+    public void statusHandler(final Status status) {
         Map<StatusEnum, Boolean> map = this.gameField.getStatusController().getActiveStatus();
         
-//        Stream.of(map.keySet())
-//        .forEach(e -> {
-//            if(map. == HUDParameters.TRUE) {
-//                this.showBonus(e.);
-//            }
-//        });
+        Stream.of(map.keySet())
+        .forEach(e -> {
+            if(e.toString() == status.getStatusName().toString() && map.get(e).equals(HUDParameters.ZERO)){
+                this.showBonus(status);
+            } else if (e.toString() == status.getStatusName().toString() && map.get(e).equals(HUDParameters.FALSE)) {
+                this.hideBonus(status);
+            }
+        });
     }
 }

@@ -91,7 +91,7 @@ public class StatusController {
      */
     public Map<StatusEnum, Boolean> getActiveStatus() {
         Stream.of(StatusEnum.values())
-                .forEach(e -> this.activeStatus.put(e, this.getAllCooldown(TimeUnit.MILLISECONDS).get(e) <= HUDParameters.ZERO));
+                .forEach(e -> this.activeStatus.put(e, this.getAllCooldown(TimeUnit.MILLISECONDS).get(e) < HUDParameters.ZERO));
         return this.activeStatus;
     }
 

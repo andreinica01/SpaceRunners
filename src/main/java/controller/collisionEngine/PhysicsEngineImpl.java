@@ -176,24 +176,20 @@ public class PhysicsEngineImpl implements PhysicsEngine {
 
                 switch (bonus.getStatusName()) {
                     case BonusLife:
-                        this.bonusHUD.showBonus(HUDParameters.ZERO);
                         this.addLife();
                         break;
                     case BonusSpeed:
-                        this.bonusHUD.showBonus(HUDParameters.ONE);
                         resetX *= 1.5;
                         break;
+                    case MalusSpeed:
+                        resetX *= 0.5;
+                        break;  
                     case MalusCommand:
-                        this.bonusHUD.showBonus(HUDParameters.TWO);
                         break;
                     case MalusFire:
-                        this.bonusHUD.showBonus(HUDParameters.THREE);
-                        break;
-                    case MalusSpeed:
-                        this.bonusHUD.showBonus(HUDParameters.FOUR);
-                        resetX *= 0.5;
                         break;
                 }
+                this.bonusHUD.statusHandler(bonus);
                 bonus.setPosition(-1000, bonus.getNode().getLayoutY());
             }
         }
