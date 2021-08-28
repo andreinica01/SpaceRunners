@@ -1,9 +1,9 @@
 package controller.collisionEngine;
 
-import Utilities.HUDParameters;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import javafx.geometry.Bounds;
 import model.Entity;
 import model.bullet.Bullet;
@@ -12,6 +12,7 @@ import model.hud.HUDLifeImpl;
 import model.hud.HUDPointsImpl;
 import model.ship.SpaceShip;
 import model.status.Status;
+import model.status.StatusEnum;
 import view.gameField.GameField;
 
 public class PhysicsEngineImpl implements PhysicsEngine {
@@ -60,6 +61,10 @@ public class PhysicsEngineImpl implements PhysicsEngine {
         bossCollisionWithBullets();
         bulletCollisionWithEnemies();
         bossesCollisionwithWall();
+        /* this.statusHandler();
+         * 
+         * Problem here!!
+         */
         removeUnusedEntities();
     }
 
@@ -189,8 +194,23 @@ public class PhysicsEngineImpl implements PhysicsEngine {
                     case MalusFire:
                         break;
                 }
-                this.bonusHUD.statusHandler(bonus);
                 bonus.setPosition(-1000, bonus.getNode().getLayoutY());
+            }
+        }
+    }
+
+    /**
+     * Handles bonus
+     * @param bonus
+     */
+    private void statusHandler() {
+        Map<StatusEnum, Boolean> map = this.gamefield.getStatusController().getActiveStatus();
+        
+        for(StatusEnum elem : map.keySet()) {
+            if(map.get(elem)) {
+                this.bonusHUD.showBonus(elem);
+            } else {
+                this.bonusHUD.hideBonus(elem);
             }
         }
     }

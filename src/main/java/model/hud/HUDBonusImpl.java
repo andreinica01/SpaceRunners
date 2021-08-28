@@ -1,14 +1,10 @@
 package model.hud;
 
-import java.awt.List;
 import java.io.File;
-import java.util.Map;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 import Utilities.HUDParameters;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import model.status.Status;
 import model.status.StatusEnum;
 import view.gameField.GameField;
 
@@ -25,7 +21,6 @@ public class HUDBonusImpl implements IHUDBonus {
      * Control fields
      */
     private ImageView[] bonus = new ImageView[HUDParameters.TOTAL_BONUS];
-    private long[] cooldowns = new long[HUDParameters.FIVE];
     private GameField gameField;
 
     /**
@@ -58,9 +53,9 @@ public class HUDBonusImpl implements IHUDBonus {
     }
 
     @Override
-    public void showBonus(final Status bonus) {
+    public void showBonus(final StatusEnum bonus) {
         try {
-            switch (bonus.getStatusName()) {
+            switch (bonus) {
             case BonusLife:
                 this.gameField.getGameContainer().getChildren().add(this.bonus[HUDParameters.ZERO]);
                 break;
@@ -75,37 +70,20 @@ public class HUDBonusImpl implements IHUDBonus {
                 break;
             case MalusSpeed:
                 this.gameField.getGameContainer().getChildren().add(this.bonus[HUDParameters.FOUR]);
-                break;
-           default:
-                break;    
+                break; 
             }
-        } catch (Exception e) {
+        } catch(Exception e) {
             this.hideBonus(bonus);
             this.showBonus(bonus);
         }
     }
 
     @Override
-    public void hideBonus(final Status bonus) {
+    public void hideBonus(final StatusEnum bonus) {
         try {
-            this.gameField.getGameContainer().getChildren().remove(this.bonus[bonus.getStatusName().ordinal()]);
-        } catch (Exception e) {
-            
+            this.gameField.getGameContainer().getChildren().remove(this.bonus[bonus.ordinal()]);           
+        } catch(Exception e) { 
         } finally {
-            
         }
-    }
-
-    public void statusHandler(final Status status) {
-        Map<StatusEnum, Boolean> map = this.gameField.getStatusController().getActiveStatus();
-        
-        Stream.of(map.keySet())
-        .forEach(e -> {
-            if(e.toString() == status.getStatusName().toString() && map.get(e).equals(HUDParameters.ZERO)){
-                this.showBonus(status);
-            } else if (e.toString() == status.getStatusName().toString() && map.get(e).equals(HUDParameters.FALSE)) {
-                this.hideBonus(status);
-            }
-        });
     }
 }
