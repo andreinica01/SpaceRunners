@@ -18,8 +18,10 @@ import view.gameField.GameField;
 
 public class PhysicsEngineImpl implements PhysicsEngine {
 
-    private static final double X_LEFT_BORDER = 146;
-    private static final double X_RIGHT_BORDER = 70;
+    private static final int X_PLAYER_LEFT_BORDER = 146;
+    private static final int X_PLAYER_RIGHT_BORDER = 70;
+    private static final int X_BOSS_LEFT_BORDER = 385;
+    private static final int X_BOSS_RIGHT_BORDER = 271;
     /*
      * Control fields
      */
@@ -72,12 +74,12 @@ public class PhysicsEngineImpl implements PhysicsEngine {
     private void collisionWalls() {
         int limit = this.gamefield.getPlayer().getPosition().getX().intValue();
 
-        if (this.isEntityCollidingLeftWall(this.gamefield.getPlayer())) {
+        if (this.isEntityCollidingLeftWall(this.gamefield.getPlayer(), X_PLAYER_LEFT_BORDER)) {
             this.gamefield.getSoundManager().playClashWall();
             this.gamefield.getPlayer()
                 .setPosition(limit - resetX, this.gamefield.getPlayer().getPosition().getY().intValue());
         
-        } else if (this.isEntityCollidingRightWall(this.gamefield.getPlayer())) {
+        } else if (this.isEntityCollidingRightWall(this.gamefield.getPlayer(), X_PLAYER_RIGHT_BORDER)) {
             this.gamefield.getSoundManager().playClashWall();
             this.gamefield.getPlayer()
                 .setPosition(limit + resetX, this.gamefield.getPlayer().getPosition().getY().intValue());
@@ -88,16 +90,16 @@ public class PhysicsEngineImpl implements PhysicsEngine {
      * Helper method.
      * @return true if player touches left side of the gameField.
      */
-    private boolean isEntityCollidingRightWall(final Entity entity) {
-        return (entity.getPosition().getX().intValue() < this.fieldBounds.getMinX() - X_RIGHT_BORDER);
+    private boolean isEntityCollidingRightWall(final Entity entity, final int delay) {
+        return (entity.getPosition().getX().intValue() < this.fieldBounds.getMinX() - delay);
     }
 
     /**
      * Helper method.
      * @return true if player touches right side of the gameField.
      */
-    private boolean isEntityCollidingLeftWall(final Entity entity) {
-        return (entity.getPosition().getX().intValue() > this.fieldBounds.getMaxX() - X_LEFT_BORDER);
+    private boolean isEntityCollidingLeftWall(final Entity entity, final int delay) {
+        return (entity.getPosition().getX().intValue() > this.fieldBounds.getMaxX() - delay);
     }
 
     /** 
@@ -219,18 +221,18 @@ public class PhysicsEngineImpl implements PhysicsEngine {
      * Handles Boss collision within game field.
      */
     private void bossesCollisionwithWall() {
-        this.gamefield.getActiveBosses()
-            .forEach(
-                boss -> {
-                    if (
-                        !this.gamefield.getGameContainer()
-                            .getLayoutBounds()
-                            .contains(boss.getNode().getBoundsInParent())
-                    ) {
-                        boss.invertDirection();
-                    }
-                }
-            );
+
+        this.gamefield.getActiveBosses().forEach(boss -> {
+            int limit = boss.getPosition().getX().intValue();
+            
+            if (this.isEntityCollidingLeftWall(boss, X_BOSS_LEFT_BORDER)) {
+                boss.setPosition(limit - resetX, boss.getPosition().getY().intValue());
+                boss.invertDirection();
+            } else if (this.isEntityCollidingRightWall(boss, X_BOSS_RIGHT_BORDER)) {
+                boss.setPosition(limit + resetX, boss.getPosition().getY().intValue());
+                boss.invertDirection();
+            }
+        });
     }
 
     public void bossCollisionWithBullets() {
