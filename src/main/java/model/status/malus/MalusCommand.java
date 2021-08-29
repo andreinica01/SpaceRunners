@@ -15,7 +15,6 @@ public class MalusCommand extends Status {
     public MalusCommand() {
         super();
         
-        this.getNode().setRotate(HUDParameters.ZERO);
         this.setStatusName(StatusEnum.MalusCommand);
         this.setCoolDown(HUDParameters.TEN); // 10 s
 

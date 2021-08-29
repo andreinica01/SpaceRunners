@@ -1,6 +1,7 @@
 package model.status;
 
 import Utilities.Direction;
+import Utilities.HUDParameters;
 import Utilities.Parameters;
 import model.EntityImpl;
 import model.ship.SpaceShip;
@@ -27,6 +28,7 @@ public abstract class Status extends EntityImpl {
         this.setDirection(Direction.DOWN);
         this.setSpeed(Parameters.STATUS_SPEED);
         this.setImage(Parameters.randomStatusImage);
+        this.getNode().setRotate(HUDParameters.ZERO);
     }
 
     public long getCoolDown() {

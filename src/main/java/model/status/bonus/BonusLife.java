@@ -17,7 +17,7 @@ public class BonusLife extends Status {
         
         this.setStatusName(StatusEnum.BonusLife);
         this.setCoolDown(HUDParameters.ONE);
-
+        
         this.setEffect(() -> {
             if (this.getPlayer().getLifePoints() < HUDParameters.MAX_LIFE_POINTS)
                 this.getPlayer().increaseLifePoints(HUDParameters.ONE);

@@ -15,7 +15,6 @@ public class MalusFire extends Status {
     public MalusFire() {
         super();
         
-        this.getNode().setRotate(HUDParameters.ZERO);
         this.setStatusName(StatusEnum.MalusFire);
         this.setCoolDown(HUDParameters.SEVEN); // 7 s
 

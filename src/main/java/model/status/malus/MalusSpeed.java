@@ -16,7 +16,6 @@ public class MalusSpeed extends Status {
     public MalusSpeed() {
         super();
         
-        this.getNode().setRotate(HUDParameters.ZERO);
         this.setBoostFactor(HUDParameters.SLOW);
         this.setStatusName(StatusEnum.MalusSpeed);
         this.setCoolDown(HUDParameters.SEVEN); // 7 s
