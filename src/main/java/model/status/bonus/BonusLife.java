@@ -16,7 +16,7 @@ public class BonusLife extends Status {
     public BonusLife() {
         super();
         
-        this.setImage(Parameters.bonusLifeImage);
+        this.setImage(Parameters.randomStatusImage);
         this.setStatusName(StatusEnum.BonusLife);
         this.setCoolDown(HUDParameters.ONE);
 
