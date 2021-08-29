@@ -1,7 +1,6 @@
 package model.status.bonus;
 
 import Utilities.HUDParameters;
-import Utilities.Parameters;
 import model.status.Status;
 import model.status.StatusEnum;
 
