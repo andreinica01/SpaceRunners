@@ -60,6 +60,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
         this.playerCollisionWithEnemies();
         this.playerBonusCollision();
         this.bulletCollisionWithEnemies();
+        //this.playerCollisionWithBullets();
         this.bossesCollisionwithWall();
         this.bossCollisionWithBullets();
         this.removeUnusedEntities();
@@ -200,22 +201,22 @@ public class PhysicsEngineImpl implements PhysicsEngine {
         }
     }
     
-    /**
-     * Handles collision between Boss bullets and player.
-     */
-    private void playerCollisionWithBullets() {
-        /*   Iterator<Bullet> bullets = this.gamefield.getActiveBulletsShotbyEnemies().iterator();
-
-        while(bullets) */
-
-        /*  while(x.hasNext())
-    {
-      if(x.next().getNode().getBoundsInParent().intersects(this.gamefield.getPlayer().getNode().getBoundsInParent())
-
-
-    }
- */
-    }
+//    /**
+//     * Handles collision between Boss bullets and player.
+//     */
+//    private void playerCollisionWithBullets() {
+//        Iterator<Bullet> bullets = this.gamefield.getActiveBulletsShotbyEnemies().iterator();
+//
+//        while(bullets)
+//
+//        while(x.hasNext())
+//    {
+//      if(x.next().getNode().getBoundsInParent().intersects(this.gamefield.getPlayer().getNode().getBoundsInParent())
+//
+//
+//    }
+//
+//    }
 
     /**
      * Handles Boss collision within game field.
@@ -235,6 +236,9 @@ public class PhysicsEngineImpl implements PhysicsEngine {
         });
     }
 
+    /**
+     * Handles collisions between bullet and bosses.
+     */
     public void bossCollisionWithBullets() {
         Iterator<SpaceShip> bosses = this.gamefield.getActiveBosses().iterator();
         Iterator<Bullet> bullets = this.gamefield.getActiveBulletsShotbyPlayer().iterator();
