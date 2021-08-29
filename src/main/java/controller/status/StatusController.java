@@ -1,7 +1,6 @@
 package controller.status;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.Executors;
@@ -25,7 +24,6 @@ public class StatusController {
     private HashMap<StatusEnum, Optional<ScheduledFuture<?>>> playerStatus;
     private Map<StatusEnum, Boolean> activeStatus;
     private Map<StatusEnum, Long> statusCooldown;
-    private List<StatusEnum> statusEnumValues;
 
     /**
      * Create and Setting this StatusController to a SpaceShip instance.
@@ -38,7 +36,6 @@ public class StatusController {
         this.playerStatus = new HashMap<>();
         this.activeStatus = new HashMap<>();
         this.statusCooldown = new HashMap<>();
-        this.statusEnumValues = List.of(StatusEnum.values());
         this.setPlayerStatus();
     }
 
