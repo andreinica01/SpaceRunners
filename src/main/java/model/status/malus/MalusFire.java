@@ -1,7 +1,6 @@
 package model.status.malus;
 
 import Utilities.HUDParameters;
-import Utilities.Parameters;
 import model.status.Status;
 import model.status.StatusEnum;
 
@@ -16,7 +15,6 @@ public class MalusFire extends Status {
     public MalusFire() {
         super();
         
-        this.setImage(Parameters.malusFireImage);
         this.getNode().setRotate(HUDParameters.ZERO);
         this.setStatusName(StatusEnum.MalusFire);
         this.setCoolDown(HUDParameters.SEVEN); // 7 s

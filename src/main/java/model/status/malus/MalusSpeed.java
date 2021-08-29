@@ -1,7 +1,6 @@
 package model.status.malus;
 
 import Utilities.HUDParameters;
-import Utilities.Parameters;
 import controller.collisionEngine.PhysicsEngineImpl;
 import model.status.Status;
 import model.status.StatusEnum;
@@ -17,7 +16,6 @@ public class MalusSpeed extends Status {
     public MalusSpeed() {
         super();
         
-        this.setImage(Parameters.malusSpeedImage);
         this.getNode().setRotate(HUDParameters.ZERO);
         this.setBoostFactor(HUDParameters.SLOW);
         this.setStatusName(StatusEnum.MalusSpeed);
