@@ -34,6 +34,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
      * List of entities that must be removed
      */
     private List<Entity> toBeRemovedList;
+    private int bossHP;
 
     /**
      * Constructor
@@ -44,6 +45,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
         this.pointsHUD = pointsHUD;
         this.livesHUD = livesHUD;
         this.bonusHUD = bonusHUD;
+        this.bossHP = HUDParameters.SEVEN;
         
         resetBound();
         this.toBeRemovedList = new ArrayList<Entity>();
@@ -182,6 +184,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
                 Bounds bulletBound = bullet.getNode().getBoundsInParent();
 
                 if (bulletBound.intersects(shipBound)) {
+                    this.gamefield.getSoundManager().playSpaceshipExplosion();
                     this.toBeRemovedList.add(bullet);
                     this.toBeRemovedList.add(enemyship);
 
@@ -236,24 +239,26 @@ public class PhysicsEngineImpl implements PhysicsEngine {
 
         while (bosses.hasNext()) {
             SpaceShip enemyship = bosses.next();
-
             Bounds shipBound = enemyship.getNode().getBoundsInParent();
 
             while (bullets.hasNext()) {
                 Bullet bullet = bullets.next();
-
                 Bounds bulletBound = bullet.getNode().getBoundsInParent();
 
                 if (bulletBound.intersects(shipBound)) {
                     this.toBeRemovedList.add(bullet);
-                    this.toBeRemovedList.add(enemyship);
 
+                    if(this.getBossHP() < HUDParameters.ONE) {
+                        bosses.remove();
+                        this.toBeRemovedList.add(enemyship);
+                        this.gamefield.getSoundManager().playBossDeath();
+                        this.bossHP = HUDParameters.SEVEN;
+                        this.pointsHUD.pointsSetter(HUDParameters.THREE);
+                    } else {
+                        this.gamefield.getSoundManager().playBossDamaged();
+                    }
+                    this.bossHP--;
                     bullets.remove();
-                    bosses.remove();
-
-                    this.addPoints();
-
-                    break;
                 }
             }
             bullets = this.gamefield.getActiveBulletsShotbyPlayer().iterator();
@@ -266,6 +271,14 @@ public class PhysicsEngineImpl implements PhysicsEngine {
     private void removeUnusedEntities() {
         this.toBeRemovedList.forEach(entity -> this.gamefield.removeEntity(entity));
         this.toBeRemovedList.clear();
+    }
+    
+    /*
+     * Getter
+     */
+    @Override
+    public int getBossHP() {
+        return this.bossHP;
     }
 
     /*

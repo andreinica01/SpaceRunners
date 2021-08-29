@@ -6,8 +6,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Objects;
-
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
@@ -29,7 +27,7 @@ public class SoundManager {
         try {
             Clip soundClip = AudioSystem.getClip();
             soundClip.open(AudioSystem.getAudioInputStream(new File(Parameters.SoundFolder + sound)));
-            setVolume(soundClip, 30);
+            this.setVolume(soundClip, 30);
             soundClip.start();
             
             this.sounds.add(soundClip);
@@ -49,7 +47,7 @@ public class SoundManager {
      * @param clip
      * @param level. Min: 0, Max: 100
      */
-    public void setVolume(Clip clip, float volume) {
+    public void setVolume(final Clip clip, float volume) {
     	volume = volume / 100;
         if (volume < 0f || volume > 1f)
             throw new IllegalArgumentException("Volume not valid: " + volume);
@@ -104,6 +102,20 @@ public class SoundManager {
      */
     public void playPlayerImpact() {
         this.playSound("player_impact.wav");
+    }
+    
+    /**
+     * Play a sound when boss is damaged.
+     */
+    public void playBossDamaged() {
+        this.playSound("bossDamage.wav");
+    }
+    
+    /**
+     * Play a sound when the boss dies
+     */
+    public void playBossDeath() {
+        this.playSound("bossDeath.wav");
     }
 
     /**
