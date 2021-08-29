@@ -1,7 +1,6 @@
 package model.status.bonus;
 
 import Utilities.HUDParameters;
-import Utilities.Parameters;
 import controller.collisionEngine.PhysicsEngineImpl;
 import model.status.Status;
 import model.status.StatusEnum;
@@ -17,7 +16,6 @@ public class BonusSpeed extends Status {
     public BonusSpeed() {
         super();
         
-        this.setImage(Parameters.bonusSpeedImage);
         this.getNode().setRotate(HUDParameters.ZERO);
         this.setStatusName(StatusEnum.BonusSpeed);
         this.setCoolDown(HUDParameters.SEVEN); // 7 s

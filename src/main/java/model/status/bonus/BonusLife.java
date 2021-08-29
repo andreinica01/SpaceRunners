@@ -1,7 +1,6 @@
 package model.status.bonus;
 
 import Utilities.HUDParameters;
-import Utilities.Parameters;
 import model.status.Status;
 import model.status.StatusEnum;
 
@@ -16,7 +15,6 @@ public class BonusLife extends Status {
     public BonusLife() {
         super();
         
-        this.setImage(Parameters.bonusLifeImage);
         this.setStatusName(StatusEnum.BonusLife);
         this.setCoolDown(HUDParameters.ONE);
 
