@@ -27,7 +27,7 @@ public class SoundManager {
         try {
             Clip soundClip = AudioSystem.getClip();
             soundClip.open(AudioSystem.getAudioInputStream(new File(Parameters.SoundFolder + sound)));
-            this.setVolume(soundClip, 30);
+            this.setVolume(soundClip, 10);
             soundClip.start();
             
             this.sounds.add(soundClip);

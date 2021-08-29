@@ -49,18 +49,17 @@ public class StatusController {
         Optional<ScheduledFuture<?>> task = this.playerStatus.get(status.getStatusName());
         // Adding effect if never added before or already terminated
         if (task.isEmpty() || task.get().isDone()) {
-            this.addTemporaryEffect(status);
+            this.ses.execute(status.getEffect());
+            this.addDebuffTask(status);
             return HUDParameters.TRUE;
         }
         // Else, refresh task's time
         task.get().cancel(HUDParameters.FALSE);
-        this.addTemporaryEffect(status);
+        this.addDebuffTask(status);
         return HUDParameters.TRUE;
     }
 
-    private void addTemporaryEffect(final Status status) {
-        // Applying effect
-        this.ses.execute(status.getEffect());
+    private void addDebuffTask(final Status status) {
         // Scheduling effect timeout, and add it to the local map
         var task = ses.schedule(status.getRemoveEffect(), status.getCoolDown(), TimeUnit.SECONDS);
         this.addTask(status, task);
