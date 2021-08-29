@@ -90,7 +90,7 @@ public class StatusController {
      * Example : <BonusSpeed, false> //BonusSpeed is not active <BonusSpeed, true>
      * //BonusSpeed is active
      * 
-     * @return Map <StatusEnum, Boolean>
+     * @return Map <StatusEnum, >
      */
     public Map<StatusEnum, Boolean> getActiveStatus() {
     	var map = this.getAllCooldown(TimeUnit.MILLISECONDS);
@@ -102,8 +102,8 @@ public class StatusController {
     
     /**
      * Mapping every Status with his own (active) cooldown. Time is expressed by the
-     * TimeUnit passed by argument. Example : <BonusSpeed, 5211> 
-     * //BonusSpeed end in 5211 TimeUnit.
+     * TimeUnit passed by argument. Example : <BonusSpeed, 5211> //BonusSpeed end in
+     * 5211 TimeUnit.
      * 
      * @param timeUnit
      * @return Map <StatusEnum, Long>

@@ -1,6 +1,8 @@
 package controller.collisionEngine;
 
-/** Collision detection methods. */
+/** 
+ * Collision detection methods. 
+ */
 public interface PhysicsEngine {
 
     /**
