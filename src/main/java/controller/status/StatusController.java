@@ -22,7 +22,6 @@ public class StatusController {
     private ScheduledExecutorService ses;
     private SpaceShip player;
     private HashMap<StatusEnum, Optional<ScheduledFuture<?>>> playerStatus;
-    private Map<StatusEnum, Boolean> activeStatus;
     private Map<StatusEnum, Long> statusCooldown;
 
     /**
@@ -34,7 +33,6 @@ public class StatusController {
         this.ses = Executors.newScheduledThreadPool(1);
         this.player = player;
         this.playerStatus = new HashMap<>();
-        this.activeStatus = new HashMap<>();
         this.statusCooldown = new HashMap<>();
         this.setPlayerStatus();
     }
@@ -90,9 +88,14 @@ public class StatusController {
      * @return Map <StatusEnum, Long>
      */
     public Map<StatusEnum, Boolean> getActiveStatus() {
-        Stream.of(StatusEnum.values())
-                .forEach(e -> this.activeStatus.put(e, this.getAllCooldown(TimeUnit.MILLISECONDS).get(e) < HUDParameters.ZERO));
-        return this.activeStatus;
+            HashMap<StatusEnum, Boolean> activeStatus = new HashMap<>();
+            Stream.of(StatusEnum.values()).forEach(e -> activeStatus.put(e, false));
+            Stream
+                .of(StatusEnum.values())
+                .filter(e -> this.playerStatus.get(e).isPresent())
+                .filter(e -> !this.playerStatus.get(e).get().isDone())
+                .forEach(e -> activeStatus.put(e, true));
+            return activeStatus;
     }
 
     /**

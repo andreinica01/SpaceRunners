@@ -1,9 +1,10 @@
- package controller.collisionEngine;
+package controller.collisionEngine;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 import javafx.geometry.Bounds;
 import model.Entity;
 import model.bullet.Bullet;
@@ -34,38 +35,31 @@ public class PhysicsEngineImpl implements PhysicsEngine {
      */
     private List<Entity> toBeRemovedList;
 
-    /*
+    /**
      * Constructor
      */
-    public PhysicsEngineImpl(
-        final GameField gamefield,
-        final HUDPointsImpl pointsHUD,
-        final HUDLifeImpl livesHUD,
-        final HUDBonusImpl bonusHUD
-    ) {
+    public PhysicsEngineImpl(final GameField gamefield, final HUDPointsImpl pointsHUD,
+                            final HUDLifeImpl livesHUD, final HUDBonusImpl bonusHUD) {
         this.gamefield = gamefield;
         this.pointsHUD = pointsHUD;
         this.livesHUD = livesHUD;
         this.bonusHUD = bonusHUD;
+        
         resetBound();
-
         this.toBeRemovedList = new ArrayList<Entity>();
         this.fieldBounds = this.gamefield.getScene().getRoot().getBoundsInLocal();
     }
 
     @Override
     public void update() {
-        collisionWalls();
-        playerCollisionWithEnemies();
-        playerBonusCollision();
-        bossCollisionWithBullets();
-        bulletCollisionWithEnemies();
-        bossesCollisionwithWall();
-        /* this.statusHandler();
-         * 
-         * Problem here!!
-         */
-        removeUnusedEntities();
+        this.collisionWalls();
+        this.playerCollisionWithEnemies();
+        this.playerBonusCollision();
+        this.bossCollisionWithBullets();
+        this.bulletCollisionWithEnemies();
+        this.bossesCollisionwithWall();
+        this.statusHandler();
+        this.removeUnusedEntities();
     }
 
     private void playerCollisionWithBullets() {
@@ -170,6 +164,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
 
     /** Collision between player and bonus entities. */
     public void playerBonusCollision() {
+        
         for (Status bonus : this.gamefield.getBonusObjects()) {
             if (
                 this.gamefield.getPlayer()
@@ -304,6 +299,11 @@ public class PhysicsEngineImpl implements PhysicsEngine {
         this.livesHUD.lifeUp();
     }
 
+    /**
+     * Static method used to reset the bounds collision everytime
+     * a bonus runs off. Static because I want this to be called
+     * from the outside without referencing it as a bonus.
+     */
     public static void resetBound() {
         resetX = 4;
     }
