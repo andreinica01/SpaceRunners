@@ -6,8 +6,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
+
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 
 public class SoundManager {
 
@@ -26,9 +29,9 @@ public class SoundManager {
         try {
             Clip soundClip = AudioSystem.getClip();
             soundClip.open(AudioSystem.getAudioInputStream(new File(Parameters.SoundFolder + sound)));
-            
-
+            setVolume(soundClip, 30);
             soundClip.start();
+            
             this.sounds.add(soundClip);
 
         } catch (Exception e) {
@@ -38,6 +41,20 @@ public class SoundManager {
                 cleanSoundMemory();
             }
         }
+    }
+    
+    /**
+     * Set Volume level of a sound.
+     * 
+     * @param clip
+     * @param level. Min: 0, Max: 100
+     */
+    public void setVolume(Clip clip, float volume) {
+    	volume = volume / 100;
+        if (volume < 0f || volume > 1f)
+            throw new IllegalArgumentException("Volume not valid: " + volume);
+        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);        
+        gainControl.setValue(20f * (float) Math.log10(volume));
     }
 
     /**
