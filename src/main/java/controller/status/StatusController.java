@@ -1,6 +1,7 @@
 package controller.status;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.Executors;
@@ -24,6 +25,7 @@ public class StatusController {
     private HashMap<StatusEnum, Optional<ScheduledFuture<?>>> playerStatus;
     private Map<StatusEnum, Boolean> activeStatus;
     private Map<StatusEnum, Long> statusCooldown;
+    private List<StatusEnum> statusEnumValues;
 
     /**
      * Create and Setting this StatusController to a SpaceShip instance.
@@ -36,6 +38,7 @@ public class StatusController {
         this.playerStatus = new HashMap<>();
         this.activeStatus = new HashMap<>();
         this.statusCooldown = new HashMap<>();
+        this.statusEnumValues = List.of(StatusEnum.values());
         this.setPlayerStatus();
     }
 
@@ -81,31 +84,41 @@ public class StatusController {
     public SpaceShip getPlayer() {
         return this.player;
     }
-
+    
     /**
      * Mapping every Status with a boolean representing his own active state.
      * Example : <BonusSpeed, false> //BonusSpeed is not active <BonusSpeed, true>
      * //BonusSpeed is active
      * 
-     * @return Map <StatusEnum, Long>
+     * @return Map <StatusEnum, Boolean>
      */
     public Map<StatusEnum, Boolean> getActiveStatus() {
+    	var map = this.getAllCooldown(TimeUnit.MILLISECONDS);
         Stream.of(StatusEnum.values())
-                .forEach(e -> this.activeStatus.put(e, this.getAllCooldown(TimeUnit.MILLISECONDS).get(e) < HUDParameters.ZERO));
+        	  .forEach(e -> this.activeStatus.put(e, map.get(e) > 0));
         return this.activeStatus;
     }
-
+    
+    
     /**
      * Mapping every Status with his own (active) cooldown. Time is expressed by the
-     * TimeUnit passed by argument. Example : <BonusSpeed, 5211> //BonusSpeed end in
-     * 5211 TimeUnit.
+     * TimeUnit passed by argument. Example : <BonusSpeed, 5211> 
+     * //BonusSpeed end in 5211 TimeUnit.
      * 
      * @param timeUnit
      * @return Map <StatusEnum, Long>
      */
     public Map<StatusEnum, Long> getAllCooldown(final TimeUnit timeUnit) {
+    	
+    	//Updating active status
         Stream.of(StatusEnum.values())
-                .forEach(e -> this.statusCooldown.put(e, this.playerStatus.get(e).get().getDelay(timeUnit)));
+        .filter(e -> this.playerStatus.get(e).isPresent())
+        .forEach(e -> this.statusCooldown.put(e, this.playerStatus.get(e).get().getDelay(timeUnit)));
+        //Updating inactive status
+        Stream.of(StatusEnum.values())
+		.filter(e -> !this.playerStatus.get(e).isPresent())
+        .forEach(e -> this.statusCooldown.put(e, Long.valueOf(HUDParameters.ZERO)));
+        
         return this.statusCooldown;
     }
 }
