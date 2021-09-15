@@ -2,10 +2,10 @@ package Utilities;
 
 /**
  * Interface that model a 2D Vector that is used to get and set position of all
- * the elements
+ * the elements.
  */
 public interface Vector2D<NumType extends Number> {
-    
+
     /**
      * Returns the x coordinate of the vector.
      * @return x coordinate.

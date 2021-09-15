@@ -15,7 +15,7 @@ public class EndGameGUI implements IEndGameGUI {
     private int points;
 
     @Override
-    public void end(int points) {
+    public void end(final int points) {
         this.points = points;
 
         this.endGameWindow = new Stage();
