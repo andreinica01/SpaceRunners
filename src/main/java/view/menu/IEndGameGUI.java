@@ -1,4 +1,4 @@
-package model.hud;
+package view.menu;
 
 public interface IEndGameGUI {
 

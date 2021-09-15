@@ -1,4 +1,4 @@
-package model.hud;
+package view.menu;
 
 import javafx.geometry.*;
 import javafx.scene.Scene;
@@ -15,7 +15,7 @@ public class EndGameGUI implements IEndGameGUI {
     private int points;
 
     @Override
-    public void end(final int points) {
+    public final void end(final int points) {
         this.points = points;
 
         this.endGameWindow = new Stage();
@@ -24,7 +24,7 @@ public class EndGameGUI implements IEndGameGUI {
     }
 
     @Override
-    public void saveAndQuit() {
+    public final void saveAndQuit() {
         GridPane savePane = new GridPane();
         savePane.setPadding(new Insets(0, 10, 10, 10));
         savePane.setVgap(10);
@@ -53,7 +53,7 @@ public class EndGameGUI implements IEndGameGUI {
     }
 
     @Override
-    public void quit() {
+    public final void quit() {
         // TODO Auto-generated method stub
 
     }
