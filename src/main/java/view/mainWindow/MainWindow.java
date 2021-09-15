@@ -17,7 +17,7 @@ public interface MainWindow {
     void addGameField(GameFieldImpl gameField);
 
     /**
-     * Set stage widht.
+     * Set stage width.
      * @param width
      */
     void setWidth(Number width);

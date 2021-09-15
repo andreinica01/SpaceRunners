@@ -1,7 +1,8 @@
 package model.ship;
 
-import Utilities.Parameters;
-import model.bullet.*;
+import model.bullet.Bullet;
+import utilities.Parameters;
+import utilities.VariousMagicNumbers;
 import view.gameField.GameField;
 
 public class PlayerSpaceShip extends SpaceShip {
@@ -14,16 +15,17 @@ public class PlayerSpaceShip extends SpaceShip {
         super(gamefield);
         this.setImage(Parameters.playerImage);
         this.setSpeed(4);
-        this.getNode().setScaleX(0.3);
-        this.getNode().setScaleY(0.3);
+        this.getNode().setScaleX(VariousMagicNumbers.PLAYER_SCALE);
+        this.getNode().setScaleY(VariousMagicNumbers.PLAYER_SCALE);
         this.lifePoints = Parameters.INITIAL_PLAYER_POINTS;
     }
 
     @Override
-    public void attack() {
+    public final void attack() {
         Bullet bullet = new Bullet().bulletDamage(10);
 
-        bullet.setPosition(this.getNode().getTranslateX() + 22, this.getNode().getTranslateY() - 83);
+        bullet.setPosition(this.getNode().getTranslateX() + VariousMagicNumbers.BULLET_X_TRANSITION, 
+                this.getNode().getTranslateY() - VariousMagicNumbers.BULLET_Y_TRANSITION);
         bullet.setSpeed(10);
 
         this.gamefield.addPlayerBullet(bullet);

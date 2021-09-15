@@ -1,4 +1,4 @@
-package Utilities;
+package utilities;
 
 /**
  * It contains all available commands.

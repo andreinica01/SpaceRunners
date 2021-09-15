@@ -34,7 +34,7 @@ public class FrameManager {
      * Entity update.
      * @param entity
      */
-    private void updateEntityPosition(Entity entity) {
+    private void updateEntityPosition(final Entity entity) {
         switch (entity.getDirection()) {
         case UP:
             entity.setPosition(entity.getPosition().getX(),
@@ -54,6 +54,7 @@ public class FrameManager {
             break;
         case NONE:
             break;
+        default:
         }
     }
 

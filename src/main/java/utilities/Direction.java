@@ -1,4 +1,4 @@
-package Utilities;
+package utilities;
 
 /**
  * Enum used to represent possible direction for entities.

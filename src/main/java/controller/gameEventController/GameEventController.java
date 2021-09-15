@@ -1,13 +1,13 @@
 package controller.gameEventController;
 
-import Utilities.HUDParameters;
 import controller.collisionEngine.PhysicsEngine;
 import controller.collisionEngine.PhysicsEngineImpl;
-import model.hud.EndGameGUI;
 import model.hud.HUDBonusImpl;
 import model.hud.HUDLifeImpl;
 import model.hud.HUDPointsImpl;
+import utilities.HUDParameters;
 import view.gameField.GameField;
+import view.menu.EndGameGUI;
 
 public class GameEventController implements IGameEventController {
 
@@ -36,12 +36,12 @@ public class GameEventController implements IGameEventController {
     }
 
     @Override
-    public void endGame() {
+    public final void endGame() {
         new EndGameGUI().end(this.checkPoints());
     }
 
     @Override
-    public void createHUD() {
+    public final void createHUD() {
         /*
          * Points HUD, setting poisition on screen due to his definition:
          * it is a label part so it needs a position on screen and it needs
@@ -68,27 +68,27 @@ public class GameEventController implements IGameEventController {
     }
 
     @Override
-    public boolean checkGameStatus() {
+    public final boolean checkGameStatus() {
         return this.playerLives.getStatus();
     }
 
     @Override
-    public int checkPoints() {
+    public final int checkPoints() {
         return this.hud.getPoints();
     }
 
     @Override
-    public int checkLives() {
+    public final int checkLives() {
         return this.playerLives.getLifePoints();
     }
 
     @Override
-    public HUDBonusImpl getBonusImpl() {
+    public final HUDBonusImpl getBonusImpl() {
         return this.bonusHUD;
     }
 
     @Override
-    public PhysicsEngine getCollisionEngine() {
+    public final PhysicsEngine getCollisionEngine() {
         return this.collisionEngine;
     }
 }

@@ -8,10 +8,11 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
-import Utilities.HUDParameters;
+
 import model.ship.SpaceShip;
 import model.status.Status;
 import model.status.StatusEnum;
+import utilities.VariousMagicNumbers;
 
 /**
  * Controller Status class. When certain condition are triggered, this class
@@ -51,12 +52,12 @@ public class StatusController {
         if (task.isEmpty() || task.get().isDone()) {
             this.ses.execute(status.getEffect());
             this.addDebuffTask(status);
-            return HUDParameters.TRUE;
+            return VariousMagicNumbers.TRUE;
         }
         // Else, refresh task's time
-        task.get().cancel(HUDParameters.FALSE);
+        task.get().cancel(VariousMagicNumbers.FALSE);
         this.addDebuffTask(status);
-        return HUDParameters.TRUE;
+        return VariousMagicNumbers.TRUE;
     }
 
     private void addDebuffTask(final Status status) {
@@ -73,14 +74,14 @@ public class StatusController {
         Stream.of(StatusEnum.values()).forEach(e -> this.playerStatus.put(e, Optional.empty()));
     }
 
-    public HashMap<StatusEnum, Optional<ScheduledFuture<?>>> getPlayerStatus() {
+    public final HashMap<StatusEnum, Optional<ScheduledFuture<?>>> getPlayerStatus() {
         return this.playerStatus;
     }
 
-    public SpaceShip getPlayer() {
+    public final SpaceShip getPlayer() {
         return this.player;
     }
-    
+
     /**
      * Mapping every Status with a boolean representing his own active state.
      * Example : <BonusSpeed, false> //BonusSpeed is not active <BonusSpeed, true>
@@ -94,8 +95,7 @@ public class StatusController {
         	  .forEach(e -> this.activeStatus.put(e, map.get(e) > 0));
         return this.activeStatus;
     }
-    
-    
+
     /**
      * Mapping every Status with his own (active) cooldown. Time is expressed by the
      * TimeUnit passed by argument. Example : <BonusSpeed, 5211> //BonusSpeed end in
@@ -105,7 +105,7 @@ public class StatusController {
      * @return Map <StatusEnum, Long>
      */
     public Map<StatusEnum, Long> getAllCooldown(final TimeUnit timeUnit) {
-    	
+
     	//Updating active status
         Stream.of(StatusEnum.values())
         .filter(e -> this.playerStatus.get(e).isPresent())
@@ -113,8 +113,8 @@ public class StatusController {
         //Updating inactive status
         Stream.of(StatusEnum.values())
 		.filter(e -> !this.playerStatus.get(e).isPresent())
-        .forEach(e -> this.statusCooldown.put(e, Long.valueOf(HUDParameters.ZERO)));
-        
+        .forEach(e -> this.statusCooldown.put(e, Long.valueOf(VariousMagicNumbers.ZERO)));
+
         return this.statusCooldown;
     }
 }

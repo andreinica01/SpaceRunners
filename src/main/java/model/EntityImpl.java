@@ -1,11 +1,11 @@
 package model;
 
-import Utilities.Direction;
-import Utilities.Vector2D;
-import Utilities.Vector2DImpl;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import utilities.Direction;
+import utilities.Vector2D;
+import utilities.Vector2DImpl;
 
 public abstract class EntityImpl implements Entity {
 
@@ -30,31 +30,23 @@ public abstract class EntityImpl implements Entity {
     }
 
     @Override
-    public Node getNode() {
+    public final Node getNode() {
         return this.entityNode;
     }
 
     @Override
-    public void setImage(final Image image) {
+    public final void setImage(final Image image) {
         this.entityNode = new ImageView(image);
         this.entityNode.setRotate(180);
     }
 
-    /**
-     * Set the direction of the entity.
-     * @param direction
-     */
-    public void SetDirection(final Direction direction) {
-        this.direction = direction;
-    }
-
     @Override
-    public Vector2D<Number> getPosition() {
+    public final Vector2D<Number> getPosition() {
         return this.position;
     }
 
     @Override
-    public void setPosition(final Number x, final Number y) {
+    public final void setPosition(final Number x, final Number y) {
         this.position.setX(x);
         this.position.setY(y);
 
@@ -63,27 +55,27 @@ public abstract class EntityImpl implements Entity {
     }
 
     @Override
-    public Vector2D<Number> getDimension() {
+    public final Vector2D<Number> getDimension() {
         return this.dimension;
     }
 
     @Override
-    public void setDimension(final Vector2D<Number> dimension) {
+    public final void setDimension(final Vector2D<Number> dimension) {
         this.dimension.setFromVector(dimension);
     }
 
     @Override
-    public Direction getDirection() {
+    public final Direction getDirection() {
         return this.direction;
     }
 
     @Override
-    public void setDirection(final Direction direction) {
+    public final void setDirection(final Direction direction) {
         this.direction = direction;
     }
 
     @Override
-    public void invertDirection() {
+    public final void invertDirection() {
         switch (this.direction) {
         case DOWN:
             this.direction = Direction.UP;
@@ -103,22 +95,22 @@ public abstract class EntityImpl implements Entity {
     }
 
     @Override
-    public Number getSpeed() {
+    public final Number getSpeed() {
         return this.speed;
     }
 
     @Override
-    public void setSpeed(final Number speed) {
+    public final void setSpeed(final Number speed) {
         this.speed = speed;
     }
 
     @Override
-    public void setHorizontalSpeed(final Number speed) {
+    public final void setHorizontalSpeed(final Number speed) {
         this.horrizontalSpeed = speed;
     }
 
     @Override
-    public Number getHorrizontalSpeed() {
+    public final Number getHorrizontalSpeed() {
         return this.horrizontalSpeed;
     }
 

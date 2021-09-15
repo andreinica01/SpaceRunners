@@ -1,6 +1,5 @@
 package controller.enemyAI;
 
-import Utilities.Utilities;
 import controller.gameEventController.GameEventController;
 import java.util.Iterator;
 import java.util.Random;
@@ -9,12 +8,13 @@ import model.ship.SpaceShip;
 import model.status.Status;
 import model.status.StatusEnum;
 import model.status.StatusFactory;
+import utilities.Utilities;
 import view.gameField.GameField;
 
 /** 
- * Class to manage the movement of the enemy ships 
+ * Class to manage the movement of the enemy ships.
  */
-public class enemyAI {
+public class EnemyAI {
 
     private final GameField gameField;
     private final GameEventController gameEvent;
@@ -23,11 +23,10 @@ public class enemyAI {
     private int playerPoints;
     private boolean bossEnabled;
 
-    long enemyInterval;
-    long enemyResetTime;
-
-    long statusInterval;
-    long statusResetTime;
+    private long enemyInterval;
+    private long enemyResetTime;
+    private long statusInterval;
+    private long statusResetTime;
 
     private final Random rnd;
     private final BossAI bossAI;
@@ -37,7 +36,7 @@ public class enemyAI {
      * @param gamefield
      * @param gameEventController
      */
-    public enemyAI(final GameField gamefield, final GameEventController gameEventController) {
+    public EnemyAI(final GameField gamefield, final GameEventController gameEventController) {
         this.gameField = gamefield;
         this.gameEvent = gameEventController;
         this.statusFactory = new StatusFactory();
@@ -85,7 +84,7 @@ public class enemyAI {
             this.bossAI.updateBoss();
         }
     }
-    
+
     /**
      * Generate enemy entities based on current difficulty.
      * @param difficultyFactor
@@ -99,8 +98,8 @@ public class enemyAI {
             this.gameField.addEnemyShip(enemyship);
             this.gameField.getSoundManager().playShipPassing();
 
-            enemyInterval = (long) ((Utilities.getRandomDouble(0.0, 5 * 1 / difficultyFactor) * 1000));
-            enemyResetTime = System.currentTimeMillis();
+            this.enemyInterval = (long) ((Utilities.getRandomDouble(0.0, 5 * 1 / difficultyFactor) * 1000));
+            this.enemyResetTime = System.currentTimeMillis();
 
             this.removeUnused();
         }
@@ -116,8 +115,8 @@ public class enemyAI {
 
             this.gameField.addBonus(status);
 
-            statusInterval = (long) ((Utilities.getRandomDouble(4.0, 15.0) * 1000));
-            statusResetTime = System.currentTimeMillis();
+            this.statusInterval = (long) ((Utilities.getRandomDouble(4.0, 15.0) * 1000));
+            this.statusResetTime = System.currentTimeMillis();
         }
     }
 

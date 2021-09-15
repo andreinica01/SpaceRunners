@@ -12,7 +12,7 @@ import model.status.malus.MalusSpeed;
 public class StatusFactory {
 
     /**
-     * Constructor
+     * Constructor.
      */
     public StatusFactory() {
     }

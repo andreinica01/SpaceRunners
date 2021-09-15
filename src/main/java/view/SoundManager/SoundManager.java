@@ -1,7 +1,5 @@
 package view.SoundManager;
 
-import Utilities.HUDParameters;
-import Utilities.Parameters;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -9,11 +7,13 @@ import java.util.List;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
+import utilities.Parameters;
+import utilities.VariousMagicNumbers;
 
 public class SoundManager {
 
     private List<Clip> sounds;
-    private int SOUND_MEMORY_BUFFER = 10;
+    private static final int SOUND_MEMORY_BUFFER = 10;
 
     public SoundManager() {
         this.sounds = new ArrayList<>();
@@ -29,7 +29,7 @@ public class SoundManager {
             soundClip.open(AudioSystem.getAudioInputStream(new File(Parameters.SoundFolder + sound)));
             this.setVolume(soundClip, 10);
             soundClip.start();
-            
+
             this.sounds.add(soundClip);
 
         } catch (Exception e) {
@@ -40,19 +40,22 @@ public class SoundManager {
             }
         }
     }
-    
+
     /**
      * Set Volume level of a sound.
      * 
      * @param clip
      * @param level. Min: 0, Max: 100
      */
-    public void setVolume(final Clip clip, float volume) {
-    	volume = volume / 100;
-        if (volume < 0f || volume > 1f)
-            throw new IllegalArgumentException("Volume not valid: " + volume);
-        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);        
-        gainControl.setValue(20f * (float) Math.log10(volume));
+    public void setVolume(final Clip clip, final float volume) {
+        final float newVolume = volume / VariousMagicNumbers.ONE_HUNDRED;
+
+        if (newVolume < 0f || newVolume > 1f) {
+            throw new IllegalArgumentException("Volume not valid: " + newVolume);
+        }
+
+        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        gainControl.setValue(VariousMagicNumbers.TWENTY * (float) Math.log10(newVolume));
     }
 
     /**
@@ -68,14 +71,14 @@ public class SoundManager {
     public void playShipPassing() {
         this.playSound("enemy.wav");
     }
-    
+
     /**
      * Play player movement sound.
      */
     public void playPlayerMovementSound() {
         this.playSound("playerMovement.wav");
     }
-    
+
     /**
      * Play death sound.
      */
@@ -103,16 +106,16 @@ public class SoundManager {
     public void playPlayerImpact() {
         this.playSound("player_impact.wav");
     }
-    
+
     /**
      * Play a sound when boss is damaged.
      */
     public void playBossDamaged() {
         this.playSound("bossDamage.wav");
     }
-    
+
     /**
-     * Play a sound when the boss dies
+     * Play a sound when the boss dies.
      */
     public void playBossDeath() {
         this.playSound("bossDeath.wav");
@@ -122,7 +125,7 @@ public class SoundManager {
      * Clear the sound memory, this is due to ArrayList implementation.
      */
     private void cleanSoundMemory() {
-        Iterator<Clip> soundsToRemove = this.sounds.subList(HUDParameters.ZERO, SOUND_MEMORY_BUFFER).iterator();
+        Iterator<Clip> soundsToRemove = this.sounds.subList(VariousMagicNumbers.ZERO, SOUND_MEMORY_BUFFER).iterator();
 
         while (soundsToRemove.hasNext()) {
             Clip v = soundsToRemove.next();

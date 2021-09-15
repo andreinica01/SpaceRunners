@@ -2,10 +2,12 @@ package model.hud;
 
 import java.io.File;
 import java.util.stream.IntStream;
-import Utilities.HUDParameters;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.status.StatusEnum;
+import utilities.HUDParameters;
+import utilities.VariousMagicNumbers;
 import view.gameField.GameField;
 
 public class HUDBonusImpl implements IHUDBonus {
@@ -24,7 +26,7 @@ public class HUDBonusImpl implements IHUDBonus {
     private GameField gameField;
 
     /**
-     * Constructor
+     * Constructor.
      * @param gameField
      */
     public HUDBonusImpl(final GameField gameField) {
@@ -34,14 +36,14 @@ public class HUDBonusImpl implements IHUDBonus {
     }
 
     @Override
-    public ImageView[] getBonus() {
+    public final ImageView[] getBonus() {
         return this.bonus;
     }
 
     @Override
-    public void addBonuses() {
+    public final void addBonuses() {
 
-        IntStream.range(HUDParameters.ZERO, HUDParameters.FIVE).forEach(index -> {
+        IntStream.range(VariousMagicNumbers.ZERO, VariousMagicNumbers.FIVE).forEach(index -> {
             this.bonus[index] = new ImageView(
                     new Image(new File(HUDParameters.PNG_FOLDER + "bonus" + index + ".png").toURI().toString(), SPACING, SPACING,
                             HUDParameters.RATIO, HUDParameters.SMOOTH));
@@ -53,37 +55,38 @@ public class HUDBonusImpl implements IHUDBonus {
     }
 
     @Override
-    public void showBonus(final StatusEnum bonus) {
+    public final void showBonus(final StatusEnum bonus) {
         try {
             switch (bonus) {
             case BonusLife:
-                this.gameField.getGameContainer().getChildren().add(this.bonus[HUDParameters.ZERO]);
+                this.gameField.getGameContainer().getChildren().add(this.bonus[VariousMagicNumbers.ZERO]);
                 break;
             case BonusSpeed:
-                this.gameField.getGameContainer().getChildren().add(this.bonus[HUDParameters.ONE]);
+                this.gameField.getGameContainer().getChildren().add(this.bonus[VariousMagicNumbers.ONE]);
                 break;
             case MalusCommand:
-                this.gameField.getGameContainer().getChildren().add(this.bonus[HUDParameters.TWO]);
+                this.gameField.getGameContainer().getChildren().add(this.bonus[VariousMagicNumbers.TWO]);
                 break;
             case MalusFire:
-                this.gameField.getGameContainer().getChildren().add(this.bonus[HUDParameters.THREE]);
+                this.gameField.getGameContainer().getChildren().add(this.bonus[VariousMagicNumbers.THREE]);
                 break;
             case MalusSpeed:
-                this.gameField.getGameContainer().getChildren().add(this.bonus[HUDParameters.FOUR]);
+                this.gameField.getGameContainer().getChildren().add(this.bonus[VariousMagicNumbers.FOUR]);
                 break; 
-            }
-        } catch(Exception e) {
+            default:
+            } 
+
+        } catch (Exception e) {
             this.hideBonus(bonus);
             this.showBonus(bonus);
         }
     }
 
     @Override
-    public void hideBonus(final StatusEnum bonus) {
+    public final void hideBonus(final StatusEnum bonus) {
         try {
-            this.gameField.getGameContainer().getChildren().remove(this.bonus[bonus.ordinal()]);           
-        } catch(Exception e) { 
-        } finally {
-        }
+            this.gameField.getGameContainer().getChildren().remove(this.bonus[bonus.ordinal()]);
+        } catch (Exception e) { 
+        } 
     }
 }

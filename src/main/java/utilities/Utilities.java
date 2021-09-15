@@ -1,10 +1,15 @@
-package Utilities;
+package utilities;
 
 import java.util.Random;
 
-public class Utilities {
+/**
+ * Utilities class.
+ */
+public final class Utilities {
 
     private static final double VALUE = 1000;
+
+    private Utilities() { }
 
     /**
      * @param min.

@@ -1,10 +1,6 @@
 package controller.gameController;
 
-import Utilities.Direction;
-import Utilities.HUDParameters;
-import Utilities.InputCommand;
-import Utilities.Parameters;
-import controller.enemyAI.enemyAI;
+import controller.enemyAI.EnemyAI;
 import controller.frameManager.FrameManager;
 import controller.gameEventController.GameEventController;
 import controller.inputController.InputControllerImpl;
@@ -12,6 +8,10 @@ import controller.status.StatusController;
 import java.util.Map;
 import model.ship.PlayerSpaceShip;
 import model.ship.SpaceShip;
+import utilities.Direction;
+import utilities.InputCommand;
+import utilities.Parameters;
+import utilities.VariousMagicNumbers;
 import view.gameField.GameField;
 
 public class GameContollerImpl implements GameController {
@@ -25,9 +25,9 @@ public class GameContollerImpl implements GameController {
     private SpaceShip player;
     private InputControllerImpl inputController;
     private StatusController statusController;
-    private final enemyAI AIController;
+    private final EnemyAI aiController;
     private Map<InputCommand, Boolean> controlStates;
-    
+
     private static final int Y_STABILIZER = 220;
 
     /**
@@ -39,7 +39,7 @@ public class GameContollerImpl implements GameController {
 
         /* setup player info */
         this.player = new PlayerSpaceShip(this.gamefield);
-        this.player.setPosition(this.gamefield.getWidth().intValue() / HUDParameters.TWO, this.gamefield.getHeight().intValue() - Y_STABILIZER);
+        this.player.setPosition(this.gamefield.getWidth().intValue() / VariousMagicNumbers.TWO, this.gamefield.getHeight().intValue() - Y_STABILIZER);
 
         this.gamefield.setPlayer(this.player);
         this.frame = new FrameManager(this.gamefield);
@@ -51,21 +51,20 @@ public class GameContollerImpl implements GameController {
          * HUD and game conditions setup
          */
         this.gameEventController = new GameEventController(this.gamefield);
-        this.AIController = new enemyAI(this.gamefield, this.gameEventController);
+        this.aiController = new EnemyAI(this.gamefield, this.gameEventController);
 
         this.statusController = new StatusController(this.gamefield.getPlayer());
         this.gamefield.setStatusController(this.statusController);
     }
 
     @Override
-    public void update() {
+    public final void update() {
         this.controlStates = this.inputController.getControlStates();
 
         if (this.controlStates.get(InputCommand.GO_LEFT)) {
             if (!this.player.isInvertedCommand()) {
                 this.player.setDirection(Direction.LEFT);
-            }
-            else {
+            } else {
                 this.player.setDirection(Direction.RIGHT);
             }
         }
@@ -73,8 +72,7 @@ public class GameContollerImpl implements GameController {
         if (this.controlStates.get(InputCommand.GO_RIGHT)) {
             if (!this.player.isInvertedCommand()) {
                 this.player.setDirection(Direction.RIGHT);
-            }
-            else {
+            } else {
                 this.player.setDirection(Direction.LEFT);
             }
         }
@@ -91,7 +89,7 @@ public class GameContollerImpl implements GameController {
          * Collision and update system
          */
         this.gameEventController.getCollisionEngine().update();
-        this.AIController.update();
+        this.aiController.update();
 
         if (!this.gameEventController.checkGameStatus()) {
             this.gamefield.getSoundManager().playDeathSound();

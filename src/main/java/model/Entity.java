@@ -1,12 +1,12 @@
 package model;
 
-import Utilities.Direction;
-import Utilities.Vector2D;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import utilities.Direction;
+import utilities.Vector2D;
 
 public interface Entity {
-    
+
     /**
      * @return the node.
      */
@@ -17,7 +17,7 @@ public interface Entity {
      * @param image.
      */
     void setImage(Image image);
-    
+
     /**
      * @return entity position.
      */

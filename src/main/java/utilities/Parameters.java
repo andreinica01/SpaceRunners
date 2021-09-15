@@ -1,10 +1,12 @@
-package Utilities;
+package utilities;
 
 import java.io.File;
 import javafx.scene.image.Image;
 import javax.sound.sampled.AudioInputStream;
 
-public class Parameters {
+public final class Parameters {
+
+    private Parameters() { }
 
     public static final int WIDTH = 500;
     public static final int HEIGHT = 720;
@@ -15,10 +17,6 @@ public class Parameters {
     public static String ResourcesFolder = "src/main/resources/";
     public static String ImageFolder = ResourcesFolder + "Images/";
     public static String SoundFolder = ResourcesFolder + "Sounds/";
-
-    public static Image getlifePointsImage() {
-        return new Image(new File(ImageFolder + "spaceshipLife.png").toURI().toString());
-    }
 
     /* Images */
     public static Image bulletImage = new Image(new File(ImageFolder + "bullet.png").toURI().toString());
@@ -43,4 +41,8 @@ public class Parameters {
 
     /* Sounds */
     public static AudioInputStream bulletSound;
+
+    public static Image getlifePointsImage() {
+        return new Image(new File(ImageFolder + "spaceshipLife.png").toURI().toString());
+    }
 }

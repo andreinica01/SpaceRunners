@@ -1,9 +1,9 @@
 package view.mainWindow;
 
-import Utilities.HUDParameters;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import utilities.VariousMagicNumbers;
 import view.gameField.GameFieldImpl;
 
 public class MainWindowImpl implements MainWindow {
@@ -16,11 +16,11 @@ public class MainWindowImpl implements MainWindow {
      */
     public MainWindowImpl(final Stage original) {
         this.stage = original;
-        this.stage.setResizable(HUDParameters.FALSE);
+        this.stage.setResizable(VariousMagicNumbers.FALSE);
     }
 
     @Override
-    public void setVisible(final boolean visible) {
+    public final void setVisible(final boolean visible) {
         if (visible) {
             this.stage.show();
             return;
@@ -30,25 +30,28 @@ public class MainWindowImpl implements MainWindow {
     }
 
     @Override
-    public void addGameField(final GameFieldImpl gameField) {
+    public final void addGameField(final GameFieldImpl gameField) {
         Scene scene = new Scene(new VBox(gameField.getGameContainer()));
 
         gameField.setScene(scene);
         gameField.setStageReference(this.getStage());
         this.stage.setScene(scene);
-        this.stage.setResizable(HUDParameters.FALSE);
+        this.stage.setResizable(VariousMagicNumbers.FALSE);
     }
 
     @Override
-    public void setWidth(final Number width) {
+    public final void setWidth(final Number width) {
         this.stage.setWidth(width.intValue());
     }
 
     @Override
-    public void setHeight(final Number heigth) {
+    public final void setHeight(final Number heigth) {
         this.stage.setHeight(heigth.intValue());
     }
-    
+
+    /**
+     * @return actual Stage.
+     */
     public Stage getStage() {
         return this.stage;
     }

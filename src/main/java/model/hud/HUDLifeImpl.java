@@ -2,10 +2,12 @@ package model.hud;
 
 import java.io.File;
 import java.util.stream.IntStream;
-import Utilities.HUDParameters;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import utilities.HUDParameters;
+import utilities.VariousMagicNumbers;
 
 /**
  * Class for building HUD lives components.
@@ -27,27 +29,27 @@ public class HUDLifeImpl implements IHUDLife {
     private ImageView[] lives = new ImageView[HUDParameters.MAX_LIFE_POINTS];
 
     /*
-     * Gamestatus = this is important for gamecycle to continue
+     * Gamestatus = this is important for game cycle to continue
      */
     private boolean gameStatus;
 
     /**
-     * Constructor
+     * Constructor.
      * @param gamePane.
      */
     public HUDLifeImpl(final AnchorPane gamePane) {
         this.pane = gamePane;
         this.lifePoints = INITIAL_LIFE_POINTS;
-        this.gameStatus = HUDParameters.TRUE;
+        this.gameStatus = VariousMagicNumbers.TRUE;
 
-        IntStream.range(HUDParameters.ZERO, HUDParameters.THREE).forEach(i -> this.addLife(i));
+        IntStream.range(VariousMagicNumbers.ZERO, VariousMagicNumbers.THREE).forEach(i -> this.addLife(i));
     }
 
     /*
      * Getter
      */
     @Override
-    public int getLifePoints() {
+    public final int getLifePoints() {
         return this.lifePoints;
     }
 
@@ -55,7 +57,7 @@ public class HUDLifeImpl implements IHUDLife {
      * Setter
      */
     @Override
-    public void lifeUp() {
+    public final void lifeUp() {
         if (this.getLifePoints() < HUDParameters.MAX_LIFE_POINTS) {
             this.addLife(this.getLifePoints());
             this.lifePoints++;
@@ -63,13 +65,13 @@ public class HUDLifeImpl implements IHUDLife {
     }
 
     @Override
-    public void lifeDown() {
+    public final void lifeDown() {
         if (this.getLifePoints() > LESS_LIVES_POSSIBLE) {
             this.lifePoints--;
             this.removeLife();
         } else {
-            this.lifePoints = HUDParameters.ZERO;
-            this.gameStatus = HUDParameters.FALSE;
+            this.lifePoints = VariousMagicNumbers.ZERO;
+            this.gameStatus = VariousMagicNumbers.FALSE;
         }
     }
 
@@ -96,7 +98,7 @@ public class HUDLifeImpl implements IHUDLife {
     }
 
     @Override
-    public boolean getStatus() {
+    public final boolean getStatus() {
         return this.gameStatus;
     }
 }

@@ -1,4 +1,4 @@
-package Utilities;
+package utilities;
 
 public class Vector2DImpl<NumType extends Number> implements Vector2D<NumType> {
 
@@ -17,7 +17,7 @@ public class Vector2DImpl<NumType extends Number> implements Vector2D<NumType> {
     }
 
     /**
-     * onstructor used to create a 2D Vector from a NumType vector.
+     * Constructor used to create a 2D Vector from a NumType vector.
      * @param vector.
      */
     public Vector2DImpl(final Vector2D<NumType> vector) {
@@ -25,27 +25,27 @@ public class Vector2DImpl<NumType extends Number> implements Vector2D<NumType> {
     }
 
     @Override
-    public NumType getX() {
+    public final NumType getX() {
         return this.x;
     }
 
     @Override
-    public NumType getY() {
+    public final NumType getY() {
         return this.y;
     }
 
     @Override
-    public void setX(final NumType x) {
+    public final void setX(final NumType x) {
         this.x = x;
     }
 
     @Override
-    public void setY(final NumType y) {
+    public final void setY(final NumType y) {
         this.y = y;
     }
 
     @Override
-    public void setFromVector(final Vector2D<NumType> vector) {
+    public final void setFromVector(final Vector2D<NumType> vector) {
         this.x = vector.getX();
         this.y = vector.getY();
     }
@@ -59,38 +59,38 @@ public class Vector2DImpl<NumType extends Number> implements Vector2D<NumType> {
     public static double getDistance(final Vector2D<? extends Number> v1, final Vector2D<? extends Number> v2) {
         final double x = v1.getX().doubleValue() - v2.getX().doubleValue();
         final double y = v1.getY().doubleValue() - v2.getY().doubleValue();
-        
-        return Math.sqrt(Math.pow(x, HUDParameters.TWO) + Math.pow(y, HUDParameters.TWO));
+
+        return Math.sqrt(Math.pow(x, VariousMagicNumbers.TWO) + Math.pow(y, VariousMagicNumbers.TWO));
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         final int prime = HASH_NUMBER;
-        int result = HUDParameters.ONE;
-        
-        result = prime * result + ((this.x == null) ? HUDParameters.ZERO : this.x.hashCode());
-        result = prime * result + ((this.y == null) ? HUDParameters.ZERO : this.y.hashCode());
-        
+        int result = VariousMagicNumbers.ONE;
+
+        result = prime * result + ((this.x == null) ? VariousMagicNumbers.ZERO : this.x.hashCode());
+        result = prime * result + ((this.y == null) ? VariousMagicNumbers.ZERO : this.y.hashCode());
+
         return result;
     }
 
     @Override
-    public boolean equals(final Object obj) {
+    public final boolean equals(final Object obj) {
 
         Vector2DImpl<?> other = (Vector2DImpl<?>) obj;
-        
+
         if (this == obj) {
             return true;
         }
-        
+
         if (obj == null) {
-            return false;      
+            return false;
         }
-        
+
         if (this.getClass() != obj.getClass()) {
             return false;
         }
-        
+
         if (this.x == null) {
             if (other.x != null) {
                 return false;
@@ -98,7 +98,7 @@ public class Vector2DImpl<NumType extends Number> implements Vector2D<NumType> {
         } else if (!this.x.equals(other.x)) {
             return false;
         }
-        
+
         if (this.y == null) {
             if (other.y != null) {
                 return false;
@@ -106,7 +106,7 @@ public class Vector2DImpl<NumType extends Number> implements Vector2D<NumType> {
         } else if (!this.y.equals(other.y)) {
             return false;
         }
-        
+
         return true;
     }
 }

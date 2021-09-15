@@ -1,7 +1,5 @@
 package view.gameField;
 
-import Utilities.HUDParameters;
-import Utilities.Parameters;
 import controller.gameLoop.GameManager;
 import controller.status.StatusController;
 import java.util.HashSet;
@@ -16,6 +14,8 @@ import model.bullet.Bullet;
 import model.ship.BossShip;
 import model.ship.SpaceShip;
 import model.status.Status;
+import utilities.Parameters;
+import utilities.VariousMagicNumbers;
 import view.SoundManager.SoundManager;
 
 public class GameFieldImpl implements GameField {
@@ -68,7 +68,7 @@ public class GameFieldImpl implements GameField {
         this.status = new HashSet<Status>();
 
         // to load in specific class container
-        this.backGroundImage = new ImageView[HUDParameters.TWO];
+        this.backGroundImage = new ImageView[VariousMagicNumbers.TWO];
 
         this.width = width;
         this.height = height;
@@ -77,130 +77,137 @@ public class GameFieldImpl implements GameField {
     }
 
     @Override
-    public AnchorPane getGameContainer() {
+    public final AnchorPane getGameContainer() {
         return this.gameContainer;
     }
 
     @Override
-    public Set<Entity> getActiveEntities() {
+    public final Set<Entity> getActiveEntities() {
         return this.entities;
     }
 
     @Override
-    public Number getWidth() {
+    public final Number getWidth() {
         return this.width;
     }
 
     @Override
-    public Number getHeight() {
+    public final Number getHeight() {
         return this.height;
     }
 
     @Override
-    public void setPlayer(final SpaceShip player) {
+    public final void setPlayer(final SpaceShip player) {
         this.player = player;
         this.gameContainer.getChildren().add(this.player.getNode());
         this.entities.add(player);
     }
 
     @Override
-    public SpaceShip getPlayer() {
+    public final SpaceShip getPlayer() {
         return this.player;
     }
 
     @Override
-    public Set<SpaceShip> getActiveEnemyShips() {
+    public final Set<SpaceShip> getActiveEnemyShips() {
         return this.enemyships;
     }
 
     @Override
-    public Set<Status> getBonusObjects() {
+    public final Set<Status> getBonusObjects() {
         return this.status;
     }
 
     @Override
-    public Set<Bullet> getActiveBulletsShotbyPlayer() {
+    public final Set<Bullet> getActiveBulletsShotbyPlayer() {
         return this.playerBullets;
     }
 
     @Override
-    public Set<Bullet> getActiveBulletsShotbyEnemies() {
+    public final Set<Bullet> getActiveBulletsShotbyEnemies() {
         return this.enemyBullets;
     }
 
     @Override
-    public void setScene(final Scene scene) {
+    public final void setScene(final Scene scene) {
         this.scene = scene;
     }
 
     @Override
-    public void setBackgroundImage(final String path) {
+    public final void setBackgroundImage(final String path) {
         for (int i = 0; i < this.backGroundImage.length; i++) {
             this.backGroundImage[i] = new ImageView(Parameters.BackgroundImage);
-            this.backGroundImage[i].setLayoutX(HUDParameters.ZERO);
+            this.backGroundImage[i].setLayoutX(VariousMagicNumbers.ZERO);
             this.backGroundImage[i].setFitWidth(this.width);
             this.backGroundImage[i].setFitHeight(this.height);
-            this.backGroundImage[i].setViewOrder(HUDParameters.TEN);
+            this.backGroundImage[i].setViewOrder(VariousMagicNumbers.TEN);
             this.gameContainer.getChildren().add(this.backGroundImage[i]);
         }
 
-        this.backGroundImage[HUDParameters.ZERO].setTranslateX(HUDParameters.ZERO);
-        this.backGroundImage[HUDParameters.ONE].setLayoutY(-this.height);
+        this.backGroundImage[VariousMagicNumbers.ZERO].setTranslateX(VariousMagicNumbers.ZERO);
+        this.backGroundImage[VariousMagicNumbers.ONE].setLayoutY(-this.height);
     }
 
     @Override
-    public Node[] getBackground() {
+    public final Node[] getBackground() {
         return this.backGroundImage;
     }
 
     @Override
-    public void addPlayerBullet(final Bullet bullet) {
+    public final void addPlayerBullet(final Bullet bullet) {
         this.entities.add(bullet);
         this.playerBullets.add(bullet);
         this.gameContainer.getChildren().add(bullet.getNode());
     }
 
     @Override
-    public void addEnemyShip(final SpaceShip enemy) {
+    public final void addEnemyShip(final SpaceShip enemy) {
         this.enemyships.add(enemy);
         this.entities.add(enemy);
         this.gameContainer.getChildren().add(enemy.getNode());
     }
 
     @Override
-    public void addBoss(final BossShip boss) {
+    public final void addBoss(final BossShip boss) {
         this.entities.add(boss);
         this.bossShips.add(boss);
         this.gameContainer.getChildren().add(boss.getNode());
     }
 
     @Override
-    public void addBonus(final Status bonus) {
+    public final void addBonus(final Status bonus) {
         this.entities.add(bonus);
         this.status.add(bonus);
         this.gameContainer.getChildren().add(bonus.getNode());
     }
 
     @Override
-    public Scene getScene() {
+    public final Scene getScene() {
         return this.scene;
     }
 
     @Override
-    public SoundManager getSoundManager() {
+    public final SoundManager getSoundManager() {
         return this.soundmanager;
     }
 
-    public StatusController getStatusController() {
+    /**
+     * @return statusController reference.
+     */
+    public final StatusController getStatusController() {
         return statusController;
     }
 
-    public void setStatusController(final StatusController statusController) {
+    /**
+     * Save status controller reference.
+     * @param statusController
+     */
+    public final void setStatusController(final StatusController statusController) {
         this.statusController = statusController;
     }
 
     @Override
-    public void addEnemyBullet(final Bullet bullet) {
+    public final void addEnemyBullet(final Bullet bullet) {
         this.entities.add(bullet);
         this.enemyBullets.add(bullet);
         this.gameContainer.getChildren().add(bullet.getNode());
@@ -208,7 +215,7 @@ public class GameFieldImpl implements GameField {
     }
 
     @Override
-    public void removeEntity(final Entity entity) {
+    public final void removeEntity(final Entity entity) {
 
         if (!this.enemyBullets.remove(entity)) {
             if (!this.playerBullets.remove(entity)) {
@@ -225,7 +232,7 @@ public class GameFieldImpl implements GameField {
     }
 
     @Override
-    public Set<SpaceShip> getActiveBosses() {
+    public final Set<SpaceShip> getActiveBosses() {
         return this.bossShips;
     }
 
@@ -233,22 +240,22 @@ public class GameFieldImpl implements GameField {
      * End game Helper methods.
      */
     @Override
-    public void setStageReference(final Stage stage) {
+    public final void setStageReference(final Stage stage) {
         this.stage = stage;
     }
 
     @Override
-    public Stage getStage() {
+    public final Stage getStage() {
         return this.stage;
     }
 
     @Override
-    public void setGameManager(final GameManager manager) {
+    public final void setGameManager(final GameManager manager) {
         this.gameManager = manager;
     }
 
     @Override
-    public GameManager getGameManager() {
+    public final GameManager getGameManager() {
         return this.gameManager;
     }
 }

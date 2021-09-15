@@ -1,7 +1,8 @@
 package model.ship;
 
-import Utilities.Direction;
-import model.bullet.*;
+import model.bullet.Bullet;
+import utilities.Direction;
+import utilities.VariousMagicNumbers;
 import view.gameField.GameField;
 
 public class EnemyShip extends SpaceShip {
@@ -16,7 +17,7 @@ public class EnemyShip extends SpaceShip {
     }
 
     @Override
-    public void attack() {
+    public final void attack() {
         Bullet bullet = new Bullet().bulletDamage(10);
 
         // to change
@@ -26,8 +27,8 @@ public class EnemyShip extends SpaceShip {
         bullet.setPosition(x, y);
         bullet.setSpeed(10);
         bullet.setDirection(Direction.DOWN);
-        bullet.getNode().setScaleX(20);
-        bullet.getNode().setScaleY(20);
+        bullet.getNode().setScaleX(VariousMagicNumbers.TWENTY);
+        bullet.getNode().setScaleY(VariousMagicNumbers.TWENTY);
 
         this.gamefield.addEnemyBullet(bullet);
         this.gamefield.getSoundManager().playBulletSound();

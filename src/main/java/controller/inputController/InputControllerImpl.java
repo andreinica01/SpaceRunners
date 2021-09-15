@@ -1,12 +1,12 @@
 package controller.inputController;
 
-import Utilities.HUDParameters;
-import Utilities.InputCommand;
 import java.util.HashMap;
 import java.util.Map;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import model.ship.SpaceShip;
+import utilities.InputCommand;
+import utilities.VariousMagicNumbers;
 
 public class InputControllerImpl {
 
@@ -29,51 +29,51 @@ public class InputControllerImpl {
         this.scene = scene;
         this.player = player;
         this.fireFlag = true;
-        
+
         this.initializeKeys();
         this.initializeControlStates();
-        this.Listeners();
+        this.listeners();
     }
 
     /**
      * Initialize the game controls.
      */
     private void initializeControlStates() {
-        this.controlStates.put(InputCommand.GO_LEFT, HUDParameters.FALSE);
-        this.controlStates.put(InputCommand.GO_RIGHT, HUDParameters.FALSE);
-        this.controlStates.put(InputCommand.NONE, HUDParameters.FALSE);
-        this.controlStates.put(InputCommand.ATTACK, HUDParameters.FALSE);
+        this.controlStates.put(InputCommand.GO_LEFT, VariousMagicNumbers.FALSE);
+        this.controlStates.put(InputCommand.GO_RIGHT, VariousMagicNumbers.FALSE);
+        this.controlStates.put(InputCommand.NONE, VariousMagicNumbers.FALSE);
+        this.controlStates.put(InputCommand.ATTACK, VariousMagicNumbers.FALSE);
     }
 
     /**
      * Initialize keys that you can press in the game.
      */
     private void initializeKeys() {
-        this.pressedkeys.put(KeyCode.A, HUDParameters.FALSE);
-        this.pressedkeys.put(KeyCode.LEFT, HUDParameters.FALSE);
+        this.pressedkeys.put(KeyCode.A, VariousMagicNumbers.FALSE);
+        this.pressedkeys.put(KeyCode.LEFT, VariousMagicNumbers.FALSE);
 
-        this.pressedkeys.put(KeyCode.D, HUDParameters.FALSE);
-        this.pressedkeys.put(KeyCode.RIGHT, HUDParameters.FALSE);
+        this.pressedkeys.put(KeyCode.D, VariousMagicNumbers.FALSE);
+        this.pressedkeys.put(KeyCode.RIGHT, VariousMagicNumbers.FALSE);
 
-        this.pressedkeys.put(KeyCode.W, HUDParameters.FALSE);
-        this.pressedkeys.put(KeyCode.UP, HUDParameters.FALSE);
+        this.pressedkeys.put(KeyCode.W, VariousMagicNumbers.FALSE);
+        this.pressedkeys.put(KeyCode.UP, VariousMagicNumbers.FALSE);
 
-        this.pressedkeys.put(KeyCode.DOWN, HUDParameters.FALSE);
-        this.pressedkeys.put(KeyCode.S, HUDParameters.FALSE);
+        this.pressedkeys.put(KeyCode.DOWN, VariousMagicNumbers.FALSE);
+        this.pressedkeys.put(KeyCode.S, VariousMagicNumbers.FALSE);
 
-        this.pressedkeys.put(KeyCode.P, HUDParameters.FALSE);
+        this.pressedkeys.put(KeyCode.P, VariousMagicNumbers.FALSE);
     }
 
     /**
      * Listeners used for performing an action after a key is pressed.
      */
-    public void Listeners() {
+    public void listeners() {
         this.scene.setOnKeyPressed(e -> {
-            pressedkeys.put(e.getCode(), HUDParameters.TRUE);
+            pressedkeys.put(e.getCode(), VariousMagicNumbers.TRUE);
         });
 
         this.scene.setOnKeyReleased(e -> {
-            pressedkeys.put(e.getCode(), HUDParameters.FALSE);
+            pressedkeys.put(e.getCode(), VariousMagicNumbers.FALSE);
         });
     }
 
@@ -82,33 +82,34 @@ public class InputControllerImpl {
      */
     private void movePlayerShip() {
         if ((this.pressedkeys.get(KeyCode.A)) && (!this.pressedkeys.get(KeyCode.D))) {
-            this.controlStates.put(InputCommand.GO_LEFT, HUDParameters.TRUE);
-            this.controlStates.put(InputCommand.GO_RIGHT, HUDParameters.FALSE);
-            this.controlStates.put(InputCommand.NONE, HUDParameters.FALSE);
+            this.controlStates.put(InputCommand.GO_LEFT, VariousMagicNumbers.TRUE);
+            this.controlStates.put(InputCommand.GO_RIGHT, VariousMagicNumbers.FALSE);
+            this.controlStates.put(InputCommand.NONE, VariousMagicNumbers.FALSE);
         }
 
         if ((this.pressedkeys.get(KeyCode.D)) && (!this.pressedkeys.get(KeyCode.A))) {
-            this.controlStates.put(InputCommand.GO_RIGHT, HUDParameters.TRUE);
-            this.controlStates.put(InputCommand.GO_LEFT, HUDParameters.FALSE);
-            this.controlStates.put(InputCommand.NONE, HUDParameters.FALSE);
+            this.controlStates.put(InputCommand.GO_RIGHT, VariousMagicNumbers.TRUE);
+            this.controlStates.put(InputCommand.GO_LEFT, VariousMagicNumbers.FALSE);
+            this.controlStates.put(InputCommand.NONE, VariousMagicNumbers.FALSE);
         }
 
         if ((!this.pressedkeys.get(KeyCode.D)) && (!this.pressedkeys.get(KeyCode.A))
                 || (this.pressedkeys.get(KeyCode.D)) && (this.pressedkeys.get(KeyCode.A))) {
-            this.controlStates.put(InputCommand.NONE, HUDParameters.TRUE);
-            this.controlStates.put(InputCommand.GO_RIGHT, HUDParameters.FALSE);
-            this.controlStates.put(InputCommand.GO_LEFT, HUDParameters.FALSE);
+            this.controlStates.put(InputCommand.NONE, VariousMagicNumbers.TRUE);
+            this.controlStates.put(InputCommand.GO_RIGHT, VariousMagicNumbers.FALSE);
+            this.controlStates.put(InputCommand.GO_LEFT, VariousMagicNumbers.FALSE);
         }
 
         if (this.pressedkeys.get(KeyCode.P) && this.player.getCanFire()) {
             if (this.getFireFlag()) {
-                this.controlStates.put(InputCommand.ATTACK, HUDParameters.TRUE);
-                this.setFireFlag(HUDParameters.FALSE);
-            } else
-                this.controlStates.put(InputCommand.ATTACK, HUDParameters.FALSE);
+                this.controlStates.put(InputCommand.ATTACK, VariousMagicNumbers.TRUE);
+                this.setFireFlag(VariousMagicNumbers.FALSE);
+            } else {
+                this.controlStates.put(InputCommand.ATTACK, VariousMagicNumbers.FALSE);
+            }
         } else {
-            this.controlStates.put(InputCommand.ATTACK, HUDParameters.FALSE);
-            this.setFireFlag(HUDParameters.TRUE);
+            this.controlStates.put(InputCommand.ATTACK, VariousMagicNumbers.FALSE);
+            this.setFireFlag(VariousMagicNumbers.TRUE);
         }
     }
 

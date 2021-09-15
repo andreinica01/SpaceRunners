@@ -71,7 +71,7 @@ public abstract class SpaceShip extends EntityImpl {
     }
 
     /** 
-     * attack 
+     * attack.
      */
     public abstract void attack();
 }

@@ -1,8 +1,5 @@
 package controller.enemyAI;
 
-import Utilities.Direction;
-import Utilities.HUDParameters;
-import Utilities.Utilities;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.concurrent.Executors;
@@ -10,6 +7,9 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import model.ship.BossShip;
+import utilities.Direction;
+import utilities.Utilities;
+import utilities.VariousMagicNumbers;
 import view.gameField.GameField;
 
 public class BossAI {
@@ -43,7 +43,7 @@ public class BossAI {
         this.bossShip = new BossShip(this.gamefield);
         this.bossShip.setPosition(X_POS, Y_POS);
         this.bossShip.setDirection(Direction.LEFT);
-        this.bossShip.setSpeed(HUDParameters.FOUR);
+        this.bossShip.setSpeed(VariousMagicNumbers.FOUR);
         this.gamefield.addBoss(bossShip);
         this.addBossTask("Movement");
         this.addBossTask("Firing");
@@ -61,7 +61,7 @@ public class BossAI {
      * @param taskName
      */
     private void addBossTask(final String taskName) {
-        
+
         switch (taskName) {
         case "Movement":
             this.bossControls.put("Movement",

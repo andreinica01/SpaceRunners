@@ -1,8 +1,8 @@
 package model.ship;
 
-import Utilities.Direction;
-import Utilities.Parameters;
-import view.gameField.*;
+import utilities.Direction;
+import utilities.Parameters;
+import view.gameField.GameField;
 
 public class EnemyNounShip extends EnemyShip {
 

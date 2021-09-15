@@ -1,20 +1,21 @@
 package controller.gameLoop;
 
-import Utilities.HUDParameters;
-import Utilities.Parameters;
 import controller.gameController.GameContollerImpl;
 import controller.gameController.GameController;
-import javafx.animation.*;
+import javafx.animation.AnimationTimer;
 import javafx.stage.Stage;
+import utilities.Parameters;
+import utilities.VariousMagicNumbers;
 import view.gameField.GameFieldImpl;
 import view.mainWindow.MainWindow;
 import view.mainWindow.MainWindowImpl;
 
 public class GameManager extends AnimationTimer {
 
+	private static final long SLEEP = 10000000;
+	private static final int SLEEP_TIMER = 100000;
     long delta;
     long prevtime;
-    private long sleepNs = 10000000;
 
     private MainWindow mainwindow;
     private GameFieldImpl gamefield;
@@ -30,7 +31,7 @@ public class GameManager extends AnimationTimer {
         this.mainwindow.addGameField(this.gamefield);
         this.gameController = new GameContollerImpl(this.gamefield);
 
-        this.mainwindow.setVisible(HUDParameters.TRUE);
+        this.mainwindow.setVisible(VariousMagicNumbers.TRUE);
     }
 
     /**
@@ -43,13 +44,13 @@ public class GameManager extends AnimationTimer {
     }
 
     @Override
-    public void handle(final long now) {
-        
+    public final void handle(final long now) {
+
         /*
          * if ((now - prevtime) < sleepNs) { ("exit"); return; }
          */
         try {
-            Thread.sleep(0, 100000);
+            Thread.sleep(0, SLEEP_TIMER);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -62,9 +63,9 @@ public class GameManager extends AnimationTimer {
      * @return time sleep value 
      */
     public long getTimeSleep() {
-        return this.sleepNs;
+        return SLEEP;
     }
-    
+
     /**
      * @return the GameManager.
      */

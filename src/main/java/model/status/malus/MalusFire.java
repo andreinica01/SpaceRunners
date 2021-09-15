@@ -1,8 +1,8 @@
 package model.status.malus;
 
-import Utilities.HUDParameters;
 import model.status.Status;
 import model.status.StatusEnum;
+import utilities.VariousMagicNumbers;
 
 /** 
  * A Status that block player's firing. 
@@ -10,15 +10,15 @@ import model.status.StatusEnum;
 public class MalusFire extends Status {
 
     /**
-     * Constructor
+     * Constructor.
      */
     public MalusFire() {
         super();
-        
-        this.setStatusName(StatusEnum.MalusFire);
-        this.setCoolDown(HUDParameters.SEVEN); // 7 s
 
-        this.setEffect(() -> this.getPlayer().setCanFire(HUDParameters.FALSE));
-        this.setRemoveEffect(() -> this.getPlayer().setCanFire(HUDParameters.TRUE));
+        this.setStatusName(StatusEnum.MalusFire);
+        this.setCoolDown(VariousMagicNumbers.SEVEN); // 7 s
+
+        this.setEffect(() -> this.getPlayer().setCanFire(VariousMagicNumbers.FALSE));
+        this.setRemoveEffect(() -> this.getPlayer().setCanFire(VariousMagicNumbers.TRUE));
     }
 }

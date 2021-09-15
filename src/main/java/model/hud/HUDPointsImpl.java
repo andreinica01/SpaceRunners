@@ -1,9 +1,10 @@
 package model.hud;
 
-import Utilities.HUDParameters;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
+import utilities.HUDParameters;
+import utilities.VariousMagicNumbers;
 
 /**
  * This class defines how the points HUD must look.
@@ -25,11 +26,11 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
     private int points;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public HUDPointsImpl() {
 
-        this.points = HUDParameters.ZERO;
+        this.points = VariousMagicNumbers.ZERO;
 
         this.setLayoutX(X_LAYOUT);
         this.setLayoutY(Y_LAYOUT);
@@ -42,7 +43,7 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
      * Getter
      */
     @Override
-    public int getPoints() {
+    public final int getPoints() {
         return this.points;
     }
 
@@ -50,15 +51,15 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
      * Setter
      */
     @Override
-    public void pointsUp() {
-        if(this.getPoints() < HUDParameters.MAX_POINTS_POSSIBLE) {
+    public final void pointsUp() {
+        if (this.getPoints() < HUDParameters.MAX_POINTS_POSSIBLE) {
             this.pointsSetter(POINTS_UP);
         }
     }
 
     @Override
-    public void pointsDown() {
-        if (this.getPoints() < HUDParameters.FIVE) {
+    public final void pointsDown() {
+        if (this.getPoints() < VariousMagicNumbers.FIVE) {
             this.pointsSetter(-this.getPoints());
         } else {
             this.pointsSetter(POINTS_DOWN);
@@ -66,7 +67,7 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
     }
 
     @Override
-    public void pointsSetter(final int value) {
+    public final void pointsSetter(final int value) {
         this.points += value;
         this.setText(MATTER + this.getPoints());
     }

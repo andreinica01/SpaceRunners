@@ -1,13 +1,13 @@
 package application;
 
-import controller.gameLoop.*;
+import controller.gameLoop.GameManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
     @Override
-    public void start(final Stage mainWindow) {
+    public final void start(final Stage mainWindow) {
         try {
             GameManager gameManager = new GameManager(mainWindow);
             mainWindow.setTitle("SpaceRunners");

@@ -1,8 +1,9 @@
-package Utilities;
+package utilities;
 
 /**
  * Interface that model a 2D Vector that is used to get and set position of all
  * the elements.
+ * @param <NumType>
  */
 public interface Vector2D<NumType extends Number> {
 
