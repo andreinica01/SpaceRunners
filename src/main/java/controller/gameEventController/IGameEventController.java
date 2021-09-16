@@ -14,11 +14,6 @@ public interface IGameEventController {
      */
     void endGame();
 
-    /**
-     * Sets all HUD parts for the game.
-     */
-    void createHUD();
-
     /** 
      * @return the game status value: if false, the game ends. 
      */

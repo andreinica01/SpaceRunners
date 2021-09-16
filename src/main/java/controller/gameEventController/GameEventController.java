@@ -1,38 +1,24 @@
 package controller.gameEventController;
 
 import controller.collisionEngine.PhysicsEngine;
-import controller.collisionEngine.PhysicsEngineImpl;
 import model.hud.HUDBonusImpl;
-import model.hud.HUDLifeImpl;
-import model.hud.HUDPointsImpl;
-import utilities.HUDParameters;
 import view.gameField.GameField;
+import view.hud.HUDImpl;
 import view.menu.EndGameGUI;
 
 public class GameEventController implements IGameEventController {
 
     /*
-     * HUD values
+     * Game Container reference and HUD elements.
      */
-
-
-    /*
-     * Game Container reference and HUD elements
-     */
-    private HUDPointsImpl hud;
-    private HUDLifeImpl playerLives;
-    private PhysicsEngineImpl collisionEngine;
-    private HUDBonusImpl bonusHUD;
-    private GameField gameField;
+    private HUDImpl hudBuilder;
 
     /**
      * Constructor.
      * @param game field.
      */
     public GameEventController(final GameField gameField) {
-        this.gameField = gameField;
-
-        this.createHUD();
+        this.hudBuilder = new HUDImpl(gameField);
     }
 
     @Override
@@ -41,54 +27,27 @@ public class GameEventController implements IGameEventController {
     }
 
     @Override
-    public final void createHUD() {
-        /*
-         * Points HUD, setting poisition on screen due to his definition:
-         * it is a label part so it needs a position on screen and it needs
-         * to be added on the nodes system, same for other nodes.
-         */
-        this.hud = new HUDPointsImpl();
-        this.gameField.getGameContainer().getChildren().add(this.hud);
-        this.hud.setViewOrder(HUDParameters.VIEW_ORDER);
-
-        /*
-         * Lives HUD
-         */
-        this.playerLives = new HUDLifeImpl(this.gameField.getGameContainer());
-
-        /*
-         * PowerUP HUD
-         */
-        this.bonusHUD = new HUDBonusImpl(this.gameField);
-
-        /*
-         * Collision engine comes with HUD creation!
-         */
-        this.collisionEngine = new PhysicsEngineImpl(this.gameField, this.hud, this.playerLives, this.bonusHUD);
-    }
-
-    @Override
     public final boolean checkGameStatus() {
-        return this.playerLives.getStatus();
+        return this.hudBuilder.checkGameStatus();
     }
 
     @Override
     public final int checkPoints() {
-        return this.hud.getPoints();
+        return this.hudBuilder.checkPoints();
     }
 
     @Override
     public final int checkLives() {
-        return this.playerLives.getLifePoints();
+        return this.hudBuilder.checkLives();
     }
 
     @Override
     public final HUDBonusImpl getBonusImpl() {
-        return this.bonusHUD;
+        return this.hudBuilder.getBonusImpl();
     }
 
     @Override
     public final PhysicsEngine getCollisionEngine() {
-        return this.collisionEngine;
+        return this.hudBuilder.getCollisionEngine();
     }
 }
