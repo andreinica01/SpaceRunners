@@ -26,7 +26,7 @@ public interface IHUD {
     int checkLives();
 
     /**
-     * @return bonus HUD reference
+     * @return bonus HUD reference.
      */
     HUDBonusImpl getBonusImpl();
 

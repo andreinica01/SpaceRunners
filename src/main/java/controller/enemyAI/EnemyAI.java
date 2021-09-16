@@ -9,6 +9,7 @@ import model.status.Status;
 import model.status.StatusEnum;
 import model.status.StatusFactory;
 import utilities.Utilities;
+import utilities.VariousMagicNumbers;
 import view.gameField.GameField;
 
 /** 
@@ -16,6 +17,17 @@ import view.gameField.GameField;
  */
 public class EnemyAI {
 
+	private static final int MULTIPLIER = 1000;
+	private static final int ENEMY_Y = -180;
+	private static final int RAND_X = 400;
+	private static final int STATUS_Y = -300;
+	private static final double FIRST_VALUE = 5.0;
+	private static final double SECOND_VALUE = 5.0;
+	private static final double THIRD_VALUE = 15.0;
+	private static final double DIFFICULTY_MULTIPLIER = 0.2;
+	private static final double ZERO = 0.0;
+	private static final double FOUR = 4.0;
+	
     private final GameField gameField;
     private final GameEventController gameEvent;
     private final StatusFactory statusFactory;
@@ -43,8 +55,8 @@ public class EnemyAI {
         this.bossAI = new BossAI(this.gameField);
         this.enemyResetTime = System.currentTimeMillis();
         this.statusResetTime = System.currentTimeMillis();
-        this.enemyInterval = (long) (Utilities.getRandomDouble(0.0, 5.0) * 1000);
-        this.statusInterval = (long) (Utilities.getRandomDouble(5.0, 15.0) * 1000);
+        this.enemyInterval = (long) (Utilities.getRandomDouble(FIRST_VALUE, SECOND_VALUE) * MULTIPLIER);
+        this.statusInterval = (long) (Utilities.getRandomDouble(SECOND_VALUE, THIRD_VALUE) * MULTIPLIER);
         this.rnd = new Random();
     }
 
@@ -76,7 +88,7 @@ public class EnemyAI {
      * This method handle boos spawn system.
      */
     public void manageBoss() {
-        if (this.playerPoints == 2 && !this.bossEnabled) {
+        if (this.playerPoints == VariousMagicNumbers.TWO && !this.bossEnabled) {
             this.bossAI.generateBoss();
             this.bossEnabled = true;
         }
@@ -93,12 +105,15 @@ public class EnemyAI {
         if (System.currentTimeMillis() - this.enemyResetTime > this.enemyInterval) {
             SpaceShip enemyship = new EnemyNounShip(this.gameField);
             enemyship.setSpeed(enemyship.getSpeed().doubleValue() * difficultyFactor);
-            enemyship.setPosition(this.rnd.nextInt(400), -180);
+            enemyship.setPosition(this.rnd.nextInt(RAND_X), ENEMY_Y);
 
             this.gameField.addEnemyShip(enemyship);
             this.gameField.getSoundManager().playShipPassing();
 
-            this.enemyInterval = (long) ((Utilities.getRandomDouble(0.0, 5 * 1 / difficultyFactor) * 1000));
+            this.enemyInterval = (long) 
+            		((Utilities.getRandomDouble(
+            				ZERO, VariousMagicNumbers.FIVE * VariousMagicNumbers.ONE
+            				/ difficultyFactor) * MULTIPLIER));
             this.enemyResetTime = System.currentTimeMillis();
 
             this.removeUnused();
@@ -111,11 +126,12 @@ public class EnemyAI {
     private void generateStatus() {
         if (System.currentTimeMillis() - this.statusResetTime > this.statusInterval) {
             Status status = this.statusFactory.createStatus(StatusEnum.getRandom());
-            status.setPosition(this.rnd.nextInt(400), -300);
+            status.setPosition(this.rnd.nextInt(RAND_X), STATUS_Y);
 
             this.gameField.addBonus(status);
 
-            this.statusInterval = (long) ((Utilities.getRandomDouble(4.0, 15.0) * 1000));
+            this.statusInterval = (long) 
+            		((Utilities.getRandomDouble(FOUR, THIRD_VALUE) * MULTIPLIER));
             this.statusResetTime = System.currentTimeMillis();
         }
     }
@@ -126,6 +142,8 @@ public class EnemyAI {
     private Double checkAndSetDifficulty() {
         this.playerPoints = this.gameEvent.checkPoints();
         // Every 20 points difficulty increasing by 20%
-        return 1 + (((double) this.playerPoints / 20) * 0.2);
+        return VariousMagicNumbers.ONE 
+        		+ (((double) this.playerPoints / VariousMagicNumbers.TWENTY)
+        				* DIFFICULTY_MULTIPLIER);
     }
 }
