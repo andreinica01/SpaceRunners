@@ -1,6 +1,6 @@
 package application;
 
-import controller.gameLoop.GameManager;
+import controller.gameSwitcher.SwitcherImpl;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -8,14 +8,9 @@ public class Main extends Application {
 
     @Override
     public final void start(final Stage mainWindow) {
-        try {
-            GameManager gameManager = new GameManager(mainWindow);
-            mainWindow.setTitle("SpaceRunners");
 
-            gameManager.start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    	new SwitcherImpl(mainWindow);
+        mainWindow.setTitle("SpaceRunners");
     }
 
     public static void main(final String[] args) {
