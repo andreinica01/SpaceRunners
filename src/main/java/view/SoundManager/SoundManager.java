@@ -122,6 +122,20 @@ public class SoundManager {
     }
 
     /**
+     * Play a sound when status is taken.
+     */
+    public void playStatusPick() {
+        this.playSound("pickup.wav");
+    }
+
+    /**
+     * Play a sound when status run off.
+     */
+    public void playStatusFinish() {
+        this.playSound("off.wav");
+    }
+
+    /**
      * Clear the sound memory, this is due to ArrayList implementation.
      */
     private void cleanSoundMemory() {

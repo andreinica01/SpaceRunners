@@ -27,7 +27,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
     /*
      * Control fields
      */
-    private GameField gamefield;
+    private GameField gameField;
     private HUDPointsImpl pointsHUD;
     private HUDLifeImpl livesHUD;
     private HUDBonusImpl bonusHUD;
@@ -47,7 +47,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
      */
     public PhysicsEngineImpl(final GameField gamefield, final HUDPointsImpl pointsHUD,
                                 final HUDLifeImpl livesHUD, final HUDBonusImpl bonusHUD) {
-        this.gamefield = gamefield;
+        this.gameField = gamefield;
         this.pointsHUD = pointsHUD;
         this.livesHUD = livesHUD;
         this.bonusHUD = bonusHUD;
@@ -55,7 +55,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
 
         resetBound();
         this.toBeRemovedList = new ArrayList<Entity>();
-        this.fieldBounds = this.gamefield.getScene().getRoot().getBoundsInLocal();
+        this.fieldBounds = this.gameField.getScene().getRoot().getBoundsInLocal();
     }
 
     @Override
@@ -73,21 +73,23 @@ public class PhysicsEngineImpl implements PhysicsEngine {
     /*
      * Collision detection
      */
+
+
     /** 
      * Handles collisions within the player and the game field. 
      */
     private void collisionWalls() {
-        int limit = this.gamefield.getPlayer().getPosition().getX().intValue();
+        int limit = this.gameField.getPlayer().getPosition().getX().intValue();
 
-        if (this.isEntityCollidingLeftWall(this.gamefield.getPlayer(), X_PLAYER_LEFT_BORDER)) {
-            this.gamefield.getSoundManager().playClashWall();
-            this.gamefield.getPlayer()
-                .setPosition(limit - resetX, this.gamefield.getPlayer().getPosition().getY().intValue());
+        if (this.isEntityCollidingLeftWall(this.gameField.getPlayer(), X_PLAYER_LEFT_BORDER)) {
+            this.gameField.getSoundManager().playClashWall();
+            this.gameField.getPlayer()
+                .setPosition(limit - resetX, this.gameField.getPlayer().getPosition().getY().intValue());
 
-        } else if (this.isEntityCollidingRightWall(this.gamefield.getPlayer(), X_PLAYER_RIGHT_BORDER)) {
-            this.gamefield.getSoundManager().playClashWall();
-            this.gamefield.getPlayer()
-                .setPosition(limit + resetX, this.gamefield.getPlayer().getPosition().getY().intValue());
+        } else if (this.isEntityCollidingRightWall(this.gameField.getPlayer(), X_PLAYER_RIGHT_BORDER)) {
+            this.gameField.getSoundManager().playClashWall();
+            this.gameField.getPlayer()
+                .setPosition(limit + resetX, this.gameField.getPlayer().getPosition().getY().intValue());
         }
     }
 
@@ -111,19 +113,19 @@ public class PhysicsEngineImpl implements PhysicsEngine {
      * Handles collision between player and enemy ships.
      */
     public void playerCollisionWithEnemies() {
-        for (SpaceShip spaceship : this.gamefield.getActiveEnemyShips()) {
+        for (SpaceShip spaceship : this.gameField.getActiveEnemyShips()) {
             Bounds shipBound = spaceship.getNode().getBoundsInParent();
 
-            if (this.gamefield.getPlayer().getNode().getBoundsInParent().intersects(shipBound)) {
+            if (this.gameField.getPlayer().getNode().getBoundsInParent().intersects(shipBound)) {
                 this.removeLife();
                 this.removePoints();
-                this.gamefield.getGameContainer().getChildren().remove(spaceship.getNode());
+                this.gameField.getGameContainer().getChildren().remove(spaceship.getNode());
                 this.toBeRemovedList.add(spaceship);
 
-                this.gamefield.getSoundManager().playPlayerImpact();
+                this.gameField.getSoundManager().playPlayerImpact();
             }
         }
-        this.gamefield.getActiveEnemyShips().removeAll(this.toBeRemovedList);
+        this.gameField.getActiveEnemyShips().removeAll(this.toBeRemovedList);
     }
 
     /** 
@@ -133,11 +135,12 @@ public class PhysicsEngineImpl implements PhysicsEngine {
 
         this.statusHandler();
 
-        for (Status bonus : this.gamefield.getBonusObjects()) {
-            if (this.gamefield.getPlayer().getNode().getBoundsInParent()
+        for (Status bonus : this.gameField.getBonusObjects()) {
+            if (this.gameField.getPlayer().getNode().getBoundsInParent()
                     .intersects(bonus.getNode().getBoundsInParent())) {
 
-                this.gamefield.getStatusController().applyEffect(bonus);
+                this.gameField.getStatusController().applyEffect(bonus);
+                this.gameField.getSoundManager().playStatusPick();
 
                 switch (bonus.getStatusName()) {
                     case BonusLife:
@@ -165,7 +168,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
      * Handles bonus spawn on the HUD.
      */
     private void statusHandler() {
-        Map<StatusEnum, Boolean> map = this.gamefield.getStatusController().getActiveStatus();
+        Map<StatusEnum, Boolean> map = this.gameField.getStatusController().getActiveStatus();
 
         for (final StatusEnum elem : map.keySet()) {
             if (map.get(elem)) {
@@ -180,8 +183,8 @@ public class PhysicsEngineImpl implements PhysicsEngine {
      * Collision between bullet and enemy entities. 
      */
     public void bulletCollisionWithEnemies() {
-        Iterator<SpaceShip> enemies = this.gamefield.getActiveEnemyShips().iterator();
-        Iterator<Bullet> bullets = this.gamefield.getActiveBulletsShotbyPlayer().iterator();
+        Iterator<SpaceShip> enemies = this.gameField.getActiveEnemyShips().iterator();
+        Iterator<Bullet> bullets = this.gameField.getActiveBulletsShotbyPlayer().iterator();
 
         while (enemies.hasNext()) {
             SpaceShip enemyship = enemies.next();
@@ -192,7 +195,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
                 Bounds bulletBound = bullet.getNode().getBoundsInParent();
 
                 if (bulletBound.intersects(shipBound)) {
-                    this.gamefield.getSoundManager().playSpaceshipExplosion();
+                    this.gameField.getSoundManager().playSpaceshipExplosion();
                     this.toBeRemovedList.add(bullet);
                     this.toBeRemovedList.add(enemyship);
 
@@ -202,7 +205,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
                 }
             }
 
-            bullets = this.gamefield.getActiveBulletsShotbyPlayer().iterator();
+            bullets = this.gameField.getActiveBulletsShotbyPlayer().iterator();
         }
     }
 
@@ -228,7 +231,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
      */
     private void bossesCollisionwithWall() {
 
-        this.gamefield.getActiveBosses().forEach(boss -> {
+        this.gameField.getActiveBosses().forEach(boss -> {
             int limit = boss.getPosition().getX().intValue();
 
             if (this.isEntityCollidingLeftWall(boss, X_BOSS_LEFT_BORDER)) {
@@ -245,8 +248,8 @@ public class PhysicsEngineImpl implements PhysicsEngine {
      * Handles collisions between bullet and bosses.
      */
     public void bossCollisionWithBullets() {
-        Iterator<SpaceShip> bosses = this.gamefield.getActiveBosses().iterator();
-        Iterator<Bullet> bullets = this.gamefield.getActiveBulletsShotbyPlayer().iterator();
+        Iterator<SpaceShip> bosses = this.gameField.getActiveBosses().iterator();
+        Iterator<Bullet> bullets = this.gameField.getActiveBulletsShotbyPlayer().iterator();
 
         while (bosses.hasNext()) {
             SpaceShip enemyship = bosses.next();
@@ -262,17 +265,17 @@ public class PhysicsEngineImpl implements PhysicsEngine {
                     if (this.getBossHP() < VariousMagicNumbers.ONE) {
                         bosses.remove();
                         this.toBeRemovedList.add(enemyship);
-                        this.gamefield.getSoundManager().playBossDeath();
+                        this.gameField.getSoundManager().playBossDeath();
                         this.bossHP = VariousMagicNumbers.SEVEN;
                         this.pointsHUD.pointsSetter(VariousMagicNumbers.THREE);
                     } else {
-                        this.gamefield.getSoundManager().playBossDamaged();
+                        this.gameField.getSoundManager().playBossDamaged();
                     }
                     this.bossHP--;
                     bullets.remove();
                 }
             }
-            bullets = this.gamefield.getActiveBulletsShotbyPlayer().iterator();
+            bullets = this.gameField.getActiveBulletsShotbyPlayer().iterator();
         }
     }
 
@@ -280,7 +283,7 @@ public class PhysicsEngineImpl implements PhysicsEngine {
      * Removes all collided and not anymore on the game field entities.
      */
     private void removeUnusedEntities() {
-        this.toBeRemovedList.forEach(entity -> this.gamefield.removeEntity(entity));
+        this.toBeRemovedList.forEach(entity -> this.gameField.removeEntity(entity));
         this.toBeRemovedList.clear();
     }
 
