@@ -2,9 +2,9 @@ package controller.gameEventController;
 
 import controller.collisionEngine.PhysicsEngine;
 import model.hud.HUDBonusImpl;
+import model.menu.EndGameGUI;
 import view.gameField.GameField;
 import view.hud.HUDImpl;
-import view.menu.EndGameGUI;
 
 public class GameEventController implements IGameEventController {
 

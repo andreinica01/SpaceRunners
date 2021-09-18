@@ -1,4 +1,4 @@
-package view.menu;
+package model.menu;
 
 public interface IMainMenu {
 

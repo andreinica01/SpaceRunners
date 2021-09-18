@@ -1,4 +1,4 @@
-package view.menu;
+package model.menu;
 
 import javafx.geometry.*;
 import javafx.scene.Scene;
