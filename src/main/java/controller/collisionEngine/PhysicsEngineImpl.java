@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
 import javafx.geometry.Bounds;
 import model.Entity;
 import model.bullet.Bullet;
@@ -290,8 +289,11 @@ public class PhysicsEngineImpl implements PhysicsEngine {
     /*
      * Getter
      */
-    @Override
-    public final int getBossHP() {
+    /**
+     * Helper method.
+     * @return bossHP.
+     */
+    private int getBossHP() {
         return this.bossHP;
     }
 

@@ -6,11 +6,6 @@ package controller.collisionEngine;
 public interface PhysicsEngine {
 
     /**
-     * @return remaining boss HP
-     */
-    int getBossHP();
-
-    /**
      * Checks for each game cycle if collisions are detected.
      */
     void update();
