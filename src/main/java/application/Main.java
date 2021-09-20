@@ -9,7 +9,10 @@ public class Main extends Application {
 
     @Override
     public final void start(final Stage mainWindow) {
-    	mainWindow.setOnCloseRequest(e -> Platform.exit());
+    	mainWindow.setOnCloseRequest(e -> {
+    		Platform.exit();
+    		System.exit(0);
+    	});
     	new SwitcherImpl(mainWindow);
         mainWindow.setTitle("SpaceRunners");
     }
