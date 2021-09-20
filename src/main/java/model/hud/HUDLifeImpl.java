@@ -26,10 +26,10 @@ public class HUDLifeImpl implements IHUDLife {
      */
     private AnchorPane pane;
     private int lifePoints;
-    private ImageView[] lives = new ImageView[HUDParameters.MAX_LIFE_POINTS];
+    private ImageView[] lives;
 
     /*
-     * Gamestatus = this is important for game cycle to continue
+     * Gamestatus: this is important for game cycle to continue.
      */
     private boolean gameStatus;
 
@@ -40,6 +40,7 @@ public class HUDLifeImpl implements IHUDLife {
     public HUDLifeImpl(final AnchorPane gamePane) {
         this.pane = gamePane;
         this.lifePoints = INITIAL_LIFE_POINTS;
+        this.lives = new ImageView[HUDParameters.MAX_LIFE_POINTS];
         this.gameStatus = VariousMagicNumbers.TRUE;
 
         IntStream.range(VariousMagicNumbers.ZERO, VariousMagicNumbers.THREE).forEach(i -> this.addLife(i));
@@ -81,7 +82,7 @@ public class HUDLifeImpl implements IHUDLife {
      *
      * @param index.
      */
-    public void addLife(final int index) {
+    private void addLife(final int index) {
         this.lives[index] = new ImageView(new Image(new File(HUDParameters.PNG_FOLDER + "life.png").toURI().toString(),
                 SPACING, SPACING, HUDParameters.RATIO, HUDParameters.SMOOTH));
         this.lives[index].setLayoutX(index * SPACING);
@@ -93,7 +94,7 @@ public class HUDLifeImpl implements IHUDLife {
      * Helper method used to remove a life on the screen, it is combined with game
      * logic.
      */
-    public void removeLife() {
+    private void removeLife() {
         this.pane.getChildren().remove(this.lives[this.getLifePoints()]);
     }
 

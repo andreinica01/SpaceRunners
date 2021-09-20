@@ -16,8 +16,8 @@ public class HUDBonusImpl implements IHUDBonus {
      * HUD parameters
      */
     private static final int SPACING = 30;
-    private static final double X_LAYOUT = 450;
-    private static final double Y_TRANSLATION = 645;
+    private static final int X_LAYOUT = 450;
+    private static final int Y_TRANSLATION = 645;
 
     /*
      * Control fields
@@ -40,8 +40,10 @@ public class HUDBonusImpl implements IHUDBonus {
         return this.bonus;
     }
 
-    @Override
-    public final void addBonuses() {
+    /**
+     * Add all bonuses.
+     */
+    private void addBonuses() {
 
         IntStream.range(VariousMagicNumbers.ZERO, VariousMagicNumbers.FIVE).forEach(index -> {
             this.bonus[index] = new ImageView(

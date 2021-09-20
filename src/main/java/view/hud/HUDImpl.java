@@ -13,10 +13,10 @@ public class HUDImpl implements IHUD {
      /*
      * Game Container reference and HUD elements.
      */
-    private HUDPointsImpl hud;
-    private HUDLifeImpl playerLives;
-    private PhysicsEngineImpl collisionEngine;
+    private HUDPointsImpl pointsHUD;
+    private HUDLifeImpl livesHUD;
     private HUDBonusImpl bonusHUD;
+    private PhysicsEngineImpl collisionEngine;
     private GameField gameField;
 
     public HUDImpl(final GameField gameField) {
@@ -26,21 +26,23 @@ public class HUDImpl implements IHUD {
     	this.createHUD();
     }
 
-    @Override
-    public final void createHUD() {
+    /**
+     * Sets all HUD parts for the game.
+     */
+    private void createHUD() {
         /*
          * Points HUD, setting position on screen due to his definition:
          * it is a label part so it needs a position on screen and it needs
          * to be added on the nodes system, same for other nodes.
          */
-        this.hud = new HUDPointsImpl();
-        this.gameField.getGameContainer().getChildren().add(this.hud);
-        this.hud.setViewOrder(HUDParameters.VIEW_ORDER);
+        this.pointsHUD = new HUDPointsImpl();
+        this.gameField.getGameContainer().getChildren().add(this.pointsHUD);
+        this.pointsHUD.setViewOrder(HUDParameters.VIEW_ORDER);
 
         /*
          * Lives HUD
          */
-        this.playerLives = new HUDLifeImpl(this.gameField.getGameContainer());
+        this.livesHUD = new HUDLifeImpl(this.gameField.getGameContainer());
 
         /*
          * PowerUP HUD
@@ -50,22 +52,22 @@ public class HUDImpl implements IHUD {
         /*
          * Collision engine comes with HUD creation!
          */
-        this.collisionEngine = new PhysicsEngineImpl(this.gameField, this.hud, this.playerLives, this.bonusHUD);
+        this.collisionEngine = new PhysicsEngineImpl(this.gameField, this.pointsHUD, this.livesHUD, this.bonusHUD);
     }
 
     @Override
     public final boolean checkGameStatus() {
-        return this.playerLives.getStatus();
+        return this.livesHUD.getStatus();
     }
 
     @Override
     public final int checkPoints() {
-        return this.hud.getPoints();
+        return this.pointsHUD.getPoints();
     }
 
     @Override
     public final int checkLives() {
-        return this.playerLives.getLifePoints();
+        return this.livesHUD.getLifePoints();
     }
 
     @Override

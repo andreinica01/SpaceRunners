@@ -11,11 +11,6 @@ public interface IHUDBonus {
     ImageView[] getBonus();
 
     /**
-     * Add all bonuses.
-     */
-    void addBonuses();
-
-    /**
      * Show a specific bonus.
      * @param index.
      */

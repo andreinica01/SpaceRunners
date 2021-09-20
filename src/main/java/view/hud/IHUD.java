@@ -5,11 +5,6 @@ import model.hud.HUDBonusImpl;
 
 public interface IHUD {
 
-    /**
-     * Sets all HUD parts for the game.
-     */
-    void createHUD();
-
     /** 
      * @return the game status value: if false, the game ends. 
      */
