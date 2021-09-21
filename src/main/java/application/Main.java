@@ -15,7 +15,9 @@ public class Main extends Application {
     	mainWindow.setTitle("SpaceRunners");
     	mainWindow.setOnCloseRequest(e -> {
     		Platform.exit();
-    		System.exit(0);});
+    		System.exit(0); 
+    		});
+
     	ISwitcher switcher = new SwitcherImpl(mainWindow);
     	switcher.startMenu();
     }
