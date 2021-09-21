@@ -1,7 +1,6 @@
 package controller.gameSwitcher;
 
 import java.io.IOException;
-
 import controller.gameLoop.GameManager;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
