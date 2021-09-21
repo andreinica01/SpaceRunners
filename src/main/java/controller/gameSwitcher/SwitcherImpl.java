@@ -1,6 +1,11 @@
 package controller.gameSwitcher;
 
+import java.io.IOException;
+
 import controller.gameLoop.GameManager;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class SwitcherImpl implements ISwitcher {
@@ -16,8 +21,10 @@ public class SwitcherImpl implements ISwitcher {
 	}
 	
 	@Override
-	public final void startMenu() {
-		// TODO Auto-generated method stub
+	public final void startMenu() throws IOException {
+		Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("prova.fxml"));
+		Scene scene = new Scene(root);
+		this.gameManager.setScene(scene);
 	}
 
 	@Override
