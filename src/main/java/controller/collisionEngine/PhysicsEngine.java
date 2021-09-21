@@ -1,5 +1,9 @@
 package controller.collisionEngine;
 
+import model.hud.HUDBonusImpl;
+import model.hud.HUDLifeImpl;
+import model.hud.HUDPointsImpl;
+
 /** 
  * Collision detection methods. 
  */
@@ -29,4 +33,30 @@ public interface PhysicsEngine {
      * Add a life when relative bonus is collected.
      */
     void addLife();
+
+    /**
+     * @return pointsHUD.
+     */
+    HUDPointsImpl getPointsHUD();
+
+    /**
+     * @return lifeHUD.
+     */
+    HUDLifeImpl getLifeHUD();
+
+    /**
+     * @return bonusHUD.
+     */
+    HUDBonusImpl getBonusHUD();
+
+    /**
+     * @return bossHP.
+     */
+    int getBossHP();
+
+    /**
+     * Helper method. Set a new value for boss HPs.
+     * @param value
+     */
+    void setBossHP(int value);
 }
