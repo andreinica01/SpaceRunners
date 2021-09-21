@@ -1,11 +1,14 @@
 package controller.gameSwitcher;
 
+import java.io.IOException;
+
 public interface ISwitcher {
 
 	/**
 	 * Starts the main menu.
+	 * @throws IOException 
 	 */
-	void startMenu(); 
+	void startMenu() throws IOException; 
 	
 	/**
 	 * Starts the game.
