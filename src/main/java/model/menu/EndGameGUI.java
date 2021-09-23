@@ -1,10 +1,18 @@
 package model.menu;
 
-import javafx.geometry.*;
+import java.io.File;
+
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import utilities.Parameters;
+import utilities.VariousMagicNumbers;
 
 public class EndGameGUI implements IEndGameGUI {
 
@@ -14,11 +22,22 @@ public class EndGameGUI implements IEndGameGUI {
     private Stage endGameWindow;
     private int points;
 
+    /*
+     * Constructor.
+     */
+    public EndGameGUI() {
+    	this.endGameWindow = new Stage();
+
+    	Pane root = new Pane();
+    	root.setPrefSize(X_LAYOUT, Y_LAYOUT);
+
+    	//root.setBackground(new Image(new File(Parameters.backgroundImage)));
+    }
+
     @Override
     public final void end(final int points) {
         this.points = points;
 
-        this.endGameWindow = new Stage();
         this.endGameWindow.setTitle("Game is over, you lost! :c");
         this.endGameWindow.setResizable(false);
     }
@@ -54,7 +73,7 @@ public class EndGameGUI implements IEndGameGUI {
 
     @Override
     public final void quit() {
-        // TODO Auto-generated method stub
-
+        this.endGameWindow.close();
+        System.exit(VariousMagicNumbers.ZERO);
     }
 }

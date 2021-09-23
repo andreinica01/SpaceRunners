@@ -1,6 +1,6 @@
 package model.status.malus;
 
-import controller.collisionEngine.PhysicsEngineImpl;
+import controller.collisionEngine.AbstractHelper;
 import model.status.Status;
 import model.status.StatusEnum;
 import utilities.HUDParameters;
@@ -30,7 +30,7 @@ public class MalusSpeed extends Status {
             /*
              * After the end of the effect we need to udpate collisions.
              */
-            PhysicsEngineImpl.resetBound();
+            AbstractHelper.resetBounds();
         });
     }
 }

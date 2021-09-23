@@ -1,7 +1,7 @@
 package view.hud;
 
-import controller.collisionEngine.PhysicsEngine;
-import controller.collisionEngine.PhysicsEngineImpl;
+import controller.collisionEngine.IHelper;
+import controller.collisionEngine.CollisionEngine;
 import model.hud.HUDBonusImpl;
 import model.hud.HUDLifeImpl;
 import model.hud.HUDPointsImpl;
@@ -16,7 +16,7 @@ public class HUDImpl implements IHUD {
     private HUDPointsImpl pointsHUD;
     private HUDLifeImpl livesHUD;
     private HUDBonusImpl bonusHUD;
-    private PhysicsEngineImpl collisionEngine;
+    private CollisionEngine collisionEngine;
     private GameField gameField;
 
     public HUDImpl(final GameField gameField) {
@@ -52,7 +52,7 @@ public class HUDImpl implements IHUD {
         /*
          * Collision engine comes with HUD creation!
          */
-        this.collisionEngine = new PhysicsEngineImpl(this.gameField, this.pointsHUD, this.livesHUD, this.bonusHUD);
+        this.collisionEngine = new CollisionEngine(this.gameField, this.pointsHUD, this.livesHUD, this.bonusHUD);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class HUDImpl implements IHUD {
     }
 
     @Override
-    public final PhysicsEngine getCollisionEngine() {
+    public final IHelper getCollisionEngine() {
         return this.collisionEngine;
     }
 }
