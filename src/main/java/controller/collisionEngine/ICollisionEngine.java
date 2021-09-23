@@ -1,8 +1,11 @@
 package controller.collisionEngine;
 
+/*
+ * Interface that shows how to hadle collisions.
+ */
 public interface ICollisionEngine {
 
-	/** 
+	/**
      * Handles collisions within the player and the game field. 
      */
 	void collisionWalls();

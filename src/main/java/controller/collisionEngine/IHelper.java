@@ -5,9 +5,9 @@ import model.hud.HUDLifeImpl;
 import model.hud.HUDPointsImpl;
 
 /** 
- * Collision detection methods. 
+ * Helper interface that shows how to update a HUD part due to an event. 
  */
-public interface PhysicsEngine {
+public interface IHelper {
 
     /**
      * Checks for each game cycle if collisions are detected.

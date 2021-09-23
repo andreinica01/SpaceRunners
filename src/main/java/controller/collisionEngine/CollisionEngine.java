@@ -17,7 +17,7 @@ import utilities.HUDParameters;
 import utilities.VariousMagicNumbers;
 import view.gameField.GameField;
 
-public class PhysicsEngineImpl extends AbstractHelper implements ICollisionEngine {
+public class CollisionEngine extends AbstractHelper implements ICollisionEngine {
 
     private static final int X_PLAYER_LEFT_BORDER = 146;
     private static final int X_PLAYER_RIGHT_BORDER = 70;
@@ -34,7 +34,7 @@ public class PhysicsEngineImpl extends AbstractHelper implements ICollisionEngin
     /*
      * Constructor.
      */
-    public PhysicsEngineImpl(final GameField gamefield, final HUDPointsImpl pointsHUD,
+    public CollisionEngine(final GameField gamefield, final HUDPointsImpl pointsHUD,
                                 final HUDLifeImpl livesHUD, final HUDBonusImpl bonusHUD) {
     	super(pointsHUD, livesHUD, bonusHUD);
 

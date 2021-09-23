@@ -1,6 +1,6 @@
 package view.hud;
 
-import controller.collisionEngine.PhysicsEngine;
+import controller.collisionEngine.IHelper;
 import model.hud.HUDBonusImpl;
 
 public interface IHUD {
@@ -28,5 +28,5 @@ public interface IHUD {
     /** 
      * @return collision engine. 
      */
-    PhysicsEngine getCollisionEngine();
+    IHelper getCollisionEngine();
 }

@@ -5,7 +5,7 @@ import model.hud.HUDLifeImpl;
 import model.hud.HUDPointsImpl;
 import utilities.VariousMagicNumbers;
 
-public abstract class AbstractHelper implements PhysicsEngine {
+public abstract class AbstractHelper implements IHelper {
 
      /*
      * Control fields.

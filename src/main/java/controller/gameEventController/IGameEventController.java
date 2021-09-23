@@ -1,6 +1,6 @@
 package controller.gameEventController;
 
-import controller.collisionEngine.PhysicsEngine;
+import controller.collisionEngine.IHelper;
 import model.hud.HUDBonusImpl;
 /**
  * This interface shows the methods that are used in order to handle the HUD
@@ -37,5 +37,5 @@ public interface IGameEventController {
     /** 
      * @return collision engine. 
      */
-    PhysicsEngine getCollisionEngine();
+    IHelper getCollisionEngine();
 }

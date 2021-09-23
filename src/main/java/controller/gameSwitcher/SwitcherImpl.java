@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.menu.EndGameGUI;
 
 public class SwitcherImpl implements ISwitcher {
 
@@ -34,6 +35,6 @@ public class SwitcherImpl implements ISwitcher {
 	@Override
 	public final void endGame() {
 		this.gameStarter.stop();
-		//to do
+		new EndGameGUI();
 	}
 }

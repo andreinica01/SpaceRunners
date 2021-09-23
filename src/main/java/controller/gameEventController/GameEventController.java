@@ -1,6 +1,6 @@
 package controller.gameEventController;
 
-import controller.collisionEngine.PhysicsEngine;
+import controller.collisionEngine.IHelper;
 import model.hud.HUDBonusImpl;
 import model.menu.EndGameGUI;
 import view.gameField.GameField;
@@ -47,7 +47,7 @@ public class GameEventController implements IGameEventController {
     }
 
     @Override
-    public final PhysicsEngine getCollisionEngine() {
+    public final IHelper getCollisionEngine() {
         return this.hudBuilder.getCollisionEngine();
     }
 }

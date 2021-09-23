@@ -136,7 +136,7 @@ public class GameFieldImpl implements GameField {
     @Override
     public final void setBackgroundImage(final String path) {
         for (int i = 0; i < this.backGroundImage.length; i++) {
-            this.backGroundImage[i] = new ImageView(Parameters.BackgroundImage);
+            this.backGroundImage[i] = new ImageView(Parameters.backgroundImage);
             this.backGroundImage[i].setLayoutX(VariousMagicNumbers.ZERO);
             this.backGroundImage[i].setFitWidth(this.width);
             this.backGroundImage[i].setFitHeight(this.height);

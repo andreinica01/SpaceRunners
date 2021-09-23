@@ -1,7 +1,6 @@
 package application;
 
 import java.io.IOException;
-
 import controller.gameSwitcher.ISwitcher;
 import controller.gameSwitcher.SwitcherImpl;
 import javafx.application.Application;
@@ -19,7 +18,7 @@ public class Main extends Application {
     		});
 
     	ISwitcher switcher = new SwitcherImpl(mainWindow);
-    	switcher.startMenu();
+    	//switcher.startMenu();
     }
 
     public static void main(final String[] args) {

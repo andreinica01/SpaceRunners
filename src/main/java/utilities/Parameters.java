@@ -20,7 +20,7 @@ public final class Parameters {
 
     /* Images */
     public static Image bulletImage = new Image(new File(ImageFolder + "bullet.png").toURI().toString());
-    public static Image BackgroundImage = new Image(new File(ImageFolder + "stars2.png").toURI().toString());
+    public static Image backgroundImage = new Image(new File(ImageFolder + "stars2.png").toURI().toString());
     public static Image playerImage = new Image(new File(ImageFolder + "playerShip.png").toURI().toString());
     public static Image enemyImage = new Image(new File(ImageFolder + "enemy.png").toURI().toString());
     public static Image enemyExplodingImage = new Image(new File(ImageFolder + "explosion.png").toURI().toString());
