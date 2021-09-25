@@ -17,9 +17,9 @@
             <Image url="@../Images/stars2.png" />
          </image>
       </ImageView>
-      <VBox alignment="CENTER" layoutX="100.0" layoutY="160.0" prefHeight="400.0" prefWidth="300.0" spacing="40.0">
+      <VBox alignment="CENTER" layoutX="100.0" layoutY="306.0" prefHeight="400.0" prefWidth="300.0" spacing="40.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#startGame" prefHeight="50.0" prefWidth="300.0" text="PLAY">
+            <Button mnemonicParsing="false" onAction="#startGame" prefHeight="50.0" prefWidth="300.0" text="RESTART">
                <font>
                   <Font size="25.0" />
                </font>
@@ -30,18 +30,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button mnemonicParsing="false" onAction="#showScores" prefHeight="50.0" prefWidth="300.0" text="SCORES">
-               <font>
-                  <Font size="25.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <effect>
-                  <DropShadow />
-               </effect>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#quit" prefHeight="50.0" prefWidth="300.0" text="QUIT">
+            <Button mnemonicParsing="false" onAction="#showScores" prefHeight="50.0" prefWidth="300.0" text="SAVE AND QUIT">
                <font>
                   <Font size="25.0" />
                </font>
@@ -54,9 +43,14 @@
             </Button>
          </children>
       </VBox>
-      <Text fill="#fdff00" layoutX="88.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SpaceRunner" textAlignment="CENTER">
+      <Text fill="#ded007" layoutX="89.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GAME OVER!" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="52.0" />
+         </font>
+      </Text>
+      <Text fill="RED" layoutX="42.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Score is:" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="36.0" />
          </font>
       </Text>
    </children>
