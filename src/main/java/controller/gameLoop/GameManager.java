@@ -23,12 +23,12 @@ public class GameManager extends AnimationTimer {
 
     public GameManager(final Stage stage) {
         this.mainwindow = new MainWindowImpl(stage);
-        this.gamefield = new GameFieldImpl(Parameters.WIDTH, Parameters.HEIGHT);
-
         this.mainwindow.setWidth(Parameters.WIDTH);
         this.mainwindow.setHeight(Parameters.HEIGHT);
 
+        this.gamefield = new GameFieldImpl(Parameters.WIDTH, Parameters.HEIGHT);
         this.mainwindow.addGameField(this.gamefield);
+
         this.gameController = new GameContollerImpl(this.gamefield);
 
         this.mainwindow.setVisible(VariousMagicNumbers.TRUE);
@@ -45,7 +45,6 @@ public class GameManager extends AnimationTimer {
 
     @Override
     public final void handle(final long now) {
-
         /*
          * if ((now - prevtime) < sleepNs) { ("exit"); return; }
          */
