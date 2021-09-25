@@ -1,5 +1,6 @@
 package controller.collisionEngine;
 
+import utilities.VariousMagicNumbers;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -14,13 +15,12 @@ import model.ship.SpaceShip;
 import model.status.Status;
 import model.status.StatusEnum;
 import utilities.HUDParameters;
-import utilities.VariousMagicNumbers;
 import view.gameField.GameField;
 
 public class CollisionEngine extends AbstractHelper implements ICollisionEngine {
 
-    private static final int X_PLAYER_LEFT_BORDER = 146;
-    private static final int X_PLAYER_RIGHT_BORDER = 70;
+    private static final int X_PLAYER_LEFT_BORDER = 69;
+    private static final int X_PLAYER_RIGHT_BORDER = 146;
     private static final int X_BOSS_LEFT_BORDER = 385;
     private static final int X_BOSS_RIGHT_BORDER = 271;
 
@@ -62,7 +62,7 @@ public class CollisionEngine extends AbstractHelper implements ICollisionEngine 
      * @return true if player touches left side of the gameField.
      */
     private boolean isEntityCollidingRightWall(final Entity entity, final int delay) {
-        return (entity.getPosition().getX().intValue() < this.fieldBounds.getMinX() - delay);
+        return (entity.getPosition().getX().intValue() > this.fieldBounds.getMaxX() - delay);
     }
 
     /**
@@ -70,7 +70,7 @@ public class CollisionEngine extends AbstractHelper implements ICollisionEngine 
      * @return true if player touches right side of the gameField.
      */
     private boolean isEntityCollidingLeftWall(final Entity entity, final int delay) {
-        return (entity.getPosition().getX().intValue() > this.fieldBounds.getMaxX() - delay);
+        return (entity.getPosition().getX().intValue() < this.fieldBounds.getMinX() - delay);
     }
 
     /**
@@ -105,13 +105,13 @@ public class CollisionEngine extends AbstractHelper implements ICollisionEngine 
         if (this.isEntityCollidingLeftWall(this.gameField.getPlayer(), X_PLAYER_LEFT_BORDER)) {
             this.gameField.getSoundManager().playClashWall();
             this.gameField.getPlayer()
-                .setPosition(limit - AbstractHelper.resetX, 
+                .setPosition(limit + AbstractHelper.resetX, 
                 		this.gameField.getPlayer().getPosition().getY().intValue());
 
         } else if (this.isEntityCollidingRightWall(this.gameField.getPlayer(), X_PLAYER_RIGHT_BORDER)) {
             this.gameField.getSoundManager().playClashWall();
             this.gameField.getPlayer()
-                .setPosition(limit + AbstractHelper.resetX, 
+                .setPosition(limit - AbstractHelper.resetX, 
                 		this.gameField.getPlayer().getPosition().getY().intValue());
         }
     }
