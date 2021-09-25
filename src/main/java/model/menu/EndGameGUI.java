@@ -21,8 +21,8 @@ import utilities.VariousMagicNumbers;
 
 public class EndGameGUI implements IEndGameGUI {
 
-    private static final int X_LAYOUT = 600;
-    private static final int Y_LAYOUT = 400;
+    private static final int X_LAYOUT = 500;
+    private static final int Y_LAYOUT = 720;
 
     private Stage endGameWindow;
     private int points;
@@ -33,7 +33,10 @@ public class EndGameGUI implements IEndGameGUI {
     public EndGameGUI() throws IOException {
 
     	this.endGameWindow = new Stage();
-    	Pane root = new Pane();
+    	this.endGameWindow.setTitle("Game is over, you lost! :c");
+        this.endGameWindow.setResizable(false);
+    	
+        Pane root = new Pane();
     	root.setPrefSize(X_LAYOUT, Y_LAYOUT);
 
     	//Loading background
@@ -48,17 +51,12 @@ public class EndGameGUI implements IEndGameGUI {
     	//Setting the scene
     	Scene scene = new Scene(root);
     	this.endGameWindow.setScene(scene);
-    	this.endGameWindow.setTitle("Game is over, you lost! :c");
-        this.endGameWindow.setResizable(false);
-    	this.endGameWindow.show();
     }
-
-
-
 
     @Override
     public final void end(final int points) {
         this.points = points;
+    	this.endGameWindow.show();
     }
 
     @Override
@@ -92,7 +90,6 @@ public class EndGameGUI implements IEndGameGUI {
 
     @Override
     public final void quit() {
-        this.endGameWindow.close();
         System.exit(VariousMagicNumbers.ZERO);
     }
 }
