@@ -1,7 +1,6 @@
 package controller.gameSwitcher;
 
 import java.io.IOException;
-
 import controller.gameLoop.GameManager;
 import javafx.application.Platform;
 import javafx.stage.Stage;
@@ -21,7 +20,6 @@ public class SceneManager {
 		System.out.println("Game Size");
 		System.out.println(this.mainWindow.getScene().getHeight());
 		System.out.println(this.mainWindow.getScene().getWidth());
-
 	}
 	
 	public void switchToScores() {

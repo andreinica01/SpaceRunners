@@ -36,7 +36,6 @@ public class MainWindowImpl implements MainWindow {
         gameField.setScene(scene);
         gameField.setStageReference(this.getStage());
         this.stage.setScene(scene);
-        this.stage.setResizable(VariousMagicNumbers.FALSE);
     }
 
     @Override

@@ -1,12 +1,8 @@
 package application;
 
 import java.io.IOException;
-
 import controller.gameSwitcher.MenuController;
 import controller.gameSwitcher.SceneManager;
-
-
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +12,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 	@Override
-	public final void start(Stage mainWindow) throws IOException {
+	public final void start(final Stage mainWindow) throws IOException {
 		mainWindow.setTitle("SpaceRunners");
 		
 		mainWindow.setOnCloseRequest(e -> {
@@ -31,7 +27,7 @@ public class Main extends Application {
 		launch(args);
 	}
 	
-	private void createStartMenu (Stage mainWindow) throws IOException {
+	private void createStartMenu(final Stage mainWindow) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/StartMenu.fxml"));
 		loader.setController(new MenuController(new SceneManager(mainWindow)));
 		mainWindow.setScene(new Scene(loader.load()));
