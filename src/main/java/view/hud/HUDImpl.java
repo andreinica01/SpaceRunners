@@ -1,6 +1,5 @@
 package view.hud;
 
-import controller.collisionEngine.IHelper;
 import controller.collisionEngine.CollisionEngine;
 import model.hud.HUDBonusImpl;
 import model.hud.HUDLifeImpl;
@@ -76,7 +75,7 @@ public class HUDImpl implements IHUD {
     }
 
     @Override
-    public final IHelper getCollisionEngine() {
+    public final CollisionEngine getCollisionEngine() {
         return this.collisionEngine;
     }
 }

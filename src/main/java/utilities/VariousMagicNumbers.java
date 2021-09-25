@@ -3,7 +3,7 @@ package utilities;
 /**
  * This class contains various magic numbers that can be reused.
  */
-public final class VariousMagicNumbers {
+public class VariousMagicNumbers {
 
     private VariousMagicNumbers() {	}
 
