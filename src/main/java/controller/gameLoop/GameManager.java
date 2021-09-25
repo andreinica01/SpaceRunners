@@ -14,6 +14,7 @@ public class GameManager extends AnimationTimer {
 
 	private static final long SLEEP = 10000000;
 	private static final int SLEEP_TIMER = 100000;
+
     long delta;
     long prevtime;
 
@@ -71,4 +72,5 @@ public class GameManager extends AnimationTimer {
     public GameManager getManager() {
         return this;
     }
+
 }

@@ -3,12 +3,16 @@ package controller.gameSwitcher;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import view.SoundManager.SoundManager;
 
 public class MenuController {
 
 	private SceneManager sceneManager;
 	private SoundManager soundManager;
+
+	@FXML
+	private TextField nickname;
 
 	/*
 	 * Constructor.
@@ -32,8 +36,26 @@ public class MenuController {
 	}
 
 	@FXML
-	private void startGame(final ActionEvent event) throws IOException {
+	void pickNickname(ActionEvent event) throws IOException {
+		this.sceneManager.switchToNickname();
+	}
+
+	@FXML
+	void showStartMenu(ActionEvent event) throws IOException {
+		this.sceneManager.switchToStartMenu();
+	}
+
+	@FXML
+	void nicknameEvent(ActionEvent event) throws IOException {
+		String name = this.nickname.getText();
+		if (!name.isBlank()) {
+			this.sceneManager.switchToGame(name);
+		}
+	}
+	
+	@FXML
+	void startGame(final ActionEvent event) throws IOException {
 		this.soundManager.playButtonClicked();
-		this.sceneManager.switchToGame();
+		this.sceneManager.switchToNickname();
 	}
 }
