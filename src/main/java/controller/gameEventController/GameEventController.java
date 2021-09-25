@@ -2,7 +2,6 @@ package controller.gameEventController;
 
 import controller.collisionEngine.IHelper;
 import model.hud.HUDBonusImpl;
-import model.menu.EndGameGUI;
 import view.gameField.GameField;
 import view.hud.HUDImpl;
 
