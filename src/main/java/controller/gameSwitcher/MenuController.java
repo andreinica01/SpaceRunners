@@ -30,7 +30,7 @@ public class MenuController {
 	}
 
 	@FXML
-	private void showScores(final ActionEvent event) {
+	private void showScores(final ActionEvent event) throws IOException {
 		this.soundManager.playButtonClicked();
 		this.sceneManager.switchToScores();
 	}
