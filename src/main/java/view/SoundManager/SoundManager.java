@@ -135,8 +135,25 @@ public class SoundManager {
         this.playSound("off.wav");
     }
     
+    /**
+     * Play intro music for the game.
+     */
     public void playMusicMenu() {
     	this.playSound("menu.wav");
+    }
+    
+    /**
+     * Play a sound when a button is clicked.
+     */
+    public void playButtonClicked() {
+    	this.playSound("selection.wav");
+    }
+    
+    /**
+     * Play a sound when mouse stand on a button.
+     */
+    public void playMouseOnButton() {
+    	this.playSound("cursor.wav");
     }
 
     /**
