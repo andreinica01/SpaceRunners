@@ -35,5 +35,6 @@ public class Main extends Application {
 		FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/StartMenu.fxml"));
 		loader.setController(new MenuController(new SceneManager(mainWindow)));
 		mainWindow.setScene(new Scene(loader.load()));
+		mainWindow.setResizable(false);
 	}
 }
