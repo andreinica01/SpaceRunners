@@ -9,7 +9,7 @@ public enum InputCommand {
     GO_UP, 
     GO_DOWN, 
     PAUSE, 
-    RESUME, 
+    RESUME,
     NONE, 
     ATTACK,
 }
