@@ -33,7 +33,7 @@ public class SwitcherImpl implements ISwitcher {
 	}
 
 	@Override
-	public final void endGame() {
+	public final void endGame() throws IOException {
 		this.gameStarter.stop();
 		new EndGameGUI();
 	}

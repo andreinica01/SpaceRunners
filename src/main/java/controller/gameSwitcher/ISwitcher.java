@@ -17,6 +17,7 @@ public interface ISwitcher {
 	
 	/**
 	 * Starts the end game menu.
+	 * @throws IOException 
 	 */
-	void endGame();
+	void endGame() throws IOException;
 }

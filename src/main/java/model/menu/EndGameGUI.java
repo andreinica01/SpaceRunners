@@ -1,6 +1,10 @@
 package model.menu;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -8,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -25,21 +30,35 @@ public class EndGameGUI implements IEndGameGUI {
     /*
      * Constructor.
      */
-    public EndGameGUI() {
-    	this.endGameWindow = new Stage();
+    public EndGameGUI() throws IOException {
 
+    	this.endGameWindow = new Stage();
     	Pane root = new Pane();
     	root.setPrefSize(X_LAYOUT, Y_LAYOUT);
 
-    	//root.setBackground(new Image(new File(Parameters.backgroundImage)));
+    	//Loading background
+    	InputStream image = Files.newInputStream(Paths.get(Parameters.ImageFolder + "stars2.png"));
+    	Image backGround = new Image(image);
+    	image.close();
+    	ImageView view = new ImageView(backGround);
+    	view.setFitHeight(X_LAYOUT);
+    	view.setFitWidth(Y_LAYOUT);
+    	root.getChildren().add(view);
+
+    	//Setting the scene
+    	Scene scene = new Scene(root);
+    	this.endGameWindow.setScene(scene);
+    	this.endGameWindow.setTitle("Game is over, you lost! :c");
+        this.endGameWindow.setResizable(false);
+    	this.endGameWindow.show();
     }
+
+
+
 
     @Override
     public final void end(final int points) {
         this.points = points;
-
-        this.endGameWindow.setTitle("Game is over, you lost! :c");
-        this.endGameWindow.setResizable(false);
     }
 
     @Override
