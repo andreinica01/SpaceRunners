@@ -1,38 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <Text fill="#e47b0b" strokeType="OUTSIDE" strokeWidth="0.0" text="SpaceRunners" textAlignment="CENTER" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="60.0" />
-         </font>
-      </Text>
-   </top>
-   <center>
-      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="312.0" prefWidth="558.0" spacing="50.0" BorderPane.alignment="CENTER">
+<AnchorPane maxHeight="720.0" maxWidth="500.0" minHeight="720.0" minWidth="500.0" prefHeight="720.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="CENTER" layoutX="100.0" layoutY="160.0" prefHeight="400.0" prefWidth="300.0" spacing="40.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#startGame" prefHeight="40.0" prefWidth="300.0" text="PLAY">
+            <Button mnemonicParsing="false" onAction="#startGame" prefHeight="50.0" prefWidth="300.0" text="PLAY">
                <font>
-                  <Font size="24.0" />
+                  <Font size="25.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#showScores" prefHeight="40.0" prefWidth="300.0" text="SCORES">
+            <Button mnemonicParsing="false" onAction="#showScores" prefHeight="50.0" prefWidth="300.0" text="SCORES">
                <font>
-                  <Font size="24.0" />
+                  <Font size="25.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#quit" prefHeight="40.0" prefWidth="300.0" text="QUIT">
+            <Button mnemonicParsing="false" onAction="#quit" prefHeight="50.0" prefWidth="300.0" text="QUIT">
                <font>
-                  <Font size="24.0" />
+                  <Font size="25.0" />
                </font>
             </Button>
          </children>
       </VBox>
-   </center>
-</BorderPane>
+      <Text fill="#df6e05" layoutX="89.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SpaceRunners" textAlignment="CENTER">
+         <font>
+            <Font size="52.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

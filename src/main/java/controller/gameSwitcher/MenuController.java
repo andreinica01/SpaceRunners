@@ -1,38 +1,32 @@
 package controller.gameSwitcher;
 
-import controller.gameLoop.GameManager;
-import javafx.application.Platform;
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.stage.Stage;
 
 public class MenuController {
 
-	private Stage mainWindow;
+	private SceneManager sceneManager;
 
-
-	public MenuController(Stage mainWindow) {
-		this.mainWindow = mainWindow;
-	}
 	
+	public MenuController(SceneManager sceneManager) {
+		this.sceneManager = sceneManager;
+	}
+
 	@FXML
 	void quit(ActionEvent event) {
-		Platform.exit();
-		System.exit(0);
+		this.sceneManager.quit();
 	}
 
 	@FXML
 	void showScores(ActionEvent event) {
-		System.out.println("scores");
+		this.sceneManager.switchToScores();
 	}
 
 	@FXML
-	void startGame(ActionEvent event) {
-		new GameManager(this.mainWindow).start();
-	}
-
-	public void setMainWindow(Stage mainWindow) {
-		this.mainWindow = mainWindow;
+	void startGame(ActionEvent event) throws IOException {
+		this.sceneManager.switchToGame();
 	}
 
 }
