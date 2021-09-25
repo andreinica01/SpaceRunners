@@ -1,5 +1,7 @@
 package controller.gameEventController;
 
+import java.io.IOException;
+
 import controller.collisionEngine.IHelper;
 import model.hud.HUDBonusImpl;
 /**
@@ -11,8 +13,9 @@ public interface IGameEventController {
     /**
      * end the game loop and sets a new GUI showing the points earned and giving you
      * the choice beetween saving and quitting or just quitting.
+     * @throws IOException 
      */
-    void endGame();
+    void endGame() throws IOException;
 
     /** 
      * @return the game status value: if false, the game ends. 

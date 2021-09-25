@@ -1,6 +1,6 @@
 package controller.gameController;
 
-import controller.enemyAI.EnemyAI;
+import controller.enemyAI.EnemyAI; 
 import controller.frameManager.FrameManager;
 import controller.gameEventController.GameEventController;
 import controller.inputController.InputControllerImpl;
@@ -27,7 +27,7 @@ public class GameContollerImpl implements GameController {
     private final EnemyAI aiController;
     private Map<InputCommand, Boolean> controlStates;
 
-    private static final int X_PLAYER_STABILIZER = 3;
+    private static final double X_PLAYER_STABILIZER = 3.5;
     private static final int Y_PLAYER_STABILIZER = 220;
 
     /**

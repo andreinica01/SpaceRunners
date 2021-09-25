@@ -21,16 +21,19 @@ public class MenuController {
 
 	@FXML
 	private void quit(final ActionEvent event) {
+		this.soundManager.playButtonClicked();
 		this.sceneManager.quit();
 	}
 
 	@FXML
 	private void showScores(final ActionEvent event) {
+		this.soundManager.playButtonClicked();
 		this.sceneManager.switchToScores();
 	}
 
 	@FXML
 	private void startGame(final ActionEvent event) throws IOException {
+		this.soundManager.playButtonClicked();
 		this.sceneManager.switchToGame();
 	}
 }

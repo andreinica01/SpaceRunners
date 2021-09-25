@@ -1,7 +1,10 @@
 package controller.gameEventController;
 
+import java.io.IOException;
+
 import controller.collisionEngine.IHelper;
 import model.hud.HUDBonusImpl;
+import model.menu.EndGameGUI;
 import view.gameField.GameField;
 import view.hud.HUDImpl;
 
@@ -22,7 +25,11 @@ public class GameEventController implements IGameEventController {
 
     @Override
     public final void endGame() {
-
+    	try {
+    		new EndGameGUI().end(this.checkPoints());;
+    	} catch(IOException e) {
+        	e.printStackTrace();
+        }
     }
 
     @Override
