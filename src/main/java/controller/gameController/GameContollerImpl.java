@@ -11,7 +11,6 @@ import model.ship.SpaceShip;
 import utilities.Direction;
 import utilities.InputCommand;
 import utilities.Parameters;
-import utilities.VariousMagicNumbers;
 import view.gameField.GameField;
 
 public class GameContollerImpl implements GameController {
@@ -28,7 +27,8 @@ public class GameContollerImpl implements GameController {
     private final EnemyAI aiController;
     private Map<InputCommand, Boolean> controlStates;
 
-    private static final int Y_STABILIZER = 220;
+    private static final int X_PLAYER_STABILIZER = 3;
+    private static final int Y_PLAYER_STABILIZER = 220;
 
     /**
      * Constructor.
@@ -36,20 +36,16 @@ public class GameContollerImpl implements GameController {
      */
     public GameContollerImpl(final GameField gamefield) {
         this.gamefield = gamefield;
+        this.gamefield.setBackgroundImage(Parameters.ImageFolder + "back.png");
 
         /* setup player info */
         this.player = new PlayerSpaceShip(this.gamefield);
-        this.player.setPosition(this.gamefield.getWidth().intValue() / VariousMagicNumbers.TWO, this.gamefield.getHeight().intValue() - Y_STABILIZER);
-
+        this.player.setPosition(this.gamefield.getWidth().intValue() / X_PLAYER_STABILIZER,
+        		this.gamefield.getHeight().intValue() - Y_PLAYER_STABILIZER);
         this.gamefield.setPlayer(this.player);
+
         this.frame = new FrameManager(this.gamefield);
-
-        this.gamefield.setBackgroundImage(Parameters.ImageFolder + "back.png");
         this.inputController = new InputControllerImpl(this.player.getNode().getScene(), this.player);
-
-        /*
-         * HUD and game conditions setup
-         */
         this.gameEventController = new GameEventController(this.gamefield);
         this.aiController = new EnemyAI(this.gamefield, this.gameEventController);
 
@@ -60,6 +56,8 @@ public class GameContollerImpl implements GameController {
     @Override
     public final void update() {
         this.controlStates = this.inputController.getControlStates();
+        
+        this.player.setDirection(Direction.NONE);
 
         if (this.controlStates.get(InputCommand.GO_LEFT)) {
             if (!this.player.isInvertedCommand()) {
@@ -77,17 +75,11 @@ public class GameContollerImpl implements GameController {
             }
         }
 
-        if (this.controlStates.get(InputCommand.NONE)) {
-            this.player.setDirection(Direction.NONE);
-        }
-
         if (this.controlStates.get(InputCommand.ATTACK)) {
             this.player.attack();
         }
 
-        /*
-         * Collision and update system
-         */
+        /* Collision and update system */
         this.gameEventController.getCollisionEngine().update();
         this.aiController.update();
 

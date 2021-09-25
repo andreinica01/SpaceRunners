@@ -134,17 +134,22 @@ public class SoundManager {
     public void playStatusFinish() {
         this.playSound("off.wav");
     }
+    
+    public void playMusicMenu() {
+    	this.playSound("menu.wav");
+    }
 
     /**
      * Clear the sound memory, this is due to ArrayList implementation.
      */
-    private void cleanSoundMemory() {
+    public void cleanSoundMemory() {
         Iterator<Clip> soundsToRemove = this.sounds.subList(VariousMagicNumbers.ZERO, SOUND_MEMORY_BUFFER).iterator();
 
         while (soundsToRemove.hasNext()) {
             Clip v = soundsToRemove.next();
             if (!v.isRunning()) {
                 v.flush();
+                v.stop();
                 v.close();
                 soundsToRemove.remove();
             }

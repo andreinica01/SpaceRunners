@@ -16,7 +16,8 @@ public class InputControllerImpl {
     private Scene scene;
     private SpaceShip player;
 
-    private boolean fireFlag; // Used for firing 1 bullet at time
+    // You can fire 1 bullet at time
+    private boolean fireFlag; 
 
     /**
      * Constructor.
@@ -50,16 +51,8 @@ public class InputControllerImpl {
      */
     private void initializeKeys() {
         this.pressedkeys.put(KeyCode.A, VariousMagicNumbers.FALSE);
-        this.pressedkeys.put(KeyCode.LEFT, VariousMagicNumbers.FALSE);
 
         this.pressedkeys.put(KeyCode.D, VariousMagicNumbers.FALSE);
-        this.pressedkeys.put(KeyCode.RIGHT, VariousMagicNumbers.FALSE);
-
-        this.pressedkeys.put(KeyCode.W, VariousMagicNumbers.FALSE);
-        this.pressedkeys.put(KeyCode.UP, VariousMagicNumbers.FALSE);
-
-        this.pressedkeys.put(KeyCode.DOWN, VariousMagicNumbers.FALSE);
-        this.pressedkeys.put(KeyCode.S, VariousMagicNumbers.FALSE);
 
         this.pressedkeys.put(KeyCode.P, VariousMagicNumbers.FALSE);
     }

@@ -10,6 +10,7 @@ public class FrameManager {
     private GameField gamefield;
     private Set<Entity> entities;
     private static final int SCALE = 4 / 3;
+	private static final int DELAY = 10;
 
     /**
      * Constructor.
@@ -25,7 +26,6 @@ public class FrameManager {
      */
     public void update() {
         this.updateBackground();
-
         this.gamefield.getSoundManager().playPlayerMovementSound();
         this.entities.forEach(entity -> updateEntityPosition(entity));
     }
@@ -66,7 +66,7 @@ public class FrameManager {
             image.setLayoutY(image.getLayoutY() + (this.gamefield.getPlayer().getSpeed().intValue() * SCALE));
 
             if (image.getLayoutY() >= this.gamefield.getHeight().intValue()) {
-                image.setLayoutY(-this.gamefield.getHeight().intValue());
+                image.setLayoutY(-this.gamefield.getHeight().intValue() + DELAY);
             }
         }
     }
