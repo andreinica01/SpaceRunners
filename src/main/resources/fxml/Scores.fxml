@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextFlow layoutX="317.0" layoutY="100.0" prefHeight="250.0" prefWidth="250.0" />
-      <Button layoutX="36.0" layoutY="174.0" mnemonicParsing="false" onAction="#showStartMenu" prefWidth="250.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow" text="BACK" textOverrun="CLIP">
+      <ImageView fitHeight="452.0" fitWidth="905.0" layoutX="-115.0" layoutY="-12.0">
+         <image>
+            <Image url="@../../../../../../Black.png" />
+         </image>
+      </ImageView>
+      <TextFlow layoutX="252.0" layoutY="72.0" prefHeight="310.0" prefWidth="327.0" />
+      <Button layoutX="14.0" layoutY="214.0" mnemonicParsing="false" onAction="#showStartMenu" prefWidth="250.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow" text="BACK" textOverrun="CLIP">
          <font>
             <Font size="25.0" />
          </font>
       </Button>
-      <Text fill="#cc5c1a" layoutX="215.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SCORES">
+      <Text fill="#ff1600" layoutX="215.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SCORES">
          <font>
             <Font size="48.0" />
          </font>

@@ -2,22 +2,29 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text layoutX="31.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INSERT NICKNAME">
+      <ImageView fitHeight="307.0" fitWidth="512.0" layoutX="-5.0" layoutY="-3.0">
+         <image>
+            <Image url="@../../../../../../digital-art-minimalism-pixels-pixel-art-universe-space-stars-spaceship-rockets-blue-background-bomberman-wallpaper-preview.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="#ff0b00" layoutX="52.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CHOOSE YOUR NAME, PILOT">
          <font>
-            <Font size="40.0" />
+            <Font size="30.0" />
          </font>
       </Text>
-      <Button alignment="BASELINE_CENTER" layoutX="155.0" layoutY="234.0" mnemonicParsing="false" onAction="#nicknameEvent" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow" text="PLAY">
+      <Button alignment="BASELINE_CENTER" layoutX="200.0" layoutY="234.0" mnemonicParsing="false" onAction="#nicknameEvent" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow" text="PLAY">
          <font>
             <Font size="25.0" />
          </font>
       </Button>
-      <TextField fx:id="nickname" layoutX="100.0" layoutY="150.0" prefHeight="40.0" prefWidth="200.0" />
+      <TextField fx:id="nickname" layoutX="150.0" layoutY="150.0" prefHeight="40.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
