@@ -3,14 +3,13 @@ package controller.frameManager;
 import java.util.Set;
 import javafx.scene.Node;
 import model.Entity;
+import utilities.VariousMagicNumbers;
 import view.gameField.GameField;
 
 public class FrameManager {
 
     private GameField gamefield;
     private Set<Entity> entities;
-    private static final int SCALE = 4 / 3;
-	private static final int DELAY = 10;
 
     /**
      * Constructor.
@@ -63,10 +62,10 @@ public class FrameManager {
      */
     private void updateBackground() {
         for (Node image : this.gamefield.getBackground()) {
-            image.setLayoutY(image.getLayoutY() + (this.gamefield.getPlayer().getSpeed().intValue() * SCALE));
+            image.setLayoutY(image.getLayoutY() + VariousMagicNumbers.FOUR);
 
             if (image.getLayoutY() >= this.gamefield.getHeight().intValue()) {
-                image.setLayoutY(-this.gamefield.getHeight().intValue() + DELAY);
+                image.setLayoutY(-this.gamefield.getHeight().intValue());
             }
         }
     }

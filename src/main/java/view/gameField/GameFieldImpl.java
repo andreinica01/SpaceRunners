@@ -68,7 +68,7 @@ public class GameFieldImpl implements GameField {
         this.status = new HashSet<Status>();
 
         // to load in specific class container
-        this.backGroundImage = new ImageView[VariousMagicNumbers.TWO];
+        this.backGroundImage = new ImageView[VariousMagicNumbers.THREE];
 
         this.width = width;
         this.height = height;
@@ -146,6 +146,7 @@ public class GameFieldImpl implements GameField {
 
         this.backGroundImage[VariousMagicNumbers.ZERO].setTranslateX(VariousMagicNumbers.ZERO);
         this.backGroundImage[VariousMagicNumbers.ONE].setLayoutY(-this.height);
+        this.backGroundImage[VariousMagicNumbers.TWO].setLayoutY(-this.height - 30);
     }
 
     @Override
