@@ -45,9 +45,19 @@ public class GameFieldImpl implements GameField {
      * @param height
      */
     public GameFieldImpl(final int width, final int height, final GameManager manager) {
-        this.gameContainer = new AnchorPane();
-        this.gameContainer.prefWidth(width);
-        this.gameContainer.prefHeight(height);
+    	this(width, height);
+    	this.setGameManager(manager);
+    }
+
+    /**
+     * Constructor separated due to testImpl.
+     * @param width2
+     * @param height2
+     */
+    public GameFieldImpl(final int width2, final int height2) {
+    	this.gameContainer = new AnchorPane();
+        this.gameContainer.prefWidth(width2);
+        this.gameContainer.prefHeight(height2);
 
         this.entities = new HashSet<Entity>();
         this.playerBullets = new HashSet<Bullet>();
@@ -59,13 +69,12 @@ public class GameFieldImpl implements GameField {
         // to load in specific class container
         this.backGroundImage = new ImageView[VariousMagicNumbers.THREE];
         this.soundmanager = new SoundManager();
-        this.setGameManager(manager);
 
-        this.width = width;
-        this.height = height;
-    }
+        this.width = width2;
+        this.height = height2;
+	}
 
-    @Override
+	@Override
     public final AnchorPane getGameContainer() {
         return this.gameContainer;
     }

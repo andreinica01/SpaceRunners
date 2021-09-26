@@ -12,14 +12,4 @@ public interface IEndGameGUI {
      * @throws Exception.
      */
     void end(int points) throws IOException;
-
-    /**
-     * After clicking the relative button, it will grant you to save and quit.
-     */
-    void saveAndQuit();
-
-    /**
-     * After clicking the relative button, it will grant you just quit.
-     */
-    void quit();
 }

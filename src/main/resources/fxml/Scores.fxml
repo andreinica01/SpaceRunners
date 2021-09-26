@@ -10,9 +10,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="452.0" fitWidth="905.0" layoutX="-115.0" layoutY="-12.0">
+      <ImageView fitHeight="436.0" fitWidth="628.0" layoutX="-15.0" layoutY="-16.0">
          <image>
-            <Image url="@../../../../../../Black.png" />
+            <Image url="@../Images/back.png" />
          </image>
       </ImageView>
       <TextFlow layoutX="252.0" layoutY="72.0" prefHeight="310.0" prefWidth="327.0" />
