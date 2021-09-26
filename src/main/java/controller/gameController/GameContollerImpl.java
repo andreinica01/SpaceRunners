@@ -5,6 +5,8 @@ import controller.frameManager.FrameManager;
 import controller.gameEventController.GameEventController;
 import controller.inputController.InputControllerImpl;
 import controller.status.StatusController;
+
+import java.io.IOException;
 import java.util.Map;
 import model.ship.PlayerSpaceShip;
 import model.ship.SpaceShip;
@@ -88,6 +90,12 @@ public class GameContollerImpl implements GameController {
             this.gamefield.getSoundManager().playDeathSound();
             this.gameEventController.endGame(this.getGameField().getGameManager().getSceneManager());
             this.gamefield.getGameManager().stop();
+            try {
+				this.gamefield.getGameManager().getSceneManager().getRanking()
+				.addToMap(this.gamefield.getGameManager().getPlayerName(), this.gameEventController.checkPoints());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
         }
     }
 

@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 	@Override
-	public final void start(final Stage mainWindow) throws IOException {
+	public final void start(final Stage mainWindow) throws IOException, ClassNotFoundException {
 		mainWindow.setTitle("SpaceRunners");
 		mainWindow.setResizable(false);
 		mainWindow.setOnCloseRequest(e -> {

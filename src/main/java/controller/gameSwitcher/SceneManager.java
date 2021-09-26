@@ -2,6 +2,7 @@ package controller.gameSwitcher;
 
 import java.io.IOException;
 import controller.gameLoop.GameManager;
+import controller.ranking.Ranking;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,9 +13,11 @@ public class SceneManager {
 	private Stage mainWindow;
 	private GameManager gameManager;
 	private MenuController menuController;
+	private Ranking ranking;
 
-	public SceneManager(final Stage mainWindow) throws IOException {
+	public SceneManager(final Stage mainWindow) throws IOException, ClassNotFoundException {
 		this.mainWindow = mainWindow;
+		this.ranking = new Ranking();
 		this.menuController = new MenuController(this);
 	}
 
@@ -25,6 +28,7 @@ public class SceneManager {
 
 	public void switchToGame(String name) throws IOException {
 		this.gameManager = new GameManager(this);
+		this.gameManager.setPlayerName(name);
 		this.gameManager.start();
 	}
 	
@@ -53,5 +57,9 @@ public class SceneManager {
 	
 	public Stage getStage() {
 		return this.mainWindow;
+	}
+
+	public Ranking getRanking() {
+		return ranking;
 	}
 }

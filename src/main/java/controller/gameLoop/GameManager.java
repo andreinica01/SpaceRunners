@@ -22,6 +22,7 @@ public class GameManager extends AnimationTimer {
     private GameFieldImpl gamefield;
     private GameController gameController;
     private SceneManager sceneManager;
+	private String setPlayerName;
 
     public GameManager(final SceneManager sceneManager) {
     	this.sceneManager = sceneManager;
@@ -78,4 +79,12 @@ public class GameManager extends AnimationTimer {
     public SceneManager getSceneManager() {
     	return this.sceneManager;
     }
+
+	public void setPlayerName(String name) {
+		this.setPlayerName = name;
+	}
+	
+	public String getPlayerName() {
+		return this.setPlayerName;
+	}
 }
