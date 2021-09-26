@@ -21,7 +21,7 @@
          <children>
             <Button mnemonicParsing="false" onAction="#pickNickname" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow" text="PLAY">
                <font>
-                  <Font size="25.0" />
+                  <Font name="System Bold" size="25.0" />
                </font>
                <effect>
                   <DropShadow />
@@ -32,7 +32,7 @@
             </Button>
             <Button mnemonicParsing="false" onAction="#showScores" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow" text="SCORES">
                <font>
-                  <Font size="25.0" />
+                  <Font name="System Bold" size="25.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -43,7 +43,7 @@
             </Button>
             <Button mnemonicParsing="false" onAction="#quit" prefHeight="23.0" prefWidth="300.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow" text="QUIT">
                <font>
-                  <Font size="25.0" />
+                  <Font name="System Bold" size="25.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />

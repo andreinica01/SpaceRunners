@@ -15,14 +15,14 @@
             <Image url="@../Images/pilot.jpg" />
          </image>
       </ImageView>
-      <Text fill="#ff0b00" layoutX="52.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CHOOSE YOUR NAME, PILOT">
+      <Text fill="#ff0b00" layoutX="41.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CHOOSE YOUR NAME, PILOT">
          <font>
-            <Font size="30.0" />
+            <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <Button alignment="BASELINE_CENTER" layoutX="200.0" layoutY="234.0" mnemonicParsing="false" onAction="#nicknameEvent" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow" text="PLAY">
+      <Button alignment="BASELINE_CENTER" layoutX="198.0" layoutY="234.0" mnemonicParsing="false" onAction="#nicknameEvent" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow" text="PLAY">
          <font>
-            <Font size="25.0" />
+            <Font name="System Bold" size="25.0" />
          </font>
       </Button>
       <TextField fx:id="nickname" layoutX="150.0" layoutY="150.0" prefHeight="40.0" prefWidth="200.0" />

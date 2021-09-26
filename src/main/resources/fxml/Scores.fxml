@@ -18,12 +18,12 @@
       <TextFlow layoutX="252.0" layoutY="72.0" prefHeight="310.0" prefWidth="327.0" />
       <Button layoutX="14.0" layoutY="214.0" mnemonicParsing="false" onAction="#showStartMenu" prefWidth="250.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow" text="BACK" textOverrun="CLIP">
          <font>
-            <Font size="25.0" />
+            <Font name="System Bold" size="25.0" />
          </font>
       </Button>
-      <Text fill="#ff1600" layoutX="215.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SCORES">
+      <Text fill="#ff1600" layoutX="210.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SCORES">
          <font>
-            <Font size="48.0" />
+            <Font name="System Bold" size="48.0" />
          </font>
       </Text>
    </children>
