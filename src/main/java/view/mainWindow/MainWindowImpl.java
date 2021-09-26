@@ -1,5 +1,6 @@
 package view.mainWindow;
 
+import controller.gameSwitcher.SceneManager;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -14,8 +15,8 @@ public class MainWindowImpl implements MainWindow {
      * Constructor.
      * @param original stage.
      */
-    public MainWindowImpl(final Stage original) {
-        this.stage = original;
+    public MainWindowImpl(final SceneManager gameManager) {
+        this.stage = gameManager.getStage();
         this.stage.setResizable(VariousMagicNumbers.FALSE);
     }
 

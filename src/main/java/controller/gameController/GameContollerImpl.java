@@ -87,7 +87,7 @@ public class GameContollerImpl implements GameController {
             this.gamefield.getSoundManager().playDeathSound();
             this.gamefield.getStage().close();
             this.gamefield.getGameManager().stop();
-            this.gameEventController.endGame();
+            this.gameEventController.endGame(this.getGameField().getGameManager().getSceneManager());
         }
 
         this.frame.update();
@@ -98,5 +98,9 @@ public class GameContollerImpl implements GameController {
      */
     public StatusController getStatusController() {
         return this.statusController;
+    }
+    
+    public GameField getGameField() {
+    	return this.gamefield;
     }
 }

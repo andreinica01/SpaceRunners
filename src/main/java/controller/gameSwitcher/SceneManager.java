@@ -23,7 +23,7 @@ public class SceneManager {
 	}
 
 	public void switchToGame(String name) throws IOException {
-		this.gameManager = new GameManager(this.mainWindow);
+		this.gameManager = new GameManager(this);
 		this.gameManager.start();
 	}
 	
@@ -35,6 +35,10 @@ public class SceneManager {
 		this.mainWindow.setScene(this.getSceneFromFxml("fxml/Nickname.fxml"));
 	}
 	
+	public void switchToEndMenu() throws IOException {
+		this.mainWindow.setScene(this.getSceneFromFxml("fxml/EndMenu.fxml"));
+	}
+	
 	public void quit() {
 		Platform.exit();
 		System.exit(0);
@@ -44,5 +48,9 @@ public class SceneManager {
 		FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(path));
 		loader.setController(this.menuController);
 		return new Scene(loader.load());
+	}
+	
+	public Stage getStage() {
+		return this.mainWindow;
 	}
 }

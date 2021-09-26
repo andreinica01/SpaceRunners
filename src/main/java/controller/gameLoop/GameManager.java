@@ -2,8 +2,8 @@ package controller.gameLoop;
 
 import controller.gameController.GameContollerImpl;
 import controller.gameController.GameController;
+import controller.gameSwitcher.SceneManager;
 import javafx.animation.AnimationTimer;
-import javafx.stage.Stage;
 import utilities.Parameters;
 import utilities.VariousMagicNumbers;
 import view.gameField.GameFieldImpl;
@@ -21,9 +21,11 @@ public class GameManager extends AnimationTimer {
     private MainWindow mainwindow;
     private GameFieldImpl gamefield;
     private GameController gameController;
+    private SceneManager sceneManager;
 
-    public GameManager(final Stage stage) {
-        this.mainwindow = new MainWindowImpl(stage);
+    public GameManager(final SceneManager sceneManager) {
+    	this.sceneManager = sceneManager;
+        this.mainwindow = new MainWindowImpl(this.sceneManager);
         this.mainwindow.setWidth(Parameters.WIDTH);
         this.mainwindow.setHeight(Parameters.HEIGHT);
 
@@ -72,5 +74,8 @@ public class GameManager extends AnimationTimer {
     public GameManager getManager() {
         return this;
     }
-
+    
+    public SceneManager getSceneManager() {
+    	return this.sceneManager;
+    }
 }

@@ -1,8 +1,7 @@
 package controller.gameEventController;
 
-import java.io.IOException;
-
 import controller.collisionEngine.IHelper;
+import controller.gameSwitcher.SceneManager;
 import model.hud.HUDBonusImpl;
 import model.menu.EndGameGUI;
 import view.gameField.GameField;
@@ -24,12 +23,12 @@ public class GameEventController implements IGameEventController {
     }
 
     @Override
-    public final void endGame() {
+    public final void endGame(final SceneManager manager) {
     	try {
-    		new EndGameGUI().end(this.checkPoints());;
-    	} catch(IOException e) {
-        	e.printStackTrace();
-        }
+    		new EndGameGUI(manager, this.checkPoints());
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
     }
 
     @Override

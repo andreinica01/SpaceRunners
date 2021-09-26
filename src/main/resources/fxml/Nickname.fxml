@@ -13,7 +13,7 @@
             <Font size="40.0" />
          </font>
       </Text>
-      <Button alignment="BASELINE_CENTER" layoutX="155.0" layoutY="234.0" mnemonicParsing="false" onAction="#nicknameEvent" text="PLAY">
+      <Button alignment="BASELINE_CENTER" layoutX="155.0" layoutY="234.0" mnemonicParsing="false" onAction="#nicknameEvent" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow" text="PLAY">
          <font>
             <Font size="25.0" />
          </font>
