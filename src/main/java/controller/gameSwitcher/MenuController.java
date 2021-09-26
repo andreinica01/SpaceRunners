@@ -37,11 +37,13 @@ public class MenuController {
 
 	@FXML
 	void pickNickname(ActionEvent event) throws IOException {
+		this.soundManager.playButtonClicked();
 		this.sceneManager.switchToNickname();
 	}
 
 	@FXML
 	void showStartMenu(ActionEvent event) throws IOException {
+		this.soundManager.playButtonClicked();
 		this.sceneManager.switchToStartMenu();
 	}
 
@@ -49,6 +51,7 @@ public class MenuController {
 	void nicknameEvent(ActionEvent event) throws IOException {
 		String name = this.nickname.getText();
 		if (!name.isBlank()) {
+			this.soundManager.playButtonClicked();
 			this.sceneManager.switchToGame(name);
 		}
 	}

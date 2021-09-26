@@ -45,7 +45,4 @@ public class SceneManager {
 		loader.setController(this.menuController);
 		return new Scene(loader.load());
 	}
-
-
-
 }
