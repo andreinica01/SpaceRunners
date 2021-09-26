@@ -27,7 +27,7 @@ class StatusControllerTest {
 	private JFXPanel panel; // Needed for test purpose
 
 	StatusControllerTest() {
-		this.gamefield = new GameFieldImpl(1920, 1080);
+		this.gamefield = new GameFieldImpl(1920, 1080, null);
 		this.panel = new JFXPanel();
 		this.player = new PlayerSpaceShip(this.gamefield);
 		this.controller = new StatusController(this.player);

@@ -20,6 +20,7 @@ public class SceneManager {
 
 	public void switchToStartMenu() throws IOException {
 		this.mainWindow.setScene(this.getSceneFromFxml("fxml/StartMenu.fxml"));
+		this.mainWindow.show();
 	}
 
 	public void switchToGame(String name) throws IOException {

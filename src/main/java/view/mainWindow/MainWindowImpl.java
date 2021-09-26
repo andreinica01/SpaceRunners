@@ -26,7 +26,6 @@ public class MainWindowImpl implements MainWindow {
             this.stage.show();
             return;
         }
-
         this.stage.hide();
     }
 
@@ -49,10 +48,8 @@ public class MainWindowImpl implements MainWindow {
         this.stage.setHeight(heigth.intValue());
     }
 
-    /**
-     * @return actual Stage.
-     */
-    public Stage getStage() {
+    @Override
+    public final Stage getStage() {
         return this.stage;
     }
 }

@@ -82,15 +82,13 @@ public class GameContollerImpl implements GameController {
         /* Collision and update system */
         this.gameEventController.getCollisionEngine().update();
         this.aiController.update();
+        this.frame.update();
 
         if (!this.gameEventController.checkGameStatus()) {
             this.gamefield.getSoundManager().playDeathSound();
-            this.gamefield.getStage().close();
-            this.gamefield.getGameManager().stop();
             this.gameEventController.endGame(this.getGameField().getGameManager().getSceneManager());
+            this.gamefield.getGameManager().stop();
         }
-
-        this.frame.update();
     }
 
     /**

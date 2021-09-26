@@ -31,7 +31,6 @@ public class SoundManager {
             soundClip.start();
 
             this.sounds.add(soundClip);
-
         } catch (Exception e) {
         } finally {
 
@@ -134,21 +133,21 @@ public class SoundManager {
     public void playStatusFinish() {
         this.playSound("off.wav");
     }
-    
+
     /**
      * Play intro music for the game.
      */
     public void playMusicMenu() {
-    	this.playSound("menu.wav");
+        this.playSound("menu.wav");
     }
-    
+
     /**
      * Play a sound when a button is clicked.
      */
     public void playButtonClicked() {
     	this.playSound("selection.wav");
     }
-    
+
     /**
      * Play a sound when mouse stand on a button.
      */

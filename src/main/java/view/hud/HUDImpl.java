@@ -18,10 +18,11 @@ public class HUDImpl implements IHUD {
     private CollisionEngine collisionEngine;
     private GameField gameField;
 
+    /*
+     * Constructor.
+     */
     public HUDImpl(final GameField gameField) {
-
     	this.gameField = gameField;
-
     	this.createHUD();
     }
 

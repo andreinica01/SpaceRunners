@@ -15,7 +15,8 @@ import model.status.Status;
 import view.SoundManager.SoundManager;
 
 public interface GameField {
-    /** 
+
+	/** 
      * @return the draw panel where the content is drawn. 
      */
     AnchorPane getGameContainer();

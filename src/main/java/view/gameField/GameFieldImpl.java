@@ -21,59 +21,48 @@ import view.SoundManager.SoundManager;
 public class GameFieldImpl implements GameField {
 
     private Set<Entity> entities;
-
     private Set<Bullet> playerBullets;
     private Set<Bullet> enemyBullets;
-
     private Set<SpaceShip> enemyships;
     private Set<Status> status;
     private Set<SpaceShip> bossShips;
 
     private SpaceShip player;
-
     private ImageView[] backGroundImage;
-
     private Scene scene;
+    private StatusController statusController;
+    private GameManager gameManager;
+    private SoundManager soundmanager;
+    private AnchorPane gameContainer;
+    private Stage stage;
 
     private final int width;
     private final int height;
 
-    private StatusController statusController;
-    private SoundManager soundmanager;
-    private AnchorPane gameContainer;
-
-    private Stage stage;
-    private GameManager gameManager;
-
     /**
      * Constructor.
-     * 
      * @param width
      * @param height
      */
-    public GameFieldImpl(final int width, final int height) {
+    public GameFieldImpl(final int width, final int height, final GameManager manager) {
         this.gameContainer = new AnchorPane();
-
         this.gameContainer.prefWidth(width);
         this.gameContainer.prefHeight(height);
 
         this.entities = new HashSet<Entity>();
-
         this.playerBullets = new HashSet<Bullet>();
         this.enemyBullets = new HashSet<Bullet>();
-
         this.enemyships = new HashSet<SpaceShip>();
         this.bossShips = new HashSet<>();
-
         this.status = new HashSet<Status>();
 
         // to load in specific class container
         this.backGroundImage = new ImageView[VariousMagicNumbers.THREE];
+        this.soundmanager = new SoundManager();
+        this.setGameManager(manager);
 
         this.width = width;
         this.height = height;
-
-        this.soundmanager = new SoundManager();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package view.mainWindow;
 
+import javafx.stage.Stage;
 import view.gameField.GameFieldImpl;
 
 public interface MainWindow {
@@ -27,4 +28,9 @@ public interface MainWindow {
      * @param heigth
      */
     void setHeight(Number heigth);
+
+    /**
+     * @return actual Stage.
+     */
+    Stage getStage();
 }
