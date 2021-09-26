@@ -3,7 +3,12 @@ package controller.gameSwitcher;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import view.SoundManager.SoundManager;
 
 public class MenuController {
@@ -13,6 +18,8 @@ public class MenuController {
 
 	@FXML
 	private TextField nickname;
+	@FXML
+	private TextFlow scoreText;
 
 	/*
 	 * Constructor.
@@ -33,6 +40,11 @@ public class MenuController {
 	private void showScores(final ActionEvent event) throws IOException {
 		this.soundManager.playButtonClicked();
 		this.sceneManager.switchToScores();
+		Text rankText = new Text(this.sceneManager.getRanking().getMapToString());
+		rankText.setFill(Color.RED);
+		this.scoreText.getChildren().add(rankText);
+		this.scoreText.setVisible(true);
+		System.out.println(rankText.toString());
 	}
 
 	@FXML
@@ -55,13 +67,13 @@ public class MenuController {
 			this.sceneManager.switchToGame(name);
 		}
 	}
-	
+
 	@FXML
 	void startGame(final ActionEvent event) throws IOException {
 		this.soundManager.playButtonClicked();
 		this.sceneManager.switchToNickname();
 	}
-	
+
 	@FXML
 	void returnToMenu(final ActionEvent event) throws IOException {
 		this.soundManager.playButtonClicked();

@@ -15,7 +15,7 @@
             <Image url="@../Images/back.png" />
          </image>
       </ImageView>
-      <TextFlow layoutX="252.0" layoutY="72.0" prefHeight="310.0" prefWidth="327.0" />
+      <TextFlow fx:id="scoreText" layoutX="252.0" layoutY="72.0" prefHeight="310.0" prefWidth="327.0" />
       <Button layoutX="14.0" layoutY="214.0" mnemonicParsing="false" onAction="#showStartMenu" prefWidth="250.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow" text="BACK" textOverrun="CLIP">
          <font>
             <Font name="System Bold" size="25.0" />
