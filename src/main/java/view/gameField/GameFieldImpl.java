@@ -146,7 +146,7 @@ public class GameFieldImpl implements GameField {
 
         this.backGroundImage[VariousMagicNumbers.ZERO].setTranslateX(VariousMagicNumbers.ZERO);
         this.backGroundImage[VariousMagicNumbers.ONE].setLayoutY(-this.height);
-        this.backGroundImage[VariousMagicNumbers.TWO].setLayoutY(-this.height - 30);
+        this.backGroundImage[VariousMagicNumbers.TWO].setLayoutY(-this.height - VariousMagicNumbers.THIRTY);
     }
 
     @Override
