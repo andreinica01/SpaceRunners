@@ -16,7 +16,7 @@ public class SceneManager {
 	private MenuController menuController;
 	private Ranking ranking;
 
-	public SceneManager(final Stage mainWindow) throws IOException, ClassNotFoundException {
+	public SceneManager(final Stage mainWindow) throws IOException{
 		this.mainWindow = mainWindow;
 		this.ranking = new Ranking();
 		this.menuController = new MenuController(this);

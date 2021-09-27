@@ -10,36 +10,27 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
-import java.util.Set;
 import java.util.StringJoiner;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Ranking {
 
 	private Map<String, Integer> rankingMap;
-	private File rankingFile;
+	private File rankFile;
 
-	public Ranking() throws ClassNotFoundException, IOException {
+	public Ranking() throws  IOException {
 		this.rankingMap = new HashMap<>();
-		System.out.println("path loading");
-		this.rankingFile = new File("Rank.txt");
-		System.out.println("path loaded");
+		this.rankFile = new File("Rank.txt");
 		this.loadMapFromFile();
 	}
 
-	@SuppressWarnings("unchecked")
-	public void loadMapFromFile() throws IOException, ClassNotFoundException {
-		if (!this.rankingFile.exists()) {
-			System.out.println("File not exists");
-			this.rankingFile.createNewFile();
+	public void loadMapFromFile() throws IOException {
+		if (!this.rankFile.exists()) {
+			this.rankFile.createNewFile();
 			this.saveMapToFile();
-			System.out.println("File createdd 12");
 		} else {
 			Properties properties = new Properties();
-			properties.load(new FileInputStream(this.rankingFile));
-			this.rankingMap.clear();
+			properties.load(new FileInputStream(this.rankFile));
 			for (String key : properties.stringPropertyNames()) {
 				this.rankingMap.put(key, Integer.valueOf(properties.get(key).toString()));
 			}
@@ -51,8 +42,7 @@ public class Ranking {
 		for (Entry<String, Integer> entry : this.rankingMap.entrySet()) {
 			properties.put(entry.getKey(), entry.getValue().toString());
 		}
-		properties.store(new FileOutputStream(this.rankingFile), null);
-		System.out.println("map saved on file");
+		properties.store(new FileOutputStream(this.rankFile), null);
 	}
 
 	public void addToMap(String name, Integer points) throws IOException {
@@ -80,7 +70,7 @@ public class Ranking {
 		StringJoiner s = new StringJoiner("");
 		List<Entry<String, Integer>> sortedEntry = this.reverseSortMap(this.rankingMap).stream().limit(5)
 				.collect(Collectors.toList());
-		for (Map.Entry<String, Integer> entry : sortedEntry) {
+		for (Entry<String, Integer> entry : sortedEntry) {
 			s.add(entry.getValue().toString() + "\t");
 			s.add(entry.getKey() + "\n");
 		}
