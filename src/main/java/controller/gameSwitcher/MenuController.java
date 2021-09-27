@@ -72,7 +72,7 @@ public class MenuController {
 	@FXML
 	void nicknameEvent(final ActionEvent event) throws IOException {
 		String name = this.nickname.getText();
-		if (!name.isBlank()) {
+		if (!name.isBlank() && name.length() <= 15) {
 			this.soundManager.playButtonClicked();
 			this.sceneManager.switchToGame(name);
 		}

@@ -15,10 +15,10 @@
             <Image url="@../Images/back.png" />
          </image>
       </ImageView>
-      <TextFlow fx:id="scoreText" layoutX="303.0" layoutY="82.0" prefHeight="52.0" prefWidth="276.0" />
-      <Button layoutX="14.0" layoutY="214.0" mnemonicParsing="false" onAction="#showStartMenu" prefWidth="250.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow" text="BACK" textOverrun="CLIP">
+      <TextFlow fx:id="scoreText" layoutX="250.0" layoutY="125.0" textAlignment="JUSTIFY" />
+      <Button layoutX="174.0" layoutY="325.0" mnemonicParsing="false" onAction="#showStartMenu" prefWidth="250.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow" text="BACK" textOverrun="CLIP">
          <font>
-            <Font name="System Bold" size="25.0" />
+            <Font name="System Bold" size="30.0" />
          </font>
       </Button>
       <Text fill="#ff1600" layoutX="210.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SCORES:">

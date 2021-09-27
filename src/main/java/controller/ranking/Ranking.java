@@ -6,9 +6,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Properties;
+import java.util.Set;
 import java.util.StringJoiner;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Ranking {
 
@@ -35,15 +41,14 @@ public class Ranking {
 			properties.load(new FileInputStream(this.rankingFile));
 			this.rankingMap.clear();
 			for (String key : properties.stringPropertyNames()) {
-			   this.rankingMap.put(key, Integer.valueOf(properties.get(key).toString()));
+				this.rankingMap.put(key, Integer.valueOf(properties.get(key).toString()));
 			}
 		}
 	}
 
 	private void saveMapToFile() throws IOException {
 		Properties properties = new Properties();
-		this.rankingMap = this.reverseSortMap(this.rankingMap);
-		for (Map.Entry<String, Integer> entry : this.rankingMap.entrySet()) {
+		for (Entry<String, Integer> entry : this.rankingMap.entrySet()) {
 			properties.put(entry.getKey(), entry.getValue().toString());
 		}
 		properties.store(new FileOutputStream(this.rankingFile), null);
@@ -54,30 +59,30 @@ public class Ranking {
 		this.rankingMap.put(name, points);
 		this.saveMapToFile();
 	}
-	
+
 	/**
-	 * Reverse sort a Map<String,Integer> by value.
-	 * ex: Map{(a,5), (b,1), (c,10)} -> Map{(c,10), (a,5), (b,1)}
+	 * Reverse sort a Map<String,Integer> by value. ex: Map{(a,5), (b,1), (c,10)} ->
+	 * Map{(c,10), (a,5), (b,1)}
+	 * 
 	 * @param Map<String,Integer>
-	 * @return Map<String,Integer>
+	 * @return List<Entry<String, Integer>>
 	 */
-	private Map<String,Integer> reverseSortMap(Map<String,Integer> unsortedMap){
-		Map<String,Integer> sortedMap = new HashMap<>(unsortedMap);
-		this.rankingMap.entrySet().stream()
-	    .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())) 
-	    .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
-		return sortedMap;
+	private List<Entry<String, Integer>> reverseSortMap(Map<String, Integer> unsortedMap) {
+		return unsortedMap.entrySet().stream().sorted(Entry.comparingByValue(Comparator.reverseOrder()))
+				.collect(Collectors.toList());
 	}
-	
-	public Map<String,Integer> getRankingMap () {
+
+	public Map<String, Integer> getRankingMap() {
 		return this.rankingMap;
 	}
-	
+
 	public String getMapToString() {
 		StringJoiner s = new StringJoiner("");
-		for (Map.Entry<String, Integer> entry : this.rankingMap.entrySet()) {
-			s.add(entry.getKey()+":\t");
-			s.add(entry.getValue().toString()+"\n");
+		List<Entry<String, Integer>> sortedEntry = this.reverseSortMap(this.rankingMap).stream().limit(5)
+				.collect(Collectors.toList());
+		for (Map.Entry<String, Integer> entry : sortedEntry) {
+			s.add(entry.getValue().toString() + "\t");
+			s.add(entry.getKey() + "\n");
 		}
 		return s.toString();
 	}
