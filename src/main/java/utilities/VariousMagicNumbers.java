@@ -15,6 +15,7 @@ public class VariousMagicNumbers {
     public static final int FIVE = 5;
     public static final int SEVEN = 7;
     public static final long TEN = 10;
+    public static final double SIXTEEN = 16;
     public static final int THIRTY = 30;
 	public static final int ONE_HUNDRED = 100;
 	public static final float TWENTY = 20f;

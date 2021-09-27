@@ -1,14 +1,21 @@
 package controller.gameSwitcher;
 
 import java.io.IOException;
+
+import javafx.css.Style;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
+import utilities.VariousMagicNumbers;
 import view.SoundManager.SoundManager;
 
 public class MenuController {
@@ -41,7 +48,9 @@ public class MenuController {
 		this.soundManager.playButtonClicked();
 		this.sceneManager.switchToScores();
 		Text rankText = new Text(this.sceneManager.getRanking().getMapToString());
-		rankText.setFill(Color.RED);
+		rankText.setFill(Color.GREEN);
+		rankText.setFont(Font.font("Verdana", FontWeight.BOLD, VariousMagicNumbers.SIXTEEN));
+		rankText.setTextAlignment(TextAlignment.LEFT);
 		this.scoreText.getChildren().add(rankText);
 		this.scoreText.setVisible(true);
 		System.out.println(rankText.toString());
