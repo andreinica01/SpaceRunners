@@ -20,5 +20,6 @@ public class EndGameGUI implements IEndGameGUI {
     public final void end(final int points) throws IOException {
         this.points = points;
         this.sceneManager.switchToEndMenu();
+        this.sceneManager.getScore().setText(this.points + " points");
     }
 }

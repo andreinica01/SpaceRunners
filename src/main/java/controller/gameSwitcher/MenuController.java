@@ -27,6 +27,8 @@ public class MenuController {
 	private TextField nickname;
 	@FXML
 	private TextFlow scoreText;
+    @FXML
+	private Text score;
 
 	/*
 	 * Constructor.
@@ -50,7 +52,6 @@ public class MenuController {
 		Text rankText = new Text(this.sceneManager.getRanking().getMapToString());
 		rankText.setFill(Color.GREEN);
 		rankText.setFont(Font.font("Verdana", FontWeight.BOLD, VariousMagicNumbers.SIXTEEN));
-		rankText.setTextAlignment(TextAlignment.LEFT);
 		this.scoreText.getChildren().add(rankText);
 		this.scoreText.setVisible(true);
 		System.out.println(rankText.toString());
@@ -87,5 +88,20 @@ public class MenuController {
 	void returnToMenu(final ActionEvent event) throws IOException {
 		this.soundManager.playButtonClicked();
 		this.sceneManager.switchToStartMenu();
+	}
+	
+	/**
+	 * Set score reference
+	 * @param score
+	 */
+	public void setScore(final Text score) {
+		this.score = score;
+	}
+	
+	/**
+	 * @return score reference.
+	 */
+	public Text getScore() {
+		return this.score;
 	}
 }

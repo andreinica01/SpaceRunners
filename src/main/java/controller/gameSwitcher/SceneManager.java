@@ -6,6 +6,7 @@ import controller.ranking.Ranking;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class SceneManager {
@@ -60,6 +61,21 @@ public class SceneManager {
 	}
 
 	public Ranking getRanking() {
-		return ranking;
+		return this.ranking;
+	}
+	
+	/**
+	 * Set score reference
+	 * @param score
+	 */
+	public void setScore(final Text score) {
+		this.menuController.setScore(score);
+	}
+	
+	/**
+	 * @return score reference.
+	 */
+	public Text getScore() {
+		return this.menuController.getScore();
 	}
 }
