@@ -25,6 +25,6 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Button>
-      <TextField fx:id="nickname" layoutX="150.0" layoutY="150.0" prefHeight="40.0" prefWidth="200.0" />
+      <TextField fx:id="nickname" layoutX="150.0" layoutY="150.0" onAction="#nicknameEvent" prefHeight="40.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
