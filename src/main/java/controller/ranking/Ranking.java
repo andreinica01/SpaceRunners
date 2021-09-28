@@ -13,67 +13,90 @@ import java.util.Properties;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
+/**
+ * Ranking System Manager.
+ * 
+ * @author Salvo
+ */
 public class Ranking {
 
-	private Map<String, Integer> rankingMap;
-	private File rankFile;
+	private Map<String, Integer> map;
+	private File file;
 
-	public Ranking() throws  IOException {
-		this.rankingMap = new HashMap<>();
-		this.rankFile = new File("Rank.txt");
+	public Ranking() throws IOException {
+		this.map = new HashMap<>();
+		this.file = new File("src/main/resources/ranking/Ranking.txt");
 		this.loadMapFromFile();
 	}
 
-	public void loadMapFromFile() throws IOException {
-		if (!this.rankFile.exists()) {
-			this.rankFile.createNewFile();
-			this.saveMapToFile();
+	/**
+	 * Load scores info from file. If file doesn't exists, create a new one.
+	 * 
+	 * @throws IOException
+	 */
+	private void loadMapFromFile() throws IOException {
+		if (file.exists()) {
+			Properties p = new Properties();
+			p.load(new FileInputStream(this.file));
+			p.stringPropertyNames()
+			 .forEach(e -> this.map.put(e, Integer.valueOf(p.get(e).toString())));
 		} else {
-			Properties properties = new Properties();
-			properties.load(new FileInputStream(this.rankFile));
-			for (String key : properties.stringPropertyNames()) {
-				this.rankingMap.put(key, Integer.valueOf(properties.get(key).toString()));
-			}
+			this.file.createNewFile();
+			this.saveMapToFile();
 		}
 	}
 
+	/**
+	 * Saves scores info to file.
+	 * 
+	 * @throws IOException
+	 */
 	private void saveMapToFile() throws IOException {
-		Properties properties = new Properties();
-		for (Entry<String, Integer> entry : this.rankingMap.entrySet()) {
-			properties.put(entry.getKey(), entry.getValue().toString());
-		}
-		properties.store(new FileOutputStream(this.rankFile), null);
+		Properties p = new Properties();
+		this.map.entrySet().forEach(e -> p.put(e.getKey(), e.getValue().toString()));
+		p.store(new FileOutputStream(this.file), null);
 	}
 
-	public void addToMap(String name, Integer points) throws IOException {
-		this.rankingMap.put(name, points);
+	/**
+	 * Add a new player's score to the ranking system.
+	 * 
+	 * @param playerName
+	 * @param playerScore
+	 * @throws IOException
+	 */
+	public void addToMap(String playerName, Integer playerScore) throws IOException {
+		this.map.put(playerName, playerScore);
 		this.saveMapToFile();
 	}
 
 	/**
-	 * Reverse sort a Map<String,Integer> by value. ex: Map{(a,5), (b,1), (c,10)} ->
-	 * Map{(c,10), (a,5), (b,1)}
+	 * Reverse sort a Map<String, Integer> into a List<Entry<String, Integer> by
+	 * value. Ex: Map{(a,5), (b,1), (c,10)} -> List{(c,10), (a,5), (b,1)}
 	 * 
-	 * @param Map<String,Integer>
+	 * @param Map<String, Integer>
 	 * @return List<Entry<String, Integer>>
 	 */
-	private List<Entry<String, Integer>> reverseSortMap(Map<String, Integer> unsortedMap) {
-		return unsortedMap.entrySet().stream().sorted(Entry.comparingByValue(Comparator.reverseOrder()))
+	private List<Entry<String, Integer>> getSortedEntryList(Map<String, Integer> unsortedMap) {
+		return unsortedMap.entrySet().stream()
+				.sorted(Entry.comparingByValue(Comparator.reverseOrder()))
 				.collect(Collectors.toList());
 	}
 
+	/**
+	 * Return the Map of all players score.
+	 * 
+	 * @return Map<String, Integer>
+	 */
 	public Map<String, Integer> getRankingMap() {
-		return this.rankingMap;
+		return this.map;
 	}
 
-	public String getMapToString() {
+	@Override
+	public String toString() {
 		StringJoiner s = new StringJoiner("");
-		List<Entry<String, Integer>> sortedEntry = this.reverseSortMap(this.rankingMap).stream().limit(5)
-				.collect(Collectors.toList());
-		for (Entry<String, Integer> entry : sortedEntry) {
-			s.add(entry.getValue().toString() + "\t");
-			s.add(entry.getKey() + "\n");
-		}
+		List<Entry<String, Integer>> sortedEntry;
+		sortedEntry = this.getSortedEntryList(this.map).stream().limit(5).collect(Collectors.toList());
+		sortedEntry.forEach(e -> s.add(e.getValue().toString() + "\t" + e.getKey() + "\n"));
 		return s.toString();
 	}
 

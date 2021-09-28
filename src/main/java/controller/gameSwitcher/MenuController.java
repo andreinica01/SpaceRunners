@@ -49,7 +49,7 @@ public class MenuController {
 	private void showScores(final ActionEvent event) throws IOException {
 		this.soundManager.playButtonClicked();
 		this.sceneManager.switchToScores();
-		Text rankText = new Text(this.sceneManager.getRanking().getMapToString());
+		Text rankText = new Text(this.sceneManager.getRanking().toString());
 		rankText.setFill(Color.GREEN);
 		rankText.setFont(Font.font("Verdana", FontWeight.BOLD, VariousMagicNumbers.SIXTEEN));
 		this.scoreText.getChildren().add(rankText);
