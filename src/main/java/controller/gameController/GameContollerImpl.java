@@ -47,7 +47,7 @@ public class GameContollerImpl implements GameController {
         this.gamefield.setPlayer(this.player);
 
         this.frame = new FrameManager(this.gamefield);
-        this.inputController = new InputControllerImpl(this.player.getNode().getScene(), this.player);
+        this.inputController = new InputControllerImpl(this.player.getNode().getScene());
         this.gameEventController = new GameEventController(this.gamefield);
         this.aiController = new EnemyAI(this.gamefield, this.gameEventController);
 
@@ -58,26 +58,25 @@ public class GameContollerImpl implements GameController {
     @Override
     public final void update() {
         this.controlStates = this.inputController.getControlStates();
-        
         this.player.setDirection(Direction.NONE);
 
-        if (this.controlStates.get(InputCommand.GO_LEFT)) {
-            if (!this.player.isInvertedCommand()) {
-                this.player.setDirection(Direction.LEFT);
-            } else {
-                this.player.setDirection(Direction.RIGHT);
-            }
-        }
-
-        if (this.controlStates.get(InputCommand.GO_RIGHT)) {
-            if (!this.player.isInvertedCommand()) {
+        if (this.controlStates.get(InputCommand.LEFT)) {
+            if (this.player.isInvertedCommand()) {
                 this.player.setDirection(Direction.RIGHT);
             } else {
                 this.player.setDirection(Direction.LEFT);
             }
         }
 
-        if (this.controlStates.get(InputCommand.ATTACK)) {
+        if (this.controlStates.get(InputCommand.RIGHT)) {
+            if (this.player.isInvertedCommand()) {
+                this.player.setDirection(Direction.LEFT);
+            } else {
+                this.player.setDirection(Direction.RIGHT);
+            }
+        }
+
+        if (this.controlStates.get(InputCommand.ATTACK) && this.player.getCanFire()) {
             this.player.attack();
         }
 

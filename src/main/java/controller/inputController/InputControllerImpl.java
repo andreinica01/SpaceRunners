@@ -1,131 +1,139 @@
 package controller.inputController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
-import model.ship.SpaceShip;
 import utilities.InputCommand;
-import utilities.VariousMagicNumbers;
 
 public class InputControllerImpl {
 
-    private Map<KeyCode, Boolean> pressedkeys;
-    private Map<InputCommand, Boolean> controlStates;
+	private Map<KeyCode, Boolean> pressedKeys;
+	private Map<KeyCode, InputCommand> commandKeys;
+	private Map<InputCommand, Boolean> task;
 
-    private Scene scene;
-    private SpaceShip player;
+	private Scene scene;
 
-    // You can fire 1 bullet at time
-    private boolean fireFlag; 
+	// Flag used to implement fire logic.
+	private boolean fireFlag;
 
-    /**
-     * Constructor.
-     * @param scene
-     * @param player
-     */
-    public InputControllerImpl(final Scene scene, final SpaceShip player) {
-        this.pressedkeys = new HashMap<>();
-        this.controlStates = new HashMap<>();
-        this.scene = scene;
-        this.player = player;
-        this.fireFlag = true;
+	/**
+	 * Constructor.
+	 * 
+	 * @param scene
+	 * @param player
+	 */
+	public InputControllerImpl(final Scene scene) {
+		this.pressedKeys = new HashMap<>();
+		this.commandKeys = new HashMap<>();
+		this.task = new HashMap<>();
+		this.scene = scene;
+		this.fireFlag = true;
+		this.initializeKeys();
+		this.initializeControlStates();
+		this.listeners();
+	}
 
-        this.initializeKeys();
-        this.initializeControlStates();
-        this.listeners();
-    }
+	/**
+	 * Initialize the game controls.
+	 */
+	private void initializeControlStates() {
+		List.of(InputCommand.values()).forEach(e -> this.task.put(e, false));
+		List.of(KeyCode.values()).forEach(e -> this.pressedKeys.put(e, false));
+	}
 
-    /**
-     * Initialize the game controls.
-     */
-    private void initializeControlStates() {
-        this.controlStates.put(InputCommand.GO_LEFT, VariousMagicNumbers.FALSE);
-        this.controlStates.put(InputCommand.GO_RIGHT, VariousMagicNumbers.FALSE);
-        this.controlStates.put(InputCommand.NONE, VariousMagicNumbers.FALSE);
-        this.controlStates.put(InputCommand.ATTACK, VariousMagicNumbers.FALSE);
-    }
+	/**
+	 * Initialize keys that you can press in the game.
+	 */
+	private void initializeKeys() {
+		this.commandKeys.put(KeyCode.A, InputCommand.LEFT);
+		this.commandKeys.put(KeyCode.D, InputCommand.RIGHT);
+		this.commandKeys.put(KeyCode.P, InputCommand.ATTACK);
+	}
 
-    /**
-     * Initialize keys that you can press in the game.
-     */
-    private void initializeKeys() {
-        this.pressedkeys.put(KeyCode.A, VariousMagicNumbers.FALSE);
+	/**
+	 * Listeners used for performing an action after a key is pressed.
+	 */
+	public void listeners() {
+		this.scene.setOnKeyPressed(e -> {
+			this.pressedKeys.put(e.getCode(), true);
+		});
 
-        this.pressedkeys.put(KeyCode.D, VariousMagicNumbers.FALSE);
+		this.scene.setOnKeyReleased(e -> {
+			this.pressedKeys.put(e.getCode(), false);
+		});
+	}
 
-        this.pressedkeys.put(KeyCode.P, VariousMagicNumbers.FALSE);
-    }
+	/**
+	 * Update state of tasks, based on pressed keys.
+	 */
+	private void updateTask() {
+		Map<InputCommand, List<KeyCode>> grouped = this.commandKeys.keySet().stream()
+				.collect(Collectors.groupingBy(e -> this.commandKeys.get(e)));
 
-    /**
-     * Listeners used for performing an action after a key is pressed.
-     */
-    public void listeners() {
-        this.scene.setOnKeyPressed(e -> {
-            pressedkeys.put(e.getCode(), VariousMagicNumbers.TRUE);
-        });
+		grouped.keySet().stream()
+				.filter(key -> grouped.get(key).stream().filter(e -> this.pressedKeys.get(e)).count() > 0)
+				.forEach(key -> this.task.put(key, true));
 
-        this.scene.setOnKeyReleased(e -> {
-            pressedkeys.put(e.getCode(), VariousMagicNumbers.FALSE);
-        });
-    }
+		grouped.keySet().stream()
+				.filter(key -> grouped.get(key).stream().filter(e -> this.pressedKeys.get(e)).count() == 0)
+				.forEach(key -> this.task.put(key, false));
+	}
 
-    /**
-     * Moves the player based on the key pressed.
-     */
-    private void movePlayerShip() {
-        if ((this.pressedkeys.get(KeyCode.A)) && (!this.pressedkeys.get(KeyCode.D))) {
-            this.controlStates.put(InputCommand.GO_LEFT, VariousMagicNumbers.TRUE);
-            this.controlStates.put(InputCommand.GO_RIGHT, VariousMagicNumbers.FALSE);
-            this.controlStates.put(InputCommand.NONE, VariousMagicNumbers.FALSE);
-        }
+	/**
+	 * Update player task.
+	 */
+	private void updatePlayerTasks() {
+		this.updateTask();
 
-        if ((this.pressedkeys.get(KeyCode.D)) && (!this.pressedkeys.get(KeyCode.A))) {
-            this.controlStates.put(InputCommand.GO_RIGHT, VariousMagicNumbers.TRUE);
-            this.controlStates.put(InputCommand.GO_LEFT, VariousMagicNumbers.FALSE);
-            this.controlStates.put(InputCommand.NONE, VariousMagicNumbers.FALSE);
-        }
+		if (this.task.get(InputCommand.LEFT) && this.task.get(InputCommand.RIGHT)) {
+			this.task.put(InputCommand.LEFT, false);
+			this.task.put(InputCommand.RIGHT, false);
+		}
+		this.fireLogic();
+	}
 
-        if ((!this.pressedkeys.get(KeyCode.D)) && (!this.pressedkeys.get(KeyCode.A))
-                || (this.pressedkeys.get(KeyCode.D)) && (this.pressedkeys.get(KeyCode.A))) {
-            this.controlStates.put(InputCommand.NONE, VariousMagicNumbers.TRUE);
-            this.controlStates.put(InputCommand.GO_RIGHT, VariousMagicNumbers.FALSE);
-            this.controlStates.put(InputCommand.GO_LEFT, VariousMagicNumbers.FALSE);
-        }
+	/**
+	 * Managing fire logic. Making player firing only 1 bullet at time.
+	 */
+	private void fireLogic() {
+		if (this.task.get(InputCommand.ATTACK)) {
+			if (this.getFireFlag()) {
+				this.setFireFlag(false);
+			} else {
+				this.task.put(InputCommand.ATTACK, false);
+			}
+		} else {
+			this.setFireFlag(true);
+		}
 
-        if (this.pressedkeys.get(KeyCode.P) && this.player.getCanFire()) {
-            if (this.getFireFlag()) {
-                this.controlStates.put(InputCommand.ATTACK, VariousMagicNumbers.TRUE);
-                this.setFireFlag(VariousMagicNumbers.FALSE);
-            } else {
-                this.controlStates.put(InputCommand.ATTACK, VariousMagicNumbers.FALSE);
-            }
-        } else {
-            this.controlStates.put(InputCommand.ATTACK, VariousMagicNumbers.FALSE);
-            this.setFireFlag(VariousMagicNumbers.TRUE);
-        }
-    }
+	}
 
-    /**
-     * @return a map containing the command and if it is active or not.
-     */
-    public Map<InputCommand, Boolean> getControlStates() {
-        this.movePlayerShip();
-        return this.controlStates;
-    }
+	/**
+	 * @return a map containing player tasks.
+	 */
+	public Map<InputCommand, Boolean> getControlStates() {
+		this.updatePlayerTasks();
+		return this.task;
+	}
 
-    /**
-     * @return true if a bullet is fired.
-     */
-    public boolean getFireFlag() {
-        return this.fireFlag;
-    }
+	/**
+	 * @return true if a bullet is fired.
+	 */
+	public boolean getFireFlag() {
+		return this.fireFlag;
+	}
 
-    /**
-     * Set true if bullet is fired, false if not.
-     * @param boolean value to be set.
-     */
-    public void setFireFlag(final boolean bool) {
-        this.fireFlag = bool;
-    }
+	/**
+	 * Set true if bullet is fired, false if not.
+	 * 
+	 * @param boolean value to be set.
+	 */
+	public void setFireFlag(final boolean bool) {
+		this.fireFlag = bool;
+	}
 }
