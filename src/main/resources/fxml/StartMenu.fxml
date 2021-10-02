@@ -41,6 +41,17 @@
                   <DropShadow />
                </effect>
             </Button>
+            <Button mnemonicParsing="false" onAction="#switchToControls" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow" text="CONTROLS">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <Button mnemonicParsing="false" onAction="#quit" prefHeight="23.0" prefWidth="300.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow" text="QUIT">
                <font>
                   <Font name="System Bold" size="25.0" />

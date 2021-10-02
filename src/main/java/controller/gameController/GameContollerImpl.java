@@ -47,7 +47,6 @@ public class GameContollerImpl implements GameController {
         this.gamefield.setPlayer(this.player);
 
         this.frame = new FrameManager(this.gamefield);
-        this.inputController = new InputControllerImpl(this.player.getNode().getScene());
         this.gameEventController = new GameEventController(this.gamefield);
         this.aiController = new EnemyAI(this.gamefield, this.gameEventController);
 
@@ -107,5 +106,10 @@ public class GameContollerImpl implements GameController {
     
     public GameField getGameField() {
     	return this.gamefield;
+    }
+    
+    public void setInputController(InputControllerImpl inputController) {
+    	this.inputController = inputController;
+    	this.inputController.changeScene(this.player.getNode().getScene());
     }
 }

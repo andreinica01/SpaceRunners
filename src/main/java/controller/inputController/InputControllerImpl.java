@@ -1,8 +1,10 @@
 package controller.inputController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javafx.scene.Scene;
@@ -36,6 +38,11 @@ public class InputControllerImpl {
 		this.initializeControlStates();
 		this.listeners();
 	}
+	
+	public void changeScene (Scene scene) {
+		this.scene = scene;
+		this.listeners();
+	}
 
 	/**
 	 * Initialize the game controls.
@@ -50,11 +57,8 @@ public class InputControllerImpl {
 	 */
 	private void initializeKeys() {
 		this.commandKeys.put(KeyCode.A, InputCommand.LEFT);
-		this.commandKeys.put(KeyCode.LEFT, InputCommand.LEFT);
 		this.commandKeys.put(KeyCode.D, InputCommand.RIGHT);
-		this.commandKeys.put(KeyCode.RIGHT, InputCommand.RIGHT);
 		this.commandKeys.put(KeyCode.P, InputCommand.ATTACK);
-		this.commandKeys.put(KeyCode.SPACE, InputCommand.ATTACK);
 	}
 
 	/**
@@ -147,5 +151,18 @@ public class InputControllerImpl {
 	 */
 	public void setFireFlag(final boolean bool) {
 		this.fireFlag = bool;
+	}
+	
+	public List<KeyCode> getKeysListByCommand(InputCommand command) {
+		var grouped = this.getMapGrouped();
+		Optional<List<KeyCode>> list = Optional.ofNullable(grouped.get(command));
+		if(list.isPresent()) {
+			return list.get();
+		}
+		return new ArrayList<>();
+	}
+	
+	public Map<KeyCode, InputCommand> getCommandKeys() {
+		return this.commandKeys;
 	}
 }

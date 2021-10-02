@@ -20,7 +20,7 @@ public class GameManager extends AnimationTimer {
 
     private MainWindow mainwindow;
     private GameFieldImpl gamefield;
-    private GameController gameController;
+    private GameContollerImpl gameController;
     private SceneManager sceneManager;
 	private String setPlayerName;
 
@@ -32,6 +32,7 @@ public class GameManager extends AnimationTimer {
         this.mainwindow.addGameField(this.gamefield);
 
         this.gameController = new GameContollerImpl(this.gamefield);
+        this.gameController.setInputController(this.sceneManager.getMenuController().getInputController());
 
         this.mainwindow.setWidth(Parameters.WIDTH);
         this.mainwindow.setHeight(Parameters.HEIGHT);

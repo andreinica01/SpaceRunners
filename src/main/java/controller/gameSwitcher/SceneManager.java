@@ -45,6 +45,10 @@ public class SceneManager {
 		this.mainWindow.setScene(this.getSceneFromFxml("fxml/EndMenu.fxml"));
 	}
 	
+	public void switchToControls() throws IOException {
+		this.mainWindow.setScene(this.getSceneFromFxml("fxml/Controls.fxml"));
+	}
+	
 	public void quit() {
 		Platform.exit();
 		System.exit(0);
@@ -77,5 +81,9 @@ public class SceneManager {
 	 */
 	public Text getScore() {
 		return this.menuController.getScore();
+	}
+	
+	public MenuController getMenuController() {
+		return this.menuController;
 	}
 }
