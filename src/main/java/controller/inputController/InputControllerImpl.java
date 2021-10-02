@@ -3,7 +3,6 @@ package controller.inputController;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import javafx.scene.Scene;
@@ -51,8 +50,11 @@ public class InputControllerImpl {
 	 */
 	private void initializeKeys() {
 		this.commandKeys.put(KeyCode.A, InputCommand.LEFT);
+		this.commandKeys.put(KeyCode.LEFT, InputCommand.LEFT);
 		this.commandKeys.put(KeyCode.D, InputCommand.RIGHT);
+		this.commandKeys.put(KeyCode.RIGHT, InputCommand.RIGHT);
 		this.commandKeys.put(KeyCode.P, InputCommand.ATTACK);
+		this.commandKeys.put(KeyCode.SPACE, InputCommand.ATTACK);
 	}
 
 	/**
@@ -72,8 +74,7 @@ public class InputControllerImpl {
 	 * Update state of tasks, based on pressed keys.
 	 */
 	private void updateTask() {
-		Map<InputCommand, List<KeyCode>> grouped = this.commandKeys.keySet().stream()
-				.collect(Collectors.groupingBy(e -> this.commandKeys.get(e)));
+		var grouped = this.getMapGrouped();
 
 		grouped.keySet().stream()
 				.filter(key -> grouped.get(key).stream().filter(e -> this.pressedKeys.get(e)).count() > 0)
@@ -82,6 +83,10 @@ public class InputControllerImpl {
 		grouped.keySet().stream()
 				.filter(key -> grouped.get(key).stream().filter(e -> this.pressedKeys.get(e)).count() == 0)
 				.forEach(key -> this.task.put(key, false));
+	}
+
+	public Map<InputCommand, List<KeyCode>> getMapGrouped() {
+		return this.commandKeys.keySet().stream().collect(Collectors.groupingBy(e -> this.commandKeys.get(e)));
 	}
 
 	/**
@@ -119,6 +124,13 @@ public class InputControllerImpl {
 	public Map<InputCommand, Boolean> getControlStates() {
 		this.updatePlayerTasks();
 		return this.task;
+	}
+	/**
+	 * Get the Map mapping keys to his state (pressed or not).
+	 * @return Map<KeyCode, Boolean>
+	 */
+	public Map<KeyCode, Boolean> getPressedKeys() {
+		return this.pressedKeys;
 	}
 
 	/**
