@@ -82,7 +82,10 @@ public class SceneManager {
 	public Text getScore() {
 		return this.menuController.getScore();
 	}
-	
+
+	/**
+	 * @return menuController reference.
+	 */
 	public MenuController getMenuController() {
 		return this.menuController;
 	}

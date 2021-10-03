@@ -114,8 +114,7 @@ public class MenuController {
 	}
 
 	/**
-	 * Set score reference
-	 * 
+	 * Set score reference.
 	 * @param score
 	 */
 	public void setScore(final Text score) {

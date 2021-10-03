@@ -1,7 +1,6 @@
 package controller.gameLoop;
 
 import controller.gameController.GameContollerImpl;
-import controller.gameController.GameController;
 import controller.gameSwitcher.SceneManager;
 import javafx.animation.AnimationTimer;
 import utilities.Parameters;
@@ -76,15 +75,25 @@ public class GameManager extends AnimationTimer {
     public GameManager getManager() {
         return this;
     }
-    
+
+    /**
+     * @return scene manager reference.
+     */
     public SceneManager getSceneManager() {
     	return this.sceneManager;
     }
 
-	public void setPlayerName(String name) {
+    /**
+     * Sets player name.
+     * @param name
+     */
+	public void setPlayerName(final String name) {
 		this.setPlayerName = name;
 	}
-	
+
+	/**
+	 * @return actual player name.
+	 */
 	public String getPlayerName() {
 		return this.setPlayerName;
 	}
