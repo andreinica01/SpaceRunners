@@ -66,7 +66,6 @@ public class InputControllerImpl {
 			this.getMapGrouped().get(command).forEach(e -> this.commandKeys.remove(e));
 			this.commandKeys.put(key, command);
 		}
-		System.out.println(this.commandKeys.toString());
 	}
 
 	/**
