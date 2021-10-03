@@ -103,11 +103,14 @@ public class GameContollerImpl implements GameController {
     public StatusController getStatusController() {
         return this.statusController;
     }
-    
+
+    /**
+     * @return gameFsield reference.
+     */
     public GameField getGameField() {
     	return this.gamefield;
     }
-    
+
     public void setInputController(InputControllerImpl inputController) {
     	this.inputController = inputController;
     	this.inputController.changeScene(this.player.getNode().getScene());
