@@ -262,7 +262,7 @@ public class GameFieldImpl implements GameField {
 
     @Override
     public final boolean isBossToBeSpawned() {
-    	if (this.bossIsSpawned == VariousMagicNumbers.TRUE) {
+    	if (this.bossIsSpawned) {
     		return VariousMagicNumbers.FALSE;
     	} else {
     		return VariousMagicNumbers.TRUE;

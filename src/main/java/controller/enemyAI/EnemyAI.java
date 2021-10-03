@@ -93,8 +93,6 @@ public class EnemyAI {
     private void checkBossDeath() {
 		if (this.gameField.isBossToBeSpawned()) {
 			this.bossEnabled = VariousMagicNumbers.FALSE;
-		} else {
-			this.bossEnabled = VariousMagicNumbers.TRUE;
 		}
 	}
 
