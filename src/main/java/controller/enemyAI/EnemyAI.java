@@ -33,6 +33,7 @@ public class EnemyAI {
     private final StatusFactory statusFactory;
 
     private int playerPoints;
+    private int bossSpawned;
     private boolean bossEnabled;
 
     private long enemyInterval;
@@ -53,6 +54,7 @@ public class EnemyAI {
         this.gameEvent = gameEventController;
         this.statusFactory = new StatusFactory();
         this.bossAI = new BossAI(this.gameField);
+        this.bossSpawned = VariousMagicNumbers.ONE;
         this.enemyResetTime = System.currentTimeMillis();
         this.statusResetTime = System.currentTimeMillis();
         this.enemyInterval = (long) (Utilities.getRandomDouble(FIRST_VALUE, SECOND_VALUE) * MULTIPLIER);
@@ -67,9 +69,10 @@ public class EnemyAI {
         this.generateEnemy(this.checkAndSetDifficulty());
         this.generateStatus();
         this.manageBoss();
+        this.checkBossDeath();
     }
 
-    /**
+	/**
      * Remove undestroyed ships.
      */
     public void removeUnused() {
@@ -85,12 +88,24 @@ public class EnemyAI {
     }
 
     /**
+     * Check if a boss is dead and in case change a value for next spawn.
+     */
+    private void checkBossDeath() {
+		if (this.gameField.isBossToBeSpawned()) {
+			this.bossEnabled = VariousMagicNumbers.FALSE;
+		} else {
+			this.bossEnabled = VariousMagicNumbers.TRUE;
+		}
+	}
+
+    /**
      * This method handle boos spawn system.
      */
     public void manageBoss() {
-        if (this.playerPoints == VariousMagicNumbers.TWO && !this.bossEnabled) {
+        if (this.playerPoints == VariousMagicNumbers.TEN * this.bossSpawned && !this.bossEnabled) {
             this.bossAI.generateBoss();
-            this.bossEnabled = true;
+        	this.bossSpawned++;
+            this.bossEnabled = VariousMagicNumbers.TRUE;
         }
         if (this.bossEnabled) {
             this.bossAI.updateBoss();
