@@ -51,7 +51,6 @@ public class CollisionEngine extends AbstractHelper implements ICollisionEngine 
         this.playerCollisionWithEnemies();
         this.playerBonusCollision();
         this.bulletCollisionWithEnemies();
-        //this.playerCollisionWithBullets();
         this.bossesCollisionwithWall();
         this.bossCollisionWithBullets();
         this.removeUnusedEntities();
@@ -195,23 +194,6 @@ public class CollisionEngine extends AbstractHelper implements ICollisionEngine 
         }
     }
 
-//    /**
-//     * Handles collision between Boss bullets and player.
-//     */
-//    private void playerCollisionWithBullets() {
-//        Iterator<Bullet> bullets = this.gamefield.getActiveBulletsShotbyEnemies().iterator();
-//
-//        while(bullets)
-//
-//        while(x.hasNext())
-//    {
-//      if(x.next().getNode().getBoundsInParent().intersects(this.gamefield.getPlayer().getNode().getBoundsInParent())
-//
-//
-//    }
-//
-//    }
-
     @Override
     public final void bossesCollisionwithWall() {
 
@@ -248,6 +230,7 @@ public class CollisionEngine extends AbstractHelper implements ICollisionEngine 
                         bosses.remove();
                         this.toBeRemovedList.add(enemyship);
                         this.gameField.getSoundManager().playBossDeath();
+                        this.gameField.setBossToBeSpawned(!VariousMagicNumbers.TRUE);
                         super.setBossHP(VariousMagicNumbers.SEVEN);
                         super.getPointsHUD().pointsSetter(VariousMagicNumbers.THREE);
                     } else {
