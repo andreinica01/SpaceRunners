@@ -129,6 +129,24 @@ public class CollisionEngine extends AbstractHelper implements ICollisionEngine 
                 this.gameField.getSoundManager().playPlayerImpact();
             }
         }
+
+        /*
+         * Boss collision with player
+         */
+        this.gameField.getActiveBosses().forEach(boss -> {
+        	Bounds shipBound = boss.getNode().getBoundsInParent();
+        	if (this.gameField.getPlayer().getNode().getBoundsInParent().intersects(shipBound)) {
+            	super.removeLife();
+            	super.removePoints();
+            	super.setBossHP(VariousMagicNumbers.SEVEN);
+
+                this.gameField.setBossToBeSpawned(VariousMagicNumbers.TRUE);
+            	this.gameField.getGameContainer().getChildren().remove(boss.getNode());
+                this.toBeRemovedList.add(boss);
+                this.gameField.getSoundManager().playPlayerImpact();
+            }
+        });
+
         this.gameField.getActiveEnemyShips().removeAll(this.toBeRemovedList);
     }
 
@@ -230,7 +248,7 @@ public class CollisionEngine extends AbstractHelper implements ICollisionEngine 
                         bosses.remove();
                         this.toBeRemovedList.add(enemyship);
                         this.gameField.getSoundManager().playBossDeath();
-                        this.gameField.setBossToBeSpawned(!VariousMagicNumbers.TRUE);
+                        this.gameField.setBossToBeSpawned(VariousMagicNumbers.TRUE);
                         super.setBossHP(VariousMagicNumbers.SEVEN);
                         super.getPointsHUD().pointsSetter(VariousMagicNumbers.THREE);
                     } else {
