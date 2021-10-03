@@ -38,6 +38,7 @@ public class GameFieldImpl implements GameField {
 
     private final int width;
     private final int height;
+	private boolean bossIsSpawned;
 
     /**
      * Constructor.
@@ -72,6 +73,7 @@ public class GameFieldImpl implements GameField {
 
         this.width = width2;
         this.height = height2;
+        this.bossIsSpawned = VariousMagicNumbers.FALSE;
 	}
 
 	@Override
@@ -256,5 +258,19 @@ public class GameFieldImpl implements GameField {
     @Override
     public final GameManager getGameManager() {
         return this.gameManager;
+    }
+
+    @Override
+    public final boolean isBossToBeSpawned() {
+    	if (this.bossIsSpawned == VariousMagicNumbers.TRUE) {
+    		return VariousMagicNumbers.FALSE;
+    	} else {
+    		return VariousMagicNumbers.TRUE;
+    	}
+    }
+
+    @Override
+    public final void setBossToBeSpawned(final boolean value) {
+    	this.bossIsSpawned = value;
     }
 }

@@ -166,4 +166,15 @@ public interface GameField {
      * @return GameManager reference.
      */
     GameManager getGameManager();
+
+    /**
+     * @return true if a new boss must spawn.
+     */
+    boolean isBossToBeSpawned();
+
+    /**
+     * Sets false if boss is no more active.
+     * @param value.
+     */
+    void setBossToBeSpawned(boolean value);
 }
