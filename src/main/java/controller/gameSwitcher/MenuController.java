@@ -52,7 +52,6 @@ public class MenuController {
 		this.soundManager.playMusicMenu();
 		this.inputController = new InputControllerImpl(new Scene(new Group()));
 		this.lastKeyPressed = KeyCode.P;
-		this.keyToSet.setText(this.lastKeyPressed.toString());
 	}
 
 	@FXML
