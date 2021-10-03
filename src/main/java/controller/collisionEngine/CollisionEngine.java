@@ -21,8 +21,8 @@ public class CollisionEngine extends AbstractHelper implements ICollisionEngine 
 
     private static final int X_PLAYER_LEFT_BORDER = 69;
     private static final int X_PLAYER_RIGHT_BORDER = 146;
-    private static final int X_BOSS_LEFT_BORDER = 385;
-    private static final int X_BOSS_RIGHT_BORDER = 271;
+    private static final int X_BOSS_LEFT_BORDER = 271;
+    private static final int X_BOSS_RIGHT_BORDER = 385;
 
     /*
      * Control fields.
@@ -219,10 +219,10 @@ public class CollisionEngine extends AbstractHelper implements ICollisionEngine 
             int limit = boss.getPosition().getX().intValue();
 
             if (this.isEntityCollidingLeftWall(boss, X_BOSS_LEFT_BORDER)) {
-                boss.setPosition(limit - resetX, boss.getPosition().getY().intValue());
+                boss.setPosition(limit + resetX, boss.getPosition().getY().intValue());
                 boss.invertDirection();
             } else if (this.isEntityCollidingRightWall(boss, X_BOSS_RIGHT_BORDER)) {
-                boss.setPosition(limit + resetX, boss.getPosition().getY().intValue());
+                boss.setPosition(limit - resetX, boss.getPosition().getY().intValue());
                 boss.invertDirection();
             }
         });

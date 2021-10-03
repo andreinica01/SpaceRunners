@@ -1,7 +1,7 @@
 package controller.collisionEngine;
 
 /*
- * Interface that shows how to hadle collisions.
+ * Interface that shows how to handle collisions.
  */
 public interface ICollisionEngine {
 
