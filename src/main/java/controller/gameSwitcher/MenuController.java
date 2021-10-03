@@ -82,7 +82,7 @@ public class MenuController {
 		this.soundManager.playButtonClicked();
 		this.sceneManager.switchToStartMenu();
 	}
-	
+
 	@FXML
 	void switchToControls(final ActionEvent event) throws IOException {
 		this.soundManager.playButtonClicked();
@@ -131,36 +131,30 @@ public class MenuController {
 
 	@FXML
 	void commands_1(ActionEvent event) {
-		var leftKeys = this.inputController.getKeysListByCommand(InputCommand.LEFT);
-		leftKeys.forEach(e -> this.inputController.getCommandKeys().remove(e));
-		this.inputController.getCommandKeys().put(this.lastKeyPressed, InputCommand.LEFT);
-		this.key_1.setText(this.lastKeyPressed.toString());
+		this.inputController.addCommandKeys(lastKeyPressed, InputCommand.LEFT);
+		this.key_1.setText(this.inputController.getMapGrouped().get(InputCommand.LEFT).get(0).toString());
 	}
 
 	@FXML
 	void commands_2(ActionEvent event) {
-		var rightKeys = this.inputController.getKeysListByCommand(InputCommand.RIGHT);
-		rightKeys.forEach(e -> this.inputController.getCommandKeys().remove(e));
-		this.inputController.getCommandKeys().put(this.lastKeyPressed, InputCommand.RIGHT);
-		this.key_2.setText(this.lastKeyPressed.toString());
+		this.inputController.addCommandKeys(lastKeyPressed, InputCommand.RIGHT);
+		this.key_2.setText(this.inputController.getMapGrouped().get(InputCommand.RIGHT).get(0).toString());
 	}
 
 	@FXML
 	void commands_3(ActionEvent event) {
-		var attackKeys = this.inputController.getKeysListByCommand(InputCommand.ATTACK);
-		attackKeys.forEach(e -> this.inputController.getCommandKeys().remove(e));
-		this.inputController.getCommandKeys().put(this.lastKeyPressed, InputCommand.ATTACK);
-		this.key_3.setText(this.lastKeyPressed.toString());
+		this.inputController.addCommandKeys(this.lastKeyPressed, InputCommand.ATTACK);
+		this.key_3.setText(this.inputController.getMapGrouped().get(InputCommand.ATTACK).get(0).toString());
 	}
 
-    @FXML
-    void detectKey(KeyEvent event) {
-    	this.lastKeyPressed = event.getCode();
-    	this.keyToSet.setText(event.getCode().toString());
-    }
-    
-    public InputControllerImpl getInputController() {
-    	return this.inputController;
-    }
+	@FXML
+	void detectKey(KeyEvent event) {
+		this.lastKeyPressed = event.getCode();
+		this.keyToSet.setText(event.getCode().toString());
+	}
+
+	public InputControllerImpl getInputController() {
+		return this.inputController;
+	}
 
 }

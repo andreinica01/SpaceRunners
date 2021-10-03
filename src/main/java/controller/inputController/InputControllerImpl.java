@@ -38,8 +38,8 @@ public class InputControllerImpl {
 		this.initializeControlStates();
 		this.listeners();
 	}
-	
-	public void changeScene (Scene scene) {
+
+	public void changeScene(Scene scene) {
 		this.scene = scene;
 		this.listeners();
 	}
@@ -59,6 +59,14 @@ public class InputControllerImpl {
 		this.commandKeys.put(KeyCode.A, InputCommand.LEFT);
 		this.commandKeys.put(KeyCode.D, InputCommand.RIGHT);
 		this.commandKeys.put(KeyCode.P, InputCommand.ATTACK);
+	}
+
+	public void addCommandKeys(KeyCode key, InputCommand command) {
+		if (!this.commandKeys.containsKey(key)) {
+			this.getMapGrouped().get(command).forEach(e -> this.commandKeys.remove(e));
+			this.commandKeys.put(key, command);
+		}
+		System.out.println(this.commandKeys.toString());
 	}
 
 	/**
@@ -129,8 +137,10 @@ public class InputControllerImpl {
 		this.updatePlayerTasks();
 		return this.task;
 	}
+
 	/**
 	 * Get the Map mapping keys to his state (pressed or not).
+	 * 
 	 * @return Map<KeyCode, Boolean>
 	 */
 	public Map<KeyCode, Boolean> getPressedKeys() {
@@ -152,16 +162,16 @@ public class InputControllerImpl {
 	public void setFireFlag(final boolean bool) {
 		this.fireFlag = bool;
 	}
-	
+
 	public List<KeyCode> getKeysListByCommand(InputCommand command) {
 		var grouped = this.getMapGrouped();
 		Optional<List<KeyCode>> list = Optional.ofNullable(grouped.get(command));
-		if(list.isPresent()) {
+		if (list.isPresent()) {
 			return list.get();
 		}
 		return new ArrayList<>();
 	}
-	
+
 	public Map<KeyCode, InputCommand> getCommandKeys() {
 		return this.commandKeys;
 	}
