@@ -18,7 +18,7 @@
             <Image url="@../Images/stars2.png" />
          </image>
       </ImageView>
-      <Text fill="#16ff00" layoutX="147.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Controls" textAlignment="CENTER">
+      <Text fill="#ff1c00" layoutX="147.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Controls" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="52.0" />
          </font>
@@ -33,7 +33,7 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <Text fx:id="keyToSet" fill="#d705f7" layoutX="267.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Key" textAlignment="CENTER">
+      <Text fx:id="keyToSet" fill="#00ff72" layoutX="267.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Key" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
@@ -58,7 +58,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Text fx:id="key_1" fill="#d705f7" strokeType="OUTSIDE" strokeWidth="0.0" text="key" textAlignment="CENTER" wrappingWidth="150.08673095703125">
+                  <Text fx:id="key_1" fill="#00ff72" strokeType="OUTSIDE" strokeWidth="0.0" text="key" textAlignment="CENTER" wrappingWidth="150.08673095703125">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
@@ -83,7 +83,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Text fx:id="key_2" fill="#d705f7" strokeType="OUTSIDE" strokeWidth="0.0" text="key" textAlignment="CENTER" wrappingWidth="150.88671946525574">
+                  <Text fx:id="key_2" fill="#00ff72" strokeType="OUTSIDE" strokeWidth="0.0" text="key" textAlignment="CENTER" wrappingWidth="150.88671946525574">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
@@ -108,7 +108,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Text fx:id="key_3" fill="#d705f7" strokeType="OUTSIDE" strokeWidth="0.0" text="key" textAlignment="CENTER" wrappingWidth="150.08666920661926">
+                  <Text fx:id="key_3" fill="#00ff72" strokeType="OUTSIDE" strokeWidth="0.0" text="key" textAlignment="CENTER" wrappingWidth="150.08666920661926">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
