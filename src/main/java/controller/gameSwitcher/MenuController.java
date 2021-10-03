@@ -32,16 +32,14 @@ public class MenuController {
 	@FXML
 	private Text score;
 	@FXML
-	private Text key_1;
+	private Text controlsLeftText;
 	@FXML
-	private Text key_2;
+	private Text controlsRightText;
 	@FXML
-	private Text key_3;
-	@FXML
-	private Text key_4;
+	private Text controlsAttackText;
 	private KeyCode lastKeyPressed;
 	@FXML
-	private Text keyToSet;
+	private Text keyToSetText;
 
 	/*
 	 * Constructor.
@@ -88,9 +86,9 @@ public class MenuController {
 	void switchToControls(final ActionEvent event) throws IOException {
 		this.soundManager.playButtonClicked();
 		this.sceneManager.switchToControls();
-		this.key_1.setText(this.inputController.getKeysListByCommand(InputCommand.LEFT).get(0).toString());
-		this.key_2.setText(this.inputController.getKeysListByCommand(InputCommand.RIGHT).get(0).toString());
-		this.key_3.setText(this.inputController.getKeysListByCommand(InputCommand.ATTACK).get(0).toString());
+		this.controlsLeftText.setText(this.inputController.getKeysListByCommand(InputCommand.LEFT).get(0).toString());
+		this.controlsRightText.setText(this.inputController.getKeysListByCommand(InputCommand.RIGHT).get(0).toString());
+		this.controlsAttackText.setText(this.inputController.getKeysListByCommand(InputCommand.ATTACK).get(0).toString());
 	}
 
 	@FXML
@@ -130,27 +128,27 @@ public class MenuController {
 	}
 
 	@FXML
-	void commands_1(ActionEvent event) {
+	void changeLeftKey(ActionEvent event) {
 		this.inputController.addCommandKeys(lastKeyPressed, InputCommand.LEFT);
-		this.key_1.setText(this.inputController.getMapGrouped().get(InputCommand.LEFT).get(0).toString());
+		this.controlsLeftText.setText(this.inputController.getMapGrouped().get(InputCommand.LEFT).get(0).toString());
 	}
 
 	@FXML
-	void commands_2(ActionEvent event) {
+	void changeRightKey(ActionEvent event) {
 		this.inputController.addCommandKeys(lastKeyPressed, InputCommand.RIGHT);
-		this.key_2.setText(this.inputController.getMapGrouped().get(InputCommand.RIGHT).get(0).toString());
+		this.controlsRightText.setText(this.inputController.getMapGrouped().get(InputCommand.RIGHT).get(0).toString());
 	}
 
 	@FXML
-	void commands_3(ActionEvent event) {
+	void changeAttackKey(ActionEvent event) {
 		this.inputController.addCommandKeys(this.lastKeyPressed, InputCommand.ATTACK);
-		this.key_3.setText(this.inputController.getMapGrouped().get(InputCommand.ATTACK).get(0).toString());
+		this.controlsAttackText.setText(this.inputController.getMapGrouped().get(InputCommand.ATTACK).get(0).toString());
 	}
 
 	@FXML
 	void detectKey(KeyEvent event) {
 		this.lastKeyPressed = event.getCode();
-		this.keyToSet.setText(event.getCode().toString());
+		this.keyToSetText.setText(event.getCode().toString());
 	}
 
 	public InputControllerImpl getInputController() {

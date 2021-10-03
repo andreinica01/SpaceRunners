@@ -33,7 +33,7 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <Text fx:id="keyToSet" fill="#00ff72" layoutX="267.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Key" textAlignment="CENTER">
+      <Text fx:id="keyToSetText" fill="#00ff72" layoutX="267.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Key" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
@@ -47,7 +47,7 @@
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Button mnemonicParsing="false" onAction="#commands_1" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow" text="CHANGE">
+                  <Button mnemonicParsing="false" onAction="#changeLeftKey" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow" text="CHANGE">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
@@ -58,7 +58,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Text fx:id="key_1" fill="#00ff72" strokeType="OUTSIDE" strokeWidth="0.0" text="key" textAlignment="CENTER" wrappingWidth="150.08673095703125">
+                  <Text fx:id="controlsLeftText" fill="#00ff72" strokeType="OUTSIDE" strokeWidth="0.0" text="key" textAlignment="CENTER" wrappingWidth="150.08673095703125">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
@@ -72,7 +72,7 @@
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Button mnemonicParsing="false" onAction="#commands_2" prefHeight="52.0" prefWidth="150.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow" text="CHANGE">
+                  <Button mnemonicParsing="false" onAction="#changeRightKey" prefHeight="52.0" prefWidth="150.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow" text="CHANGE">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
@@ -83,7 +83,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Text fx:id="key_2" fill="#00ff72" strokeType="OUTSIDE" strokeWidth="0.0" text="key" textAlignment="CENTER" wrappingWidth="150.88671946525574">
+                  <Text fx:id="controlsRightText" fill="#00ff72" strokeType="OUTSIDE" strokeWidth="0.0" text="key" textAlignment="CENTER" wrappingWidth="150.88671946525574">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
@@ -97,7 +97,7 @@
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <Button mnemonicParsing="false" onAction="#commands_3" prefHeight="52.0" prefWidth="150.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow" text="CHANGE">
+                  <Button mnemonicParsing="false" onAction="#changeAttackKey" prefHeight="52.0" prefWidth="150.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: yellow" text="CHANGE">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
@@ -108,7 +108,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Text fx:id="key_3" fill="#00ff72" strokeType="OUTSIDE" strokeWidth="0.0" text="key" textAlignment="CENTER" wrappingWidth="150.08666920661926">
+                  <Text fx:id="controlsAttackText" fill="#00ff72" strokeType="OUTSIDE" strokeWidth="0.0" text="key" textAlignment="CENTER" wrappingWidth="150.08666920661926">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>

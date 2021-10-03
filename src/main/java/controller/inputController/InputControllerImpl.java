@@ -16,9 +16,8 @@ public class InputControllerImpl {
 	private Map<KeyCode, Boolean> pressedKeys;
 	private Map<KeyCode, InputCommand> commandKeys;
 	private Map<InputCommand, Boolean> task;
-
 	private Scene scene;
-
+	
 	// Flag used to implement fire logic.
 	private boolean fireFlag;
 
@@ -34,11 +33,15 @@ public class InputControllerImpl {
 		this.task = new HashMap<>();
 		this.scene = scene;
 		this.fireFlag = true;
-		this.initializeKeys();
+		this.initializeDefaultKeys();
 		this.initializeControlStates();
 		this.listeners();
 	}
 
+	/**
+	 * Change Scene of this InputController.
+	 * @param scene
+	 */
 	public void changeScene(Scene scene) {
 		this.scene = scene;
 		this.listeners();
@@ -53,14 +56,20 @@ public class InputControllerImpl {
 	}
 
 	/**
-	 * Initialize keys that you can press in the game.
+	 * Initialize default keys that player use in the game.
 	 */
-	private void initializeKeys() {
+	private void initializeDefaultKeys() {
 		this.commandKeys.put(KeyCode.A, InputCommand.LEFT);
 		this.commandKeys.put(KeyCode.D, InputCommand.RIGHT);
 		this.commandKeys.put(KeyCode.P, InputCommand.ATTACK);
 	}
-
+	
+	/**
+	 * Add an association key-command.
+	 * There can only be one association key-command per command.
+	 * @param key
+	 * @param command
+	 */
 	public void addCommandKeys(KeyCode key, InputCommand command) {
 		if (!this.commandKeys.containsKey(key)) {
 			this.getMapGrouped().get(command).forEach(e -> this.commandKeys.remove(e));
@@ -69,13 +78,12 @@ public class InputControllerImpl {
 	}
 
 	/**
-	 * Listeners used for performing an action after a key is pressed.
+	 * Listeners used to check if a key is pressed or released.
 	 */
-	public void listeners() {
+	private void listeners() {
 		this.scene.setOnKeyPressed(e -> {
 			this.pressedKeys.put(e.getCode(), true);
 		});
-
 		this.scene.setOnKeyReleased(e -> {
 			this.pressedKeys.put(e.getCode(), false);
 		});
@@ -96,12 +104,17 @@ public class InputControllerImpl {
 				.forEach(key -> this.task.put(key, false));
 	}
 
+	/**
+	 * Get a map that groups Keys based on the InputCommand.
+	 * @return
+	 */
 	public Map<InputCommand, List<KeyCode>> getMapGrouped() {
 		return this.commandKeys.keySet().stream().collect(Collectors.groupingBy(e -> this.commandKeys.get(e)));
 	}
 
 	/**
-	 * Update player task.
+	 * Managing tasks.
+	 * Checking if the state of some of them should be changed or not.
 	 */
 	private void updatePlayerTasks() {
 		this.updateTask();
@@ -118,13 +131,13 @@ public class InputControllerImpl {
 	 */
 	private void fireLogic() {
 		if (this.task.get(InputCommand.ATTACK)) {
-			if (this.getFireFlag()) {
-				this.setFireFlag(false);
+			if (this.fireFlag) {
+				this.fireFlag = false;
 			} else {
 				this.task.put(InputCommand.ATTACK, false);
 			}
 		} else {
-			this.setFireFlag(true);
+			this.fireFlag = true;
 		}
 
 	}
@@ -145,23 +158,12 @@ public class InputControllerImpl {
 	public Map<KeyCode, Boolean> getPressedKeys() {
 		return this.pressedKeys;
 	}
-
+	
 	/**
-	 * @return true if a bullet is fired.
+	 * Get the Key associated with the specified command.
+	 * @param command
+	 * @return
 	 */
-	public boolean getFireFlag() {
-		return this.fireFlag;
-	}
-
-	/**
-	 * Set true if bullet is fired, false if not.
-	 * 
-	 * @param boolean value to be set.
-	 */
-	public void setFireFlag(final boolean bool) {
-		this.fireFlag = bool;
-	}
-
 	public List<KeyCode> getKeysListByCommand(InputCommand command) {
 		var grouped = this.getMapGrouped();
 		Optional<List<KeyCode>> list = Optional.ofNullable(grouped.get(command));
@@ -171,6 +173,10 @@ public class InputControllerImpl {
 		return new ArrayList<>();
 	}
 
+	/**
+	 * Get a Map mapping Keys to Command.
+	 * @return
+	 */
 	public Map<KeyCode, InputCommand> getCommandKeys() {
 		return this.commandKeys;
 	}
