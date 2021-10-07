@@ -41,6 +41,10 @@ public class SceneManager {
 		this.mainWindow.setScene(this.getSceneFromFxml("fxml/Nickname.fxml"));
 	}
 	
+	/**
+	 * Switch to end game menu
+	 * @throws IOException
+	 */
 	public void switchToEndMenu() throws IOException {
 		this.mainWindow.setScene(this.getSceneFromFxml("fxml/EndMenu.fxml"));
 	}
@@ -54,7 +58,7 @@ public class SceneManager {
 		System.exit(0);
 	}
 	
-	private Scene getSceneFromFxml (String path) throws IOException {
+	private Scene getSceneFromFxml(final String path) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(path));
 		loader.setController(this.menuController);
 		return new Scene(loader.load());
