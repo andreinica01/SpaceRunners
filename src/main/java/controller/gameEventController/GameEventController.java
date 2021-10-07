@@ -3,7 +3,6 @@ package controller.gameEventController;
 import controller.collisionEngine.IHelper;
 import controller.gameSwitcher.SceneManager;
 import model.hud.HUDBonusImpl;
-import model.menu.EndGameGUI;
 import view.gameField.GameField;
 import view.hud.HUDImpl;
 
@@ -13,6 +12,7 @@ public class GameEventController implements IGameEventController {
      * Game Container reference and HUD elements.
      */
     private HUDImpl hudBuilder;
+	private GameField gameField;
 
     /**
      * Constructor.
@@ -20,12 +20,15 @@ public class GameEventController implements IGameEventController {
      */
     public GameEventController(final GameField gameField) {
         this.hudBuilder = new HUDImpl(gameField);
+        this.gameField = gameField;
     }
 
     @Override
     public final void endGame(final SceneManager manager) {
     	try {
-    		new EndGameGUI(manager, this.checkPoints());
+    		this.gameField.getGameManager().stop();
+    		manager.switchToEndMenu();
+            manager.getScore().setText(this.checkPoints() + " points");
     	} catch (Exception e) {
     		e.printStackTrace();
     	}
