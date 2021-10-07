@@ -20,16 +20,17 @@ public class SceneManager {
 		this.mainWindow = mainWindow;
 		this.ranking = new Ranking();
 		this.menuController = new MenuController(this);
+		this.mainWindow.show();
 	}
 
 	public void switchToStartMenu() throws IOException {
 		this.mainWindow.setScene(this.getSceneFromFxml("fxml/StartMenu.fxml"));
-		this.mainWindow.show();
 	}
 
 	public void switchToGame(String name) throws IOException {
 		this.gameManager = new GameManager(this);
 		this.gameManager.setPlayerName(name);
+		this.mainWindow.setScene(this.gameManager.getGameField().getGameContainer().getScene());
 		this.gameManager.start();
 	}
 	

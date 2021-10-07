@@ -1,12 +1,19 @@
-#Thu Oct 07 18:46:10 CEST 2021
-dghd=48
+#Thu Oct 07 22:22:42 CEST 2021
+evviva=0
+dasd=0
 a=0
 Gatto=1
+ad=0
 d=0
 f=0
 g=0
-SALVOPUZZA=233
 adad=0
 IOSONOBELLO=321
 gatto=0
+ye=0
 o=0
+dghd=48
+dadd=0
+asd=0
+SALVOPUZZA=233
+da=0

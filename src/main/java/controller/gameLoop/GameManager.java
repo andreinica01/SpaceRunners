@@ -4,7 +4,6 @@ import controller.gameController.GameContollerImpl;
 import controller.gameSwitcher.SceneManager;
 import javafx.animation.AnimationTimer;
 import utilities.Parameters;
-import utilities.VariousMagicNumbers;
 import view.gameField.GameFieldImpl;
 import view.mainWindow.MainWindow;
 import view.mainWindow.MainWindowImpl;
@@ -25,17 +24,13 @@ public class GameManager extends AnimationTimer {
 
     public GameManager(final SceneManager sceneManager) {
     	this.sceneManager = sceneManager;
-        this.mainwindow = new MainWindowImpl(this.sceneManager);
 
+        this.mainwindow = new MainWindowImpl(this.sceneManager);
         this.gamefield = new GameFieldImpl(Parameters.WIDTH, Parameters.HEIGHT, this);
         this.mainwindow.addGameField(this.gamefield);
 
         this.gameController = new GameContollerImpl(this.gamefield);
         this.gameController.setInputController(this.sceneManager.getMenuController().getInputController());
-
-        this.mainwindow.setWidth(Parameters.WIDTH);
-        this.mainwindow.setHeight(Parameters.HEIGHT);
-        this.mainwindow.setVisible(VariousMagicNumbers.TRUE);
     }
 
     /**
@@ -97,4 +92,9 @@ public class GameManager extends AnimationTimer {
 	public String getPlayerName() {
 		return this.setPlayerName;
 	}
+
+	public GameFieldImpl getGameField() {
+		return this.gamefield;
+	}
+	
 }

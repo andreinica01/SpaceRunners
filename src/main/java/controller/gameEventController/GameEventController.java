@@ -1,7 +1,10 @@
 package controller.gameEventController;
 
+import com.google.common.reflect.Parameter;
+
 import controller.collisionEngine.IHelper;
 import controller.gameSwitcher.SceneManager;
+import javafx.application.Platform;
 import model.hud.HUDBonusImpl;
 import view.gameField.GameField;
 import view.hud.HUDImpl;
@@ -24,9 +27,10 @@ public class GameEventController implements IGameEventController {
     }
 
     @Override
-    public final void endGame(final SceneManager manager) {
+    public final void endGame(SceneManager manager) {
     	try {
     		this.gameField.getGameManager().stop();
+    		manager.getMenuController().getInputController().resetStates();
     		manager.switchToEndMenu();
             manager.getScore().setText(this.checkPoints() + " points");
     	} catch (Exception e) {
