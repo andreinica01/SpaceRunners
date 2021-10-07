@@ -13,6 +13,8 @@ import java.util.Properties;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
+import utilities.VariousMagicNumbers;
+
 /**
  * Ranking System Manager.
  * 
@@ -95,7 +97,7 @@ public class Ranking {
 	public String toString() {
 		StringJoiner s = new StringJoiner("");
 		List<Entry<String, Integer>> sortedEntry;
-		sortedEntry = this.getSortedEntryList(this.map).stream().limit(5).collect(Collectors.toList());
+		sortedEntry = this.getSortedEntryList(this.map).stream().limit(VariousMagicNumbers.TEN).collect(Collectors.toList());
 		sortedEntry.forEach(e -> s.add(e.getValue().toString() + "\t" + e.getKey() + "\n"));
 		return s.toString();
 	}
