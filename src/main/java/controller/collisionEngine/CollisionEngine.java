@@ -216,7 +216,6 @@ public class CollisionEngine extends AbstractHelper implements ICollisionEngine 
     public final void bossesCollisionwithWall() {
 
         this.gameField.getActiveBosses().forEach(boss -> {
-            int limit = boss.getPosition().getX().intValue();
 
             if (this.isEntityCollidingLeftWall(boss, X_BOSS_LEFT_BORDER)) {
                 boss.invertDirection();
