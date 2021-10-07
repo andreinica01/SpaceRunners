@@ -42,7 +42,7 @@ public class InputControllerImpl {
 	 * Change Scene of this InputController.
 	 * @param scene
 	 */
-	public void changeScene(Scene scene) {
+	public void changeScene(final Scene scene) {
 		this.scene = scene;
 		this.listeners();
 	}
