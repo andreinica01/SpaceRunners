@@ -75,7 +75,7 @@ public abstract class SpaceShip extends EntityImpl {
      */
 	public final void drop() {
 		this.setPosition(this.getPosition().getX().intValue(), 
-				this.getPosition().getY().intValue() + MagicEnumInt.TEN.getValue());
+				this.getPosition().getY().intValue() + MagicEnumInt.SEVEN.getValue());
 	}
 
 	/**
