@@ -2,13 +2,11 @@ package model.hud;
 
 import java.io.File;
 import java.util.stream.IntStream;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.status.StatusEnum;
-import utilities.HUDParameters;
-import utilities.Parameters;
-import utilities.VariousMagicNumbers;
+import utilities.MagicEnumInt;
+import utilities.MagicEnumString;
 import view.gameField.GameField;
 
 public class HUDBonusImpl implements IHUDBonus {
@@ -23,7 +21,7 @@ public class HUDBonusImpl implements IHUDBonus {
     /*
      * Control fields
      */
-    private ImageView[] bonus = new ImageView[HUDParameters.TOTAL_BONUS];
+    private ImageView[] bonus = new ImageView[MagicEnumInt.FIVE.getValue()];
     private GameField gameField;
 
     /**
@@ -46,14 +44,14 @@ public class HUDBonusImpl implements IHUDBonus {
      */
     private void addBonuses() {
 
-        IntStream.range(VariousMagicNumbers.ZERO, VariousMagicNumbers.FIVE).forEach(index -> {
+        IntStream.range(MagicEnumInt.ZERO.getValue(), MagicEnumInt.FIVE.getValue()).forEach(index -> {
             this.bonus[index] = new ImageView(
-                    new Image(new File(HUDParameters.PNG_FOLDER + "bonus" + index + ".png").toURI().toString(), SPACING, SPACING,
-                            HUDParameters.RATIO, HUDParameters.SMOOTH));
-            this.bonus[index].setLayoutX(Parameters.WIDTH - X_LAYOUT);
+                    new Image(new File(MagicEnumString.IMAGE_FOLDER.getValue() + "bonus" + index + ".png").toURI().toString(), 
+                    		SPACING, SPACING, false, true));
+            this.bonus[index].setLayoutX(MagicEnumInt.WIDTH.getValue() - X_LAYOUT);
             this.bonus[index].setLayoutY(index * -SPACING);
             this.bonus[index].setTranslateY(Y_TRANSLATION);
-            this.bonus[index].setViewOrder(HUDParameters.VIEW_ORDER);  
+            this.bonus[index].setViewOrder(MagicEnumInt.COMMON_VIEW_ORDER.getValue());  
         });
     }
 
@@ -62,19 +60,19 @@ public class HUDBonusImpl implements IHUDBonus {
         try {
             switch (bonus) {
             case BonusLife:
-                this.gameField.getGameContainer().getChildren().add(this.bonus[VariousMagicNumbers.ZERO]);
+                this.gameField.getGameContainer().getChildren().add(this.bonus[MagicEnumInt.ZERO.getValue()]);
                 break;
             case BonusSpeed:
-                this.gameField.getGameContainer().getChildren().add(this.bonus[VariousMagicNumbers.ONE]);
+                this.gameField.getGameContainer().getChildren().add(this.bonus[MagicEnumInt.ONE.getValue()]);
                 break;
             case MalusCommand:
-                this.gameField.getGameContainer().getChildren().add(this.bonus[VariousMagicNumbers.TWO]);
+                this.gameField.getGameContainer().getChildren().add(this.bonus[MagicEnumInt.TWO.getValue()]);
                 break;
             case MalusFire:
-                this.gameField.getGameContainer().getChildren().add(this.bonus[VariousMagicNumbers.THREE]);
+                this.gameField.getGameContainer().getChildren().add(this.bonus[MagicEnumInt.THREE.getValue()]);
                 break;
             case MalusSpeed:
-                this.gameField.getGameContainer().getChildren().add(this.bonus[VariousMagicNumbers.FOUR]);
+                this.gameField.getGameContainer().getChildren().add(this.bonus[MagicEnumInt.FOUR.getValue()]);
                 break; 
             default:
             } 
@@ -89,7 +87,8 @@ public class HUDBonusImpl implements IHUDBonus {
     public final void hideBonus(final StatusEnum bonus) {
         try {
             this.gameField.getGameContainer().getChildren().remove(this.bonus[bonus.ordinal()]);
-        } catch (Exception e) { 
+        } catch (Exception e) {
+        	e.printStackTrace();
         } 
     }
 }

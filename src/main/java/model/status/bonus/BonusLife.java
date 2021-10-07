@@ -2,8 +2,7 @@ package model.status.bonus;
 
 import model.status.Status;
 import model.status.StatusEnum;
-import utilities.HUDParameters;
-import utilities.VariousMagicNumbers;
+import utilities.MagicEnumInt;
 
 /** 
  * A Status that, below a certain maximum, add 1 bonus life to the player. 
@@ -17,11 +16,11 @@ public class BonusLife extends Status {
         super();
 
         this.setStatusName(StatusEnum.BonusLife);
-        this.setCoolDown(VariousMagicNumbers.ONE);
+        this.setCoolDown(MagicEnumInt.ONE.getValue());
 
         this.setEffect(() -> {
-            if (this.getPlayer().getLifePoints() < HUDParameters.MAX_LIFE_POINTS) {
-                this.getPlayer().increaseLifePoints(VariousMagicNumbers.ONE);
+            if (this.getPlayer().getLifePoints() < MagicEnumInt.FOUR.getValue()) {
+                this.getPlayer().increaseLifePoints(MagicEnumInt.ONE.getValue());
             }
         });
 

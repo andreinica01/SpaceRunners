@@ -6,10 +6,29 @@ import java.util.Random;
  * Enum containing all Status type.
  */
 public enum StatusEnum {
-    BonusLife, 
+	/**
+	 * 
+	 */
+	BonusLife, 
+
+	/**
+	 * 
+	 */
     BonusSpeed, 
+
+    /**
+	 * 
+	 */
     MalusCommand, 
+
+    /**
+	 * 
+	 */
     MalusFire, 
+
+    /**
+	 * 
+	 */
     MalusSpeed;
 
     /**

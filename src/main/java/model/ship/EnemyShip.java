@@ -2,10 +2,11 @@ package model.ship;
 
 import model.bullet.Bullet;
 import utilities.Direction;
-import utilities.VariousMagicNumbers;
 import view.gameField.GameField;
 
 public class EnemyShip extends SpaceShip {
+
+	private static final double TWENTY = 20d;
 
     /**
      * Constructor.
@@ -27,10 +28,10 @@ public class EnemyShip extends SpaceShip {
         bullet.setPosition(x, y);
         bullet.setSpeed(10);
         bullet.setDirection(Direction.DOWN);
-        bullet.getNode().setScaleX(VariousMagicNumbers.TWENTY);
-        bullet.getNode().setScaleY(VariousMagicNumbers.TWENTY);
+        bullet.getNode().setScaleX(TWENTY);
+        bullet.getNode().setScaleY(TWENTY);
 
-        this.gamefield.addEnemyBullet(bullet);
-        this.gamefield.getSoundManager().playBulletSound();
+        super.getGameFieldReference().addEnemyBullet(bullet);
+        super.getGameFieldReference().getSoundManager().playBulletSound();
     }
 }

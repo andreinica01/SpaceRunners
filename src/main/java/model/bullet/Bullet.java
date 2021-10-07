@@ -3,21 +3,25 @@ package model.bullet;
 import java.awt.Rectangle;
 import model.EntityImpl;
 import utilities.Direction;
-import utilities.Parameters;
-import utilities.VariousMagicNumbers;
+import utilities.MagicEnumDouble;
+import utilities.MagicEnumImage;
+import utilities.MagicEnumInt;
 
 public class Bullet extends EntityImpl {
 
     private int damage;
 
+    /**
+     * Constructor.
+     */
     public Bullet() {
         // set default
-        this.setImage(Parameters.bulletImage);
+        this.setImage(MagicEnumImage.BULLET.getImage());
         this.setDirection(Direction.UP);
-        this.getNode().setViewOrder(VariousMagicNumbers.BULLET_VIEW_ORDER);
+        this.getNode().setViewOrder(MagicEnumInt.BULLET_VIEW_ORDER.getValue());
 
-        this.getNode().setScaleX(VariousMagicNumbers.BULLET_SCALE);
-        this.getNode().setScaleY(VariousMagicNumbers.BULLET_SCALE);
+        this.getNode().setScaleX(MagicEnumDouble.BULLET_SCALE.getValue());
+        this.getNode().setScaleY(MagicEnumDouble.BULLET_SCALE.getValue());
     }
 
     /**

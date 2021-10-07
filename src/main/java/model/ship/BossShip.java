@@ -1,8 +1,9 @@
 package model.ship;
 
 import utilities.Direction;
-import utilities.Parameters;
-import utilities.VariousMagicNumbers;
+import utilities.MagicEnumDouble;
+import utilities.MagicEnumImage;
+import utilities.MagicEnumInt;
 import view.gameField.GameField;
 
 public class BossShip extends EnemyShip {
@@ -14,11 +15,11 @@ public class BossShip extends EnemyShip {
     public BossShip(final GameField gamefield) {
         super(gamefield);
 
-        this.setImage(Parameters.bossShipImage);
+        this.setImage(MagicEnumImage.BOSS.getImage());
         this.setDirection(Direction.DOWN);
-        this.getNode().setScaleX(VariousMagicNumbers.BOSS_SCALE);
-        this.getNode().setScaleY(VariousMagicNumbers.BOSS_SCALE);
-        this.setSpeed(VariousMagicNumbers.ZERO);
+        this.getNode().setScaleX(MagicEnumDouble.BOSS_SCALE.getValue());
+        this.getNode().setScaleY(MagicEnumDouble.BOSS_SCALE.getValue());
+        this.setSpeed(MagicEnumInt.ZERO.getValue());
         this.getNode().setPickOnBounds(true);
     }
 }
