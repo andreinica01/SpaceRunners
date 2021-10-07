@@ -70,7 +70,7 @@ public class InputControllerImpl {
 	 * @param key
 	 * @param command
 	 */
-	public void addCommandKeys(KeyCode key, InputCommand command) {
+	public void addCommandKeys(final KeyCode key, final InputCommand command) {
 		if (!this.commandKeys.containsKey(key)) {
 			this.getMapGrouped().get(command).forEach(e -> this.commandKeys.remove(e));
 			this.commandKeys.put(key, command);
@@ -164,7 +164,7 @@ public class InputControllerImpl {
 	 * @param command
 	 * @return
 	 */
-	public List<KeyCode> getKeysListByCommand(InputCommand command) {
+	public List<KeyCode> getKeysListByCommand(final InputCommand command) {
 		var grouped = this.getMapGrouped();
 		Optional<List<KeyCode>> list = Optional.ofNullable(grouped.get(command));
 		if (list.isPresent()) {

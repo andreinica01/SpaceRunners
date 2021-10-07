@@ -13,18 +13,20 @@ import java.util.Properties;
 import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
-import utilities.VariousMagicNumbers;
+import utilities.MagicEnumInt;
 
 /**
  * Ranking System Manager.
- * 
- * @author Salvo
  */
 public class Ranking {
 
 	private Map<String, Integer> map;
 	private File file;
 
+	/**
+	 * Constructor.
+	 * @throws IOException
+	 */
 	public Ranking() throws IOException {
 		this.map = new HashMap<>();
 		this.file = new File("src/main/resources/ranking/Ranking.txt");
@@ -37,7 +39,7 @@ public class Ranking {
 	 * @throws IOException
 	 */
 	private void loadMapFromFile() throws IOException {
-		if (file.exists()) {
+		if (this.file.exists()) {
 			Properties p = new Properties();
 			p.load(new FileInputStream(this.file));
 			p.stringPropertyNames()
@@ -66,7 +68,7 @@ public class Ranking {
 	 * @param playerScore
 	 * @throws IOException
 	 */
-	public void addToMap(String playerName, Integer playerScore) throws IOException {
+	public void addToMap(final String playerName, final Integer playerScore) throws IOException {
 		this.map.put(playerName, playerScore);
 		this.saveMapToFile();
 	}
@@ -78,7 +80,7 @@ public class Ranking {
 	 * @param Map<String, Integer>
 	 * @return List<Entry<String, Integer>>
 	 */
-	private List<Entry<String, Integer>> getSortedEntryList(Map<String, Integer> unsortedMap) {
+	private List<Entry<String, Integer>> getSortedEntryList(final Map<String, Integer> unsortedMap) {
 		return unsortedMap.entrySet().stream()
 				.sorted(Entry.comparingByValue(Comparator.reverseOrder()))
 				.collect(Collectors.toList());
@@ -94,10 +96,10 @@ public class Ranking {
 	}
 
 	@Override
-	public String toString() {
+	public final String toString() {
 		StringJoiner s = new StringJoiner("");
 		List<Entry<String, Integer>> sortedEntry;
-		sortedEntry = this.getSortedEntryList(this.map).stream().limit(VariousMagicNumbers.TEN).collect(Collectors.toList());
+		sortedEntry = this.getSortedEntryList(this.map).stream().limit(MagicEnumInt.TEN.getValue()).collect(Collectors.toList());
 		sortedEntry.forEach(e -> s.add(e.getValue().toString() + "\t" + e.getKey() + "\n"));
 		return s.toString();
 	}

@@ -8,11 +8,10 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
-
 import model.ship.SpaceShip;
 import model.status.Status;
 import model.status.StatusEnum;
-import utilities.VariousMagicNumbers;
+import utilities.MagicEnumInt;
 
 /**
  * Controller Status class. When certain condition are triggered, this class
@@ -52,12 +51,12 @@ public class StatusController {
         if (task.isEmpty() || task.get().isDone()) {
             this.ses.execute(status.getEffect());
             this.addDebuffTask(status);
-            return VariousMagicNumbers.TRUE;
+            return true;
         }
         // Else, refresh task's time
-        task.get().cancel(VariousMagicNumbers.FALSE);
+        task.get().cancel(false);
         this.addDebuffTask(status);
-        return VariousMagicNumbers.TRUE;
+        return true;
     }
 
     private void addDebuffTask(final Status status) {
@@ -113,7 +112,7 @@ public class StatusController {
         //Updating inactive status
         Stream.of(StatusEnum.values())
 		.filter(e -> !this.playerStatus.get(e).isPresent())
-        .forEach(e -> this.statusCooldown.put(e, Long.valueOf(VariousMagicNumbers.ZERO)));
+        .forEach(e -> this.statusCooldown.put(e, Long.valueOf(MagicEnumInt.ZERO.getValue())));
 
         return this.statusCooldown;
     }

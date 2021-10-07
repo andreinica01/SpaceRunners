@@ -1,18 +1,17 @@
 package controller.gameController;
 
-import controller.enemyAI.EnemyAI; 
+import controller.enemyAI.EnemyAI;
 import controller.frameManager.FrameManager;
 import controller.gameEventController.GameEventController;
 import controller.inputController.InputControllerImpl;
 import controller.status.StatusController;
-
 import java.io.IOException;
 import java.util.Map;
 import model.ship.PlayerSpaceShip;
 import model.ship.SpaceShip;
 import utilities.Direction;
 import utilities.InputCommand;
-import utilities.Parameters;
+import utilities.MagicEnumString;
 import view.gameField.GameField;
 
 public class GameContollerImpl implements GameController {
@@ -38,7 +37,7 @@ public class GameContollerImpl implements GameController {
      */
     public GameContollerImpl(final GameField gamefield) {
         this.gamefield = gamefield;
-        this.gamefield.setBackgroundImage(Parameters.ImageFolder + "back.png");
+        this.gamefield.setBackgroundImage(MagicEnumString.IMAGE_FOLDER.getValue() + "back.png");
 
         /* setup player info */
         this.player = new PlayerSpaceShip(this.gamefield);
@@ -111,7 +110,11 @@ public class GameContollerImpl implements GameController {
     	return this.gamefield;
     }
 
-    public void setInputController(InputControllerImpl inputController) {
+    /**
+     * Sets the InputController.
+     * @param inputController
+     */
+    public final void setInputController(final InputControllerImpl inputController) {
     	this.inputController = inputController;
     	this.inputController.changeScene(this.player.getNode().getScene());
     }

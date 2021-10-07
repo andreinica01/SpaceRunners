@@ -8,8 +8,8 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import model.ship.BossShip;
 import utilities.Direction;
+import utilities.MagicEnumInt;
 import utilities.Utilities;
-import utilities.VariousMagicNumbers;
 import view.gameField.GameField;
 
 public class BossAI {
@@ -21,7 +21,6 @@ public class BossAI {
 
     private Map<String, ScheduledFuture<?>> bossControls;
     private Runnable bossMovement;
-    private Runnable bossDrop;
 
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
@@ -33,7 +32,6 @@ public class BossAI {
         this.gamefield = gamefield;
         this.bossControls = new TreeMap<>();
         this.bossMovement = (() -> this.bossShip.invertDirection());
-        this.bossDrop = (() -> this.bossShip.drop());
     }
 
     /**
@@ -43,10 +41,9 @@ public class BossAI {
         this.bossShip = new BossShip(this.gamefield);
         this.bossShip.setPosition(X_POS, Y_POS);
         this.bossShip.setDirection(Direction.LEFT);
-        this.bossShip.setSpeed(VariousMagicNumbers.SEVEN);
+        this.bossShip.setSpeed(MagicEnumInt.SEVEN.getValue());
         this.gamefield.addBoss(bossShip);
         this.addBossTask("Movement");
-        this.addBossTask("Drop");
     }
 
     /**
@@ -63,11 +60,13 @@ public class BossAI {
     private void addBossTask(final String taskName) {
 
         switch (taskName) {
+
         case "Movement":
             this.bossControls.put("Movement",
                     this.scheduler.schedule(this.bossMovement, Utilities.getRandomMillis(1.0, 4.0), TimeUnit.MILLISECONDS));
             break;
         default:
+
         }
     }
 

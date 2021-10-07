@@ -3,7 +3,7 @@ package controller.frameManager;
 import java.util.Set;
 import javafx.scene.Node;
 import model.Entity;
-import utilities.VariousMagicNumbers;
+import utilities.MagicEnumInt;
 import view.gameField.GameField;
 
 public class FrameManager {
@@ -62,7 +62,7 @@ public class FrameManager {
      */
     private void updateBackground() {
         for (Node image : this.gamefield.getBackground()) {
-            image.setLayoutY(image.getLayoutY() + VariousMagicNumbers.FOUR);
+            image.setLayoutY(image.getLayoutY() + MagicEnumInt.FOUR.getValue());
 
             if (image.getLayoutY() >= this.gamefield.getHeight().intValue()) {
                 image.setLayoutY(-this.gamefield.getHeight().intValue());

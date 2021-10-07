@@ -3,7 +3,7 @@ package controller.collisionEngine;
 import model.hud.HUDBonusImpl;
 import model.hud.HUDLifeImpl;
 import model.hud.HUDPointsImpl;
-import utilities.VariousMagicNumbers;
+import utilities.MagicEnumInt;
 
 public abstract class AbstractHelper implements IHelper {
 
@@ -16,12 +16,16 @@ public abstract class AbstractHelper implements IHelper {
     private int bossHP;
 
     /**
-     * Resets border due to changing movement speed.
+     * Resets border due to changing movement speed. Is not really a very good
+     * practice but it is explained why in the review.
      */
     protected static double resetX;
 
-    /*
+    /**
      * Constructor.
+     * @param pointsHUD
+     * @param livesHUD
+     * @param bonusHUD
      */
     public AbstractHelper(final HUDPointsImpl pointsHUD,
     		final HUDLifeImpl livesHUD, final HUDBonusImpl bonusHUD) {
@@ -29,7 +33,7 @@ public abstract class AbstractHelper implements IHelper {
     	this.livesHUD = livesHUD;
     	this.bonusHUD = bonusHUD;
 
-    	this.bossHP = VariousMagicNumbers.SEVEN;
+    	this.bossHP = MagicEnumInt.TEN.getValue();
     }
 
 	@Override
@@ -92,6 +96,6 @@ public abstract class AbstractHelper implements IHelper {
      * from the outside without referencing it as a bonus.
      */
     public static void resetBounds() {
-        resetX = VariousMagicNumbers.FOUR;
+        resetX = MagicEnumInt.FOUR.getValue();
     }
 }
