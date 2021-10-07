@@ -1,6 +1,7 @@
 package model.ship;
 
 import model.EntityImpl;
+import utilities.VariousMagicNumbers;
 import view.gameField.GameField;
 
 public abstract class SpaceShip extends EntityImpl {
@@ -69,6 +70,14 @@ public abstract class SpaceShip extends EntityImpl {
     public void setInvertedCommand(final boolean invertedCommand) {
         this.invertedCommand = invertedCommand;
     }
+
+    /**
+     * Cause the boss to move down of some frames.
+     */
+	public final void drop() {
+		this.setPosition(this.getPosition().getX().intValue(), 
+				this.getPosition().getY().intValue() + VariousMagicNumbers.TEN);
+	}
 
     /** 
      * attack.

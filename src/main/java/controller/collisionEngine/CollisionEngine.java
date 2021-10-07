@@ -219,11 +219,11 @@ public class CollisionEngine extends AbstractHelper implements ICollisionEngine 
             int limit = boss.getPosition().getX().intValue();
 
             if (this.isEntityCollidingLeftWall(boss, X_BOSS_LEFT_BORDER)) {
-                boss.setPosition(limit + resetX, boss.getPosition().getY().intValue());
                 boss.invertDirection();
+                boss.drop();
             } else if (this.isEntityCollidingRightWall(boss, X_BOSS_RIGHT_BORDER)) {
-                boss.setPosition(limit - resetX, boss.getPosition().getY().intValue());
                 boss.invertDirection();
+                boss.drop();
             }
         });
     }

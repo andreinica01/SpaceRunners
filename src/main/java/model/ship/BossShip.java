@@ -21,12 +21,4 @@ public class BossShip extends EnemyShip {
         this.setSpeed(VariousMagicNumbers.ZERO);
         this.getNode().setPickOnBounds(true);
     }
-
-    /**
-     * Cause the boss to move down of some frames.
-     */
-	public final void drop() {
-		this.setPosition((int) this.getPosition().getX(), 
-				(int) this.getPosition().getY() + VariousMagicNumbers.SEVEN);
-	}
 }

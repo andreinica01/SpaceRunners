@@ -67,10 +67,6 @@ public class BossAI {
             this.bossControls.put("Movement",
                     this.scheduler.schedule(this.bossMovement, Utilities.getRandomMillis(1.0, 4.0), TimeUnit.MILLISECONDS));
             break;
-        case "Drop":
-            this.bossControls.put("Drop",
-                    this.scheduler.schedule(this.bossDrop, Utilities.getRandomMillis(0.0, 3.0), TimeUnit.MILLISECONDS));
-            break;
         default:
         }
     }
