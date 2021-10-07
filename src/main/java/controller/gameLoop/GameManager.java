@@ -91,6 +91,9 @@ public class GameManager extends AnimationTimer {
 		return this.setPlayerName;
 	}
 
+	/**
+	 * @return GameField reference.
+	 */
 	public GameFieldImpl getGameField() {
 		return this.gamefield;
 	}

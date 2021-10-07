@@ -22,7 +22,7 @@ public class GameEventController implements IGameEventController {
     }
 
     @Override
-    public final void endGame(SceneManager manager) {
+    public final void endGame(final SceneManager manager) {
     	try {
             manager.getMenuController().getInputController().resetStates();
     		manager.switchToEndMenu();
