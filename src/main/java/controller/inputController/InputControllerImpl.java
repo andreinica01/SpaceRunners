@@ -34,7 +34,7 @@ public class InputControllerImpl {
 		this.scene = scene;
 		this.fireFlag = true;
 		this.initializeDefaultKeys();
-		this.initializeControlStates();
+		this.resetStates();
 		this.listeners();
 	}
 
@@ -50,7 +50,7 @@ public class InputControllerImpl {
 	/**
 	 * Initialize the game controls.
 	 */
-	private void initializeControlStates() {
+	public void resetStates() {
 		List.of(InputCommand.values()).forEach(e -> this.task.put(e, false));
 		List.of(KeyCode.values()).forEach(e -> this.pressedKeys.put(e, false));
 	}

@@ -74,6 +74,7 @@ public class MenuController {
 	void pickNickname(final ActionEvent event) throws IOException {
 		this.soundManager.playButtonClicked();
 		this.sceneManager.switchToNickname();
+		this.inputController.resetStates();
 	}
 
 	@FXML
