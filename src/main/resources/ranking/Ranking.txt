@@ -1,6 +1,8 @@
-#Thu Oct 07 22:23:51 CEST 2021
+#Thu Oct 07 23:34:12 CEST 2021
 dghd=48
+a=0
 Gatto=1
+d=0
 SALVOPUZZA=233
 adad=0
 IOSONOBELLO=321

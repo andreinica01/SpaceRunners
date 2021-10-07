@@ -25,6 +25,7 @@ public class SceneManager {
 		this.mainWindow = mainWindow;
 		this.ranking = new Ranking();
 		this.menuController = new MenuController(this);
+		this.mainWindow.show();
 	}
 
 	/**
@@ -33,7 +34,6 @@ public class SceneManager {
 	 */
 	public void switchToStartMenu() throws IOException {
 		this.mainWindow.setScene(this.getSceneFromFxml("fxml/StartMenu.fxml"));
-		this.mainWindow.show();
 	}
 
 	/**
@@ -41,9 +41,9 @@ public class SceneManager {
 	 * @throws IOException
 	 */
 	public void switchToGame(final String name) throws IOException {
-		this.mainWindow.hide();
 		this.gameManager = new GameManager(this);
 		this.gameManager.setPlayerName(name);
+		this.mainWindow.setScene(this.gameManager.getGameField().getGameContainer().getScene());
 		this.gameManager.start();
 	}
 

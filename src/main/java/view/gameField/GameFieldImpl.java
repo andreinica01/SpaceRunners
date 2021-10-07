@@ -131,6 +131,8 @@ public class GameFieldImpl implements GameField {
     @Override
     public final void setScene(final Scene scene) {
         this.scene = scene;
+        System.out.println(scene.getX());
+        System.out.println(scene.getY());
     }
 
     @Override

@@ -24,16 +24,11 @@ public class GameManager extends AnimationTimer {
     public GameManager(final SceneManager sceneManager) {
     	this.sceneManager = sceneManager;
         this.mainwindow = new MainWindowImpl(this.sceneManager);
-
         this.gamefield = new GameFieldImpl(MagicEnumInt.WIDTH.getValue(), MagicEnumInt.HEIGHT.getValue(), this);
         this.mainwindow.addGameField(this.gamefield);
 
         this.gameController = new GameContollerImpl(this.gamefield);
         this.gameController.setInputController(this.sceneManager.getMenuController().getInputController());
-
-        this.mainwindow.setWidth(MagicEnumInt.WIDTH.getValue());
-        this.mainwindow.setHeight(MagicEnumInt.HEIGHT.getValue());
-        this.mainwindow.setVisible(true);
     }
 
     /**
@@ -96,6 +91,10 @@ public class GameManager extends AnimationTimer {
 		return this.setPlayerName;
 	}
 
+	public GameFieldImpl getGameField() {
+		return this.gamefield;
+	}
+	
 	/**
 	 * @return prevtime value;
 	 */

@@ -22,8 +22,9 @@ public class GameEventController implements IGameEventController {
     }
 
     @Override
-    public final void endGame(final SceneManager manager) {
+    public final void endGame(SceneManager manager) {
     	try {
+            manager.getMenuController().getInputController().resetStates();
     		manager.switchToEndMenu();
             manager.getScore().setText(this.checkPoints() + " points");
     	} catch (Exception e) {
