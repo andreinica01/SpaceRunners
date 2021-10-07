@@ -1,13 +1,10 @@
 package model.hud;
 
-import java.io.File;
 import java.util.stream.IntStream;
-
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import utilities.HUDParameters;
-import utilities.VariousMagicNumbers;
+import utilities.MagicEnumComplexImage;
+import utilities.MagicEnumInt;
 
 /**
  * Class for building HUD lives components.
@@ -40,10 +37,11 @@ public class HUDLifeImpl implements IHUDLife {
     public HUDLifeImpl(final AnchorPane gamePane) {
         this.pane = gamePane;
         this.lifePoints = INITIAL_LIFE_POINTS;
-        this.lives = new ImageView[HUDParameters.MAX_LIFE_POINTS];
-        this.gameStatus = VariousMagicNumbers.TRUE;
+        this.lives = new ImageView[MagicEnumInt.FOUR.getValue()];
+        this.gameStatus = true;
 
-        IntStream.range(VariousMagicNumbers.ZERO, VariousMagicNumbers.THREE).forEach(i -> this.addLife(i));
+        IntStream.range(MagicEnumInt.ZERO.getValue(), MagicEnumInt.THREE.getValue())
+        	.forEach(i -> this.addLife(i));
     }
 
     /*
@@ -59,7 +57,7 @@ public class HUDLifeImpl implements IHUDLife {
      */
     @Override
     public final void lifeUp() {
-        if (this.getLifePoints() < HUDParameters.MAX_LIFE_POINTS) {
+        if (this.getLifePoints() < MagicEnumInt.FOUR.getValue()) {
             this.addLife(this.getLifePoints());
             this.lifePoints++;
         }
@@ -71,8 +69,8 @@ public class HUDLifeImpl implements IHUDLife {
             this.lifePoints--;
             this.removeLife();
         } else {
-            this.lifePoints = VariousMagicNumbers.ZERO;
-            this.gameStatus = VariousMagicNumbers.FALSE;
+            this.lifePoints = MagicEnumInt.ZERO.getValue();
+            this.gameStatus = false;
         }
     }
 
@@ -83,11 +81,10 @@ public class HUDLifeImpl implements IHUDLife {
      * @param index.
      */
     private void addLife(final int index) {
-        this.lives[index] = new ImageView(new Image(new File(HUDParameters.PNG_FOLDER + "life.png").toURI().toString(),
-                SPACING, SPACING, HUDParameters.RATIO, HUDParameters.SMOOTH));
+        this.lives[index] = new ImageView(MagicEnumComplexImage.LIFE.getImage());
         this.lives[index].setLayoutX(index * SPACING);
         this.pane.getChildren().add(this.lives[index]);
-        this.lives[index].setViewOrder(HUDParameters.VIEW_ORDER);
+        this.lives[index].setViewOrder(MagicEnumInt.COMMON_VIEW_ORDER.getValue());
     }
 
     /**

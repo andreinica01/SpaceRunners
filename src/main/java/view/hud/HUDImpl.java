@@ -4,7 +4,7 @@ import controller.collisionEngine.CollisionEngine;
 import model.hud.HUDBonusImpl;
 import model.hud.HUDLifeImpl;
 import model.hud.HUDPointsImpl;
-import utilities.HUDParameters;
+import utilities.MagicEnumInt;
 import view.gameField.GameField;
 
 public class HUDImpl implements IHUD {
@@ -18,11 +18,12 @@ public class HUDImpl implements IHUD {
     private CollisionEngine collisionEngine;
     private GameField gameField;
 
-    /*
+    /**
      * Constructor.
+     * @param gameField
      */
     public HUDImpl(final GameField gameField) {
-    	this.gameField = gameField;
+        this.gameField = gameField;
     	this.createHUD();
     }
 
@@ -37,7 +38,7 @@ public class HUDImpl implements IHUD {
          */
         this.pointsHUD = new HUDPointsImpl();
         this.gameField.getGameContainer().getChildren().add(this.pointsHUD);
-        this.pointsHUD.setViewOrder(HUDParameters.VIEW_ORDER);
+        this.pointsHUD.setViewOrder(MagicEnumInt.COMMON_VIEW_ORDER.getValue());
 
         /*
          * Lives HUD

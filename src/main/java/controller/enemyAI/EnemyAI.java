@@ -8,8 +8,8 @@ import model.ship.SpaceShip;
 import model.status.Status;
 import model.status.StatusEnum;
 import model.status.StatusFactory;
+import utilities.MagicEnumInt;
 import utilities.Utilities;
-import utilities.VariousMagicNumbers;
 import view.gameField.GameField;
 
 /** 
@@ -27,6 +27,7 @@ public class EnemyAI {
 	private static final double DIFFICULTY_MULTIPLIER = 0.2;
 	private static final double ZERO = 0.0;
 	private static final double FOUR = 4.0;
+	private static final double TWENTY = 20;
 	
     private final GameField gameField;
     private final GameEventController gameEvent;
@@ -54,7 +55,7 @@ public class EnemyAI {
         this.gameEvent = gameEventController;
         this.statusFactory = new StatusFactory();
         this.bossAI = new BossAI(this.gameField);
-        this.bossSpawned = VariousMagicNumbers.ONE;
+        this.bossSpawned = MagicEnumInt.ONE.getValue();
         this.enemyResetTime = System.currentTimeMillis();
         this.statusResetTime = System.currentTimeMillis();
         this.enemyInterval = (long) (Utilities.getRandomDouble(FIRST_VALUE, SECOND_VALUE) * MULTIPLIER);
@@ -92,7 +93,7 @@ public class EnemyAI {
      */
     private void checkBossDeath() {
 		if (this.gameField.isBossToBeSpawned()) {
-			this.bossEnabled = VariousMagicNumbers.FALSE;
+			this.bossEnabled = false;
 		}
 	}
 
@@ -100,10 +101,10 @@ public class EnemyAI {
      * This method handle boos spawn system.
      */
     public void manageBoss() {
-        if (this.playerPoints == VariousMagicNumbers.TEN * this.bossSpawned && !this.bossEnabled) {
+        if (this.playerPoints == MagicEnumInt.TEN.getValue() * this.bossSpawned && !this.bossEnabled) {
             this.bossAI.generateBoss();
         	this.bossSpawned++;
-            this.bossEnabled = VariousMagicNumbers.TRUE;
+            this.bossEnabled = true;
         }
         if (this.bossEnabled) {
             this.bossAI.updateBoss();
@@ -125,7 +126,7 @@ public class EnemyAI {
 
             this.enemyInterval = (long) 
             		((Utilities.getRandomDouble(
-            				ZERO, VariousMagicNumbers.FIVE * VariousMagicNumbers.ONE
+            				ZERO, MagicEnumInt.FIVE.getValue() * MagicEnumInt.ONE.getValue()
             				/ difficultyFactor) * MULTIPLIER));
             this.enemyResetTime = System.currentTimeMillis();
 
@@ -155,8 +156,8 @@ public class EnemyAI {
     private Double checkAndSetDifficulty() {
         this.playerPoints = this.gameEvent.checkPoints();
         // Every 20 points difficulty increasing by 20%
-        return VariousMagicNumbers.ONE 
-        		+ (((double) this.playerPoints / VariousMagicNumbers.TWENTY)
+        return MagicEnumInt.ONE.getValue() 
+        		+ (((double) this.playerPoints / TWENTY)
         				* DIFFICULTY_MULTIPLIER);
     }
 }

@@ -4,7 +4,6 @@ import controller.gameSwitcher.SceneManager;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import utilities.VariousMagicNumbers;
 import view.gameField.GameFieldImpl;
 
 public class MainWindowImpl implements MainWindow {
@@ -17,7 +16,7 @@ public class MainWindowImpl implements MainWindow {
      */
     public MainWindowImpl(final SceneManager gameManager) {
         this.mainStage = gameManager.getStage();
-        this.mainStage.setResizable(VariousMagicNumbers.FALSE);
+        this.mainStage.setResizable(false);
     }
 
 

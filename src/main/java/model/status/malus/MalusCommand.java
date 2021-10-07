@@ -2,7 +2,7 @@ package model.status.malus;
 
 import model.status.Status;
 import model.status.StatusEnum;
-import utilities.VariousMagicNumbers;
+import utilities.MagicEnumInt;
 
 /**
  * A Status that reverses player's movement commands.
@@ -16,9 +16,9 @@ public class MalusCommand extends Status {
         super();
 
         this.setStatusName(StatusEnum.MalusCommand);
-        this.setCoolDown(VariousMagicNumbers.TEN); // 10 s
+        this.setCoolDown(MagicEnumInt.TEN.getValue()); // 10 s
 
-        this.setEffect(() -> this.getPlayer().setInvertedCommand(VariousMagicNumbers.TRUE));
-        this.setRemoveEffect(() -> this.getPlayer().setInvertedCommand(VariousMagicNumbers.FALSE));
+        this.setEffect(() -> this.getPlayer().setInvertedCommand(true));
+        this.setRemoveEffect(() -> this.getPlayer().setInvertedCommand(false));
     }
 }

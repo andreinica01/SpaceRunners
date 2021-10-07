@@ -16,14 +16,17 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import utilities.InputCommand;
-import utilities.VariousMagicNumbers;
+import utilities.MagicEnumDouble;
 import view.SoundManager.SoundManager;
 
 public class MenuController {
 
+	private static final int FIFTEEN = 15;
+	
 	private SceneManager sceneManager;
 	private InputControllerImpl inputController;
 	private SoundManager soundManager;
+	private KeyCode lastKeyPressed;
 
 	@FXML
 	private TextField nickname;
@@ -37,12 +40,12 @@ public class MenuController {
 	private Text controlsRightText;
 	@FXML
 	private Text controlsAttackText;
-	private KeyCode lastKeyPressed;
 	@FXML
 	private Text keyToSetText;
 
-	/*
+	/**
 	 * Constructor.
+	 * @param sceneManager
 	 */
 	public MenuController(final SceneManager sceneManager) {
 		this.sceneManager = sceneManager;
@@ -64,27 +67,27 @@ public class MenuController {
 		this.sceneManager.switchToScores();
 		Text rankText = new Text(this.sceneManager.getRanking().toString());
 		rankText.setFill(Color.GREEN);
-		rankText.setFont(Font.font("Verdana", FontWeight.BOLD, VariousMagicNumbers.SIXTEEN));
+		rankText.setFont(Font.font("Verdana", FontWeight.BOLD, MagicEnumDouble.SIXTEEN.getValue()));
 		this.scoreText.getChildren().add(rankText);
 		this.scoreText.setVisible(true);
 		System.out.println(rankText.toString());
 	}
 
 	@FXML
-	void pickNickname(final ActionEvent event) throws IOException {
+	private void pickNickname(final ActionEvent event) throws IOException {
 		this.soundManager.playButtonClicked();
 		this.sceneManager.switchToNickname();
 		this.inputController.resetStates();
 	}
 
 	@FXML
-	void showStartMenu(final ActionEvent event) throws IOException {
+	private void showStartMenu(final ActionEvent event) throws IOException {
 		this.soundManager.playButtonClicked();
 		this.sceneManager.switchToStartMenu();
 	}
 
 	@FXML
-	void switchToControls(final ActionEvent event) throws IOException {
+	private void switchToControls(final ActionEvent event) throws IOException {
 		this.soundManager.playButtonClicked();
 		this.sceneManager.switchToControls();
 		this.controlsLeftText.setText(this.inputController.getKeysListByCommand(InputCommand.LEFT).get(0).toString());
@@ -93,22 +96,22 @@ public class MenuController {
 	}
 
 	@FXML
-	void nicknameEvent(final ActionEvent event) throws IOException {
+	private void nicknameEvent(final ActionEvent event) throws IOException {
 		String name = this.nickname.getText();
-		if (!name.isBlank() && name.length() <= 15) {
+		if (!name.isBlank() && name.length() <= FIFTEEN) {
 			this.soundManager.playButtonClicked();
 			this.sceneManager.switchToGame(name);
 		}
 	}
 
 	@FXML
-	void startGame(final ActionEvent event) throws IOException {
+	private void startGame(final ActionEvent event) throws IOException {
 		this.soundManager.playButtonClicked();
 		this.sceneManager.switchToNickname();
 	}
 
 	@FXML
-	void returnToMenu(final ActionEvent event) throws IOException {
+	private void returnToMenu(final ActionEvent event) throws IOException {
 		this.soundManager.playButtonClicked();
 		this.sceneManager.switchToStartMenu();
 	}
@@ -129,31 +132,33 @@ public class MenuController {
 	}
 
 	@FXML
-	void changeLeftKey(ActionEvent event) {
+	private void changeLeftKey(final ActionEvent event) {
 		this.inputController.addCommandKeys(lastKeyPressed, InputCommand.LEFT);
 		this.controlsLeftText.setText(this.inputController.getMapGrouped().get(InputCommand.LEFT).get(0).toString());
 	}
 
 	@FXML
-	void changeRightKey(ActionEvent event) {
+	private void changeRightKey(final ActionEvent event) {
 		this.inputController.addCommandKeys(lastKeyPressed, InputCommand.RIGHT);
 		this.controlsRightText.setText(this.inputController.getMapGrouped().get(InputCommand.RIGHT).get(0).toString());
 	}
 
 	@FXML
-	void changeAttackKey(ActionEvent event) {
+	private void changeAttackKey(final ActionEvent event) {
 		this.inputController.addCommandKeys(this.lastKeyPressed, InputCommand.ATTACK);
 		this.controlsAttackText.setText(this.inputController.getMapGrouped().get(InputCommand.ATTACK).get(0).toString());
 	}
 
 	@FXML
-	void detectKey(KeyEvent event) {
+	private void detectKey(final KeyEvent event) {
 		this.lastKeyPressed = event.getCode();
 		this.keyToSetText.setText(event.getCode().toString());
 	}
 
+	/**
+	 * @return InputController reference.
+	 */
 	public InputControllerImpl getInputController() {
 		return this.inputController;
 	}
-
 }

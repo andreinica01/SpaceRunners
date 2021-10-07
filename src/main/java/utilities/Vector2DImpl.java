@@ -60,16 +60,16 @@ public class Vector2DImpl<NumType extends Number> implements Vector2D<NumType> {
         final double x = v1.getX().doubleValue() - v2.getX().doubleValue();
         final double y = v1.getY().doubleValue() - v2.getY().doubleValue();
 
-        return Math.sqrt(Math.pow(x, VariousMagicNumbers.TWO) + Math.pow(y, VariousMagicNumbers.TWO));
+        return Math.sqrt(Math.pow(x, MagicEnumInt.TWO.getValue()) + Math.pow(y, MagicEnumInt.TWO.getValue()));
     }
 
     @Override
     public final int hashCode() {
         final int prime = HASH_NUMBER;
-        int result = VariousMagicNumbers.ONE;
+        int result = MagicEnumInt.ONE.getValue();
 
-        result = prime * result + ((this.x == null) ? VariousMagicNumbers.ZERO : this.x.hashCode());
-        result = prime * result + ((this.y == null) ? VariousMagicNumbers.ZERO : this.y.hashCode());
+        result = prime * result + ((this.x == null) ? MagicEnumInt.ZERO.getValue() : this.x.hashCode());
+        result = prime * result + ((this.y == null) ? MagicEnumInt.ZERO.getValue() : this.y.hashCode());
 
         return result;
     }

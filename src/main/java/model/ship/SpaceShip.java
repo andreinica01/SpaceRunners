@@ -1,15 +1,14 @@
 package model.ship;
 
 import model.EntityImpl;
-import utilities.VariousMagicNumbers;
+import utilities.MagicEnumInt;
 import view.gameField.GameField;
 
 public abstract class SpaceShip extends EntityImpl {
 
-    protected int lifePoints;
+    private int lifePoints;
     private boolean invertedCommand;
-
-    protected GameField gamefield;
+    private GameField gameField;
 
     /**
      * Constructor.
@@ -21,7 +20,7 @@ public abstract class SpaceShip extends EntityImpl {
         this.setInvertedCommand(false);
         this.setCanFire(true);
 
-        this.gamefield = gamefield;
+        this.gameField = gamefield;
     }
 
     /**
@@ -76,7 +75,14 @@ public abstract class SpaceShip extends EntityImpl {
      */
 	public final void drop() {
 		this.setPosition(this.getPosition().getX().intValue(), 
-				this.getPosition().getY().intValue() + VariousMagicNumbers.TEN);
+				this.getPosition().getY().intValue() + MagicEnumInt.SEVEN.getValue());
+	}
+
+	/**
+	 * @return GameField reference.
+	 */
+	public GameField getGameFieldReference() {
+		return this.gameField;
 	}
 
     /** 

@@ -1,6 +1,5 @@
 package controller.collisionEngine;
 
-import utilities.VariousMagicNumbers;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -14,7 +13,8 @@ import model.hud.HUDPointsImpl;
 import model.ship.SpaceShip;
 import model.status.Status;
 import model.status.StatusEnum;
-import utilities.HUDParameters;
+import utilities.MagicEnumDouble;
+import utilities.MagicEnumInt;
 import view.gameField.GameField;
 
 public class CollisionEngine extends AbstractHelper implements ICollisionEngine {
@@ -138,9 +138,9 @@ public class CollisionEngine extends AbstractHelper implements ICollisionEngine 
         	if (this.gameField.getPlayer().getNode().getBoundsInParent().intersects(shipBound)) {
             	super.removeLife();
             	super.removePoints();
-            	super.setBossHP(VariousMagicNumbers.SEVEN);
+            	super.setBossHP(MagicEnumInt.SEVEN.getValue());
 
-                this.gameField.setBossToBeSpawned(VariousMagicNumbers.TRUE);
+                this.gameField.setBossToBeSpawned(true);
             	this.gameField.getGameContainer().getChildren().remove(boss.getNode());
                 this.toBeRemovedList.add(boss);
                 this.gameField.getSoundManager().playPlayerImpact();
@@ -167,10 +167,10 @@ public class CollisionEngine extends AbstractHelper implements ICollisionEngine 
                         super.addLife();
                         break;
                     case BonusSpeed:
-                        resetX *= HUDParameters.BOOST;
+                        resetX *= MagicEnumDouble.BOOST.getValue();
                         break;
                     case MalusSpeed:
-                        resetX *= HUDParameters.SLOW;
+                        resetX *= MagicEnumDouble.SLOW.getValue();
                         break;  
                     case MalusCommand:
                         break;
@@ -216,7 +216,6 @@ public class CollisionEngine extends AbstractHelper implements ICollisionEngine 
     public final void bossesCollisionwithWall() {
 
         this.gameField.getActiveBosses().forEach(boss -> {
-            int limit = boss.getPosition().getX().intValue();
 
             if (this.isEntityCollidingLeftWall(boss, X_BOSS_LEFT_BORDER)) {
                 boss.invertDirection();
@@ -244,17 +243,17 @@ public class CollisionEngine extends AbstractHelper implements ICollisionEngine 
                 if (bulletBound.intersects(shipBound)) {
                     this.toBeRemovedList.add(bullet);
 
-                    if (super.getBossHP() < VariousMagicNumbers.ONE) {
+                    if (super.getBossHP() < MagicEnumInt.ONE.getValue()) {
                         bosses.remove();
                         this.toBeRemovedList.add(enemyship);
                         this.gameField.getSoundManager().playBossDeath();
-                        this.gameField.setBossToBeSpawned(VariousMagicNumbers.TRUE);
-                        super.setBossHP(VariousMagicNumbers.SEVEN);
-                        super.getPointsHUD().pointsSetter(VariousMagicNumbers.THREE);
+                        this.gameField.setBossToBeSpawned(true);
+                        super.setBossHP(MagicEnumInt.SEVEN.getValue());
+                        super.getPointsHUD().pointsSetter(MagicEnumInt.THREE.getValue());
                     } else {
                         this.gameField.getSoundManager().playBossDamaged();
                     }
-                    super.setBossHP(super.getBossHP() - VariousMagicNumbers.ONE);
+                    super.setBossHP(super.getBossHP() - MagicEnumInt.ONE.getValue());
                     bullets.remove();
                 }
             }

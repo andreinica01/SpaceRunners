@@ -3,8 +3,8 @@ package model.status;
 import model.EntityImpl;
 import model.ship.SpaceShip;
 import utilities.Direction;
-import utilities.Parameters;
-import utilities.VariousMagicNumbers;
+import utilities.MagicEnumComplexImage;
+import utilities.MagicEnumInt;
 
 /**
  * An entity that can apply, under certain condition, an effect (bonus or malus)
@@ -26,9 +26,9 @@ public abstract class Status extends EntityImpl {
      */
     public Status() {
         this.setDirection(Direction.DOWN);
-        this.setSpeed(Parameters.STATUS_SPEED);
-        this.setImage(Parameters.randomStatusImage);
-        this.getNode().setRotate(VariousMagicNumbers.ZERO);
+        this.setSpeed(MagicEnumInt.STATUS_SPEED.getValue());
+        this.setImage(MagicEnumComplexImage.RANDOM_STATUS.getImage());
+        this.getNode().setRotate(MagicEnumInt.ZERO.getValue());
     }
 
     /**

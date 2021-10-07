@@ -3,9 +3,8 @@ package model.hud;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
-import utilities.HUDParameters;
-import utilities.Parameters;
-import utilities.VariousMagicNumbers;
+import utilities.MagicEnumInt;
+import utilities.MagicEnumString;
 
 /**
  * This class defines how the points HUD must look.
@@ -19,6 +18,7 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
     private static final int Y_LAYOUT = 20;
     private static final int POINTS_UP = 1;
     private static final int POINTS_DOWN = -5;
+    private static final String YELLOW = "yellow";
     private static final String MATTER = "Points: ";
 
     /*
@@ -31,13 +31,13 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
      */
     public HUDPointsImpl() {
 
-        this.points = VariousMagicNumbers.ZERO;
+        this.points = MagicEnumInt.ZERO.getValue();
 
-        this.setLayoutX(Parameters.WIDTH - X_LAYOUT);
+        this.setLayoutX(MagicEnumInt.WIDTH.getValue() - X_LAYOUT);
         this.setLayoutY(Y_LAYOUT);
         this.setText(MATTER + this.getPoints());
-        this.setFont(new Font(HUDParameters.FONT, HUDParameters.FONT_SIZE));
-        this.setTextFill(Paint.valueOf("yellow"));
+        this.setFont(new Font(MagicEnumString.FONT.getValue(), MagicEnumInt.FONT_SIZE.getValue()));
+        this.setTextFill(Paint.valueOf(YELLOW));
     }
 
     /*
@@ -53,14 +53,14 @@ public class HUDPointsImpl extends Label implements IHUDPoints {
      */
     @Override
     public final void pointsUp() {
-        if (this.getPoints() < HUDParameters.MAX_POINTS_POSSIBLE) {
+        if (this.getPoints() < MagicEnumInt.MAX_POINTS_POSSIBLE.getValue()) {
             this.pointsSetter(POINTS_UP);
         }
     }
 
     @Override
     public final void pointsDown() {
-        if (this.getPoints() < VariousMagicNumbers.FIVE) {
+        if (this.getPoints() < MagicEnumInt.FIVE.getValue()) {
             this.pointsSetter(-this.getPoints());
         } else {
             this.pointsSetter(POINTS_DOWN);

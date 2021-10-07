@@ -14,8 +14,8 @@ import model.bullet.Bullet;
 import model.ship.BossShip;
 import model.ship.SpaceShip;
 import model.status.Status;
-import utilities.Parameters;
-import utilities.VariousMagicNumbers;
+import utilities.MagicEnumImage;
+import utilities.MagicEnumInt;
 import view.SoundManager.SoundManager;
 
 public class GameFieldImpl implements GameField {
@@ -68,12 +68,12 @@ public class GameFieldImpl implements GameField {
         this.status = new HashSet<Status>();
 
         // to load in specific class container
-        this.backGroundImage = new ImageView[VariousMagicNumbers.THREE];
+        this.backGroundImage = new ImageView[MagicEnumInt.THREE.getValue()];
         this.soundmanager = new SoundManager();
 
         this.width = width2;
         this.height = height2;
-        this.bossIsSpawned = VariousMagicNumbers.FALSE;
+        this.bossIsSpawned = false;
 	}
 
 	@Override
@@ -138,17 +138,17 @@ public class GameFieldImpl implements GameField {
     @Override
     public final void setBackgroundImage(final String path) {
         for (int i = 0; i < this.backGroundImage.length; i++) {
-            this.backGroundImage[i] = new ImageView(Parameters.backgroundImage);
-            this.backGroundImage[i].setLayoutX(VariousMagicNumbers.ZERO);
+            this.backGroundImage[i] = new ImageView(MagicEnumImage.BACKGROUND.getImage());
+            this.backGroundImage[i].setLayoutX(MagicEnumInt.ZERO.getValue());
             this.backGroundImage[i].setFitWidth(this.width);
             this.backGroundImage[i].setFitHeight(this.height);
-            this.backGroundImage[i].setViewOrder(VariousMagicNumbers.TEN);
+            this.backGroundImage[i].setViewOrder(MagicEnumInt.TEN.getValue());
             this.gameContainer.getChildren().add(this.backGroundImage[i]);
         }
 
-        this.backGroundImage[VariousMagicNumbers.ZERO].setTranslateX(VariousMagicNumbers.ZERO);
-        this.backGroundImage[VariousMagicNumbers.ONE].setLayoutY(-this.height);
-        this.backGroundImage[VariousMagicNumbers.TWO].setLayoutY(-this.height - VariousMagicNumbers.THIRTY);
+        this.backGroundImage[MagicEnumInt.ZERO.getValue()].setTranslateX(MagicEnumInt.ZERO.getValue());
+        this.backGroundImage[MagicEnumInt.ONE.getValue()].setLayoutY(-this.height);
+        this.backGroundImage[MagicEnumInt.TWO.getValue()].setLayoutY(-this.height - MagicEnumInt.THIRTY.getValue());
     }
 
     @Override
@@ -265,10 +265,10 @@ public class GameFieldImpl implements GameField {
     @Override
     public final boolean isBossToBeSpawned() {
     	if (this.bossIsSpawned) {
-    		return VariousMagicNumbers.FALSE;
-    	} else {
-    		return VariousMagicNumbers.TRUE;
+    		return false;
     	}
+
+    	return this.bossIsSpawned;
     }
 
     @Override
