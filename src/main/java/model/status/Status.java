@@ -3,7 +3,7 @@ package model.status;
 import model.EntityImpl;
 import model.ship.SpaceShip;
 import utilities.Direction;
-import utilities.MagicEnumImage;
+import utilities.MagicEnumComplexImage;
 import utilities.MagicEnumInt;
 
 /**
@@ -27,7 +27,7 @@ public abstract class Status extends EntityImpl {
     public Status() {
         this.setDirection(Direction.DOWN);
         this.setSpeed(MagicEnumInt.STATUS_SPEED.getValue());
-        this.setImage(MagicEnumImage.RANDOM_STATUS.getImage());
+        this.setImage(MagicEnumComplexImage.RANDOM_STATUS.getImage());
         this.getNode().setRotate(MagicEnumInt.ZERO.getValue());
     }
 

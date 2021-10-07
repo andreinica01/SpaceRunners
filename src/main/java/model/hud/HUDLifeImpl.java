@@ -3,7 +3,7 @@ package model.hud;
 import java.util.stream.IntStream;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import utilities.MagicEnumImage;
+import utilities.MagicEnumComplexImage;
 import utilities.MagicEnumInt;
 
 /**
@@ -81,7 +81,7 @@ public class HUDLifeImpl implements IHUDLife {
      * @param index.
      */
     private void addLife(final int index) {
-        this.lives[index] = new ImageView(MagicEnumImage.LIFE.getImage());
+        this.lives[index] = new ImageView(MagicEnumComplexImage.LIFE.getImage());
         this.lives[index].setLayoutX(index * SPACING);
         this.pane.getChildren().add(this.lives[index]);
         this.lives[index].setViewOrder(MagicEnumInt.COMMON_VIEW_ORDER.getValue());
