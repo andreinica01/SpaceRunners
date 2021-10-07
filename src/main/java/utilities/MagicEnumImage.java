@@ -8,32 +8,27 @@ public enum MagicEnumImage {
 	/**
 	 * 
 	 */
-	BULLET(new Image(new File(MagicEnumString.BULLET_PATH.getValue()).toURI().toString()),
+	BULLET(new Image(new File(MagicEnumString.BULLET_PATH.getValue()).toURI().toString())),
 
 	/**
 	 * 
 	 */
-	BACKGROUND(new Image(new File(MagicEnumString.BACKGROUND_PATH.getValue()).toURI().toString()),
+	BACKGROUND(new Image(new File(MagicEnumString.BACKGROUND_PATH.getValue()).toURI().toString())),
 
 	/**
 	 * 
 	 */
-	PLAYER(new Image(new File(MagicEnumString.PLAYER_PATH.getValue()).toURI().toString()),
+	PLAYER(new Image(new File(MagicEnumString.PLAYER_PATH.getValue()).toURI().toString())),
 
 	/**
 	 * 
 	 */
-	ENEMY(new Image(new File(MagicEnumString.ENEMY_PATH.getValue()).toURI().toString()),
+	ENEMY(new Image(new File(MagicEnumString.ENEMY_PATH.getValue()).toURI().toString())),
 
 	/**
 	 * 
 	 */
-	LIFE(new Image(new File(MagicEnumString.LIFE_PATH.getValue()).toURI().toString()),
-
-	/**
-	 * 
-	 */
-	BOSS(new Image(new File(MagicEnumString.BOSS_PATH.getValue()).toURI().toString());
+	BOSS(new Image(new File(MagicEnumString.BOSS_PATH.getValue()).toURI().toString()));
 	
 	private Image value;
 

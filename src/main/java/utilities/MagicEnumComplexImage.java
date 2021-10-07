@@ -5,6 +5,11 @@ import java.io.File;
 import javafx.scene.image.Image;
 
 public enum MagicEnumComplexImage {
+	/**
+	 * 
+	 */
+	LIFE(new Image(new File(MagicEnumString.LIFE_PATH.getValue()).toURI().toString(), 
+		50, 50, false, true)),
 
 	/**
 	 * 
@@ -40,7 +45,7 @@ public enum MagicEnumComplexImage {
 	 * 
 	 */
 	RANDOM_STATUS(new Image(new File(MagicEnumString.RANDOM_STATUS_PATH.getValue()).toURI().toString(), 
-			50, 50, true, true)),
+			50, 50, true, true));
 	
 	private Image value;
 
