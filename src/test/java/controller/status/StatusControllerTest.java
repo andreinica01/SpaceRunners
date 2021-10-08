@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 import javafx.embed.swing.JFXPanel;
@@ -18,7 +19,7 @@ import view.gameField.*;
 /** Class Test to verify the correct Status behavior. */
 class StatusControllerTest {
 
-    private PlayerSpaceShip player;
+	private PlayerSpaceShip player;
 	private StatusController controller;
 	private StatusFactory factory;
 	private GameField gamefield;
@@ -92,18 +93,27 @@ class StatusControllerTest {
 		// Testing only one Status (with cooldown feature), because this mechanism is
 		// shared
 		bonusSpeedTest();
-		long timeSpan = (long) (new BonusSpeed().getCoolDown() - 2.0) * 1000;
+		double delta = 1.0;
+		long timeSpan = TimeUnit.MILLISECONDS.convert((long) (new BonusSpeed().getCoolDown() - delta),
+				TimeUnit.SECONDS);
 		// Waiting until cooldown goes down of a bit (timeSpan)
-		while (controller.getPlayerStatus().get(StatusEnum.BonusSpeed).get().getDelay(TimeUnit.MILLISECONDS) > timeSpan) { }
+		while (controller.getPlayerStatus().get(StatusEnum.BonusSpeed).get()
+				.getDelay(TimeUnit.MILLISECONDS) > timeSpan) {
+		}
 		// Testing changes
 		controller.applyEffect(factory.createStatus(StatusEnum.BonusSpeed));
-		waitUntilApplied(() -> controller.getPlayerStatus().get(StatusEnum.BonusSpeed).get()
-				.getDelay(TimeUnit.MILLISECONDS) < timeSpan);
-		assertTrue(controller.getPlayerStatus().get(StatusEnum.BonusSpeed).get()
-				.getDelay(TimeUnit.MILLISECONDS) > timeSpan);
+		long x = controller.getPlayerStatus().get(StatusEnum.BonusSpeed).get().getDelay(TimeUnit.MILLISECONDS);
+		waitUntilApplied(() -> x < timeSpan);
+		assertTrue(x > timeSpan);
 	}
 
 	private void waitUntilApplied(final Supplier<Boolean> condition) {
-		while (condition.get()) { }
+		CountDownLatch latch = new CountDownLatch(1);
+		try {
+			latch.await(500, TimeUnit.MILLISECONDS);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
+
 }
