@@ -107,15 +107,16 @@ public enum MagicEnumInt {
 	STATUS_SPEED(6);
 
 	private final int value;
-	
+
 	/**
 	 * Constructor.
+	 * 
 	 * @param value
 	 */
 	private MagicEnumInt(final int value) {
 		this.value = value;
 	}
-	
+
 	/**
 	 * @return enum value.
 	 */

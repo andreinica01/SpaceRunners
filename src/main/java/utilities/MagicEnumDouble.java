@@ -5,17 +5,17 @@ public enum MagicEnumDouble {
 	 * 
 	 */
 	SIXTEEN(16),
-	
+
 	/**
 	 * 
 	 */
 	PLAYER_SCALE(0.3),
-	
+
 	/**
 	 * 
 	 */
 	BULLET_SCALE(0.08),
-	
+
 	/**
 	 * 
 	 */
@@ -30,17 +30,18 @@ public enum MagicEnumDouble {
 	 * 
 	 */
 	SLOW((double) 2 / 3);
-	
+
 	private final double value;
 
 	/**
 	 * Constructor.
+	 * 
 	 * @param value
 	 */
 	private MagicEnumDouble(final double value) {
 		this.value = value;
 	}
-	
+
 	/**
 	 * @return enum value.
 	 */

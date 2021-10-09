@@ -18,6 +18,7 @@ public class SceneManager {
 
 	/**
 	 * Constructor.
+	 * 
 	 * @param mainWindow
 	 * @throws IOException
 	 */
@@ -30,6 +31,7 @@ public class SceneManager {
 
 	/**
 	 * Switch to Start Menu.
+	 * 
 	 * @throws IOException
 	 */
 	public void switchToStartMenu() throws IOException {
@@ -38,6 +40,7 @@ public class SceneManager {
 
 	/**
 	 * Switch to Game.
+	 * 
 	 * @throws IOException
 	 */
 	public void switchToGame(final String name) throws IOException {
@@ -49,6 +52,7 @@ public class SceneManager {
 
 	/**
 	 * Switch to Score Menu.
+	 * 
 	 * @throws IOException
 	 */
 	public void switchToScores() throws IOException {
@@ -57,14 +61,16 @@ public class SceneManager {
 
 	/**
 	 * Switch to Name Menu.
+	 * 
 	 * @throws IOException
 	 */
 	public void switchToNickname() throws IOException {
 		this.mainWindow.setScene(this.getSceneFromFxml("fxml/Nickname.fxml"));
 	}
-	
+
 	/**
 	 * Switch to End Game menu.
+	 * 
 	 * @throws IOException
 	 */
 	public void switchToEndMenu() throws IOException {
@@ -74,12 +80,12 @@ public class SceneManager {
 
 	/**
 	 * Switch to Controls Menu.
+	 * 
 	 * @throws IOException
 	 */
 	public void switchToControls() throws IOException {
 		this.mainWindow.setScene(this.getSceneFromFxml("fxml/Controls.fxml"));
 	}
-
 
 	/**
 	 * Quit from the game.
@@ -113,15 +119,16 @@ public class SceneManager {
 	public Ranking getRanking() {
 		return this.ranking;
 	}
-	
+
 	/**
 	 * Set score reference.
+	 * 
 	 * @param score
 	 */
 	public void setScore(final Text score) {
 		this.menuController.setScore(score);
 	}
-	
+
 	/**
 	 * @return score reference.
 	 */

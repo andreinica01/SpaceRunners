@@ -164,8 +164,8 @@ public class SoundManager {
 	 * Clear the sound memory, this is due to ArrayList implementation.
 	 */
 	public void cleanSoundMemory() {
-		Iterator<Clip> soundsToRemove = 
-				this.sounds.subList(MagicEnumInt.ZERO.getValue(), SOUND_MEMORY_BUFFER).iterator();
+		Iterator<Clip> soundsToRemove = this.sounds.subList(MagicEnumInt.ZERO.getValue(), SOUND_MEMORY_BUFFER)
+				.iterator();
 
 		while (soundsToRemove.hasNext()) {
 			Clip v = soundsToRemove.next();

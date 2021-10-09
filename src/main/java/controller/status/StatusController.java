@@ -19,101 +19,98 @@ import utilities.MagicEnumInt;
  */
 public class StatusController {
 
-    private ScheduledExecutorService ses;
-    private SpaceShip player;
-    private HashMap<StatusEnum, Optional<ScheduledFuture<?>>> playerStatus;
-    private Map<StatusEnum, Boolean> activeStatus;
-    private Map<StatusEnum, Long> statusCooldown;
+	private ScheduledExecutorService ses;
+	private SpaceShip player;
+	private HashMap<StatusEnum, Optional<ScheduledFuture<?>>> playerStatus;
+	private Map<StatusEnum, Boolean> activeStatus;
+	private Map<StatusEnum, Long> statusCooldown;
 
-    /**
-     * Create and Setting this StatusController to a SpaceShip instance.
-     *
-     * @param player
-     */
-    public StatusController(final SpaceShip player) {
-        this.ses = Executors.newScheduledThreadPool(1);
-        this.player = player;
-        this.playerStatus = new HashMap<>();
-        this.activeStatus = new HashMap<>();
-        this.statusCooldown = new HashMap<>();
-        this.setPlayerStatus();
-    }
+	/**
+	 * Create and Setting this StatusController to a SpaceShip instance.
+	 *
+	 * @param player
+	 */
+	public StatusController(final SpaceShip player) {
+		this.ses = Executors.newScheduledThreadPool(1);
+		this.player = player;
+		this.playerStatus = new HashMap<>();
+		this.activeStatus = new HashMap<>();
+		this.statusCooldown = new HashMap<>();
+		this.setPlayerStatus();
+	}
 
-    /**
-     * Applying StatusEffect to the Player. Every Status has his own expiring time.
-     *
-     * @param Status status
-     */
-    public boolean applyEffect(final Status status) {
-        status.setPlayer(this.player);
-        Optional<ScheduledFuture<?>> task = this.playerStatus.get(status.getStatusName());
-        // Adding effect if never added before or already terminated
-        if (task.isEmpty() || task.get().isDone()) {
-            this.ses.execute(status.getEffect());
-            this.addDebuffTask(status);
-            return true;
-        }
-        // Else, refresh task's time
-        task.get().cancel(false);
-        this.addDebuffTask(status);
-        return true;
-    }
+	/**
+	 * Applying StatusEffect to the Player. Every Status has his own expiring time.
+	 *
+	 * @param Status status
+	 */
+	public boolean applyEffect(final Status status) {
+		status.setPlayer(this.player);
+		Optional<ScheduledFuture<?>> task = this.playerStatus.get(status.getStatusName());
+		// Adding effect if never added before or already terminated
+		if (task.isEmpty() || task.get().isDone()) {
+			this.ses.execute(status.getEffect());
+			this.addDebuffTask(status);
+			return true;
+		}
+		// Else, refresh task's time
+		task.get().cancel(false);
+		this.addDebuffTask(status);
+		return true;
+	}
 
-    private void addDebuffTask(final Status status) {
-        // Scheduling effect timeout, and add it to the local map
-        var task = ses.schedule(status.getRemoveEffect(), status.getCoolDown(), TimeUnit.SECONDS);
-        this.addTask(status, task);
-    }
+	private void addDebuffTask(final Status status) {
+		// Scheduling effect timeout, and add it to the local map
+		var task = ses.schedule(status.getRemoveEffect(), status.getCoolDown(), TimeUnit.SECONDS);
+		this.addTask(status, task);
+	}
 
-    private void addTask(final Status status, final ScheduledFuture<?> task) {
-        this.playerStatus.put(status.getStatusName(), Optional.of(task));
-    }
+	private void addTask(final Status status, final ScheduledFuture<?> task) {
+		this.playerStatus.put(status.getStatusName(), Optional.of(task));
+	}
 
-    private void setPlayerStatus() {
-        Stream.of(StatusEnum.values()).forEach(e -> this.playerStatus.put(e, Optional.empty()));
-    }
+	private void setPlayerStatus() {
+		Stream.of(StatusEnum.values()).forEach(e -> this.playerStatus.put(e, Optional.empty()));
+	}
 
-    public final HashMap<StatusEnum, Optional<ScheduledFuture<?>>> getPlayerStatus() {
-        return this.playerStatus;
-    }
+	public final HashMap<StatusEnum, Optional<ScheduledFuture<?>>> getPlayerStatus() {
+		return this.playerStatus;
+	}
 
-    public final SpaceShip getPlayer() {
-        return this.player;
-    }
+	public final SpaceShip getPlayer() {
+		return this.player;
+	}
 
-    /**
-     * Mapping every Status with a boolean representing his own active state.
-     * Example : <BonusSpeed, false> //BonusSpeed is not active <BonusSpeed, true>
-     * //BonusSpeed is active
-     * 
-     * @return Map <StatusEnum, >
-     */
-    public Map<StatusEnum, Boolean> getActiveStatus() {
-    	var map = this.getAllCooldown(TimeUnit.MILLISECONDS);
-        Stream.of(StatusEnum.values())
-        	  .forEach(e -> this.activeStatus.put(e, map.get(e) > 0));
-        return this.activeStatus;
-    }
+	/**
+	 * Mapping every Status with a boolean representing his own active state.
+	 * Example : <BonusSpeed, false> //BonusSpeed is not active <BonusSpeed, true>
+	 * //BonusSpeed is active
+	 * 
+	 * @return Map <StatusEnum, >
+	 */
+	public Map<StatusEnum, Boolean> getActiveStatus() {
+		var map = this.getAllCooldown(TimeUnit.MILLISECONDS);
+		Stream.of(StatusEnum.values()).forEach(e -> this.activeStatus.put(e, map.get(e) > 0));
+		return this.activeStatus;
+	}
 
-    /**
-     * Mapping every Status with his own (active) cooldown. Time is expressed by the
-     * TimeUnit passed by argument. Example : <BonusSpeed, 5211> //BonusSpeed end in
-     * 5211 TimeUnit.
-     * 
-     * @param timeUnit
-     * @return Map <StatusEnum, Long>
-     */
-    public Map<StatusEnum, Long> getAllCooldown(final TimeUnit timeUnit) {
+	/**
+	 * Mapping every Status with his own (active) cooldown. Time is expressed by the
+	 * TimeUnit passed by argument. Example : <BonusSpeed, 5211> //BonusSpeed end in
+	 * 5211 TimeUnit.
+	 * 
+	 * @param timeUnit
+	 * @return Map <StatusEnum, Long>
+	 */
+	public Map<StatusEnum, Long> getAllCooldown(final TimeUnit timeUnit) {
 
-    	//Updating active status
-        Stream.of(StatusEnum.values())
-        .filter(e -> this.playerStatus.get(e).isPresent())
-        .forEach(e -> this.statusCooldown.put(e, this.playerStatus.get(e).get().getDelay(timeUnit)));
-        //Updating inactive status
-        Stream.of(StatusEnum.values())
-		.filter(e -> !this.playerStatus.get(e).isPresent())
-        .forEach(e -> this.statusCooldown.put(e, Long.valueOf(MagicEnumInt.ZERO.getValue())));
+		// Updating active status
+		Stream.of(StatusEnum.values()).filter(e -> this.playerStatus.get(e).isPresent())
+				.forEach(e -> this.statusCooldown.put(e, this.playerStatus.get(e).get().getDelay(timeUnit)));
+		// Updating inactive status
+		Stream.of(StatusEnum.values()).filter(e -> !this.playerStatus.get(e).isPresent())
+				.forEach(e -> this.statusCooldown.put(e, Long.valueOf(MagicEnumInt.ZERO.getValue())));
 
-        return this.statusCooldown;
-    }
+		return this.statusCooldown;
+	}
 }

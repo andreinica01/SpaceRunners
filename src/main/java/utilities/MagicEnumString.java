@@ -81,12 +81,12 @@ public enum MagicEnumString {
 	 * 
 	 */
 	BOSS_PATH(IMAGE_FOLDER.getValue() + "bossShip.png");
-	
-	
+
 	private String value;
 
 	/**
 	 * Constructor.
+	 * 
 	 * @param value
 	 */
 	private MagicEnumString(final String value) {

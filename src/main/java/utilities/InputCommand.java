@@ -4,34 +4,34 @@ package utilities;
  * It contains all available commands.
  */
 public enum InputCommand {
-   
-	/**
-	 * 
-	 */
-	LEFT, 
 
 	/**
 	 * 
 	 */
-    RIGHT,
+	LEFT,
 
-    /**
+	/**
 	 * 
 	 */
-    NONE,
+	RIGHT,
 
-    /**
+	/**
 	 * 
 	 */
-    ATTACK,
+	NONE,
 
-    /**
+	/**
 	 * 
 	 */
-    PAUSE, 
+	ATTACK,
 
-    /**
+	/**
 	 * 
 	 */
-    RESUME;
+	PAUSE,
+
+	/**
+	 * 
+	 */
+	RESUME;
 }

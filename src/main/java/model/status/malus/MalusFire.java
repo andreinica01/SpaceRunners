@@ -4,21 +4,21 @@ import model.status.Status;
 import model.status.StatusEnum;
 import utilities.MagicEnumInt;
 
-/** 
- * A Status that block player's firing. 
+/**
+ * A Status that block player's firing.
  */
 public class MalusFire extends Status {
 
-    /**
-     * Constructor.
-     */
-    public MalusFire() {
-        super();
+	/**
+	 * Constructor.
+	 */
+	public MalusFire() {
+		super();
 
-        this.setStatusName(StatusEnum.MalusFire);
-        this.setCoolDown(MagicEnumInt.SEVEN.getValue()); // 7 s
+		this.setStatusName(StatusEnum.MalusFire);
+		this.setCoolDown(MagicEnumInt.SEVEN.getValue()); // 7 s
 
-        this.setEffect(() -> this.getPlayer().setCanFire(false));
-        this.setRemoveEffect(() -> this.getPlayer().setCanFire(true));
-    }
+		this.setEffect(() -> this.getPlayer().setCanFire(false));
+		this.setRemoveEffect(() -> this.getPlayer().setCanFire(true));
+	}
 }

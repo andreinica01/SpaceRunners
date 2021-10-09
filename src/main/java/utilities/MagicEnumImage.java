@@ -29,11 +29,12 @@ public enum MagicEnumImage {
 	 * 
 	 */
 	BOSS(new Image(new File(MagicEnumString.BOSS_PATH.getValue()).toURI().toString()));
-	
+
 	private Image value;
 
 	/**
 	 * Constructor.
+	 * 
 	 * @param value
 	 */
 	private MagicEnumImage(final Image value) {

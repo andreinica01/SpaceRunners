@@ -25,6 +25,7 @@ public class Ranking {
 
 	/**
 	 * Constructor.
+	 * 
 	 * @throws IOException
 	 */
 	public Ranking() throws IOException {
@@ -42,8 +43,7 @@ public class Ranking {
 		if (this.file.exists()) {
 			Properties p = new Properties();
 			p.load(new FileInputStream(this.file));
-			p.stringPropertyNames()
-			 .forEach(e -> this.map.put(e, Integer.valueOf(p.get(e).toString())));
+			p.stringPropertyNames().forEach(e -> this.map.put(e, Integer.valueOf(p.get(e).toString())));
 		} else {
 			this.file.createNewFile();
 			this.saveMapToFile();
@@ -81,8 +81,7 @@ public class Ranking {
 	 * @return List<Entry<String, Integer>>
 	 */
 	private List<Entry<String, Integer>> getSortedEntryList(final Map<String, Integer> unsortedMap) {
-		return unsortedMap.entrySet().stream()
-				.sorted(Entry.comparingByValue(Comparator.reverseOrder()))
+		return unsortedMap.entrySet().stream().sorted(Entry.comparingByValue(Comparator.reverseOrder()))
 				.collect(Collectors.toList());
 	}
 
@@ -99,7 +98,8 @@ public class Ranking {
 	public final String toString() {
 		StringJoiner s = new StringJoiner("");
 		List<Entry<String, Integer>> sortedEntry;
-		sortedEntry = this.getSortedEntryList(this.map).stream().limit(MagicEnumInt.TEN.getValue()).collect(Collectors.toList());
+		sortedEntry = this.getSortedEntryList(this.map).stream().limit(MagicEnumInt.TEN.getValue())
+				.collect(Collectors.toList());
 		sortedEntry.forEach(e -> s.add(e.getValue().toString() + "\t" + e.getKey() + "\n"));
 		return s.toString();
 	}

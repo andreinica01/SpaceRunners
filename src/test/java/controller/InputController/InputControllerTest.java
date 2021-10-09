@@ -25,47 +25,46 @@ class InputControllerTest extends ApplicationTest {
 		this.inputControllerImpl = new InputControllerImpl(scene);
 		this.refreshTask();
 	}
+
 	/**
-	 * Testing Movement by input simulation.
-	 * Left, Right, None
+	 * Testing Movement by input simulation. Left, Right, None
 	 */
 	@Test
 	void checkMovement() {
-		//Left
+		// Left
 		this.simulateTask(InputCommand.LEFT, true);
 		assertTrue(this.tasks.get(InputCommand.LEFT));
 		this.simulateTask(InputCommand.LEFT, false);
-		//Right
+		// Right
 		this.simulateTask(InputCommand.RIGHT, true);
 		assertTrue(this.tasks.get(InputCommand.RIGHT));
 		this.simulateTask(InputCommand.RIGHT, false);
-		//Left and Right
+		// Left and Right
 		this.simulateTask(InputCommand.LEFT, true);
 		this.simulateTask(InputCommand.RIGHT, true);
 		assertFalse(this.tasks.get(InputCommand.LEFT));
 		assertFalse(this.tasks.get(InputCommand.RIGHT));
 		this.simulateTask(InputCommand.LEFT, false);
 		this.simulateTask(InputCommand.RIGHT, false);
-		//Staying
+		// Staying
 		this.simulateTask(InputCommand.LEFT, false);
 		this.simulateTask(InputCommand.RIGHT, false);
 		assertFalse(this.tasks.get(InputCommand.LEFT));
 		assertFalse(this.tasks.get(InputCommand.RIGHT));
-		
+
 	}
-	
+
 	/**
-	 * Testing attack by input simulation.
-	 * Attack and his logic.
+	 * Testing attack by input simulation. Attack and his logic.
 	 */
 	@Test
 	void checkAttack() {
-		//Fire
+		// Fire
 		this.simulateTask(InputCommand.ATTACK, true);
 		assertTrue(this.tasks.get(InputCommand.ATTACK));
 		this.simulateTask(InputCommand.ATTACK, false);
 		assertFalse(this.tasks.get(InputCommand.ATTACK));
-		//Fire logic
+		// Fire logic
 		this.simulateTask(InputCommand.ATTACK, true);
 		this.simulateTask(InputCommand.ATTACK, true);
 		assertFalse(this.tasks.get(InputCommand.ATTACK));
@@ -80,6 +79,7 @@ class InputControllerTest extends ApplicationTest {
 
 	/**
 	 * Simulate a state of a Command.
+	 * 
 	 * @param command
 	 * @param state
 	 */
@@ -90,6 +90,7 @@ class InputControllerTest extends ApplicationTest {
 
 	/**
 	 * Return a list made of all the keys mapped to a specific command.
+	 * 
 	 * @param command
 	 * @return List<KeyCode>
 	 */
@@ -100,6 +101,7 @@ class InputControllerTest extends ApplicationTest {
 
 	/**
 	 * Setting up a state (pressed or not) for every keys of the list.
+	 * 
 	 * @param keysList
 	 * @param state
 	 */

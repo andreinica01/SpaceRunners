@@ -17,7 +17,7 @@ public class InputControllerImpl {
 	private Map<KeyCode, InputCommand> commandKeys;
 	private Map<InputCommand, Boolean> task;
 	private Scene scene;
-	
+
 	// Flag used to implement fire logic.
 	private boolean fireFlag;
 
@@ -40,6 +40,7 @@ public class InputControllerImpl {
 
 	/**
 	 * Change Scene of this InputController.
+	 * 
 	 * @param scene
 	 */
 	public void changeScene(final Scene scene) {
@@ -63,10 +64,11 @@ public class InputControllerImpl {
 		this.commandKeys.put(KeyCode.D, InputCommand.RIGHT);
 		this.commandKeys.put(KeyCode.P, InputCommand.ATTACK);
 	}
-	
+
 	/**
-	 * Add an association key-command.
-	 * There can only be one association key-command per command.
+	 * Add an association key-command. There can only be one association key-command
+	 * per command.
+	 * 
 	 * @param key
 	 * @param command
 	 */
@@ -106,6 +108,7 @@ public class InputControllerImpl {
 
 	/**
 	 * Get a map that groups Keys based on the InputCommand.
+	 * 
 	 * @return
 	 */
 	public Map<InputCommand, List<KeyCode>> getMapGrouped() {
@@ -113,8 +116,8 @@ public class InputControllerImpl {
 	}
 
 	/**
-	 * Managing tasks.
-	 * Checking if the state of some of them should be changed or not.
+	 * Managing tasks. Checking if the state of some of them should be changed or
+	 * not.
 	 */
 	private void updatePlayerTasks() {
 		this.updateTask();
@@ -158,9 +161,10 @@ public class InputControllerImpl {
 	public Map<KeyCode, Boolean> getPressedKeys() {
 		return this.pressedKeys;
 	}
-	
+
 	/**
 	 * Get the Key associated with the specified command.
+	 * 
 	 * @param command
 	 * @return
 	 */
@@ -175,6 +179,7 @@ public class InputControllerImpl {
 
 	/**
 	 * Get a Map mapping Keys to Command.
+	 * 
 	 * @return
 	 */
 	public Map<KeyCode, InputCommand> getCommandKeys() {

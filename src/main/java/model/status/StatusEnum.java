@@ -9,32 +9,32 @@ public enum StatusEnum {
 	/**
 	 * 
 	 */
-	BonusLife, 
+	BonusLife,
 
 	/**
 	 * 
 	 */
-    BonusSpeed, 
+	BonusSpeed,
 
-    /**
+	/**
 	 * 
 	 */
-    MalusCommand, 
+	MalusCommand,
 
-    /**
+	/**
 	 * 
 	 */
-    MalusFire, 
+	MalusFire,
 
-    /**
+	/**
 	 * 
 	 */
-    MalusSpeed;
+	MalusSpeed;
 
-    /**
-     * Return a random Status type.
-     */
-    public static StatusEnum getRandom() {
-        return StatusEnum.values()[new Random().nextInt(StatusEnum.values().length)];
-    }
+	/**
+	 * Return a random Status type.
+	 */
+	public static StatusEnum getRandom() {
+		return StatusEnum.values()[new Random().nextInt(StatusEnum.values().length)];
+	}
 }

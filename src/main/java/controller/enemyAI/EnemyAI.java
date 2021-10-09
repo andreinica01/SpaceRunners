@@ -12,7 +12,7 @@ import utilities.MagicEnumInt;
 import utilities.Utilities;
 import view.gameField.GameField;
 
-/** 
+/**
  * Class to manage the movement of the enemy ships.
  */
 public class EnemyAI {
@@ -28,136 +28,133 @@ public class EnemyAI {
 	private static final double ZERO = 0.0;
 	private static final double FOUR = 4.0;
 	private static final double TWENTY = 20;
-	
-    private final GameField gameField;
-    private final GameEventController gameEvent;
-    private final StatusFactory statusFactory;
 
-    private int playerPoints;
-    private int bossSpawned;
-    private boolean bossEnabled;
+	private final GameField gameField;
+	private final GameEventController gameEvent;
+	private final StatusFactory statusFactory;
 
-    private long enemyInterval;
-    private long enemyResetTime;
-    private long statusInterval;
-    private long statusResetTime;
+	private int playerPoints;
+	private int bossSpawned;
+	private boolean bossEnabled;
 
-    private final Random rnd;
-    private final BossAI bossAI;
+	private long enemyInterval;
+	private long enemyResetTime;
+	private long statusInterval;
+	private long statusResetTime;
 
-    /**
-     * Constructor.
-     * @param gamefield
-     * @param gameEventController
-     */
-    public EnemyAI(final GameField gamefield, final GameEventController gameEventController) {
-        this.gameField = gamefield;
-        this.gameEvent = gameEventController;
-        this.statusFactory = new StatusFactory();
-        this.bossAI = new BossAI(this.gameField);
-        this.bossSpawned = MagicEnumInt.ONE.getValue();
-        this.enemyResetTime = System.currentTimeMillis();
-        this.statusResetTime = System.currentTimeMillis();
-        this.enemyInterval = (long) (Utilities.getRandomDouble(FIRST_VALUE, SECOND_VALUE) * MULTIPLIER);
-        this.statusInterval = (long) (Utilities.getRandomDouble(SECOND_VALUE, THIRD_VALUE) * MULTIPLIER);
-        this.rnd = new Random();
-    }
-
-    /**
-     * Game update.
-     */
-    public void update() {
-        this.generateEnemy(this.checkAndSetDifficulty());
-        this.generateStatus();
-        this.manageBoss();
-        this.checkBossDeath();
-    }
+	private final Random rnd;
+	private final BossAI bossAI;
 
 	/**
-     * Remove undestroyed ships.
-     */
-    public void removeUnused() {
-        Iterator<SpaceShip> ships = this.gameField.getActiveEnemyShips().iterator();
+	 * Constructor.
+	 * 
+	 * @param gamefield
+	 * @param gameEventController
+	 */
+	public EnemyAI(final GameField gamefield, final GameEventController gameEventController) {
+		this.gameField = gamefield;
+		this.gameEvent = gameEventController;
+		this.statusFactory = new StatusFactory();
+		this.bossAI = new BossAI(this.gameField);
+		this.bossSpawned = MagicEnumInt.ONE.getValue();
+		this.enemyResetTime = System.currentTimeMillis();
+		this.statusResetTime = System.currentTimeMillis();
+		this.enemyInterval = (long) (Utilities.getRandomDouble(FIRST_VALUE, SECOND_VALUE) * MULTIPLIER);
+		this.statusInterval = (long) (Utilities.getRandomDouble(SECOND_VALUE, THIRD_VALUE) * MULTIPLIER);
+		this.rnd = new Random();
+	}
 
-        while (ships.hasNext()) {
-            SpaceShip ship = ships.next();
-            if (!this.gameField.getGameContainer().getBoundsInLocal().contains(ship.getNode().getBoundsInParent())) {
-                this.gameField.getGameContainer().getChildren().remove(ship.getNode());
-                ships.remove();
-            }
-        }
-    }
+	/**
+	 * Game update.
+	 */
+	public void update() {
+		this.generateEnemy(this.checkAndSetDifficulty());
+		this.generateStatus();
+		this.manageBoss();
+		this.checkBossDeath();
+	}
 
-    /**
-     * Check if a boss is dead and in case change a value for next spawn.
-     */
-    private void checkBossDeath() {
+	/**
+	 * Remove undestroyed ships.
+	 */
+	public void removeUnused() {
+		Iterator<SpaceShip> ships = this.gameField.getActiveEnemyShips().iterator();
+
+		while (ships.hasNext()) {
+			SpaceShip ship = ships.next();
+			if (!this.gameField.getGameContainer().getBoundsInLocal().contains(ship.getNode().getBoundsInParent())) {
+				this.gameField.getGameContainer().getChildren().remove(ship.getNode());
+				ships.remove();
+			}
+		}
+	}
+
+	/**
+	 * Check if a boss is dead and in case change a value for next spawn.
+	 */
+	private void checkBossDeath() {
 		if (this.gameField.isBossToBeSpawned()) {
 			this.bossEnabled = false;
 		}
 	}
 
-    /**
-     * This method handle boos spawn system.
-     */
-    public void manageBoss() {
-        if (this.playerPoints == MagicEnumInt.TEN.getValue() * this.bossSpawned && !this.bossEnabled) {
-            this.bossAI.generateBoss();
-        	this.bossSpawned++;
-            this.bossEnabled = true;
-        }
-        if (this.bossEnabled) {
-            this.bossAI.updateBoss();
-        }
-    }
+	/**
+	 * This method handle boos spawn system.
+	 */
+	public void manageBoss() {
+		if (this.playerPoints == MagicEnumInt.TEN.getValue() * this.bossSpawned && !this.bossEnabled) {
+			this.bossAI.generateBoss();
+			this.bossSpawned++;
+			this.bossEnabled = true;
+		}
+		if (this.bossEnabled) {
+			this.bossAI.updateBoss();
+		}
+	}
 
-    /**
-     * Generate enemy entities based on current difficulty.
-     * @param difficultyFactor
-     */
-    private void generateEnemy(final Double difficultyFactor) {
-        if (System.currentTimeMillis() - this.enemyResetTime > this.enemyInterval) {
-            SpaceShip enemyship = new EnemyNounShip(this.gameField);
-            enemyship.setSpeed(enemyship.getSpeed().doubleValue() * difficultyFactor);
-            enemyship.setPosition(this.rnd.nextInt(RAND_X), ENEMY_Y);
+	/**
+	 * Generate enemy entities based on current difficulty.
+	 * 
+	 * @param difficultyFactor
+	 */
+	private void generateEnemy(final Double difficultyFactor) {
+		if (System.currentTimeMillis() - this.enemyResetTime > this.enemyInterval) {
+			SpaceShip enemyship = new EnemyNounShip(this.gameField);
+			enemyship.setSpeed(enemyship.getSpeed().doubleValue() * difficultyFactor);
+			enemyship.setPosition(this.rnd.nextInt(RAND_X), ENEMY_Y);
 
-            this.gameField.addEnemyShip(enemyship);
-            this.gameField.getSoundManager().playShipPassing();
+			this.gameField.addEnemyShip(enemyship);
+			this.gameField.getSoundManager().playShipPassing();
 
-            this.enemyInterval = (long) 
-            		((Utilities.getRandomDouble(
-            				ZERO, MagicEnumInt.FIVE.getValue() * MagicEnumInt.ONE.getValue()
-            				/ difficultyFactor) * MULTIPLIER));
-            this.enemyResetTime = System.currentTimeMillis();
+			this.enemyInterval = (long) ((Utilities.getRandomDouble(ZERO,
+					MagicEnumInt.FIVE.getValue() * MagicEnumInt.ONE.getValue() / difficultyFactor) * MULTIPLIER));
+			this.enemyResetTime = System.currentTimeMillis();
 
-            this.removeUnused();
-        }
-    }
+			this.removeUnused();
+		}
+	}
 
-    /**
-     * Generate status modifier.
-     */
-    private void generateStatus() {
-        if (System.currentTimeMillis() - this.statusResetTime > this.statusInterval) {
-            Status status = this.statusFactory.createStatus(StatusEnum.getRandom());
-            status.setPosition(this.rnd.nextInt(RAND_X), STATUS_Y);
+	/**
+	 * Generate status modifier.
+	 */
+	private void generateStatus() {
+		if (System.currentTimeMillis() - this.statusResetTime > this.statusInterval) {
+			Status status = this.statusFactory.createStatus(StatusEnum.getRandom());
+			status.setPosition(this.rnd.nextInt(RAND_X), STATUS_Y);
 
-            this.gameField.addBonus(status);
+			this.gameField.addBonus(status);
 
-            this.statusInterval = (long) 
-            		((Utilities.getRandomDouble(FOUR, THIRD_VALUE) * MULTIPLIER));
-            this.statusResetTime = System.currentTimeMillis();
-        }
-    }
+			this.statusInterval = (long) ((Utilities.getRandomDouble(FOUR, THIRD_VALUE) * MULTIPLIER));
+			this.statusResetTime = System.currentTimeMillis();
+		}
+	}
 
-    /**
-     * @return current difficulty.
-     */
-    private Double checkAndSetDifficulty() {
-        this.playerPoints = this.gameEvent.checkPoints();
-        // Every 20 points difficulty increasing by 20%
-        return MagicEnumInt.ONE.getValue() 
-        		+ (((double) this.playerPoints / TWENTY)
-        				* DIFFICULTY_MULTIPLIER);
-    }
+	/**
+	 * @return current difficulty.
+	 */
+	private Double checkAndSetDifficulty() {
+		this.playerPoints = this.gameEvent.checkPoints();
+		// Every 20 points difficulty increasing by 20%
+		return MagicEnumInt.ONE.getValue() + (((double) this.playerPoints / TWENTY) * DIFFICULTY_MULTIPLIER);
+	}
 }

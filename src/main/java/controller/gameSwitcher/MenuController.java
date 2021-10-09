@@ -22,7 +22,7 @@ import view.SoundManager.SoundManager;
 public class MenuController {
 
 	private static final int FIFTEEN = 15;
-	
+
 	private SceneManager sceneManager;
 	private InputControllerImpl inputController;
 	private SoundManager soundManager;
@@ -45,6 +45,7 @@ public class MenuController {
 
 	/**
 	 * Constructor.
+	 * 
 	 * @param sceneManager
 	 */
 	public MenuController(final SceneManager sceneManager) {
@@ -92,7 +93,8 @@ public class MenuController {
 		this.sceneManager.switchToControls();
 		this.controlsLeftText.setText(this.inputController.getKeysListByCommand(InputCommand.LEFT).get(0).toString());
 		this.controlsRightText.setText(this.inputController.getKeysListByCommand(InputCommand.RIGHT).get(0).toString());
-		this.controlsAttackText.setText(this.inputController.getKeysListByCommand(InputCommand.ATTACK).get(0).toString());
+		this.controlsAttackText
+				.setText(this.inputController.getKeysListByCommand(InputCommand.ATTACK).get(0).toString());
 	}
 
 	@FXML
@@ -118,6 +120,7 @@ public class MenuController {
 
 	/**
 	 * Set score reference.
+	 * 
 	 * @param score
 	 */
 	public void setScore(final Text score) {
@@ -146,7 +149,8 @@ public class MenuController {
 	@FXML
 	private void changeAttackKey(final ActionEvent event) {
 		this.inputController.addCommandKeys(this.lastKeyPressed, InputCommand.ATTACK);
-		this.controlsAttackText.setText(this.inputController.getMapGrouped().get(InputCommand.ATTACK).get(0).toString());
+		this.controlsAttackText
+				.setText(this.inputController.getMapGrouped().get(InputCommand.ATTACK).get(0).toString());
 	}
 
 	@FXML
