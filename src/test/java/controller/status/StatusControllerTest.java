@@ -18,7 +18,9 @@ import model.status.StatusFactory;
 import view.gameField.GameField;
 import view.gameField.GameFieldImpl;
 
-/** Class Test to verify the correct Status behavior. */
+/**
+ * Class Test to verify the correct Status behavior.
+ */
 class StatusControllerTest {
 
     private PlayerSpaceShip player;
@@ -26,15 +28,20 @@ class StatusControllerTest {
     private StatusFactory factory;
     private GameField gamefield;
 
+    /**
+     * Constructor.
+     */
     StatusControllerTest() {
-        new JFXPanel(); // Start a JavaFX application
+        new JFXPanel(); // Start a JavaFX application, needed for testing with JavaFX.
         this.gamefield = new GameFieldImpl(1920, 1080);
         this.player = new PlayerSpaceShip(this.gamefield);
         this.controller = new StatusController(this.player);
         this.factory = new StatusFactory();
     }
 
-    /** Testing if BonusLife is applied. */
+    /**
+     * Testing if BonusLife is applied.
+     */
     @Test
     void bonuLifeTest() {
         Integer prevValue = 3;
@@ -44,7 +51,9 @@ class StatusControllerTest {
         assertEquals(prevValue + 1, player.getLifePoints());
     }
 
-    /** Testing if BonusSpeed is applied. */
+    /**
+     * Testing if BonusSpeed is applied.
+     */
     @Test
     void bonusSpeedTest() {
         Status bonusSpeed = factory.createStatus(StatusEnum.BonusSpeed);
@@ -55,7 +64,9 @@ class StatusControllerTest {
         assertEquals(player.getSpeed().doubleValue(), expectedSpeed);
     }
 
-    /** Testing if MalusCommand is applied. */
+    /**
+     * Testing if MalusCommand is applied.
+     */
     @Test
     void malusCommandTest() {
         Boolean prevValue = player.isInvertedCommand();
@@ -64,7 +75,9 @@ class StatusControllerTest {
         assertTrue(player.isInvertedCommand()); // Testing MalusFire
     }
 
-    /** Testing if MalusFire is applied. */
+    /**
+     * Testing if MalusFire is applied.
+     */
     @Test
     void malusFire() {
         Boolean prevValue = player.getCanFire();
@@ -73,7 +86,9 @@ class StatusControllerTest {
         assertFalse(player.getCanFire());
     }
 
-    /** Testing if MalusSpeed is applied. */
+    /**
+     * Testing if MalusSpeed is applied.
+     */
     @Test
     void malusSpeedTest() {
         Status malusSpeed = factory.createStatus(StatusEnum.MalusSpeed);
@@ -107,7 +122,13 @@ class StatusControllerTest {
         waitUntilApplied(() -> cooldownMap.get(StatusEnum.BonusSpeed) > timeSpan);
         assertTrue(cooldownMap.get(StatusEnum.BonusSpeed) < timeSpan);
     }
-
+    
+    /**
+     * Waiting until the condition is satisfied.
+     * This method will wait only for a certain quantity of time.
+     * 
+     * @param condition condition to satisfy.
+     */
     private void waitUntilApplied(final Supplier<Boolean> condition) {
         Integer timeSpan = 500;
         CountDownLatch latch = new CountDownLatch(1);

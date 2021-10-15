@@ -14,6 +14,10 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import utilities.InputCommand;
 
+/**
+ * Class Test to verify the correct behavior of player's tasks, based on user's
+ * input.
+ */
 class InputControllerTest {
 
     private InputControllerImpl inputControllerImpl;
@@ -23,14 +27,14 @@ class InputControllerTest {
      * Constructor.
      */
     public InputControllerTest() {
-        new JFXPanel(); // Start a JavaFX application
+        new JFXPanel(); // Start a JavaFX application, needed for test with JavaFX
         Scene scene = new Scene(new Group());
         this.inputControllerImpl = new InputControllerImpl(scene);
         this.refreshTask();
     }
 
     /**
-     * Testing Player Movement by input simulation. Left, Right, Stay.
+     * Testing Player Movement tasks by input simulation. Left, Right, Stay.
      */
     @Test
     void checkMovement() {
@@ -58,7 +62,7 @@ class InputControllerTest {
     }
 
     /**
-     * Testing Player attack by input simulation. Fire and his logic.
+     * Testing Player attack tasks by input simulation. Fire and his logic.
      */
     @Test
     void checkAttack() {
@@ -95,7 +99,7 @@ class InputControllerTest {
      * Get the key mapped to a specific command.
      * 
      * @param command type of InputCommand
-     * @return the key mapped to the command
+     * @return key mapped to the command
      */
     private KeyCode getKeyByCommand(final InputCommand command) {
         return this.inputControllerImpl.getCommandKeys().get(command);
