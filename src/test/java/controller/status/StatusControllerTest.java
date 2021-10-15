@@ -104,8 +104,8 @@ class StatusControllerTest {
         controller.applyEffect(status);
 
         // Testing changes
-        waitUntilApplied(() -> cooldownMap.get(StatusEnum.BonusSpeed) < timeSpan);
-        assertTrue(cooldownMap.get(StatusEnum.BonusSpeed) > timeSpan);
+        waitUntilApplied(() -> cooldownMap.get(StatusEnum.BonusSpeed) > timeSpan);
+        assertTrue(cooldownMap.get(StatusEnum.BonusSpeed) < timeSpan);
     }
 
     private void waitUntilApplied(final Supplier<Boolean> condition) {

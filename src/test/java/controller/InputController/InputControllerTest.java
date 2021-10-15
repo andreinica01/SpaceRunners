@@ -3,7 +3,6 @@ package controller.InputController;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
@@ -85,7 +84,7 @@ class InputControllerTest{
      * @param state
      */
     private void simulateTask(InputCommand command, boolean state) {
-        this.manageKeys(this.getKeysListByCommand(command), state);
+        this.manageKeys(this.getKeyByCommand(command), state);
         this.refreshTask();
     }
 
@@ -95,19 +94,18 @@ class InputControllerTest{
      * @param command
      * @return List<KeyCode>
      */
-    private List<KeyCode> getKeysListByCommand(InputCommand command) {
-        var grouped = this.inputControllerImpl.getMapGrouped();
-        return grouped.keySet().stream().filter(k -> k.equals(command)).map(k -> grouped.get(k)).findFirst().get();
+    private KeyCode getKeyByCommand(InputCommand command) {
+        return this.inputControllerImpl.getCommandKeys().get(command);
     }
 
     /**
-     * Setting up a state (pressed or not) for every keys of the list.
+     * Setting up a state (pressed or not) the key.
      * 
      * @param keysList
      * @param state
      */
-    private void manageKeys(List<KeyCode> keysList, boolean state) {
+    private void manageKeys(KeyCode key, boolean state) {
         var pressedKeys = this.inputControllerImpl.getPressedKeys();
-        keysList.forEach(e -> pressedKeys.put(e, state));
+        pressedKeys.put(key, state);
     }
 }
