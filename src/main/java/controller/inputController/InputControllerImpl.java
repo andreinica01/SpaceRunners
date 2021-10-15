@@ -10,6 +10,11 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import utilities.InputCommand;
 
+/**
+ * This Control Class detect all the input (keys) triggered by the user.
+ * In addition to that, this class also manage player tasks based on the same input.
+ *
+ */
 public class InputControllerImpl {
 
     private Map<KeyCode, Boolean> pressedKeys;
@@ -23,8 +28,7 @@ public class InputControllerImpl {
     /**
      * Constructor.
      * 
-     * @param scene
-     * @param player
+     * @param scene where this InputController detect keys.
      */
     public InputControllerImpl(final Scene scene) {
         this.pressedKeys = new HashMap<>();
@@ -34,21 +38,21 @@ public class InputControllerImpl {
         this.fireFlag = true;
         this.initializeDefaultKeys();
         this.resetStates();
-        this.listeners();
+        this.initializeListeners();
     }
 
     /**
      * Change Scene of this InputController.
      * 
-     * @param scene
+     * @param scene where this InputController detect keys.
      */
     public void changeScene(final Scene scene) {
         this.scene = scene;
-        this.listeners();
+        this.initializeListeners();
     }
 
     /**
-     * Initialize the game controls.
+     * Set states (to not active) of all Key and Commands.
      */
     public void resetStates() {
         List.of(InputCommand.values()).forEach(e -> this.task.put(e, false));
@@ -66,13 +70,13 @@ public class InputControllerImpl {
 
     /**
      * Add an association key-command. There can only be one association key-command
-     * per command.
+     * per command type.
      * 
      * @param key
      * @param command
      */
     public void addCommandKeys(final KeyCode key, final InputCommand command) {
-        // If key is mapped, switch with the current values. Else just replace.
+        // If key is already mapped, switch with the current values. Else just set it.
         if (this.commandKeys.values().stream().anyMatch(e -> e.equals(key))) {
             InputCommand otherCommand = this.getKeyFromValue(this.commandKeys, key);
             KeyCode otherKey = this.commandKeys.get(command);
@@ -84,9 +88,9 @@ public class InputControllerImpl {
     }
 
     /**
-     * Listeners used to check if a key is pressed or released.
+     * Initialize listeners used to check if a key is pressed or released.
      */
-    private void listeners() {
+    private void initializeListeners() {
         this.scene.setOnKeyPressed(e -> {
             this.pressedKeys.put(e.getCode(), true);
         });
@@ -99,43 +103,43 @@ public class InputControllerImpl {
      * Update state of tasks, based on pressed keys.
      */
     private void updateTask() {
-
+        // Get activeCommand based on pressed keys.
         Set<KeyCode> activeKeys = this.pressedKeys.entrySet().stream().filter(entry -> entry.getValue() == true)
                 .map(entry -> entry.getKey()).collect(Collectors.toSet());
         Set<InputCommand> activeCommand = this.commandKeys.entrySet().stream()
                 .filter(entry -> activeKeys.contains(entry.getValue())).map(entry -> entry.getKey())
                 .collect(Collectors.toSet());
-
+        // Setting state of task.
         this.task.keySet().stream().filter(key -> activeCommand.contains(key)).forEach(key -> this.task.put(key, true));
         this.task.keySet().stream().filter(key -> !activeCommand.contains(key))
                 .forEach(key -> this.task.put(key, false));
     }
 
     /**
-     * Get a map that groups Keys based on the InputCommand.
+     * Get a Key from a map based on his mapped value.
      * 
-     * @param <K>
-     * @param <V>
+     * @param map
+     * @param value
      * 
      * @return
      */
-    private <K, V> K getKeyFromValue(Map<K, V> map, V value) {
+    private <K, V> K getKeyFromValue(final Map<K, V> map, final V value) {
         return map.entrySet().stream().filter(entry -> value.equals(entry.getValue())).map(e -> e.getKey()).findFirst()
                 .get();
     }
 
     /**
      * Managing tasks. Checking if the state of some of them should be changed or
-     * not.
+     * not. This is based on some particular logics.
      */
     private void updatePlayerTasks() {
         this.updateTask();
-
+        this.fireLogic();
+        // Do nothing if left and right are both active.
         if (this.task.get(InputCommand.LEFT) && this.task.get(InputCommand.RIGHT)) {
             this.task.put(InputCommand.LEFT, false);
             this.task.put(InputCommand.RIGHT, false);
         }
-        this.fireLogic();
     }
 
     /**
@@ -155,7 +159,9 @@ public class InputControllerImpl {
     }
 
     /**
-     * @return a map containing player tasks.
+     * Get a map mapping every player tasks with his state (active or not).
+     * 
+     * @return map mapping Command to his State
      */
     public Map<InputCommand, Boolean> getControlStates() {
         this.updatePlayerTasks();
@@ -165,7 +171,7 @@ public class InputControllerImpl {
     /**
      * Get the Map mapping keys to his state (pressed or not).
      * 
-     * @return Map<KeyCode, Boolean>
+     * @return map mapping Keys to his State
      */
     public Map<KeyCode, Boolean> getPressedKeys() {
         return this.pressedKeys;
@@ -174,7 +180,7 @@ public class InputControllerImpl {
     /**
      * Get a Map mapping Keys to Command.
      * 
-     * @return
+     * @return map mapping Keys to Command
      */
     public Map<InputCommand, KeyCode> getCommandKeys() {
         return this.commandKeys;
