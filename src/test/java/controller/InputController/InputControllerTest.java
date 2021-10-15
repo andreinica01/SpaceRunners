@@ -15,16 +15,13 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import utilities.InputCommand;
 
-class InputControllerTest {
+class InputControllerTest{
 
     private InputControllerImpl inputControllerImpl;
     private Map<InputCommand, Boolean> tasks;
 
-    @SuppressWarnings("unused")
-    private JFXPanel panel; // Needed for test purpose
-
     public InputControllerTest() {
-        this.panel = new JFXPanel();
+        new JFXPanel(); //Start a JavaFX application
         Scene scene = new Scene(new Group());
         this.inputControllerImpl = new InputControllerImpl(scene);
         this.refreshTask();
