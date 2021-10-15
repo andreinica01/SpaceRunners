@@ -122,10 +122,10 @@ class StatusControllerTest {
         waitUntilApplied(() -> cooldownMap.get(StatusEnum.BonusSpeed) > timeSpan);
         assertTrue(cooldownMap.get(StatusEnum.BonusSpeed) < timeSpan);
     }
-    
+
     /**
-     * Waiting until the condition is satisfied.
-     * This method will wait only for a certain quantity of time.
+     * Waiting until the condition is satisfied. This method will wait only for a
+     * certain quantity of time.
      * 
      * @param condition condition to satisfy.
      */

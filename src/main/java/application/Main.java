@@ -8,7 +8,7 @@ import javafx.application.Platform;
 import javafx.stage.Stage;
 import utilities.MagicEnumInt;
 
-public class Main extends Application{
+public class Main extends Application {
 
     @Override
     public final void start(final Stage mainWindow) throws IOException {

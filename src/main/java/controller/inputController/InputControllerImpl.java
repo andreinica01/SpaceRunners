@@ -11,8 +11,9 @@ import javafx.scene.input.KeyCode;
 import utilities.InputCommand;
 
 /**
- * This Control Class detect all the input (keys) triggered by the user.
- * In addition to that, this class also manage player tasks based on the same input.
+ * This Control Class detect all the input (keys) triggered by the user. In
+ * addition to that, this class also manage player tasks based on the same
+ * input.
  *
  */
 public class InputControllerImpl {
