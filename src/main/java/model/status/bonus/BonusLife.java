@@ -14,7 +14,6 @@ public class BonusLife extends Status {
 	 */
 	public BonusLife() {
 		super();
-
 		this.setStatusName(StatusEnum.BonusLife);
 		this.setCoolDown(MagicEnumInt.ONE.getValue());
 

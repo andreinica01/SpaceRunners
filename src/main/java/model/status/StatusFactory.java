@@ -7,7 +7,7 @@ import model.status.malus.MalusFire;
 import model.status.malus.MalusSpeed;
 
 /**
- * Factory in order to create Status Class.
+ * Factory that create a Status Class.
  */
 public class StatusFactory {
 
@@ -18,6 +18,8 @@ public class StatusFactory {
 	}
 
 	/**
+	 * Get a new Status.
+	 * 
 	 * @param type.
 	 * @return a specific status to be created.
 	 */
