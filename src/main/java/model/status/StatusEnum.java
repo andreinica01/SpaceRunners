@@ -7,7 +7,30 @@ import java.util.Random;
  */
 public enum StatusEnum {
 
-    BonusLife, BonusSpeed, MalusCommand, MalusFire, MalusSpeed;
+    /**
+     * 
+     */
+    BonusLife,
+
+    /**
+     * 
+     */
+    BonusSpeed,
+
+    /**
+     * 
+     */
+    MalusCommand,
+
+    /**
+     * 
+     */
+    MalusFire,
+
+    /**
+     * 
+     */
+    MalusSpeed;
 
     /**
      * Return a random Status type.
