@@ -5,6 +5,9 @@ import model.hud.HUDLifeImpl;
 import model.hud.HUDPointsImpl;
 import utilities.MagicEnumInt;
 
+/**
+ * Handles support to collision engine.
+ */
 public abstract class AbstractHelper implements IHelper {
 
     /*
