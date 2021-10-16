@@ -52,7 +52,7 @@ public class GameEventController implements IGameEventController {
     }
 
     @Override
-    public final IHUDBonus getBonusImpl() {
+    public final IHUDBonus getBonus() {
         return this.hudBuilder.getBonusImpl();
     }
 

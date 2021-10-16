@@ -37,7 +37,7 @@ public interface IGameEventController {
     /**
      * @return bonus HUD reference
      */
-    IHUDBonus getBonusImpl();
+    IHUDBonus getBonus();
 
     /**
      * @return collision engine.
