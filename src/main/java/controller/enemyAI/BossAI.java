@@ -42,7 +42,7 @@ public class BossAI {
         this.bossShip = new BossShip(this.gamefield);
         this.bossShip.setPosition(X_POS, Y_POS);
         this.bossShip.setDirection(Direction.LEFT);
-        this.bossShip.setSpeed(MagicEnumInt.SEVEN.getValue());
+        this.bossShip.setSpeed(MagicEnumInt.TEN.getValue());
         this.gamefield.addBoss(bossShip);
         this.addBossTask("Movement");
     }
