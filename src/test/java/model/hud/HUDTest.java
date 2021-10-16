@@ -69,10 +69,19 @@ public final class HUDTest {
         this.lifeModel.lifeDown();
         assertTrue(this.lifeModel.getLifePoints() == MagicEnumInt.ZERO.getValue());
         assertFalse(this.lifeModel.getStatus());
+
+        /*
+         * This situation will cause the end of the game!
+         */
     }
 
     @Test
     public void testBonusCounterBehaviour() {
+
+    }
+
+    @Test
+    public void testPointsCounterBehaviour() {
 
     }
 }
