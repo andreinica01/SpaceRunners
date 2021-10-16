@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.layout.AnchorPane;
+import model.status.StatusEnum;
 import utilities.MagicEnumInt;
 import view.gameField.GameField;
 import view.gameField.GameFieldImpl;
@@ -80,13 +81,106 @@ public final class HUDTest {
 
     @Test
     public void testBonusCounterBehaviour() {
+        /*
+         * I'm mapping the status in 2 arrays in which i will consider each of 5 bonus status
+         * values. At the beginning, all bonuses are hidden.
+         * The status order that I've implemented is:
+         * Life up
+         * Speed up
+         * Inverted Command
+         * No shoot
+         * Speed down
+         */
+        for (int i = 0; i < MagicEnumInt.FIVE.getValue(); i++) {
+            assertFalse(this.bonusModel.getTracker(i));
+            System.out.println("Bonus " + i + " is " + this.bonusModel.getTracker(i));
+        }
 
+        /*
+         * So if we want to activate one we can check if it's hidden or not. One is ..
+         */
+        this.bonusModel.showBonus(StatusEnum.BonusSpeed);
+        assertTrue(this.bonusModel.getTracker(StatusEnum.BonusSpeed.ordinal()));
+        System.out.println("\n" + StatusEnum.BonusSpeed.toString() + " is activated? " 
+                            + this.bonusModel.getTracker(StatusEnum.BonusSpeed.ordinal()));
+
+        /*
+         * .. and for example an another one is not.
+         */
+        assertFalse(this.bonusModel.getTracker(StatusEnum.BonusLife.ordinal()));
+        System.out.println(StatusEnum.BonusLife.toString() + " is activated? " 
+                            + this.bonusModel.getTracker(StatusEnum.BonusLife.ordinal()));
+
+        /*
+         * We can do this for every bonus ..
+         */
+        System.out.println("\nActivating all others bonuses:");
+        this.bonusModel.showBonus(StatusEnum.BonusLife);
+        assertTrue(this.bonusModel.getTracker(StatusEnum.BonusLife.ordinal()));
+        System.out.println(StatusEnum.BonusLife.toString() + " is activated? " 
+                            + this.bonusModel.getTracker(StatusEnum.BonusLife.ordinal()));
+
+        this.bonusModel.showBonus(StatusEnum.MalusCommand);
+        assertTrue(this.bonusModel.getTracker(StatusEnum.MalusCommand.ordinal()));
+        System.out.println(StatusEnum.MalusCommand.toString() + " is activated? " 
+                            + this.bonusModel.getTracker(StatusEnum.MalusCommand.ordinal()));
+
+        this.bonusModel.showBonus(StatusEnum.MalusFire);
+        assertTrue(this.bonusModel.getTracker(StatusEnum.MalusFire.ordinal()));
+        System.out.println(StatusEnum.MalusFire.toString() + " is activated? " 
+                            + this.bonusModel.getTracker(StatusEnum.MalusFire.ordinal()));
+
+        this.bonusModel.showBonus(StatusEnum.MalusSpeed);
+        assertTrue(this.bonusModel.getTracker(StatusEnum.MalusSpeed.ordinal()));
+        System.out.println(StatusEnum.MalusSpeed.toString() + " is activated? " 
+                            + this.bonusModel.getTracker(StatusEnum.MalusSpeed.ordinal()) + "\n");
+
+        /*
+         * .. multiple activations can't cause problems.
+         */
+        try {
+            this.bonusModel.showBonus(StatusEnum.BonusLife);
+            assertTrue(this.bonusModel.getTracker(StatusEnum.BonusLife.ordinal()));
+            System.out.println(StatusEnum.BonusLife.toString() + " is activated? " 
+                                + this.bonusModel.getTracker(StatusEnum.BonusLife.ordinal()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        /*
+         * .. and also we can deactivate them.
+         */
+        System.out.println("Trying to dectivating all of them:");
+        this.bonusModel.hideBonus(StatusEnum.BonusSpeed);
+        assertTrue(!this.bonusModel.getTracker(StatusEnum.BonusSpeed.ordinal()));
+        System.out.println(StatusEnum.BonusSpeed.toString() + " is activated? " 
+                            + this.bonusModel.getTracker(StatusEnum.BonusSpeed.ordinal()));
+
+        this.bonusModel.hideBonus(StatusEnum.BonusLife);
+        assertTrue(!this.bonusModel.getTracker(StatusEnum.BonusLife.ordinal()));
+        System.out.println(StatusEnum.BonusLife.toString() + " is activated? " 
+                            + this.bonusModel.getTracker(StatusEnum.BonusLife.ordinal()));
+
+        this.bonusModel.hideBonus(StatusEnum.MalusCommand);
+        assertTrue(!this.bonusModel.getTracker(StatusEnum.MalusCommand.ordinal()));
+        System.out.println(StatusEnum.MalusCommand.toString() + " is activated? " 
+                            + this.bonusModel.getTracker(StatusEnum.MalusCommand.ordinal()));
+
+        this.bonusModel.hideBonus(StatusEnum.MalusFire);
+        assertTrue(!this.bonusModel.getTracker(StatusEnum.MalusFire.ordinal()));
+        System.out.println(StatusEnum.MalusFire.toString() + " is activated? " 
+                            + this.bonusModel.getTracker(StatusEnum.MalusFire.ordinal()));
+
+        this.bonusModel.hideBonus(StatusEnum.MalusSpeed);
+        assertTrue(!this.bonusModel.getTracker(StatusEnum.MalusSpeed.ordinal()));
+        System.out.println(StatusEnum.MalusSpeed.toString() + " is activated? " 
+                            + this.bonusModel.getTracker(StatusEnum.MalusSpeed.ordinal()) + "\n");
     }
 
     @Test
     public void testPointsCounterBehaviour() {
         /*
-         * At the beginnning of the game the points are 0.
+         * At the beginning of the game the points are 0.
          */
         assertTrue(this.pointsModel.getPoints() == MagicEnumInt.ZERO.getValue());
         System.out.println("Points at the beginning: " + this.pointsModel.getPoints());
