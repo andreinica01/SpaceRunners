@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>SpaceRunners</name>
+	<comment></comment>
 	<projects>
 	</projects>
 	<buildSpec>
@@ -21,11 +22,6 @@
 		</buildCommand>
 		<buildCommand>
 			<name>net.sf.eclipsecs.core.CheckstyleBuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
-			<name>ch.acanda.eclipse.pmd.builder.PMDBuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
