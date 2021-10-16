@@ -23,4 +23,10 @@ public interface IHUDBonus {
      * @param index.
      */
     void hideBonus(StatusEnum status);
+
+    /**
+     * @param index.
+     * @return which status is activated.
+     */
+    boolean getTracker(int index);
 }
