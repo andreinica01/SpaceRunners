@@ -21,8 +21,11 @@ public final class HUDTest {
     private AnchorPane gamePane;
     private GameField gameField;
 
+    /**
+     * Constructor.
+     */
     public HUDTest() {
-        new JFXPanel();
+        new JFXPanel(); // Start a JavaFX application, needed for testing with JavaFX.
         this.gamePane = new AnchorPane();
         this.gameField = new GameFieldImpl(MagicEnumInt.WIDTH.getValue(), MagicEnumInt.HEIGHT.getValue());
         this.lifeModel = new HUDLifeImpl(this.gamePane);
