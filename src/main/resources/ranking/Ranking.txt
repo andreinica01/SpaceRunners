@@ -1,5 +1,8 @@
-#Thu Oct 07 23:39:02 CEST 2021
-Rana=48
-Gatto=1
-Ciao=233
+#Sun Oct 17 00:45:42 CEST 2021
 Lampada=321
+Gatto=1
+Rana=48
+Ciao=233
+d=0
+ciccio=0
+gatto=0

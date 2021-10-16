@@ -28,7 +28,7 @@ public class GameManager extends AnimationTimer {
         this.mainwindow.addGameField(this.gamefield);
 
         this.gameController = new GameContollerImpl(this.gamefield);
-        this.gameController.setInputController(this.sceneManager.getMenuController().getInputController());
+        this.gameController.setInputController(this.sceneManager.getInputController());
     }
 
     /**

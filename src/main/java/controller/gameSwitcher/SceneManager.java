@@ -1,19 +1,22 @@
 package controller.gameSwitcher;
 
 import java.io.IOException;
+
 import controller.gameLoop.GameManager;
+import controller.inputController.InputControllerImpl;
 import controller.ranking.Ranking;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import view.SoundManager.SoundManager;
 
 public class SceneManager {
 
     private Stage mainWindow;
     private GameManager gameManager;
-    private MenuController menuController;
+    private InputControllerImpl inputController;
     private Ranking ranking;
 
     /**
@@ -25,8 +28,9 @@ public class SceneManager {
     public SceneManager(final Stage mainWindow) throws IOException {
         this.mainWindow = mainWindow;
         this.ranking = new Ranking();
-        this.menuController = new MenuController(this);
+        this.inputController = new InputControllerImpl(new Scene(new Group()));
         this.mainWindow.show();
+        new SoundManager().playMusicMenu();
     }
 
     /**
@@ -35,7 +39,9 @@ public class SceneManager {
      * @throws IOException
      */
     public void switchToStartMenu() throws IOException {
-        this.mainWindow.setScene(this.getSceneFromFxml("fxml/StartMenu.fxml"));
+        Scene scene = this.getSceneFromFxml("fxml/StartMenu.fxml", new StartMenuController(mainWindow, this));
+        this.inputController.changeScene(scene);
+        this.mainWindow.setScene(scene);
     }
 
     /**
@@ -46,7 +52,9 @@ public class SceneManager {
     public void switchToGame(final String name) throws IOException {
         this.gameManager = new GameManager(this);
         this.gameManager.setPlayerName(name);
-        this.mainWindow.setScene(this.gameManager.getGameField().getGameContainer().getScene());
+        Scene scene = this.gameManager.getGameField().getGameContainer().getScene();
+        this.mainWindow.setScene(scene);
+        this.inputController.changeScene(scene);
         this.gameManager.start();
     }
 
@@ -56,7 +64,10 @@ public class SceneManager {
      * @throws IOException
      */
     public void switchToScores() throws IOException {
-        this.mainWindow.setScene(this.getSceneFromFxml("fxml/Scores.fxml"));
+        Scene scene = this.getSceneFromFxml("fxml/Scores.fxml", new ScoresController(mainWindow, this));
+        this.inputController.changeScene(scene);
+        this.mainWindow.setScene(scene);
+        this.mainWindow.show();
     }
 
     /**
@@ -65,17 +76,22 @@ public class SceneManager {
      * @throws IOException
      */
     public void switchToNickname() throws IOException {
-        this.mainWindow.setScene(this.getSceneFromFxml("fxml/Nickname.fxml"));
+        Scene scene = this.getSceneFromFxml("fxml/Nickname.fxml", new NicknameController(mainWindow, this));
+        this.inputController.changeScene(scene);
+        this.mainWindow.setScene(scene);
     }
 
     /**
      * Switch to End Game menu.
+     * @param scores 
      * 
      * @throws IOException
      */
-    public void switchToEndMenu() throws IOException {
+    public void switchToEndMenu(final int scores) throws IOException {
         this.gameManager.stop();
-        this.mainWindow.setScene(this.getSceneFromFxml("fxml/EndMenu.fxml"));
+        Scene scene = this.getSceneFromFxml("fxml/EndMenu.fxml", new EndGameController(mainWindow, this, scores));
+        this.inputController.changeScene(scene);
+        this.mainWindow.setScene(scene);
     }
 
     /**
@@ -84,7 +100,9 @@ public class SceneManager {
      * @throws IOException
      */
     public void switchToControls() throws IOException {
-        this.mainWindow.setScene(this.getSceneFromFxml("fxml/Controls.fxml"));
+        Scene scene = this.getSceneFromFxml("fxml/Controls.fxml", new ControlsController(mainWindow, this));
+        this.inputController.changeScene(scene);
+        this.mainWindow.setScene(scene);
     }
 
     /**
@@ -100,9 +118,9 @@ public class SceneManager {
      * @return a loaded scene from FXML file.
      * @throws IOException
      */
-    private Scene getSceneFromFxml(final String path) throws IOException {
+    private Scene getSceneFromFxml(final String path, final BasicFXMLController controller) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(path));
-        loader.setController(this.menuController);
+        loader.setController(controller);
         return new Scene(loader.load());
     }
 
@@ -119,27 +137,8 @@ public class SceneManager {
     public Ranking getRanking() {
         return this.ranking;
     }
-
-    /**
-     * Set score reference.
-     * 
-     * @param score
-     */
-    public void setScore(final Text score) {
-        this.menuController.setScore(score);
-    }
-
-    /**
-     * @return score reference.
-     */
-    public Text getScore() {
-        return this.menuController.getScore();
-    }
-
-    /**
-     * @return menuController reference.
-     */
-    public MenuController getMenuController() {
-        return this.menuController;
+    
+    public InputControllerImpl getInputController() {
+        return this.inputController;
     }
 }
