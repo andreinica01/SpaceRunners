@@ -1,9 +1,5 @@
 #Thu Oct 07 23:39:02 CEST 2021
-dghd=48
-a=0
+Rana=48
 Gatto=1
-d=5
-SALVOPUZZA=233
-adad=0
-IOSONOBELLO=321
-gatto=0
+Ciao=233
+Lampada=321

@@ -66,7 +66,7 @@ public class MenuController {
     private void showScores(final ActionEvent event) throws IOException {
         this.soundManager.playButtonClicked();
         this.sceneManager.switchToScores();
-        Text rankText = new Text(this.sceneManager.getRanking().toString());
+        Text rankText = new Text(this.sceneManager.getRanking().getFormattedRankingMap());
         rankText.setFill(Color.GREEN);
         rankText.setFont(Font.font("Verdana", FontWeight.BOLD, MagicEnumDouble.SIXTEEN.getValue()));
         this.scoreText.getChildren().add(rankText);

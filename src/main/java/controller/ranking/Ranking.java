@@ -22,6 +22,7 @@ public class Ranking {
 
     private Map<String, Integer> map;
     private File file;
+    private String filePathname;
 
     /**
      * Constructor.
@@ -30,7 +31,8 @@ public class Ranking {
      */
     public Ranking() throws IOException {
         this.map = new HashMap<>();
-        this.file = new File("src/main/resources/ranking/Ranking.txt");
+        this.filePathname = "src/main/resources/ranking/Ranking.txt";
+        this.file = new File(this.filePathname);
         this.loadMapFromFile();
     }
 
@@ -75,10 +77,10 @@ public class Ranking {
 
     /**
      * Reverse sort a Map<String, Integer> into a List<Entry<String, Integer> by
-     * value. Ex: Map{(a,5), (b,1), (c,10)} -> List{(c,10), (a,5), (b,1)}
+     * value. Example: Map{(a,5), (b,1), (c,10)} -> List{(c,10), (a,5), (b,1)}
      * 
-     * @param Map<String, Integer>
-     * @return List<Entry<String, Integer>>
+     * @param unsortedMap map to sort
+     * @return an ordered list containing the sorted entries of the map
      */
     private List<Entry<String, Integer>> getSortedEntryList(final Map<String, Integer> unsortedMap) {
         return unsortedMap.entrySet().stream().sorted(Entry.comparingByValue(Comparator.reverseOrder()))
@@ -86,16 +88,21 @@ public class Ranking {
     }
 
     /**
-     * Return the Map of all players score.
+     * Return the Map mapping all players score with their names.
      * 
-     * @return Map<String, Integer>
+     * @return Map mapping all players score.
      */
     public Map<String, Integer> getRankingMap() {
         return this.map;
     }
 
-    @Override
-    public final String toString() {
+
+    /**
+     * Return a formatted String containing all the information of this ranking map.
+     * 
+     * @return a formatted String
+     */
+    public String getFormattedRankingMap() {
         StringJoiner s = new StringJoiner("");
         List<Entry<String, Integer>> sortedEntry;
         sortedEntry = this.getSortedEntryList(this.map).stream().limit(MagicEnumInt.TEN.getValue())
