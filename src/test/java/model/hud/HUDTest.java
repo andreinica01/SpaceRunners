@@ -21,6 +21,9 @@ public final class HUDTest {
     private AnchorPane gamePane;
     private GameField gameField;
 
+    /**
+     * Constructor.
+     */
     public HUDTest() {
         new JFXPanel();
         this.gamePane = new AnchorPane();
