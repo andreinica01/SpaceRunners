@@ -46,7 +46,7 @@
 	<!-- Miscellaneous other checks. -->
 	<!-- See http://checkstyle.sf.net/config_misc.html -->
 	<module name="RegexpSingleline">
-		<property name="format" value="\s{2,}$" />
+		<property name="format" value="\s{2,4}$" />
 		<property name="minimum" value="0" />
 		<property name="maximum" value="0" />
 		<property name="message" value="Line has trailing spaces." />
@@ -81,7 +81,7 @@
 		<!-- Checks for Javadoc comments. -->
 		<!-- See http://checkstyle.sf.net/config_javadoc.html -->
 		<module name="JavadocMethod">
-			<property name="scope" value="protected" />
+			<property name="accessModifiers" value="protected" />
 		</module>
 		<module name="JavadocType">
 			<property name="severity" value="error" />
