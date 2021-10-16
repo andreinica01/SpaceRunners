@@ -17,7 +17,7 @@ public class HUDImpl implements IHUD {
     private HUDPointsImpl pointsHUD;
     private HUDLifeImpl livesHUD;
     private IHUDBonus bonusHUD;
-    private CollisionEngine collisionEngine;
+    private IHelper collisionEngine;
     private GameField gameField;
 
     /**
