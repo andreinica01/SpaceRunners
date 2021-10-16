@@ -5,28 +5,28 @@ package utilities;
  */
 public enum Direction {
 
-	/**
-	 * 
-	 */
-	UP,
+    /**
+     * 
+     */
+    UP,
 
-	/**
-	 * 
-	 */
-	LEFT,
+    /**
+     * 
+     */
+    LEFT,
 
-	/**
-	 * 
-	 */
-	RIGHT,
+    /**
+     * 
+     */
+    RIGHT,
 
-	/**
-	 * 
-	 */
-	DOWN,
+    /**
+     * 
+     */
+    DOWN,
 
-	/**
-	 * 
-	 */
-	NONE;
+    /**
+     * 
+     */
+    NONE;
 }

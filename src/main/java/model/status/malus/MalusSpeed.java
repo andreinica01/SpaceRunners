@@ -11,27 +11,27 @@ import utilities.MagicEnumInt;
  */
 public class MalusSpeed extends Status {
 
-	/**
-	 * Constructor.
-	 */
-	public MalusSpeed() {
-		super();
+    /**
+     * Constructor.
+     */
+    public MalusSpeed() {
+        super();
 
-		this.setBoostFactor(MagicEnumDouble.SLOW.getValue());
-		this.setStatusName(StatusEnum.MalusSpeed);
-		this.setCoolDown(MagicEnumInt.SEVEN.getValue()); // 7 s
+        this.setBoostFactor(MagicEnumDouble.SLOW.getValue());
+        this.setStatusName(StatusEnum.MalusSpeed);
+        this.setCoolDown(MagicEnumInt.SEVEN.getValue()); // 7 s
 
-		this.setEffect(
-				() -> this.getPlayer().setSpeed(this.getPlayer().getSpeed().doubleValue() * this.getBoostFactor()));
+        this.setEffect(
+                () -> this.getPlayer().setSpeed(this.getPlayer().getSpeed().doubleValue() * this.getBoostFactor()));
 
-		this.setRemoveEffect(() -> {
-			this.getPlayer().setSpeed(this.getPlayer().getSpeed().doubleValue() * (double) MagicEnumInt.ONE.getValue()
-					/ this.getBoostFactor());
+        this.setRemoveEffect(() -> {
+            this.getPlayer().setSpeed(this.getPlayer().getSpeed().doubleValue() * (double) MagicEnumInt.ONE.getValue()
+                    / this.getBoostFactor());
 
-			/*
-			 * After the end of the effect we need to udpate collisions.
-			 */
-			AbstractHelper.resetBounds();
-		});
-	}
+            /*
+             * After the end of the effect we need to udpate collisions.
+             */
+            AbstractHelper.resetBounds();
+        });
+    }
 }

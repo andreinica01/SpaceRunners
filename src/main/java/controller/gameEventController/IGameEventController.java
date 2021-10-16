@@ -11,36 +11,36 @@ import model.hud.HUDBonusImpl;
  * collisions causes changes in HUD and in the stats of the player.
  */
 public interface IGameEventController {
-	/**
-	 * end the game loop and sets a new GUI showing the points earned and giving you
-	 * the choice between saving and quitting or just quitting.
-	 * 
-	 * @throws IOException
-	 */
-	void endGame(SceneManager manager) throws IOException;
+    /**
+     * end the game loop and sets a new GUI showing the points earned and giving you
+     * the choice between saving and quitting or just quitting.
+     * 
+     * @throws IOException
+     */
+    void endGame(SceneManager manager) throws IOException;
 
-	/**
-	 * @return the game status value: if false, the game ends.
-	 */
-	boolean checkGameStatus();
+    /**
+     * @return the game status value: if false, the game ends.
+     */
+    boolean checkGameStatus();
 
-	/**
-	 * @return the value of the points.
-	 */
-	int checkPoints();
+    /**
+     * @return the value of the points.
+     */
+    int checkPoints();
 
-	/**
-	 * @return the remaining life points.
-	 */
-	int checkLives();
+    /**
+     * @return the remaining life points.
+     */
+    int checkLives();
 
-	/**
-	 * @return bonus HUD reference
-	 */
-	HUDBonusImpl getBonusImpl();
+    /**
+     * @return bonus HUD reference
+     */
+    HUDBonusImpl getBonusImpl();
 
-	/**
-	 * @return collision engine.
-	 */
-	IHelper getCollisionEngine();
+    /**
+     * @return collision engine.
+     */
+    IHelper getCollisionEngine();
 }

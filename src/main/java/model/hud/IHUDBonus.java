@@ -5,22 +5,22 @@ import model.status.StatusEnum;
 
 public interface IHUDBonus {
 
-	/**
-	 * @return all bonuses taken.
-	 */
-	ImageView[] getBonus();
+    /**
+     * @return all bonuses taken.
+     */
+    ImageView[] getBonus();
 
-	/**
-	 * Show a specific bonus.
-	 * 
-	 * @param index.
-	 */
-	void showBonus(StatusEnum status);
+    /**
+     * Show a specific bonus.
+     * 
+     * @param index.
+     */
+    void showBonus(StatusEnum status);
 
-	/**
-	 * Hide a specific bonus.
-	 * 
-	 * @param index.
-	 */
-	void hideBonus(StatusEnum status);
+    /**
+     * Hide a specific bonus.
+     * 
+     * @param index.
+     */
+    void hideBonus(StatusEnum status);
 }

@@ -5,33 +5,33 @@ package utilities;
  */
 public enum InputCommand {
 
-	/**
-	 * 
-	 */
-	LEFT,
+    /**
+     * 
+     */
+    LEFT,
 
-	/**
-	 * 
-	 */
-	RIGHT,
+    /**
+     * 
+     */
+    RIGHT,
 
-	/**
-	 * 
-	 */
-	NONE,
+    /**
+     * 
+     */
+    NONE,
 
-	/**
-	 * 
-	 */
-	ATTACK,
+    /**
+     * 
+     */
+    ATTACK,
 
-	/**
-	 * 
-	 */
-	PAUSE,
+    /**
+     * 
+     */
+    PAUSE,
 
-	/**
-	 * 
-	 */
-	RESUME;
+    /**
+     * 
+     */
+    RESUME;
 }

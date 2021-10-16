@@ -9,22 +9,21 @@ import utilities.MagicEnumInt;
  */
 public class BonusLife extends Status {
 
-	/**
-	 * Constructor.
-	 */
-	public BonusLife() {
-		super();
+    /**
+     * Constructor.
+     */
+    public BonusLife() {
+        super();
+        this.setStatusName(StatusEnum.BonusLife);
+        this.setCoolDown(MagicEnumInt.ONE.getValue());
 
-		this.setStatusName(StatusEnum.BonusLife);
-		this.setCoolDown(MagicEnumInt.ONE.getValue());
+        this.setEffect(() -> {
+            if (this.getPlayer().getLifePoints() < MagicEnumInt.FOUR.getValue()) {
+                this.getPlayer().increaseLifePoints(MagicEnumInt.ONE.getValue());
+            }
+        });
 
-		this.setEffect(() -> {
-			if (this.getPlayer().getLifePoints() < MagicEnumInt.FOUR.getValue()) {
-				this.getPlayer().increaseLifePoints(MagicEnumInt.ONE.getValue());
-			}
-		});
-
-		this.setRemoveEffect(() -> {
-		});
-	}
+        this.setRemoveEffect(() -> {
+        });
+    }
 }

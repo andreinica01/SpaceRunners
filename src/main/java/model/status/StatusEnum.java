@@ -3,38 +3,16 @@ package model.status;
 import java.util.Random;
 
 /**
- * Enum containing all Status type.
+ * Enumeration containing all Status type.
  */
 public enum StatusEnum {
-	/**
-	 * 
-	 */
-	BonusLife,
 
-	/**
-	 * 
-	 */
-	BonusSpeed,
+    BonusLife, BonusSpeed, MalusCommand, MalusFire, MalusSpeed;
 
-	/**
-	 * 
-	 */
-	MalusCommand,
-
-	/**
-	 * 
-	 */
-	MalusFire,
-
-	/**
-	 * 
-	 */
-	MalusSpeed;
-
-	/**
-	 * Return a random Status type.
-	 */
-	public static StatusEnum getRandom() {
-		return StatusEnum.values()[new Random().nextInt(StatusEnum.values().length)];
-	}
+    /**
+     * Return a random Status type.
+     */
+    public static StatusEnum getRandom() {
+        return StatusEnum.values()[new Random().nextInt(StatusEnum.values().length)];
+    }
 }
