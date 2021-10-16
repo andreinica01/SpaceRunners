@@ -34,8 +34,12 @@ public class CollisionEngine extends AbstractHelper implements ICollisionEngine 
     private Bounds fieldBounds;
     private List<Entity> toBeRemovedList;
 
-    /*
+    /**
      * Constructor.
+     * @param gamefield
+     * @param pointsHUD
+     * @param livesHUD
+     * @param bonusHUD
      */
     public CollisionEngine(final GameField gamefield, final HUDPointsImpl pointsHUD, final HUDLifeImpl livesHUD,
             final IHUDBonus bonusHUD) {

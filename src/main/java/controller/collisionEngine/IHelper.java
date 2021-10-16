@@ -12,7 +12,7 @@ public interface IHelper {
     /**
      * Checks for each game cycle if collisions are detected.
      */
-    void update();
+    abstract void update();
 
     /**
      * Subtract a life when an enemy ship hits the player.

@@ -47,13 +47,13 @@ public abstract class AbstractHelper implements IHelper {
      * HUD change methods
      */
     @Override
-    public final void removePoints() {
-        this.pointsHUD.pointsDown();
+    public final void removeLife() {
+        this.livesHUD.lifeDown();
     }
 
     @Override
-    public final void removeLife() {
-        this.livesHUD.lifeDown();
+    public final void removePoints() {
+        this.pointsHUD.pointsDown();
     }
 
     @Override
