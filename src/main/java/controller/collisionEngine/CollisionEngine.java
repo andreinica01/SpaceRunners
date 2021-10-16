@@ -36,16 +36,16 @@ public class CollisionEngine extends AbstractHelper implements ICollisionEngine 
 
     /**
      * Constructor.
-     * @param gamefield
+     * @param gameField
      * @param pointsHUD
      * @param livesHUD
      * @param bonusHUD
      */
-    public CollisionEngine(final GameField gamefield, final HUDPointsImpl pointsHUD, final HUDLifeImpl livesHUD,
+    public CollisionEngine(final GameField gameField, final HUDPointsImpl pointsHUD, final HUDLifeImpl livesHUD,
             final IHUDBonus bonusHUD) {
         super(pointsHUD, livesHUD, bonusHUD);
 
-        this.gameField = gamefield;
+        this.gameField = gameField;
         this.toBeRemovedList = new ArrayList<Entity>();
         this.fieldBounds = this.gameField.getScene().getRoot().getBoundsInLocal();
 
