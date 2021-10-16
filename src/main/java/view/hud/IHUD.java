@@ -1,7 +1,7 @@
 package view.hud;
 
 import controller.collisionEngine.IHelper;
-import model.hud.HUDBonusImpl;
+import model.hud.IHUDBonus;
 
 public interface IHUD {
 
@@ -23,7 +23,7 @@ public interface IHUD {
     /**
      * @return bonus HUD reference.
      */
-    HUDBonusImpl getBonusImpl();
+    IHUDBonus getBonusImpl();
 
     /**
      * @return collision engine.

@@ -7,9 +7,9 @@ import java.util.Map;
 import javafx.geometry.Bounds;
 import model.Entity;
 import model.bullet.Bullet;
-import model.hud.HUDBonusImpl;
 import model.hud.HUDLifeImpl;
 import model.hud.HUDPointsImpl;
+import model.hud.IHUDBonus;
 import model.ship.SpaceShip;
 import model.status.Status;
 import model.status.StatusEnum;
@@ -38,7 +38,7 @@ public class CollisionEngine extends AbstractHelper implements ICollisionEngine 
      * Constructor.
      */
     public CollisionEngine(final GameField gamefield, final HUDPointsImpl pointsHUD, final HUDLifeImpl livesHUD,
-            final HUDBonusImpl bonusHUD) {
+            final IHUDBonus bonusHUD) {
         super(pointsHUD, livesHUD, bonusHUD);
 
         this.gameField = gamefield;

@@ -1,8 +1,8 @@
 package controller.collisionEngine;
 
-import model.hud.HUDBonusImpl;
 import model.hud.HUDLifeImpl;
 import model.hud.HUDPointsImpl;
+import model.hud.IHUDBonus;
 
 /**
  * Helper interface that shows how to update a HUD part due to an event.
@@ -47,7 +47,7 @@ public interface IHelper {
     /**
      * @return bonusHUD.
      */
-    HUDBonusImpl getBonusHUD();
+    IHUDBonus getBonusHUD();
 
     /**
      * @return bossHP.

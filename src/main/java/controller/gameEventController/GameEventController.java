@@ -2,7 +2,7 @@ package controller.gameEventController;
 
 import controller.collisionEngine.IHelper;
 import controller.gameSwitcher.SceneManager;
-import model.hud.HUDBonusImpl;
+import model.hud.IHUDBonus;
 import view.gameField.GameField;
 import view.hud.HUDImpl;
 
@@ -52,7 +52,7 @@ public class GameEventController implements IGameEventController {
     }
 
     @Override
-    public final HUDBonusImpl getBonusImpl() {
+    public final IHUDBonus getBonusImpl() {
         return this.hudBuilder.getBonusImpl();
     }
 

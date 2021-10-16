@@ -3,7 +3,7 @@ package controller.gameEventController;
 import java.io.IOException;
 import controller.collisionEngine.IHelper;
 import controller.gameSwitcher.SceneManager;
-import model.hud.HUDBonusImpl;
+import model.hud.IHUDBonus;
 
 /**
  * This interface shows the methods that are used in order to handle the HUD
@@ -37,7 +37,7 @@ public interface IGameEventController {
     /**
      * @return bonus HUD reference
      */
-    HUDBonusImpl getBonusImpl();
+    IHUDBonus getBonusImpl();
 
     /**
      * @return collision engine.

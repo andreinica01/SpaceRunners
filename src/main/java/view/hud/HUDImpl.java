@@ -1,9 +1,11 @@
 package view.hud;
 
 import controller.collisionEngine.CollisionEngine;
+import controller.collisionEngine.IHelper;
 import model.hud.HUDBonusImpl;
 import model.hud.HUDLifeImpl;
 import model.hud.HUDPointsImpl;
+import model.hud.IHUDBonus;
 import utilities.MagicEnumInt;
 import view.gameField.GameField;
 
@@ -14,7 +16,7 @@ public class HUDImpl implements IHUD {
      */
     private HUDPointsImpl pointsHUD;
     private HUDLifeImpl livesHUD;
-    private HUDBonusImpl bonusHUD;
+    private IHUDBonus bonusHUD;
     private CollisionEngine collisionEngine;
     private GameField gameField;
 
@@ -73,12 +75,12 @@ public class HUDImpl implements IHUD {
     }
 
     @Override
-    public final HUDBonusImpl getBonusImpl() {
+    public final IHUDBonus getBonusImpl() {
         return this.bonusHUD;
     }
 
     @Override
-    public final CollisionEngine getCollisionEngine() {
+    public final IHelper getCollisionEngine() {
         return this.collisionEngine;
     }
 }

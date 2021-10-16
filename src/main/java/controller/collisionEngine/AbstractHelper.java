@@ -1,8 +1,8 @@
 package controller.collisionEngine;
 
-import model.hud.HUDBonusImpl;
 import model.hud.HUDLifeImpl;
 import model.hud.HUDPointsImpl;
+import model.hud.IHUDBonus;
 import utilities.MagicEnumInt;
 
 /**
@@ -15,7 +15,7 @@ public abstract class AbstractHelper implements IHelper {
      */
     private HUDPointsImpl pointsHUD;
     private HUDLifeImpl livesHUD;
-    private HUDBonusImpl bonusHUD;
+    private IHUDBonus bonusHUD;
     private int bossHP;
 
     /**
@@ -31,7 +31,8 @@ public abstract class AbstractHelper implements IHelper {
      * @param livesHUD
      * @param bonusHUD
      */
-    public AbstractHelper(final HUDPointsImpl pointsHUD, final HUDLifeImpl livesHUD, final HUDBonusImpl bonusHUD) {
+    public AbstractHelper(final HUDPointsImpl pointsHUD, final HUDLifeImpl livesHUD, 
+            final IHUDBonus bonusHUD) {
         this.pointsHUD = pointsHUD;
         this.livesHUD = livesHUD;
         this.bonusHUD = bonusHUD;
@@ -79,7 +80,7 @@ public abstract class AbstractHelper implements IHelper {
     }
 
     @Override
-    public final HUDBonusImpl getBonusHUD() {
+    public final IHUDBonus getBonusHUD() {
         return this.bonusHUD;
     }
 
