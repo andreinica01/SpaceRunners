@@ -6,6 +6,9 @@ import model.hud.HUDBonusImpl;
 import view.gameField.GameField;
 import view.hud.HUDImpl;
 
+/**
+ * Implements game event logic behaviour.
+ */
 public class GameEventController implements IGameEventController {
 
     /*
