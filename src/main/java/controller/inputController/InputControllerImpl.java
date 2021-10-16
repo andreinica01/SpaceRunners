@@ -105,7 +105,7 @@ public class InputControllerImpl {
      */
     private void updateTask() {
         // Get activeCommand based on pressed keys.
-        Set<KeyCode> activeKeys = this.pressedKeys.entrySet().stream().filter(entry -> entry.getValue() == true)
+        Set<KeyCode> activeKeys = this.pressedKeys.entrySet().stream().filter(entry -> entry.getValue())
                 .map(entry -> entry.getKey()).collect(Collectors.toSet());
         Set<InputCommand> activeCommand = this.commandKeys.entrySet().stream()
                 .filter(entry -> activeKeys.contains(entry.getValue())).map(entry -> entry.getKey())
