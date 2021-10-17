@@ -12,6 +12,7 @@ public class GameManager extends AnimationTimer {
 
     private static final long SLEEP = 10000000;
     private static final int SLEEP_TIMER = 100000;
+    private static final double VALUE = 1e9;
 
     private long prevtime;
 
@@ -37,7 +38,7 @@ public class GameManager extends AnimationTimer {
      */
     public double getFrameRateHertz(final long delta) {
         double frameRate = 1d / delta;
-        return frameRate * 1e9;
+        return frameRate * VALUE;
     }
 
     @Override
