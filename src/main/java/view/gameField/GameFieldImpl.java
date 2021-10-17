@@ -267,10 +267,6 @@ public class GameFieldImpl implements GameField {
 
     @Override
     public final boolean isBossToBeSpawned() {
-        if (this.bossIsSpawned) {
-            return false;
-        }
-
         return this.bossIsSpawned;
     }
 
