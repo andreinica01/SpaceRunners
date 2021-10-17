@@ -30,7 +30,6 @@ public class GameEventController implements IGameEventController {
         try {
             manager.getInputController().resetStates();
             manager.switchToEndMenu(this.checkPoints());
-            //manager.getScore().setText(this.checkPoints() + " points");
         } catch (Exception e) {
             e.printStackTrace();
         }
