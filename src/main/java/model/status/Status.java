@@ -81,7 +81,7 @@ public abstract class Status extends EntityImpl {
      * 
      * @param removeEffect remove effect of this status
      */
-    protected void setRemoveEffect(final Runnable removeEffect) {
+    public void setRemoveEffect(final Runnable removeEffect) {
         this.removeEffect = removeEffect;
     }
 
@@ -117,7 +117,7 @@ public abstract class Status extends EntityImpl {
      * 
      * @param statusName
      */
-    protected void setStatusName(final StatusEnum statusName) {
+    public void setStatusName(final StatusEnum statusName) {
         this.statusName = statusName;
     }
 
@@ -126,7 +126,7 @@ public abstract class Status extends EntityImpl {
      * 
      * @param value of this boost factor
      */
-    protected void setBoostFactor(final double value) {
+    public void setBoostFactor(final double value) {
         this.boostFactor = value;
     }
 

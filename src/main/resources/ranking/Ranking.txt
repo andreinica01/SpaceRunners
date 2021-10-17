@@ -1,4 +1,4 @@
-#Sun Oct 17 00:45:42 CEST 2021
+#Sun Oct 17 00:54:12 CEST 2021
 Lampada=321
 Gatto=1
 Rana=48
