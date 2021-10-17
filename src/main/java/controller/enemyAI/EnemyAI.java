@@ -7,7 +7,7 @@ import model.ship.EnemyNounShip;
 import model.ship.SpaceShip;
 import model.status.Status;
 import model.status.StatusEnum;
-import model.status.StatusFactory;
+import model.status.StatusFactoryImpl;
 import utilities.MagicEnumInt;
 import utilities.Utilities;
 import view.gameField.GameField;
@@ -31,7 +31,7 @@ public class EnemyAI {
 
     private final GameField gameField;
     private final GameEventController gameEvent;
-    private final StatusFactory statusFactory;
+    private final StatusFactoryImpl statusFactory;
 
     private int playerPoints;
     private int bossSpawned;
@@ -54,7 +54,7 @@ public class EnemyAI {
     public EnemyAI(final GameField gamefield, final GameEventController gameEventController) {
         this.gameField = gamefield;
         this.gameEvent = gameEventController;
-        this.statusFactory = new StatusFactory();
+        this.statusFactory = new StatusFactoryImpl();
         this.bossAI = new BossAI(this.gameField);
         this.bossSpawned = MagicEnumInt.ONE.getValue();
         this.enemyResetTime = System.currentTimeMillis();

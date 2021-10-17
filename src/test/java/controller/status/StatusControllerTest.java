@@ -14,7 +14,7 @@ import javafx.embed.swing.JFXPanel;
 import model.ship.PlayerSpaceShip;
 import model.status.Status;
 import model.status.StatusEnum;
-import model.status.StatusFactory;
+import model.status.StatusFactoryImpl;
 import view.gameField.GameField;
 import view.gameField.GameFieldImpl;
 
@@ -25,7 +25,7 @@ class StatusControllerTest {
 
     private PlayerSpaceShip player;
     private StatusController controller;
-    private StatusFactory factory;
+    private StatusFactoryImpl factory;
     private GameField gamefield;
 
     /**
@@ -36,7 +36,7 @@ class StatusControllerTest {
         this.gamefield = new GameFieldImpl(1920, 1080);
         this.player = new PlayerSpaceShip(this.gamefield);
         this.controller = new StatusController(this.player);
-        this.factory = new StatusFactory();
+        this.factory = new StatusFactoryImpl();
     }
 
     /**
