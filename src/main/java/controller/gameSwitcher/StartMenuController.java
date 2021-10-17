@@ -6,34 +6,61 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
+/**
+ * 
+ */
 public class StartMenuController extends BasicFXMLController {
 
+    /**
+     * Constructor.
+     * @param mainWindow
+     * @param sceneManager
+     * @throws IOException
+     */
     public StartMenuController(final Stage mainWindow, final SceneManager sceneManager) throws IOException {
         super(mainWindow, sceneManager);
     }
-    
+
+    /**
+     * Show choose name GUI.
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void pickNickname(ActionEvent event) throws IOException {
-        this.buttonPressedSound();
-        this.getSceneManager().switchToNickname();
+    void pickNickname(final ActionEvent event) throws IOException {
+        super.buttonPressedSound();
+        super.getSceneManager().switchToNickname();
     }
 
+    /**
+     * Ends the game.
+     * @param event
+     */
     @FXML
-    void quit(ActionEvent event) {
-        this.buttonPressedSound();
-        this.getSceneManager().quit();
+    void quit(final ActionEvent event) {
+        super.buttonPressedSound();
+        super.getSceneManager().quit();
     }
 
+    /**
+     * Show scores GUI.
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void showScores(ActionEvent event) throws IOException {
-        this.buttonPressedSound();
-        this.getSceneManager().switchToScores();
+    void showScores(final ActionEvent event) throws IOException {
+        super.buttonPressedSound();
+        super.getSceneManager().switchToScores();
     }
 
+    /**
+     * Show controls GUI.
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void switchToControls(ActionEvent event) throws IOException {
-        this.buttonPressedSound();
-        this.getSceneManager().switchToControls();
+    void switchToControls(final ActionEvent event) throws IOException {
+        super.buttonPressedSound();
+        super.getSceneManager().switchToControls();
     }
-
 }

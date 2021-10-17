@@ -1,7 +1,6 @@
 package controller.gameSwitcher;
 
 import java.io.IOException;
-
 import controller.gameLoop.GameManager;
 import controller.inputController.InputControllerImpl;
 import controller.ranking.Ranking;
@@ -12,6 +11,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import view.SoundManager.SoundManager;
 
+/**
+ *
+ */
 public class SceneManager {
 
     private Stage mainWindow;
@@ -137,7 +139,10 @@ public class SceneManager {
     public Ranking getRanking() {
         return this.ranking;
     }
-    
+
+    /**
+     * @return input controller reference.
+     */
     public InputControllerImpl getInputController() {
         return this.inputController;
     }

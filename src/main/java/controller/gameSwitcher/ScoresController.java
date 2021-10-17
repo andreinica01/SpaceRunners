@@ -12,37 +12,58 @@ import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import utilities.MagicEnumDouble;
 
+/**
+ *
+ */
 public class ScoresController extends BasicFXMLController {
-    
+
     @FXML
     private TextFlow scoreText;
 
-
-    public ScoresController(Stage mainWindow, SceneManager sceneManager) throws IOException {
+    /**
+     * Constructor.
+     * @param mainWindow
+     * @param sceneManager
+     * @throws IOException
+     */
+    public ScoresController(final Stage mainWindow, final SceneManager sceneManager) throws IOException {
         super(mainWindow, sceneManager);
     }
-    
+
+    /**
+     * Initialize the GUI.
+     */
     @FXML
     private void initialize() {
         this.setUpScoresScene();
     }
-    
+
+    /**
+     * Displays the scores.
+     */
     private void setUpScoresScene() {
         this.refreshScoresInfo();
         this.scoreText.setVisible(true);
     }
-    
+
+    /**
+     * Picking scores from file.
+     */
     public void refreshScoresInfo() {
         Text rankText = new Text(this.getSceneManager().getRanking().getFormattedRankingMap());
         rankText.setFill(Color.GREEN);
         rankText.setFont(Font.font("Verdana", FontWeight.BOLD, MagicEnumDouble.SIXTEEN.getValue()));
         this.scoreText.getChildren().add(rankText);
     }
-    
-    @FXML
-    void showStartMenu(ActionEvent event) throws IOException {
-        this.buttonPressedSound();
-        this.getSceneManager().switchToStartMenu();
-    }
 
+    /**
+     * Shows the starting menu of the game.
+     * @param event
+     * @throws IOException
+     */
+    @FXML
+    void showStartMenu(final ActionEvent event) throws IOException {
+        super.buttonPressedSound();
+        super.getSceneManager().switchToStartMenu();
+    }
 }
