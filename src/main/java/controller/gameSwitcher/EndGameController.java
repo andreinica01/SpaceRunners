@@ -5,7 +5,6 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 /**
  *
@@ -19,14 +18,13 @@ public class EndGameController extends BasicFXMLController {
 
     /**
      * Constructor.
-     * @param mainWindow
+     * 
      * @param sceneManager
      * @param scores
      * @throws IOException
      */
-    public EndGameController(final Stage mainWindow, final SceneManager sceneManager,
-                                final int scores) throws IOException {
-        super(mainWindow, sceneManager);
+    public EndGameController(final SceneManager sceneManager, final int scores) throws IOException {
+        super(sceneManager);
         this.scores = scores;
     }
 
@@ -41,6 +39,7 @@ public class EndGameController extends BasicFXMLController {
 
     /**
      * Ends the game.
+     * 
      * @param event
      */
     @FXML
@@ -51,6 +50,7 @@ public class EndGameController extends BasicFXMLController {
 
     /**
      * Returns to main menu: game Cycle.
+     * 
      * @param event
      * @throws IOException
      */

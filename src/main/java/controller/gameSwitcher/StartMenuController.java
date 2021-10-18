@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.stage.Stage;
 
 /**
  * 
@@ -14,11 +13,10 @@ public class StartMenuController extends BasicFXMLController {
     /**
      * Constructor.
      * @param mainWindow
-     * @param sceneManager
      * @throws IOException
      */
-    public StartMenuController(final Stage mainWindow, final SceneManager sceneManager) throws IOException {
-        super(mainWindow, sceneManager);
+    public StartMenuController(final SceneManager sceneManager) throws IOException {
+        super(sceneManager);
     }
 
     /**

@@ -5,7 +5,6 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 /**
  *
@@ -20,12 +19,11 @@ public class NicknameController extends BasicFXMLController {
 
     /**
      * Constructor.
-     * @param mainWindow
      * @param sceneManager
      * @throws IOException
      */
-    public NicknameController(final Stage mainWindow, final SceneManager sceneManager) throws IOException {
-        super(mainWindow, sceneManager);
+    public NicknameController(final SceneManager sceneManager) throws IOException {
+        super(sceneManager);
         this.maxNameSize = FIFTEEN;
     }
 

@@ -2,13 +2,12 @@ package controller.gameSwitcher;
 
 import java.io.IOException;
 
-import controller.inputController.InputControllerImpl;
+import controller.inputController.InputController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.text.Text;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
+import javafx.scene.text.Text;
 import utilities.InputCommand;
 
 /**
@@ -28,17 +27,16 @@ public class ControlsController extends BasicFXMLController {
     @FXML
     private Text controlsAttackText;
 
-    private InputControllerImpl inputController;
+    private InputController inputController;
     private KeyCode lastKeyPressed;
  
     /**
      * Constructor.
-     * @param mainWindow
      * @param sceneManager
      * @throws IOException
      */
-    public ControlsController(final Stage mainWindow, final SceneManager sceneManager) throws IOException {
-        super(mainWindow, sceneManager);
+    public ControlsController(final SceneManager sceneManager) throws IOException {
+        super(sceneManager);
     }
 
     /**

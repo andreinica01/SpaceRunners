@@ -15,12 +15,11 @@ public abstract class BasicFXMLController {
 
     /**
      * Constructor.
-     * @param mainWindow
      * @param sceneManager
      * @throws IOException
      */
-    public BasicFXMLController(final Stage mainWindow, final SceneManager sceneManager) throws IOException {
-        this.mainWindow = mainWindow;
+    public BasicFXMLController(final SceneManager sceneManager) throws IOException {
+        this.mainWindow = sceneManager.getStage();
         this.sceneManager = sceneManager;
         this.soundManager = new SoundManager();
     }

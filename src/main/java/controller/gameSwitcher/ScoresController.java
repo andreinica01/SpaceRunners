@@ -9,7 +9,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import javafx.stage.Stage;
 import utilities.MagicEnumDouble;
 
 /**
@@ -23,11 +22,10 @@ public class ScoresController extends BasicFXMLController {
     /**
      * Constructor.
      * @param mainWindow
-     * @param sceneManager
      * @throws IOException
      */
-    public ScoresController(final Stage mainWindow, final SceneManager sceneManager) throws IOException {
-        super(mainWindow, sceneManager);
+    public ScoresController(final SceneManager sceneManager) throws IOException {
+        super(sceneManager);
     }
 
     /**
