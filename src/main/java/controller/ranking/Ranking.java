@@ -71,6 +71,9 @@ public class Ranking {
      * @throws IOException
      */
     public void addToMap(final String playerName, final Integer playerScore) throws IOException {
+        if (this.map.containsKey(playerName) && (playerScore <= this.map.get(playerName))) {
+            return;
+        } 
         this.map.put(playerName, playerScore);
         this.saveMapToFile();
     }
@@ -95,7 +98,6 @@ public class Ranking {
     public Map<String, Integer> getRankingMap() {
         return this.map;
     }
-
 
     /**
      * Return a formatted String containing all the information of this ranking map.
