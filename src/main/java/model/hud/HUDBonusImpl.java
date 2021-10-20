@@ -93,7 +93,6 @@ public class HUDBonusImpl implements IHUDBonus {
     @Override
     public final void hideBonus(final StatusEnum bonus) {
         try {
-            this.gameField.getSoundManager().playStatusFinish();
             this.gameField.getGameContainer().getChildren().remove(this.bonus[bonus.ordinal()]);
             this.statusTracker[bonus.ordinal()] = false;
         } catch (Exception e) {

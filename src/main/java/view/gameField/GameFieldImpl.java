@@ -1,5 +1,6 @@
 package view.gameField;
 
+import controller.gameEventController.SoundManager;
 import controller.gameLoop.GameManager;
 import controller.status.StatusController;
 import java.util.HashSet;
@@ -16,7 +17,6 @@ import model.ship.SpaceShip;
 import model.status.Status;
 import utilities.MagicEnumImage;
 import utilities.MagicEnumInt;
-import view.SoundManager.SoundManager;
 
 public class GameFieldImpl implements GameField {
 

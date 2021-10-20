@@ -1,6 +1,8 @@
 package controller.gameSwitcher;
 
 import java.io.IOException;
+
+import controller.gameEventController.SoundManager;
 import controller.gameLoop.GameManager;
 import controller.inputController.InputControllerImpl;
 import controller.ranking.Ranking;
@@ -9,7 +11,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import view.SoundManager.SoundManager;
 
 /**
  *

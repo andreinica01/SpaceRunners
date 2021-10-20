@@ -1,8 +1,9 @@
 package controller.gameSwitcher;
 
 import java.io.IOException;
+
+import controller.gameEventController.SoundManager;
 import javafx.stage.Stage;
-import view.SoundManager.SoundManager;
 
 /**
  *

@@ -36,7 +36,7 @@ public class Bullet extends EntityImpl {
     /**
      * @return bullet damage.
      */
-    int getBulletDamage() {
+    public int getBulletDamage() {
         return this.damage;
     }
 

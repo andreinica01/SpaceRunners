@@ -1,5 +1,6 @@
 package view.gameField;
 
+import controller.gameEventController.SoundManager;
 import controller.gameLoop.GameManager;
 import controller.status.StatusController;
 import java.util.Set;
@@ -12,7 +13,6 @@ import model.bullet.Bullet;
 import model.ship.BossShip;
 import model.ship.SpaceShip;
 import model.status.Status;
-import view.SoundManager.SoundManager;
 
 public interface GameField {
 
