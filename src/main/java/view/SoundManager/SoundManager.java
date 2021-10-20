@@ -154,13 +154,6 @@ public class SoundManager {
     }
 
     /**
-     * Play a sound when mouse stand on a button.
-     */
-    public void playMouseOnButton() {
-        this.playSound("cursor.wav");
-    }
-
-    /**
      * Clear the sound memory, this is due to ArrayList implementation.
      */
     private void cleanSoundMemory() {

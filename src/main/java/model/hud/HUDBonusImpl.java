@@ -95,6 +95,7 @@ public class HUDBonusImpl implements IHUDBonus {
         try {
             this.gameField.getGameContainer().getChildren().remove(this.bonus[bonus.ordinal()]);
             this.statusTracker[bonus.ordinal()] = false;
+            this.gameField.getSoundManager().playStatusFinish();
         } catch (Exception e) {
             e.printStackTrace();
         }
