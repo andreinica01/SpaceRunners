@@ -1,4 +1,4 @@
-package view.SoundManager;
+package controller.gameEventController;
 
 import java.io.File;
 import java.util.ArrayList;
