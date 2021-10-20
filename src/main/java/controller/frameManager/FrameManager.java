@@ -8,17 +8,17 @@ import view.gameField.GameField;
 
 public class FrameManager {
 
-    private GameField gamefield;
+    private GameField gameField;
     private Set<Entity> entities;
 
     /**
      * Constructor.
      * 
-     * @param gamefield
+     * @param gameField
      */
-    public FrameManager(final GameField gamefield) {
-        this.gamefield = gamefield;
-        this.entities = this.gamefield.getActiveEntities();
+    public FrameManager(final GameField gameField) {
+        this.gameField = gameField;
+        this.entities = this.gameField.getActiveEntities();
     }
 
     /**
@@ -26,7 +26,7 @@ public class FrameManager {
      */
     public void update() {
         this.updateBackground();
-        this.gamefield.getSoundManager().playPlayerMovementSound();
+        this.gameField.getSoundManager().playPlayerMovementSound();
         this.entities.forEach(entity -> updateEntityPosition(entity));
     }
 
@@ -63,11 +63,11 @@ public class FrameManager {
      * BackGround update.
      */
     private void updateBackground() {
-        for (Node image : this.gamefield.getBackground()) {
+        for (Node image : this.gameField.getBackground()) {
             image.setLayoutY(image.getLayoutY() + MagicEnumInt.FOUR.getValue());
 
-            if (image.getLayoutY() >= this.gamefield.getHeight().intValue()) {
-                image.setLayoutY(-this.gamefield.getHeight().intValue());
+            if (image.getLayoutY() >= this.gameField.getHeight().intValue()) {
+                image.setLayoutY(-this.gameField.getHeight().intValue());
             }
         }
     }
