@@ -2,7 +2,7 @@ package controller.gameSwitcher;
 
 import java.io.IOException;
 
-import controller.inputController.InputController;
+import controller.inputController.InputControllerImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
@@ -27,7 +27,7 @@ public class ControlsController extends BasicFXMLController {
     @FXML
     private Text controlsAttackText;
 
-    private InputController inputController;
+    private InputControllerImpl inputController;
     private KeyCode lastKeyPressed;
  
     /**

@@ -2,7 +2,7 @@ package controller.gameSwitcher;
 
 import java.io.IOException;
 import controller.gameLoop.GameManager;
-import controller.inputController.InputController;
+import controller.inputController.InputControllerImpl;
 import controller.ranking.Ranking;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +18,7 @@ public class SceneManager {
 
     private Stage mainWindow;
     private GameManager gameManager;
-    private InputController inputController;
+    private InputControllerImpl inputController;
     private Ranking ranking;
 
     /**
@@ -30,7 +30,7 @@ public class SceneManager {
     public SceneManager(final Stage mainWindow) throws IOException {
         this.mainWindow = mainWindow;
         this.ranking = new Ranking();
-        this.inputController = new InputController(new Scene(new Group()));
+        this.inputController = new InputControllerImpl(new Scene(new Group()));
         this.mainWindow.show();
         new SoundManager().playMusicMenu();
     }
@@ -143,7 +143,7 @@ public class SceneManager {
     /**
      * @return input controller reference.
      */
-    public InputController getInputController() {
+    public InputControllerImpl getInputController() {
         return this.inputController;
     }
 }
