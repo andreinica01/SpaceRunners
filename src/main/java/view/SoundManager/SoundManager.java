@@ -51,7 +51,7 @@ public class SoundManager {
      * @param clip
      * @param level. Min: 0, Max: 100
      */
-    public void setVolume(final Clip clip, final float volume) {
+    private void setVolume(final Clip clip, final float volume) {
         final float newVolume = volume / MagicEnumInt.ONE_HUNDRED.getValue();
 
         if (newVolume < 0f || newVolume > 1f) {
@@ -163,7 +163,7 @@ public class SoundManager {
     /**
      * Clear the sound memory, this is due to ArrayList implementation.
      */
-    public void cleanSoundMemory() {
+    private void cleanSoundMemory() {
         Iterator<Clip> soundsToRemove = this.sounds.subList(MagicEnumInt.ZERO.getValue(), SOUND_MEMORY_BUFFER)
                 .iterator();
 
