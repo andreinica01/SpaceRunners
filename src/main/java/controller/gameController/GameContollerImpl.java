@@ -1,12 +1,12 @@
 package controller.gameController;
 
+import java.io.IOException;
+
 import controller.enemyAI.EnemyAI;
 import controller.frameManager.FrameManager;
 import controller.gameEventController.GameEventController;
-import controller.inputController.InputControllerImpl;
+import controller.inputController.InputController;
 import controller.status.StatusController;
-import java.io.IOException;
-import java.util.Map;
 import model.ship.PlayerSpaceShip;
 import model.ship.SpaceShip;
 import utilities.Direction;
@@ -23,10 +23,9 @@ public class GameContollerImpl implements GameController {
     private FrameManager frame;
     private GameEventController gameEventController;
     private SpaceShip player;
-    private InputControllerImpl inputController;
+    private InputController inputController;
     private StatusController statusController;
     private final EnemyAI aiController;
-    private Map<InputCommand, Boolean> controlStates;
 
     private static final double X_PLAYER_STABILIZER = 3.5;
     private static final int Y_PLAYER_STABILIZER = 220;
@@ -56,10 +55,10 @@ public class GameContollerImpl implements GameController {
 
     @Override
     public final void update() {
-        this.controlStates = this.inputController.getControlStates();
+        this.inputController.updatePlayerTasks();
         this.player.setDirection(Direction.NONE);
 
-        if (this.controlStates.get(InputCommand.LEFT)) {
+        if (this.inputController.isTaskActive(InputCommand.LEFT)) {
             if (this.player.isInvertedCommand()) {
                 this.player.setDirection(Direction.RIGHT);
             } else {
@@ -67,15 +66,15 @@ public class GameContollerImpl implements GameController {
             }
         }
 
-        if (this.controlStates.get(InputCommand.RIGHT)) {
+        if (this.inputController.isTaskActive(InputCommand.RIGHT)) {
             if (this.player.isInvertedCommand()) {
                 this.player.setDirection(Direction.LEFT);
             } else {
                 this.player.setDirection(Direction.RIGHT);
             }
         }
-
-        if (this.controlStates.get(InputCommand.ATTACK) && this.player.getCanFire()) {
+        
+        if (this.inputController.isTaskActive(InputCommand.ATTACK) && this.player.getCanFire()) {
             this.player.attack();
         }
 
@@ -116,7 +115,7 @@ public class GameContollerImpl implements GameController {
      * 
      * @param inputController
      */
-    public final void setInputController(final InputControllerImpl inputController) {
+    public final void setInputController(final InputController inputController) {
         this.inputController = inputController;
         this.inputController.changeScene(this.player.getNode().getScene());
     }

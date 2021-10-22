@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import controller.gameEventController.SoundManager;
 import controller.gameLoop.GameManager;
+import controller.inputController.InputController;
 import controller.inputController.InputControllerImpl;
 import controller.ranking.Ranking;
 import javafx.application.Platform;
@@ -19,7 +20,7 @@ public class SceneManager {
 
     private Stage mainWindow;
     private GameManager gameManager;
-    private InputControllerImpl inputController;
+    private InputController inputController;
     private Ranking ranking;
 
     /**
@@ -144,7 +145,7 @@ public class SceneManager {
     /**
      * @return input controller reference.
      */
-    public InputControllerImpl getInputController() {
+    public InputController getInputController() {
         return this.inputController;
     }
 }

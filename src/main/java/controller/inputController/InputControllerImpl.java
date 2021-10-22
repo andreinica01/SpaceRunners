@@ -16,7 +16,7 @@ import utilities.InputCommand;
  * input.
  *
  */
-public class InputControllerImpl {
+public class InputControllerImpl implements InputController {
 
     private Map<KeyCode, Boolean> pressedKeys;
     private Map<InputCommand, KeyCode> commandKeys;
@@ -42,19 +42,13 @@ public class InputControllerImpl {
         this.initializeListeners();
     }
 
-    /**
-     * Change Scene of this InputController.
-     * 
-     * @param scene where this InputController detect keys.
-     */
+    @Override
     public void changeScene(final Scene scene) {
         this.scene = scene;
         this.initializeListeners();
     }
 
-    /**
-     * Set states (to not active) of all Key and Commands.
-     */
+    @Override
     public void resetStates() {
         List.of(InputCommand.values()).forEach(e -> this.task.put(e, false));
         List.of(KeyCode.values()).forEach(e -> this.pressedKeys.put(e, false));
@@ -69,13 +63,7 @@ public class InputControllerImpl {
         this.commandKeys.put(InputCommand.ATTACK, KeyCode.P);
     }
 
-    /**
-     * Add an association key-command. There can only be one association key-command
-     * per command type.
-     * 
-     * @param key
-     * @param command
-     */
+    @Override
     public void addCommandKeys(final KeyCode key, final InputCommand command) {
         // If key is already mapped, switch with the current values. Else just set it.
         if (this.commandKeys.values().stream().anyMatch(e -> e.equals(key))) {
@@ -129,14 +117,15 @@ public class InputControllerImpl {
                 .get();
     }
 
-    /**
-     * Managing tasks. Checking if the state of some of them should be changed or
-     * not. This is based on some particular logics.
-     */
-    private void updatePlayerTasks() {
+    @Override
+    public void updatePlayerTasks() {
         this.updateTask();
         this.fireLogic();
-        // Do nothing if left and right are both active.
+        this.movementLogic();
+
+    }
+
+    private void movementLogic() {
         if (this.task.get(InputCommand.LEFT) && this.task.get(InputCommand.RIGHT)) {
             this.task.put(InputCommand.LEFT, false);
             this.task.put(InputCommand.RIGHT, false);
@@ -147,8 +136,8 @@ public class InputControllerImpl {
      * Managing fire logic. Making player firing only 1 bullet at time.
      */
     private void fireLogic() {
-        if (this.task.get(InputCommand.ATTACK)) {
-            if (this.fireFlag) {
+        if (this.isTaskActive(InputCommand.ATTACK) == true) {
+            if (this.fireFlag == true) {
                 this.fireFlag = false;
             } else {
                 this.task.put(InputCommand.ATTACK, false);
@@ -156,34 +145,26 @@ public class InputControllerImpl {
         } else {
             this.fireFlag = true;
         }
-
     }
 
-    /**
-     * Get a map mapping every player tasks with his state (active or not).
-     * 
-     * @return map mapping Command to his State
-     */
-    public Map<InputCommand, Boolean> getControlStates() {
-        this.updatePlayerTasks();
-        return this.task;
+    @Override
+    public boolean isKeyPressed(final KeyCode key) {
+        return this.pressedKeys.get(key);
     }
 
-    /**
-     * Get the Map mapping keys to his state (pressed or not).
-     * 
-     * @return map mapping Keys to his State
-     */
-    public Map<KeyCode, Boolean> getPressedKeys() {
-        return this.pressedKeys;
+    @Override
+    public KeyCode getKeyMapped(final InputCommand command) {
+        return this.commandKeys.get(command);
     }
 
-    /**
-     * Get a Map mapping Keys to Command.
-     * 
-     * @return map mapping Keys to Command
-     */
-    public Map<InputCommand, KeyCode> getCommandKeys() {
-        return this.commandKeys;
+    @Override
+    public boolean isTaskActive(final InputCommand task) {
+        return this.task.get(task);
     }
+
+    @Override
+    public void setKeyState(final KeyCode key, final boolean state) {
+        this.pressedKeys.put(key, state);
+    }
+
 }

@@ -21,7 +21,7 @@ import view.gameField.GameFieldImpl;
 /**
  * Class Test to verify the correct Status behavior.
  */
-class StatusControllerTest {
+class StatusControllerTest{
 
     private PlayerSpaceShip player;
     private StatusController controller;

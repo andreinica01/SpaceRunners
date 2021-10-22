@@ -2,7 +2,7 @@ package controller.gameSwitcher;
 
 import java.io.IOException;
 
-import controller.inputController.InputControllerImpl;
+import controller.inputController.InputController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
@@ -27,7 +27,7 @@ public class ControlsController extends BasicFXMLController {
     @FXML
     private Text controlsAttackText;
 
-    private InputControllerImpl inputController;
+    private InputController inputController;
     private KeyCode lastKeyPressed;
  
     /**
@@ -53,9 +53,9 @@ public class ControlsController extends BasicFXMLController {
      * Shows the chosen control on the GUI.
      */
     private void refreshControlsText() {
-        this.controlsLeftText.setText(this.inputController.getCommandKeys().get(InputCommand.LEFT).toString());
-        this.controlsRightText.setText(this.inputController.getCommandKeys().get(InputCommand.RIGHT).toString());
-        this.controlsAttackText.setText(this.inputController.getCommandKeys().get(InputCommand.ATTACK).toString());
+        this.controlsLeftText.setText(this.inputController.getKeyMapped(InputCommand.LEFT).toString());
+        this.controlsRightText.setText(this.inputController.getKeyMapped(InputCommand.RIGHT).toString());
+        this.controlsAttackText.setText(this.inputController.getKeyMapped(InputCommand.ATTACK).toString());
     }
 
     /**
