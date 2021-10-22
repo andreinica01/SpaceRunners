@@ -7,6 +7,7 @@ import controller.gameLoop.GameManager;
 import controller.inputController.InputController;
 import controller.inputController.InputControllerImpl;
 import controller.ranking.Ranking;
+import controller.ranking.RankingImpl;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -31,7 +32,7 @@ public class SceneManagerImpl implements SceneManager{
      */
     public SceneManagerImpl(final Stage mainWindow) throws IOException {
         this.mainWindow = mainWindow;
-        this.ranking = new Ranking();
+        this.ranking = new RankingImpl();
         this.inputController = new InputControllerImpl(new Scene(new Group()));
         this.mainWindow.show();
         new SoundManager().playMusicMenu();

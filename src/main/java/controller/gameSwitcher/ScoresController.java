@@ -10,6 +10,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import utilities.MagicEnumDouble;
+import utilities.MagicEnumInt;
 
 /**
  *
@@ -48,7 +49,7 @@ public class ScoresController extends BasicFXMLController {
      * Picking scores from file.
      */
     public void refreshScoresInfo() {
-        Text rankText = new Text(this.getSceneManager().getRanking().getFormattedRankingMap());
+        Text rankText = new Text(this.getSceneManager().getRanking().getFormattedRankingMap(MagicEnumInt.FIVE.getValue()));
         rankText.setFill(Color.GREEN);
         rankText.setFont(Font.font("Verdana", FontWeight.BOLD, MagicEnumDouble.SIXTEEN.getValue()));
         this.scoreText.getChildren().add(rankText);

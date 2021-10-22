@@ -88,7 +88,7 @@ public class GameContollerImpl implements GameController {
             this.gameEventController.endGame(this.getGameField().getGameManager().getSceneManager());
             this.gamefield.getGameManager().stop();
             try {
-                this.gamefield.getGameManager().getSceneManager().getRanking().addToMap(
+                this.gamefield.getGameManager().getSceneManager().getRanking().addPlayer(
                         this.gamefield.getGameManager().getPlayerName(), this.gameEventController.checkPoints());
             } catch (IOException e) {
                 e.printStackTrace();

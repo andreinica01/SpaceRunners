@@ -1,8 +1,9 @@
-#Sun Oct 17 00:54:12 CEST 2021
+#Fri Oct 22 13:57:55 CEST 2021
 Lampada=321
 Gatto=1
 Rana=48
 Ciao=233
 d=0
 ciccio=0
+adad=0
 gatto=0
