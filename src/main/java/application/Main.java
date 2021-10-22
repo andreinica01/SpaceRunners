@@ -3,6 +3,7 @@ package application;
 import java.io.IOException;
 
 import controller.gameSwitcher.SceneManager;
+import controller.gameSwitcher.SceneManagerImpl;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
@@ -20,7 +21,7 @@ public class Main extends Application {
             Platform.exit();
             System.exit(0);
         });
-        SceneManager sm = new SceneManager(mainWindow);
+        SceneManager sm = new SceneManagerImpl(mainWindow);
         sm.switchToStartMenu();
     }
 

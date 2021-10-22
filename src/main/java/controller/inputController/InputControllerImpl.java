@@ -91,7 +91,7 @@ public class InputControllerImpl implements InputController {
     /**
      * Update state of tasks, based on pressed keys.
      */
-    private void updateTask() {
+    private void updateKeysInfo() {
         // Get activeCommand based on pressed keys.
         Set<KeyCode> activeKeys = this.pressedKeys.entrySet().stream().filter(entry -> entry.getValue())
                 .map(entry -> entry.getKey()).collect(Collectors.toSet());
@@ -119,7 +119,7 @@ public class InputControllerImpl implements InputController {
 
     @Override
     public void updatePlayerTasks() {
-        this.updateTask();
+        this.updateKeysInfo();
         this.fireLogic();
         this.movementLogic();
 
