@@ -1,14 +1,14 @@
 package controller.gameEventController;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
+
 import utilities.MagicEnumInt;
-import utilities.MagicEnumString;
 
 public class SoundManager {
 
@@ -31,7 +31,7 @@ public class SoundManager {
     private void playSound(final String sound) {
         try {
             Clip soundClip = AudioSystem.getClip();
-            soundClip.open(AudioSystem.getAudioInputStream(new File(MagicEnumString.SOUND_FOLDER.getValue() + sound)));
+            soundClip.open(AudioSystem.getAudioInputStream(getClass().getResource("/Sounds/"+sound)));
             this.setVolume(soundClip, 10);
             soundClip.start();
 
