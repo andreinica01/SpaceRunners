@@ -1,9 +1,9 @@
 package controller.ranking;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -29,7 +29,7 @@ public class RankingImpl implements Ranking {
      */
     public RankingImpl() throws IOException {
         this.map = new HashMap<>();
-        this.filePathname = "/ranking/Ranking.txt";
+        this.filePathname = "src/main/resources/ranking/Ranking.txt";
         this.file = new File(this.filePathname);
         this.loadFromFile();
     }
@@ -40,10 +40,14 @@ public class RankingImpl implements Ranking {
      * @throws IOException
      */
     private void loadFromFile() throws IOException {
-            InputStream in = getClass().getResourceAsStream(this.filePathname); 
+        if (this.file.exists()) {    
             Properties p = new Properties();
-            p.load(in);
+            p.load(new FileInputStream(this.file));
             p.stringPropertyNames().forEach(e -> this.map.put(e, Integer.valueOf(p.get(e).toString())));
+        } else {
+            this.file.createNewFile();
+            this.saveToFile();
+        }
     }
 
     /**
