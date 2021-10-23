@@ -1,9 +1,9 @@
 package controller.ranking;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -29,7 +29,7 @@ public class RankingImpl implements Ranking {
      */
     public RankingImpl() throws IOException {
         this.map = new HashMap<>();
-        this.filePathname = "src/main/resources/ranking/Ranking.txt";
+        this.filePathname = "/ranking/Ranking.txt";
         this.file = new File(this.filePathname);
         this.loadFromFile();
     }
@@ -40,14 +40,10 @@ public class RankingImpl implements Ranking {
      * @throws IOException
      */
     private void loadFromFile() throws IOException {
-        if (this.file.exists()) {
+            InputStream in = getClass().getResourceAsStream(this.filePathname); 
             Properties p = new Properties();
-            p.load(new FileInputStream(this.file));
+            p.load(in);
             p.stringPropertyNames().forEach(e -> this.map.put(e, Integer.valueOf(p.get(e).toString())));
-        } else {
-            this.file.createNewFile();
-            this.saveToFile();
-        }
     }
 
     /**
@@ -61,13 +57,6 @@ public class RankingImpl implements Ranking {
         p.store(new FileOutputStream(this.file), null);
     }
 
-    /**
-     * Add a new player's score to the ranking system.
-     * 
-     * @param playerName
-     * @param playerScore
-     * @throws IOException
-     */
     @Override
     public void addPlayer(final String playerName, final Integer playerScore) throws IOException {
         if (this.map.containsKey(playerName) && (playerScore <= this.map.get(playerName))) {
@@ -89,12 +78,6 @@ public class RankingImpl implements Ranking {
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Return a formatted String containing a limited part of the information of
-     * this ranking map.
-     * 
-     * @return a formatted String
-     */
     @Override
     public String getFormattedRankingMap(int limit) {
         StringJoiner s = new StringJoiner("");
