@@ -1,9 +1,5 @@
-#Fri Oct 22 13:57:55 CEST 2021
-Lampada=321
-Gatto=1
-Rana=48
-Ciao=233
-d=0
-ciccio=0
-adad=0
-gatto=0
+#Sat Oct 23 16:09:31 CEST 2021
+Andrei=189
+Salvatore=233
+Andrew=337
+

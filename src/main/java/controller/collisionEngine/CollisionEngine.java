@@ -254,7 +254,7 @@ public class CollisionEngine extends AbstractHelper implements ICollisionEngine 
                         this.toBeRemovedList.add(enemyship);
                         this.gameField.getSoundManager().playBossDeath();
                         this.gameField.setBossToBeSpawned(true);
-                        super.setBossHP(MagicEnumInt.SEVEN.getValue());
+                        super.setBossHP(MagicEnumInt.TEN.getValue());
                         super.getPointsHUD().pointsSetter(MagicEnumInt.THREE.getValue());
                     } else {
                         this.gameField.getSoundManager().playBossDamaged();
