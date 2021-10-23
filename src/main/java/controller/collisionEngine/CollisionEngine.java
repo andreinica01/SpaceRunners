@@ -207,10 +207,12 @@ public class CollisionEngine extends AbstractHelper implements ICollisionEngine 
                     this.gameField.getSoundManager().playSpaceshipExplosion();
                     this.toBeRemovedList.add(bullet);
                     this.toBeRemovedList.add(enemyship);
-
-                    bullets.remove();
-                    enemies.remove();
-                    super.addPoints();
+                    try {
+                        bullets.remove();
+                        enemies.remove();
+                        super.addPoints();
+                    } catch (Exception e) {
+                    }
                 }
             }
 
