@@ -32,8 +32,8 @@ public class SoundManager {
      * @param sound to be played.
      */
     private void playSound(final String sound) {
-        
-        URL url = this.getClass().getResource("/Sounds/"+sound);
+
+        URL url = this.getClass().getResource("/Sounds/" + sound);
         AudioInputStream ais;
         try {
             ais = AudioSystem.getAudioInputStream(url);

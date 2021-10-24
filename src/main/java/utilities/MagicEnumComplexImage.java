@@ -46,7 +46,8 @@ public enum MagicEnumComplexImage {
      * @param path
      */
     private MagicEnumComplexImage(final String path) {
-        this.value = new Image(getClass().getResourceAsStream(path), 50, 50, true, true);
+        double fifty = 50;
+        this.value = new Image(getClass().getResourceAsStream(path), fifty, fifty, true, true);
     }
 
     /**

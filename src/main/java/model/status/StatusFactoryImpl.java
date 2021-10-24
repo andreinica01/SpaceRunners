@@ -9,7 +9,7 @@ import model.status.malus.MalusSpeed;
 /**
  * Factory that create a Status Class.
  */
-public class StatusFactoryImpl implements StatusFactory{
+public class StatusFactoryImpl implements StatusFactory {
 
     /**
      * Constructor.
@@ -18,7 +18,7 @@ public class StatusFactoryImpl implements StatusFactory{
     }
 
     @Override
-    public Status createStatus(final StatusEnum type) {
+    public final Status createStatus(final StatusEnum type) {
         switch (type) {
         case BonusLife:
             return new BonusLife();

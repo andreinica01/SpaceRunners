@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 /**
  *
  */
-public class SceneManagerImpl implements SceneManager{
+public class SceneManagerImpl implements SceneManager {
 
     private Stage mainWindow;
     private GameManager gameManager;
@@ -39,14 +39,14 @@ public class SceneManagerImpl implements SceneManager{
     }
 
     @Override
-    public void switchToStartMenu() throws IOException {
+    public final void switchToStartMenu() throws IOException {
         Scene scene = this.getSceneFromFxml("fxml/StartMenu.fxml", new StartMenuController(this));
         this.inputController.changeScene(scene);
         this.mainWindow.setScene(scene);
     }
 
     @Override
-    public void switchToGame(final String name) throws IOException {
+    public final void switchToGame(final String name) throws IOException {
         this.gameManager = new GameManager(this);
         this.gameManager.setPlayerName(name);
         Scene scene = this.gameManager.getGameField().getGameContainer().getScene();
@@ -56,7 +56,7 @@ public class SceneManagerImpl implements SceneManager{
     }
 
     @Override
-    public void switchToScores() throws IOException {
+    public final void switchToScores() throws IOException {
         Scene scene = this.getSceneFromFxml("fxml/Scores.fxml", new ScoresController(this));
         this.inputController.changeScene(scene);
         this.mainWindow.setScene(scene);
@@ -64,14 +64,14 @@ public class SceneManagerImpl implements SceneManager{
     }
 
     @Override
-    public void switchToNickname() throws IOException {
+    public final void switchToNickname() throws IOException {
         Scene scene = this.getSceneFromFxml("fxml/Nickname.fxml", new NicknameController(this));
         this.inputController.changeScene(scene);
         this.mainWindow.setScene(scene);
     }
 
     @Override
-    public void switchToEndMenu(final int scores) throws IOException {
+    public final void switchToEndMenu(final int scores) throws IOException {
         this.gameManager.stop();
         Scene scene = this.getSceneFromFxml("fxml/EndMenu.fxml", new EndGameController(this, scores));
         this.inputController.changeScene(scene);
@@ -79,14 +79,14 @@ public class SceneManagerImpl implements SceneManager{
     }
 
     @Override
-    public void switchToControls() throws IOException {
+    public final void switchToControls() throws IOException {
         Scene scene = this.getSceneFromFxml("fxml/Controls.fxml", new ControlsController(this));
         this.inputController.changeScene(scene);
         this.mainWindow.setScene(scene);
     }
 
     @Override
-    public void quit() {
+    public final void quit() {
         Platform.exit();
         System.exit(0);
     }
@@ -103,17 +103,17 @@ public class SceneManagerImpl implements SceneManager{
     }
 
     @Override
-    public Stage getStage() {
+    public final Stage getStage() {
         return this.mainWindow;
     }
 
     @Override
-    public Ranking getRanking() {
+    public final Ranking getRanking() {
         return this.ranking;
     }
 
     @Override
-    public InputController getInputController() {
+    public final InputController getInputController() {
         return this.inputController;
     }
 }

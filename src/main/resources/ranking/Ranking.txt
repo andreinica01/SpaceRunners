@@ -1,4 +1,0 @@
-#Sun Oct 24 01:08:20 CEST 2021
-Andrew=337
-Andrei=189
-Salvatore=233

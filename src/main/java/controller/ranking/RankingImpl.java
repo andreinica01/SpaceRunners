@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URLDecoder;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -53,7 +52,6 @@ public class RankingImpl implements Ranking {
                 String value = properties.getProperty(key);
                 this.map.put(key, Integer.valueOf(value));
             }
-
         } else {
             this.file.createNewFile();
             this.saveToFile();
@@ -79,7 +77,7 @@ public class RankingImpl implements Ranking {
     }
 
     @Override
-    public void addPlayer(final String playerName, final Integer playerScore) throws IOException {
+    public final void addPlayer(final String playerName, final Integer playerScore) throws IOException {
         if (this.map.containsKey(playerName) && (playerScore <= this.map.get(playerName))) {
             return;
         }
@@ -100,7 +98,7 @@ public class RankingImpl implements Ranking {
     }
 
     @Override
-    public String getFormattedRankingMap(int limit) {
+    public final String getFormattedRankingMap(final int limit) {
         StringJoiner s = new StringJoiner("");
         List<Entry<String, Integer>> sortedEntry;
         sortedEntry = this.getSortedEntryList(this.map).stream().limit(limit).collect(Collectors.toList());

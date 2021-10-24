@@ -3,7 +3,7 @@ package controller.ranking;
 import java.io.IOException;
 
 public interface Ranking {
-    
+
     /**
      * Add a new player's score to the ranking system.
      * 
@@ -11,8 +11,7 @@ public interface Ranking {
      * @param playerScore
      * @throws IOException
      */
-    void addPlayer(final String playerName, final Integer playerScore) throws IOException;
-    
+    void addPlayer(String playerName, Integer playerScore) throws IOException;
 
     /**
      * Return a formatted String containing a limited part of the information of

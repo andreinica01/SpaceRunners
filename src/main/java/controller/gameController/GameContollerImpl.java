@@ -73,7 +73,7 @@ public class GameContollerImpl implements GameController {
                 this.player.setDirection(Direction.RIGHT);
             }
         }
-        
+
         if (this.inputController.isTaskActive(InputCommand.ATTACK) && this.player.getCanFire()) {
             this.player.attack();
         }

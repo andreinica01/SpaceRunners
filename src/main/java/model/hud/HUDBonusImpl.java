@@ -1,12 +1,10 @@
 package model.hud;
 
-import java.io.File;
 import java.util.stream.IntStream;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.status.StatusEnum;
 import utilities.MagicEnumInt;
-import utilities.MagicEnumString;
 import view.gameField.GameField;
 
 public class HUDBonusImpl implements IHUDBonus {

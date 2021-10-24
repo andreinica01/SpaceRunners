@@ -8,5 +8,5 @@ public interface StatusFactory {
      * @param type.
      * @return a specific status to be created.
      */
-    public Status createStatus(final StatusEnum type);
+    Status createStatus(StatusEnum type);
 }

@@ -43,13 +43,13 @@ public class InputControllerImpl implements InputController {
     }
 
     @Override
-    public void changeScene(final Scene scene) {
+    public final void changeScene(final Scene scene) {
         this.scene = scene;
         this.initializeListeners();
     }
 
     @Override
-    public void resetStates() {
+    public final void resetStates() {
         List.of(InputCommand.values()).forEach(e -> this.task.put(e, false));
         List.of(KeyCode.values()).forEach(e -> this.pressedKeys.put(e, false));
     }
@@ -64,7 +64,7 @@ public class InputControllerImpl implements InputController {
     }
 
     @Override
-    public void addCommandKeys(final KeyCode key, final InputCommand command) {
+    public final void addCommandKeys(final KeyCode key, final InputCommand command) {
         // If key is already mapped, switch with the current values. Else just set it.
         if (this.commandKeys.values().stream().anyMatch(e -> e.equals(key))) {
             InputCommand otherCommand = this.getKeyFromValue(this.commandKeys, key);
@@ -118,7 +118,7 @@ public class InputControllerImpl implements InputController {
     }
 
     @Override
-    public void updatePlayerTasks() {
+    public final void updatePlayerTasks() {
         this.updateKeysInfo();
         this.fireLogic();
         this.movementLogic();
@@ -136,8 +136,8 @@ public class InputControllerImpl implements InputController {
      * Managing fire logic. Making player firing only 1 bullet at time.
      */
     private void fireLogic() {
-        if (this.isTaskActive(InputCommand.ATTACK) == true) {
-            if (this.fireFlag == true) {
+        if (this.isTaskActive(InputCommand.ATTACK)) {
+            if (this.fireFlag) {
                 this.fireFlag = false;
             } else {
                 this.task.put(InputCommand.ATTACK, false);
@@ -148,22 +148,22 @@ public class InputControllerImpl implements InputController {
     }
 
     @Override
-    public boolean isKeyPressed(final KeyCode key) {
+    public final boolean isKeyPressed(final KeyCode key) {
         return this.pressedKeys.get(key);
     }
 
     @Override
-    public KeyCode getKeyMapped(final InputCommand command) {
+    public final KeyCode getKeyMapped(final InputCommand command) {
         return this.commandKeys.get(command);
     }
 
     @Override
-    public boolean isTaskActive(final InputCommand task) {
+    public final boolean isTaskActive(final InputCommand task) {
         return this.task.get(task);
     }
 
     @Override
-    public void setKeyState(final KeyCode key, final boolean state) {
+    public final void setKeyState(final KeyCode key, final boolean state) {
         this.pressedKeys.put(key, state);
     }
 

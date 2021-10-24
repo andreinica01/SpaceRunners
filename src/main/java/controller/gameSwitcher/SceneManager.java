@@ -20,7 +20,7 @@ public interface SceneManager {
      * 
      * @throws IOException
      */
-    void switchToGame(final String name) throws IOException;
+    void switchToGame(String name) throws IOException;
 
     /**
      * Switch to Score Menu.
@@ -35,37 +35,37 @@ public interface SceneManager {
      * @throws IOException
      */
     void switchToNickname() throws IOException;
-    
+
     /**
      * Switch to End Game menu.
      * @param scores 
      * 
      * @throws IOException
      */
-    void switchToEndMenu(final int scores) throws IOException;
-    
+    void switchToEndMenu(int scores) throws IOException;
+
     /**
      * Switch to Controls Menu.
      * 
      * @throws IOException
      */
     void switchToControls() throws IOException;
-    
+
     /**
      * Quit from the game.
      */
     void quit();
-    
+
     /**
      * @return Stage reference.
      */
     Stage getStage();
-    
+
     /**
      * @return Ranking object reference.
      */
     Ranking getRanking();
-    
+
     /**
      * @return input controller reference.
      */
