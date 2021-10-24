@@ -6,15 +6,12 @@ Here it is a history update of the release versions:
   - 1.1: Game runnable from jar and testing new ways to load resources.
   
   - 1.2: Game runnable from jar only with Eclipse terminal.
-  
+
+  - 1.3: Game runnable from jar with double click and from every terminal.
   
 # How to generate .jar file:
-From Eclipse terminal type:
+From terminal:
   - gradlew shadowjar
 
-This will create 2 jar files in build/libs/. Now in order to run the game from the jar file you need to type this in eclipse terminal.
-  - java -jar build/libs/SpaceRunners-all.jar
-
-You can move the file and then change the path as many times as you want, the most important thing to remember is that the file is only runnable from Eclipse terminal.
-
-A game made in java made by 4 Unibo Students.
+This will create 2 jar files in build/libs/. Now in order to run the game from the jar file check in:
+  - build/libs/SpaceRunners-all.jar
