@@ -1,14 +1,17 @@
 package controller.gameEventController;
 
-import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
 import javax.sound.sampled.FloatControl;
+
 import utilities.MagicEnumInt;
-import utilities.MagicEnumString;
 
 public class SoundManager {
 
@@ -29,12 +32,16 @@ public class SoundManager {
      * @param sound to be played.
      */
     private void playSound(final String sound) {
+        
+        URL url = this.getClass().getResource("/Sounds/"+sound);
+        AudioInputStream ais;
         try {
-            Clip soundClip = AudioSystem.getClip();
-            soundClip.open(AudioSystem.getAudioInputStream(new File(MagicEnumString.SOUND_FOLDER.getValue() + sound)));
+            ais = AudioSystem.getAudioInputStream(url);
+            DataLine.Info info = new DataLine.Info(Clip.class, ais.getFormat());
+            Clip soundClip = (Clip) AudioSystem.getLine(info);
+            soundClip.open(ais);
             this.setVolume(soundClip, 10);
             soundClip.start();
-
             this.sounds.add(soundClip);
         } catch (Exception e) {
         } finally {
