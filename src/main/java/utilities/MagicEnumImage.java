@@ -8,37 +8,37 @@ public enum MagicEnumImage {
     /**
      * 
      */
-    BULLET(new Image(new File(MagicEnumString.BULLET_PATH.getValue()).toURI().toString())),
+    BULLET("/Images/bullet.png"),
 
     /**
      * 
      */
-    BACKGROUND(new Image(new File(MagicEnumString.BACKGROUND_PATH.getValue()).toURI().toString())),
+    BACKGROUND("/Images/stars2.png"),
 
     /**
      * 
      */
-    PLAYER(new Image(new File(MagicEnumString.PLAYER_PATH.getValue()).toURI().toString())),
+    PLAYER("/Images/playerShip.png"),
 
     /**
      * 
      */
-    ENEMY(new Image(new File(MagicEnumString.ENEMY_PATH.getValue()).toURI().toString())),
+    ENEMY("/Images/enemy.png"),
 
     /**
      * 
      */
-    BOSS(new Image(new File(MagicEnumString.BOSS_PATH.getValue()).toURI().toString()));
+    BOSS("/Images/bossShip.png");
 
     private Image value;
 
     /**
      * Constructor.
      * 
-     * @param value
+     * @param string
      */
-    private MagicEnumImage(final Image value) {
-        this.value = value;
+    private MagicEnumImage(final String path) {
+        this.value = new Image(getClass().getResourceAsStream(path));
     }
 
     /**

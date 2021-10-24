@@ -40,10 +40,10 @@ public class RankingImpl implements Ranking {
      * @throws IOException
      */
     private void loadFromFile() throws IOException {
-        InputStream in = getClass().getResourceAsStream(this.filePathname);
-        Properties p = new Properties();
-        p.load(in);
-        p.stringPropertyNames().forEach(e -> this.map.put(e, Integer.valueOf(p.get(e).toString())));
+            InputStream in = getClass().getResourceAsStream(this.filePathname); 
+            Properties p = new Properties();
+            p.load(in);
+            p.stringPropertyNames().forEach(e -> this.map.put(e, Integer.valueOf(p.get(e).toString())));
     }
 
     /**
@@ -54,7 +54,8 @@ public class RankingImpl implements Ranking {
     private void saveToFile() throws IOException {
         Properties p = new Properties();
         this.map.entrySet().forEach(e -> p.put(e.getKey(), e.getValue().toString()));
-        p.store(new FileOutputStream(this.file), null);
+        String out = getClass().getResourceAsStream(this.filePathname).toString();
+        p.store(new FileOutputStream(out), null);
     }
 
     @Override
