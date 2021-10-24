@@ -7,4 +7,10 @@ Here it is a history update of the release versions:
   
   - 1.2: Game runnable from jar only with Eclipse terminal.
   
+  
+# How to generate .jar file:
+From Eclipse terminal type:
+  gradlew shadowjar
+  
+
 A game made in java made by 4 Unibo Students.
