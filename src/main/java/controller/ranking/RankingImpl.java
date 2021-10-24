@@ -1,9 +1,12 @@
 package controller.ranking;
 
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URLDecoder;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -26,10 +29,12 @@ public class RankingImpl implements Ranking {
      * Constructor.
      * 
      * @throws IOException
+     * @throws URISyntaxException
      */
     public RankingImpl() throws IOException {
         this.map = new HashMap<>();
-        this.filePathname = "/ranking/Ranking.txt";
+        this.filePathname = "Ranking.txt";
+        this.filePathname = URLDecoder.decode(this.filePathname, "UTF-8");
         this.file = new File(this.filePathname);
         this.loadFromFile();
     }
@@ -40,10 +45,19 @@ public class RankingImpl implements Ranking {
      * @throws IOException
      */
     private void loadFromFile() throws IOException {
-            InputStream in = getClass().getResourceAsStream(this.filePathname); 
-            Properties p = new Properties();
-            p.load(in);
-            p.stringPropertyNames().forEach(e -> this.map.put(e, Integer.valueOf(p.get(e).toString())));
+        if (this.file.exists()) {
+            this.map.clear();
+            Properties properties = new Properties();
+            properties.load(new FileInputStream(this.file));
+            for (String key : properties.stringPropertyNames()) {
+                String value = properties.getProperty(key);
+                this.map.put(key, Integer.valueOf(value));
+            }
+
+        } else {
+            this.file.createNewFile();
+            this.saveToFile();
+        }
     }
 
     /**
@@ -52,10 +66,16 @@ public class RankingImpl implements Ranking {
      * @throws IOException
      */
     private void saveToFile() throws IOException {
-        Properties p = new Properties();
-        this.map.entrySet().forEach(e -> p.put(e.getKey(), e.getValue().toString()));
-        String out = getClass().getResourceAsStream(this.filePathname).toString();
-        p.store(new FileOutputStream(out), null);
+        BufferedWriter bw = new BufferedWriter(new FileWriter(this.file));
+        this.map.entrySet().forEach(e -> {
+            try {
+                bw.write(e.getKey() + "=" + e.getValue().toString() + "\n");
+                bw.newLine();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
+        bw.close();
     }
 
     @Override
