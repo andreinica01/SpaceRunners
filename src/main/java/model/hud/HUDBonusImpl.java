@@ -47,8 +47,7 @@ public class HUDBonusImpl implements IHUDBonus {
     private void addBonuses() {
 
         IntStream.range(MagicEnumInt.ZERO.getValue(), MagicEnumInt.FIVE.getValue()).forEach(index -> {
-            this.bonus[index] = new ImageView(new Image(
-                    new File(MagicEnumString.IMAGE_FOLDER.getValue() + "bonus" + index + ".png").toURI().toString(),
+            this.bonus[index] = new ImageView(new Image(getClass().getResourceAsStream("/Images/" + "bonus" + index + ".png"),
                     SPACING, SPACING, false, true));
             this.bonus[index].setLayoutX(MagicEnumInt.WIDTH.getValue() - X_LAYOUT);
             this.bonus[index].setLayoutY(index * -SPACING);
