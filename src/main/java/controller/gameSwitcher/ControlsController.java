@@ -45,7 +45,8 @@ public class ControlsController extends BasicFXMLController {
     @FXML
     private void initialize() {
         this.inputController = super.getSceneManager().getInputController();
-        this.keyToSetText.setText(KeyCode.A.toString());
+        this.lastKeyPressed = KeyCode.A;
+        this.keyToSetText.setText(this.lastKeyPressed.toString());
         this.refreshControlsText();
     }
 
